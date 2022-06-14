@@ -5,6 +5,7 @@
 :root {
     --primary-color: #29b080;
     --lightprimary-color: #5edaae;
+    --darkprimary-color: rgba(41, 176, 128, 0.2);;
     --secondary-color: #fff;
     --footer-color: #9b9b9b;
     --gradient-color-stops: rgb(27, 168, 116, 0.3) 0%, transparent 70%;

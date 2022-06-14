@@ -12,6 +12,7 @@ module.exports = {
         'black': '#000',
         'primary': 'var(--primary-color)',
         'lightprimary': 'var(--lightprimary-color)',
+        'darkprimary': 'var(--darkprimary-color)',
         'secondary': 'var(--secondary-color)',
         'footer': 'var(--footer-color)',
         'content': '#cecece',

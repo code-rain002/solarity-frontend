@@ -19,6 +19,10 @@ body {
     left: auto !important;
 }
 
+.logo-text {
+    font-family: "Montserrat";
+}
+
 .banner-text {
     font-family: "Outfit";
     font-feature-settings: 'ss03' on, 'kern' off;
@@ -38,6 +42,66 @@ body {
     background-clip: text;
     text-fill-color: transparent;
     font-feature-settings: 'ss03' on, 'kern' off;
+}
+
+.solarity-button:hover {
+    box-shadow: 0px 0px 0px 7px rgba(41, 176, 128, 0.07);
+    border-radius: 0px;
+}
+
+.round-glow-1 {
+    position: absolute;
+    width: 465px;
+    height: 465px;
+    left: 722px;
+    top: -197px;
+
+    background: rgba(27, 168, 116, 0.3);
+    filter: blur(300px);
+}
+
+.round-glow-2 {
+    position: absolute;
+    width: 614px;
+    height: 832px;
+    left: -310px;
+    top: 84px;
+
+    background: rgba(27, 168, 116, 0.15);
+    filter: blur(640px);
+}
+
+.round-glow-3 {
+    position: absolute;
+    width: 265px;
+    height: 265px;
+    left: 613px;
+    top: 773px;
+
+    background: rgba(27, 168, 116, 0.4);
+    filter: blur(300px);
+}
+
+.round-glow-4 {
+    position: absolute;
+    width: 308px;
+    height: 308px;
+    left: 899px;
+    top: 902px;
+
+    background: rgba(27, 168, 116, 0.4);
+    filter: blur(300px);
+}
+
+.round-glow-5 {
+    position: absolute;
+    width: 302px;
+    height: 302px;
+    left: 1386px;
+    top: 297px;
+
+    background: rgba(27, 168, 116, 0.4);
+    filter: blur(300px);
 }
 
 sup {

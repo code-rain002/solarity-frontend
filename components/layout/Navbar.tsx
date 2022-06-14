@@ -17,7 +17,7 @@ const Navbar = () => {
                 <a href="/" className="flex items-center py-3 px-2 text-white">
                   <Image src={Logo} width={37} height={37}></Image>
 
-                  <span className="font-semibold text-[25px] px-2 tracking-widest uppercase">Solarity</span>
+                  <span className="font-semibold text-[25px] px-2 tracking-widest uppercase logo-text">Solarity</span>
                 </a>
               </div>
             </div>
