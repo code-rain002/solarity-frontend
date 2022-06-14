@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    background-color: #141414;
+}
+
+::-webkit-scrollbar { width: 9px; height: 1px;}
+::-webkit-scrollbar-button {  background-color: transparent; height: 0; }
+::-webkit-scrollbar-track-piece { background-color: rgba(0,0,0,0.0);}
+::-webkit-scrollbar-thumb { background: rgb(41, 176, 128, 0.8); border-radius: 15px;}
+::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0.1);}
+::-webkit-resizer { background-color: var(--primary-color);}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+  
+* {
+    transition: 0.2s ease-in;
+}

@@ -1,0 +1,45 @@
+body {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.banner-image-container span {
+    height: 100vh !important;
+    width: 100vw !important;
+}
+
+.banner-image {
+    max-width: none !important;
+    min-width: auto !important;
+    width: auto !important;
+    margin: none;
+    left: auto !important;
+}
+
+.banner-text {
+    font-family: "Outfit";
+    font-feature-settings: 'ss03' on, 'kern' off;
+    white-space: pre;
+
+    /* background: linear-gradient(241.26deg, rgba(6, 28, 20, 0.69) 23.43%, rgba(6, 28, 20, 0) 47.95%), #FFFFFF;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent; */
+}
+
+.text-gradient {
+    background: linear-gradient(241.26deg, rgba(6, 28, 20, 0.69) 23.43%, rgba(6, 28, 20, 0) 47.95%), #FFFFFF;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-feature-settings: 'ss03' on, 'kern' off;
+}
+
+sup {
+    display: inline-block;
+}
