@@ -19,8 +19,9 @@ export const ConnectWalletModal = () => {
           <>
             <div
               className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+              onClick={() => {setShowModal(false)}}
             >
-              <div className="relative w-auto my-6 mx-auto max-w-[380px]">
+              <div className="relative w-auto my-6 mx-auto max-w-[380px]" onClick={(e) => {e.stopPropagation()}}>
                 {/*content*/}
                 <div className=" rounded-[30px] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
                   {/*header*/}
@@ -61,7 +62,7 @@ export const ConnectWalletModal = () => {
                 </div>
               </div>
             </div>
-            <div className="opacity-70 backdrop-blur-[14px] fixed inset-0 z-40 bg-black"></div>
+            <div className="bg-black/70 backdrop-blur-sm fixed inset-0 z-40"></div>
           </>
         ) : null}
       </>
