@@ -1,3 +1,8 @@
+* {
+    outline-width: 0;
+    outline-color: var(--focus-color);
+}
+
 body {
     position: fixed;
     top: 0;
@@ -27,12 +32,6 @@ body {
     font-family: "Outfit";
     font-feature-settings: 'ss03' on, 'kern' off;
     white-space: pre;
-
-    /* background: linear-gradient(241.26deg, rgba(6, 28, 20, 0.69) 23.43%, rgba(6, 28, 20, 0) 47.95%), #FFFFFF;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent; */
 }
 
 .text-gradient {
@@ -46,7 +45,7 @@ body {
 
 .solarity-button:hover {
     box-shadow: 0px 0px 0px 7px rgba(41, 176, 128, 0.07);
-    border-radius: 0px;
+    border-radius: 5px;
 }
 
 .round-glow-1 {
@@ -57,7 +56,7 @@ body {
     top: -197px;
 
     background: rgba(27, 168, 116, 0.3);
-    filter: blur(300px);
+    filter: blur(150px);
 }
 
 .round-glow-2 {
@@ -68,7 +67,7 @@ body {
     top: 84px;
 
     background: rgba(27, 168, 116, 0.15);
-    filter: blur(640px);
+    filter: blur(200px);
 }
 
 .round-glow-3 {
@@ -79,7 +78,7 @@ body {
     top: 773px;
 
     background: rgba(27, 168, 116, 0.4);
-    filter: blur(300px);
+    filter: blur(160px);
 }
 
 .round-glow-4 {
@@ -90,7 +89,7 @@ body {
     top: 902px;
 
     background: rgba(27, 168, 116, 0.4);
-    filter: blur(300px);
+    filter: blur(160px);
 }
 
 .round-glow-5 {
@@ -101,7 +100,7 @@ body {
     top: 297px;
 
     background: rgba(27, 168, 116, 0.4);
-    filter: blur(300px);
+    filter: blur(160px);
 }
 
 sup {
