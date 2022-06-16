@@ -78,21 +78,6 @@ const WalletSelector: FC<{
                     }} />
                   </div>
                 ))}
-                <div className="py-3">
-                  <WalletButton caption="Phantom" icon={phantomImage} onClick={null} />
-                </div>
-                <div className="py-3">
-                  <WalletButton caption="Slope" icon={slopeImage} onClick={null} />
-                </div>
-                <div className="py-3">
-                  <WalletButton caption="Solflare" icon={solflareImage} onClick={null} />
-                </div>
-                <div className="py-3">
-                  <WalletButton caption="Torus" icon={torusImage} onClick={null} />
-                </div>
-                <div className="py-3">
-                  <WalletButton caption="Sollet" icon={solletImage} onClick={null} />
-                </div>
               </div>
             </div>
           </div>
