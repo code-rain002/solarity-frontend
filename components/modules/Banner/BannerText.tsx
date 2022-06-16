@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Button from "../../common/Button";
+import Button from "../../common/Buttons/Button";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
-import ButtonLabel from "../../common/BannerLabel";
+import ButtonLabel from "../../common/Buttons/BannerLabel";
 
 import buttonlabel1 from "../../../assets/images/bannericon1.png";
 import buttonlabel2 from "../../../assets/images/bannericon2.png";

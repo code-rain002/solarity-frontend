@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import Button from "../../common/Button";
-import WalletButton from "../../common/WalletButton";
+import Button from "../../common/Buttons/Button";
+import WalletButton from "../../common/Buttons/WalletButton";
 
 import phantomImage from "../../../assets/images/phantom.png";
 import slopeImage from "../../../assets/images/slope.png";
@@ -41,22 +41,22 @@ export const ConnectWalletModal = () => {
                   {/*body*/}
                   <div className="relative p-8 flex-auto">
                     <div className="py-3">
-                      <WalletButton caption="Phantom" icon={phantomImage} onClick={null} />
+                      <WalletButton caption="Phantom" icon={phantomImage} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Slope" icon={slopeImage} onClick={null} />
+                      <WalletButton caption="Slope" icon={slopeImage} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Solflare" icon={solflareImage} onClick={null} />
+                      <WalletButton caption="Solflare" icon={solflareImage} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Torus" icon={torusImage} onClick={null} />
+                      <WalletButton caption="Torus" icon={torusImage} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Sollet" icon={solletImage} onClick={null} />
+                      <WalletButton caption="Sollet" icon={solletImage} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Sollet (extension)" icon={solletexImage} onClick={null} />
+                      <WalletButton caption="Sollet (extension)" icon={solletexImage} onClick={null} styles="" />
                     </div>
                   </div>
                 </div>

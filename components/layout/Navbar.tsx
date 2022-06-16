@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Image from "next/image";
 
-import Logo from "../../assets/images/logo.png";
+import Logo from "../common/Logo";
 
 const Navbar = () => {
 
@@ -13,15 +12,8 @@ const Navbar = () => {
           <div className="flex justify-between">
             <div className="flex space-x-4">
               {/* logo */}
-              <div>
-                <a href="/" className="flex items-center py-3 px-2 text-white">
-                  <Image src={Logo} width={37} height={37}></Image>
-
-                  <span className="font-semibold text-[25px] px-2 tracking-widest uppercase logo-text">Solarity</span>
-                </a>
-              </div>
+              <Logo />
             </div>
-
           </div>
         </div>
       </nav>

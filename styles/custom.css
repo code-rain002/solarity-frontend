@@ -43,9 +43,9 @@ body {
     font-feature-settings: 'ss03' on, 'kern' off;
 }
 
-.solarity-button:hover {
+.solarity-button:not(.button-disabled):hover {
     box-shadow: 0px 0px 0px 7px rgba(41, 176, 128, 0.07);
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 .round-glow-1 {
@@ -103,6 +103,94 @@ body {
     filter: blur(160px);
 }
 
+.passport-card {
+    box-shadow: 0px 0px 0px 10px rgb(41 176 128 / 5%)
+}
+
 sup {
     display: inline-block;
+}
+
+.eclipse-1 {
+    width: 494px;
+    height: 494px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    background: rgba(27, 168, 116, 0.03);
+    border-radius: 323.744px;
+}
+
+.eclipse-2 {
+    width: 548px;
+    height: 548px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /* z-index: -1; */
+
+    background: rgba(27, 168, 116, 0.02);
+    border-radius: 323.744px;
+}
+
+.eclipse-center-1 {
+    width: 194px;
+    height: 194px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 323.744px;
+}
+
+.eclipse-center-2 {
+    width: 94px;
+    height: 94px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    background: rgba(27, 168, 116, 0.2);
+    border-radius: 323.744px;
+}
+
+.eclipse-center-3 {
+    width: 294px;
+    height: 294px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    background: rgba(27, 168, 116, 0.2);
+    border-radius: 323.744px;
+}
+
+.eclipse-center-4 {
+    width: 394px;
+    height: 394px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 323.744px;
+}
+
+.passport-liner {
+    border-right: 1px solid;
+    border-image-source: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.06) 10.56%, rgba(255, 255, 255, 0.3) 48.77%, rgba(255, 255, 255, 0.06) 87.14%, rgba(255, 255, 255, 0) 100%);
 }
