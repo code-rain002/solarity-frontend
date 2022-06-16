@@ -9,13 +9,34 @@ import torusImage from "../../../assets/images/torus.png";
 import solletImage from "../../../assets/images/sollet.png";
 import solletexImage from "../../../assets/images/sollet_ex.png";
 
+import placeholder from "../../assets/images/placeholder/avatar.png";
+// import { useSelector, useDispatch } from "react-redux";
+import WalletSelector from "../../WalletSelector";
+
 export const ConnectWalletModal = () => {
+    // const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
     return (
       <>
         <Button caption="Connect wallet" icon="" bordered={false} onClick={() => setShowModal(true)} />
-        {showModal ? (
+        <WalletSelector
+          type="all"
+          title="Login with Wallet"
+          subtitle="Select a wallet from the list below"
+          open={showModal}
+          onClose={() => setShowModal(false)}
+          onSelect={(address, type, provider) => {
+            // dispatch(
+            //   login({
+            //     publicKey: address,
+            //     walletType: type,
+            //     provider,
+            //   })
+            // );
+          }}
+        />
+        {showModal===null ? (
           <>
             <div
               className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
