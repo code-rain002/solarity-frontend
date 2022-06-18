@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { HomePage } from "modules/HomePage";
 import { BannerImage } from "modules/HomePage/BannerImage";
 import HomePageHeader from "components/HomePageHeader";

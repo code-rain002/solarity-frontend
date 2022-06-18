@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
-import LogoImg from "assets/images/logo.png";
+import { LogoImg } from "./Images";
 
 const Logo = () => {
   return (

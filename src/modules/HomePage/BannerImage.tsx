@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
-import BannerImg from "assets/images/BannerImg.png";
+import { BannerImg } from "components/Common/Images";
 
 export const BannerImage = () => {
   return (

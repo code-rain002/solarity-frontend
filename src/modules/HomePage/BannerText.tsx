@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
-import ButtonLabel from "components/Common/Buttons/BannerLabel";
+import { ButtonLabel } from "components/Common/Buttons";
 
-import buttonlabel1 from "assets/images/bannericon1.png";
-import buttonlabel2 from "assets/images/bannericon2.png";
-import buttonlabel3 from "assets/images/bannericon3.png";
 import { ConnectWalletModal } from "./ConnectWalletModal";
+import { BannericonImg1, BannericonImg2, BannericonImg3 } from "components/Common/Images";
 
 export const BannerText = () => {
   const [modalOpened, setModalOpened] = useState(false);
@@ -21,15 +19,15 @@ export const BannerText = () => {
         <AnimationOnScroll animateOnce={true} animateIn="animate__fadeIn">
           <div className="my-[2.2vh] mb-[56px] text-center sm:text-left">
             <div className="flex items-center mb-[1.5vh]">
-                <ButtonLabel icon={buttonlabel1} />
+                <ButtonLabel icon={BannericonImg1} />
                 <label className="leading-[60px] text-white pl-6">Connect your wallet</label> 
             </div>
             <div className="flex items-center mb-[1.5vh]">
-                <ButtonLabel icon={buttonlabel2} />
+                <ButtonLabel icon={BannericonImg2} />
                 <label className="leading-[60px] text-white pl-6">Create passport</label> 
             </div>
             <div className="flex items-center mb-[1.5vh]">
-                <ButtonLabel icon={buttonlabel3} />
+                <ButtonLabel icon={BannericonImg3} />
                 <label className="leading-[60px] text-white pl-6">Start exploring!</label> 
             </div>
           </div>

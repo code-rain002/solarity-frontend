@@ -1,13 +1,6 @@
 import React, {useState, useEffect} from "react";
-import Button from "components/Common/Buttons/Button";
-import WalletButton from "components/Common/Buttons/WalletButton";
-
-import phantomImage from "assets/images/phantom.png";
-import slopeImage from "assets/images/slope.png";
-import solflareImage from "assets/images/solflare.png";
-import torusImage from "assets/images/torus.png";
-import solletImage from "assets/images/sollet.png";
-import solletexImage from "assets/images/sollet_ex.png";
+import { Button, WalletButton } from "components/Common/Buttons";
+import { PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 
 export const ConnectWalletModal = () => {
     const [showModal, setShowModal] = useState(false);
@@ -41,22 +34,22 @@ export const ConnectWalletModal = () => {
                   {/*body*/}
                   <div className="relative p-8 flex-auto">
                     <div className="py-3">
-                      <WalletButton caption="Phantom" icon={phantomImage} onClick={null} styles="" />
+                      <WalletButton caption="Phantom" icon={PhantomImg} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Slope" icon={slopeImage} onClick={null} styles="" />
+                      <WalletButton caption="Slope" icon={SlopeImg} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Solflare" icon={solflareImage} onClick={null} styles="" />
+                      <WalletButton caption="Solflare" icon={SolflareImg} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Torus" icon={torusImage} onClick={null} styles="" />
+                      <WalletButton caption="Torus" icon={TorusImg} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Sollet" icon={solletImage} onClick={null} styles="" />
+                      <WalletButton caption="Sollet" icon={SolletImg} onClick={null} styles="" />
                     </div>
                     <div className="py-3">
-                      <WalletButton caption="Sollet (extension)" icon={solletexImage} onClick={null} styles="" />
+                      <WalletButton caption="Sollet (extension)" icon={SolletExImg} onClick={null} styles="" />
                     </div>
                   </div>
                 </div>
