@@ -3,28 +3,28 @@ import Image from "next/image";
 
 import Dropzone from 'react-dropzone'
 
-import AddressButton from "../../common/Buttons/AddressButton";
+import AddressButton from "components/Common/Buttons/AddressButton";
 
-import addressImg from "../../../assets/images/address.png";
-import DomainInput from "../../common/Forms/DomainInput";
-import WalletButton from "../../common/Buttons/WalletButton";
+import addressImg from "assets/images/address.png";
+import DomainInput from "components/Common/Forms/DomainInput";
+import WalletButton from "components/Common/Buttons/WalletButton";
 
-import avatar from '../../../assets/images/Avatar.png';
-import twitterImg from "../../../assets/images/twitter.png";
-import discordImg from "../../../assets/images/discord.png";
-import githubImg from "../../../assets/images/github.png";
-import PrimaryButton from "../../common/Buttons/PrimaryButton";
-import Logo from "../../common/Logo";
-import DaoImg1 from "../../../assets/images/dao-pic-1.png";
-import DaoBackImg1 from "../../../assets/images/dao-bg-1.png";
-import GalleryImg from "../../../assets/images/gallery.png";
+import avatar from 'assets/images/Avatar.png';
+import twitterImg from "assets/images/twitter.png";
+import discordImg from "assets/images/discord.png";
+import githubImg from "assets/images/github.png";
+import PrimaryButton from "components/Common/Buttons/PrimaryButton";
+import Logo from "components/Common/Logo";
+import DaoImg1 from "assets/images/dao-pic-1.png";
+import DaoBackImg1 from "assets/images/dao-bg-1.png";
+import GalleryImg from "assets/images/gallery.png";
 
-import daoImg1 from "../../../assets/images/dao1.png";
-import daoImg2 from "../../../assets/images/dao2.png";
-import profileImg from "../../../assets/images/profile.png";
-import BackButton from "../../common/Buttons/BackButton";
-import DaoPanel from "../../common/DaoPanel";
-import AvatarPanel from "../../common/AvatarPanel";
+import daoImg1 from "assets/images/dao1.png";
+import daoImg2 from "assets/images/dao2.png";
+import profileImg from "assets/images/profile.png";
+import BackButton from "components/Common/Buttons/BackButton";
+import DaoPanel from "components/Common/DaoPanel";
+import AvatarPanel from "components/Common/AvatarPanel";
 
 export const GeneralInfo = () => {
   const [step, setStep] = useState(0);

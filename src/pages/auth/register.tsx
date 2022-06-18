@@ -1,6 +1,6 @@
-import { GeneralInfo } from "../../components/modules/Auth/GeneralInfo";
+import { GeneralInfo } from "modules/Auth/GeneralInfo";
 
-export default function Register() {
+const Register = () => {
   return (
     <div className="py-2">
       <main className="max-w-[110rem] mx-auto flex-1 px-5 sm:px-11">
@@ -12,3 +12,5 @@ export default function Register() {
     </div>
   );
 }
+
+export default Register;

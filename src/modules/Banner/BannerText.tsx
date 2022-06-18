@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Button from "../../common/Buttons/Button";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
-import ButtonLabel from "../../common/Buttons/BannerLabel";
+import ButtonLabel from "components/Common/Buttons/BannerLabel";
 
-import buttonlabel1 from "../../../assets/images/bannericon1.png";
-import buttonlabel2 from "../../../assets/images/bannericon2.png";
-import buttonlabel3 from "../../../assets/images/bannericon3.png";
+import buttonlabel1 from "assets/images/bannericon1.png";
+import buttonlabel2 from "assets/images/bannericon2.png";
+import buttonlabel3 from "assets/images/bannericon3.png";
 import { ConnectWalletModal } from "./ConnectWalletModal";
 
 export const BannerText = () => {

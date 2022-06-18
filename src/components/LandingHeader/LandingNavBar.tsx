@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Logo from "../common/Logo";
+import Logo from "components/Common/Logo";
 
-const Navbar = () => {
+const LandingNavBar = () => {
 
   return (
     //   navbar goes here
@@ -21,4 +21,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default LandingNavBar;
