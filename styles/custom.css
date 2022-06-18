@@ -48,6 +48,11 @@ body {
     /* border-radius: 5px; */
 }
 
+.back-button:not(.button-disabled):hover {
+    box-shadow: 0px 0px 0px 6px rgba(230, 230, 230, 0.07);
+    /* border-radius: 5px; */
+}
+
 .round-glow-1 {
     position: absolute;
     width: 465px;
@@ -138,59 +143,21 @@ sup {
     border-radius: 323.744px;
 }
 
-.eclipse-center-1 {
-    width: 194px;
-    height: 194px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 323.744px;
-}
-
-.eclipse-center-2 {
-    width: 94px;
-    height: 94px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    background: rgba(27, 168, 116, 0.2);
-    border-radius: 323.744px;
-}
-
-.eclipse-center-3 {
-    width: 294px;
-    height: 294px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    background: rgba(27, 168, 116, 0.2);
-    border-radius: 323.744px;
-}
-
-.eclipse-center-4 {
-    width: 394px;
-    height: 394px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 323.744px;
-}
-
 .passport-liner {
-    border-right: 1px solid;
-    border-image-source: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.06) 10.56%, rgba(255, 255, 255, 0.3) 48.77%, rgba(255, 255, 255, 0.06) 87.14%, rgba(255, 255, 255, 0) 100%);
+    border-right-width:1px;
+    -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, transparent), color-stop(0.5, rgba(255,255,255,0.3)), color-stop(0.5, rgba(255,255,255,0.3)), color-stop(1, transparent)) 0 100%;
+    border-right-width: 1px;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    padding: 2px;
+}
+
+.passport-body {
+    background-image: url(../assets/images/passport.png);
+}
+
+.dao-panel span {
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
 }
