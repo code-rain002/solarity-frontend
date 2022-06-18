@@ -6,11 +6,10 @@ import Dropzone from 'react-dropzone'
 import { AddressButton, WalletButton, PrimaryButton, BackButton } from "components/Common/Buttons";
 
 import Logo from "components/Common/Logo";
-import DaoPanel from "components/Common/DaoPanel";
-import AvatarPanel from "components/Common/AvatarPanel";
 
 import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, GalleryImg, GithubImg, ProfileImg, TwitterImg } from "components/Common/Images";
 import { DomainInput } from "components/Common/Forms";
+import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 
 export const GeneralInfo = () => {
   const [step, setStep] = useState(0);
