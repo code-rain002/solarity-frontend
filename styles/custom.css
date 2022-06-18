@@ -161,3 +161,7 @@ sup {
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
 }
+
+.avatar-panel span {
+    border-radius: 19px;
+}

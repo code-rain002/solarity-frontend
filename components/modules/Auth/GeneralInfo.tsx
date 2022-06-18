@@ -21,8 +21,10 @@ import GalleryImg from "../../../assets/images/gallery.png";
 
 import daoImg1 from "../../../assets/images/dao1.png";
 import daoImg2 from "../../../assets/images/dao2.png";
+import profileImg from "../../../assets/images/profile.png";
 import BackButton from "../../common/Buttons/BackButton";
 import DaoPanel from "../../common/DaoPanel";
+import AvatarPanel from "../../common/AvatarPanel";
 
 export const GeneralInfo = () => {
   const [step, setStep] = useState(0);
@@ -120,31 +122,38 @@ export const GeneralInfo = () => {
                 <AddressButton caption="Ak...VqT9" icon={addressImg} onClick={null} />
               </div>
               <div className="relative p-14 flex-auto">
-              <Dropzone onDrop={acceptedFiles => {console.log(acceptedFiles); setFiles(acceptedFiles.length);}}>
-                {({getRootProps, getInputProps}) => (
-                  <div className="max-w-xl" {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <label
-                        className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
-                        <span className="flex items-center space-x-2 mr-3">
-                          <Image src={GalleryImg} />
-                        </span>
-                        <span className="flex items-center space-x-2">
-                            {files?<span className="font-medium text-[#f3f3f3]">
-                                <label className="text-primary">{files}</label> file&#40;s&#41; selected
-                                <br></br>
-                                <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
-                            </span>:<span className="font-medium text-[#f3f3f3]">
-                                Drop image here or&nbsp;<label className="text-primary">browse</label>
-                                <br></br>
-                                <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
-                            </span>}
-                        </span>
-                    </label>
+                <Dropzone onDrop={acceptedFiles => {console.log(acceptedFiles); setFiles(acceptedFiles.length);}}>
+                  {({getRootProps, getInputProps}) => (
+                    <div className="max-w-xl" {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <label
+                          className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
+                          <span className="flex items-center space-x-2 mr-3">
+                            <Image src={GalleryImg} />
+                          </span>
+                          <span className="flex items-center space-x-2">
+                              {files?<span className="font-medium text-[#f3f3f3]">
+                                  <label className="text-primary">{files}</label> file&#40;s&#41; selected
+                                  <br></br>
+                                  <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
+                              </span>:<span className="font-medium text-[#f3f3f3]">
+                                  Drop image here or&nbsp;<label className="text-primary">browse</label>
+                                  <br></br>
+                                  <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
+                              </span>}
+                          </span>
+                      </label>
+                    </div>
+                  )}
+                </Dropzone>
+                <div className="grid grid-cols-2 xl:grid-cols-3 mt-5">
+                  <div className="p-2">
+                    <AvatarPanel imageSrc={profileImg} title="RESSURECTION..." />
                   </div>
-                )}
-              </Dropzone>
-                
+                  <div className="p-2">
+                    <AvatarPanel imageSrc={profileImg} title="RESSURECTION..." />
+                  </div>
+                </div>
               </div>
               <div className="w-full p-14 flex-auto absolute bottom-0">
                 <div className="inline-block w-[20%] pr-2">

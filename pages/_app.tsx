@@ -4,7 +4,7 @@ import '../styles/custom.css';
 
 import Head from 'next/head';
 
-import Layout from "../components/layout/Layout";
+import Layout from "../components/layout";
 import "animate.css/animate.min.css";
 import 'font-awesome/css/font-awesome.min.css'
 
