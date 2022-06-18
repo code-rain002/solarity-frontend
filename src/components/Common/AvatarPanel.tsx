@@ -15,7 +15,7 @@ const AvatarPanel = (props: AvatarPanelProps) => {
                 layout="fill"
             />
         </div>
-        <div className="absolute top-[20px] left-[20px] m-auto w-auto px-1 bg-[rgba(12, 12, 14, 0.5)] rounded-[15px]">
+        <div className="absolute flex items-center h-[25px] top-[15px] left-[15px] m-auto w-auto px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px]">
             <span className="text-[12px] text-[#f3f3f3]">Collection Name</span>
         </div>
         <div className="relative mt-[158px] text-center">

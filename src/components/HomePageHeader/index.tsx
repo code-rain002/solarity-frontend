@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const LandingHeader = ({ children }: Props) => {
+const Index = ({ children }: Props) => {
   return (
     <div className="p-0 mobile-galaxy">
       <LandingNavBar />
@@ -14,4 +14,4 @@ const LandingHeader = ({ children }: Props) => {
   );
 }
 
-export default LandingHeader
+export default Index;
