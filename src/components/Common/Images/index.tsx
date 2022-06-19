@@ -23,6 +23,7 @@ export { default as BannericonImg1 } from "assets/images/landing/bannericon1.png
 export { default as BannericonImg2 } from "assets/images/landing/bannericon2.png";
 export { default as BannericonImg3 } from "assets/images/landing/bannericon3.png";
 export { default as BannerImg } from "assets/images/landing/bannerImg.png";
+export { default as BannerMobileImg } from "assets/images/landing/bannerMobile.png";
 
 // social
 

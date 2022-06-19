@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Link from "next/link";
 import { Button, WalletButton } from "components/Common/Buttons";
 import { PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 
@@ -8,6 +9,7 @@ export const ConnectWalletModal = () => {
     return (
       <>
         <Button caption="Connect wallet" icon="" bordered={false} onClick={() => setShowModal(true)} />
+        <Link href="/auth/register"><a className="text-[#929298] mx-8">Skip</a></Link>
         {showModal ? (
           <>
             <div

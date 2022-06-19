@@ -13,7 +13,7 @@ export const BannerText = () => {
             <AnimationOnScroll animateOnce={true} animateIn="animate__fadeIn">
               <span className="text-white text-[46px] md:text-[60px] lg:text-[74px] font-semibold tracking-wide leading-[2.7rem] md:leading-[120%] banner-text">
                 <label className="text-gradient">Start your </label><br />
-                <label>web</label><sup className="text-[30px] md:text-[34px] lg:text-[48px]">3</sup> <label className="text-gradient pl-[13px]">journey</label></span>
+                <label>web3</label> <label className="text-gradient pl-[13px]">journey</label></span>
             </AnimationOnScroll>
         </div>
         <AnimationOnScroll animateOnce={true} animateIn="animate__fadeIn">
