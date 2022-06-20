@@ -16,6 +16,10 @@ body {
     width: 100vw !important;
 }
 
+.banner-image-container-mobile span {
+    width: 85vw !important;
+}
+
 .banner-image {
     max-width: none !important;
     min-width: auto !important;
@@ -43,8 +47,9 @@ body {
     font-feature-settings: 'ss03' on, 'kern' off;
 }
 
-.solarity-button:not(.button-disabled):hover {
-    box-shadow: 0px 0px 0px 7px rgba(41, 176, 128, 0.07);
+.solarity-button:not(.button-disabled) {
+    /* box-shadow: 0px 0px 0px 7px rgba(41, 176, 128, 0.07); */
+    box-shadow: rgba(41, 176, 128, 0.27) 0px 25px 50px -12px;
     /* border-radius: 5px; */
 }
 
@@ -164,4 +169,22 @@ sup {
 
 .avatar-panel span {
     border-radius: 19px;
+}
+
+.mobile-gradient {
+    width: 90vw;
+    height: 40vh;
+    position: absolute;
+    z-index: 10;
+    margin-left: -20px;
+    background: linear-gradient(180deg, rgba(19, 19, 20, 0) 0%, rgba(19, 19, 20, 0.0086472) 6.67%, rgba(19, 19, 20, 0.03551) 13.33%, rgba(19, 19, 20, 0.0816599) 20%, rgba(19, 19, 20, 0.147411) 26.67%, rgba(19, 19, 20, 0.231775) 33.33%, rgba(19, 19, 20, 0.331884) 40%, rgba(19, 19, 20, 0.442691) 46.67%, rgba(19, 19, 20, 0.557309) 53.33%, rgba(19, 19, 20, 0.668116) 60%, rgba(19, 19, 20, 0.768225) 66.67%, rgba(19, 19, 20, 0.852589) 73.33%, rgba(19, 19, 20, 0.91834) 80%, rgba(19, 19, 20, 0.96449) 86.67%, rgba(19, 19, 20, 0.991353) 93.33%, #131314 100%);
+}
+.mobile-gradient-2 {
+    width: 10vw;
+    height: 90vh;
+    right: 0;
+    position: absolute;
+    z-index: 10;
+    margin-left: -20px;
+    background: linear-gradient(180deg, rgba(19, 19, 20, 0) 0%, rgba(19, 19, 20, 0.0086472) 6.67%, rgba(19, 19, 20, 0.03551) 13.33%, rgba(19, 19, 20, 0.0816599) 20%, rgba(19, 19, 20, 0.147411) 26.67%, rgba(19, 19, 20, 0.231775) 33.33%, rgba(19, 19, 20, 0.331884) 40%, rgba(19, 19, 20, 0.442691) 46.67%, rgba(19, 19, 20, 0.557309) 53.33%, rgba(19, 19, 20, 0.668116) 60%, rgba(19, 19, 20, 0.768225) 66.67%, rgba(19, 19, 20, 0.852589) 73.33%, rgba(19, 19, 20, 0.91834) 80%, rgba(19, 19, 20, 0.96449) 86.67%, rgba(19, 19, 20, 0.991353) 93.33%, #131314 100%);
 }
