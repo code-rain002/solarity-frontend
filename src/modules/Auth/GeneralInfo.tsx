@@ -7,7 +7,7 @@ import { AddressButton, WalletButton, PrimaryButton, BackButton } from "componen
 
 import Logo from "components/Common/Logo";
 
-import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, GalleryImg, GithubImg, ProfileImg, TwitterImg } from "components/Common/Images";
+import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
 import { DomainInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 
@@ -34,23 +34,23 @@ export const GeneralInfo = () => {
                 <div>
                   <DomainInput changeValue={setInputValue} />
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-3">
-                  <div className="mt-6 mb-3 lg:mt-6 lg:mb-6 lg:text-left">
-                    <WalletButton caption="Connect" icon={TwitterImg} onClick={null} styles="!w-[100%] lg:!w-[95%]" />
+                <div className="grid grid-cols-1 xl:grid-cols-3">
+                  <div className="mt-6 mb-3 xl:mt-6 xl:mb-6 xl:text-left">
+                    <WalletButton caption="Connect" icon={TwitterImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
                   </div>
-                  <div className="my-3 lg:my-6 lg:text-center">
-                    <WalletButton caption="Connected" icon={DiscordImg} onClick={null} styles="!w-[100%] lg:!w-[95%]" connected={true} />
+                  <div className="my-3 xl:my-6 xl:text-center">
+                    <WalletButton caption="Connected" icon={DiscordImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" connected={true} />
                   </div>
-                  <div className="my-3 lg:my-6 lg:text-right">
-                    <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] lg:!w-[95%]" />
+                  <div className="my-3 xl:my-6 xl:text-right">
+                    <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 mt-[30px]">
                   <div className="my-3">
-                    <WalletButton caption="Connect ETH wallet" icon={TwitterImg} onClick={null} styles="!w-[100%]" description="optional" />
+                    <WalletButton caption="Connect ETH wallet" icon={EthereumImg} onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
-                  <div className="my-3">
-                    <WalletButton caption="Connect Polygon wallet" icon={DiscordImg} onClick={null} styles="!w-[100%]" description="optional" />
+                  <div className="my-3 hidden lg:block">
+                    <WalletButton caption="Connect Polygon wallet" icon={PolygonImg} onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
                 </div>
               </div>
