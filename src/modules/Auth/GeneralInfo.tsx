@@ -23,29 +23,29 @@ export const GeneralInfo = () => {
             {/*content*/}
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
-              <div className="flex items-start justify-between pt-5 pl-14 pr-12 rounded-t">
+              <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[36px] text-white font-medium tracking-[0.02em]">
                   Creating a passport
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
-              <div className="relative p-14 flex-auto">
+              <div className="relative p-[32px] lg:p-14 flex-auto">
                 <div>
                   <DomainInput changeValue={setInputValue} />
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-3">
-                  <div className="my-6 lg:text-left">
+                  <div className="mt-6 mb-3 lg:mt-6 lg:mb-6 lg:text-left">
                     <WalletButton caption="Connect" icon={TwitterImg} onClick={null} styles="!w-[100%] lg:!w-[95%]" />
                   </div>
-                  <div className="my-6 lg:text-center">
+                  <div className="my-3 lg:my-6 lg:text-center">
                     <WalletButton caption="Connected" icon={DiscordImg} onClick={null} styles="!w-[100%] lg:!w-[95%]" connected={true} />
                   </div>
-                  <div className="my-6 lg:text-right">
+                  <div className="my-3 lg:my-6 lg:text-right">
                     <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] lg:!w-[95%]" />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 mt-[20px]">
+                <div className="grid grid-cols-1 mt-[30px]">
                   <div className="my-3">
                     <WalletButton caption="Connect ETH wallet" icon={TwitterImg} onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
@@ -54,7 +54,7 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full p-14 flex-auto absolute bottom-0">
+              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
                 <div>
                   <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => setStep(1)} disabled={inputValue?false:true} styles="rounded-[15px]" />
                 </div>
@@ -67,14 +67,14 @@ export const GeneralInfo = () => {
             {/*content*/}
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
-              <div className="flex items-start justify-between pt-5 pl-14 pr-12 rounded-t">
+              <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[36px] text-white font-medium tracking-[0.02em]">
                   DAOs you&apos;re already in 
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
-              <div className="relative p-14 flex-auto">
+              <div className="relative p-[32px] lg:p-14 flex-auto">
                 <div className="grid grid-cols-2 xl:grid-cols-3">
                   <div className="p-2">
                     <DaoPanel imageSrc={DaoPicImg} backSrc={DaoBGImg} title="Solana Money Boys" />
@@ -84,7 +84,7 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full p-14 flex-auto absolute bottom-0">
+              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
                 <div className="inline-block w-[20%] pr-2">
                   <BackButton onClick={() => setStep(0)} styles="rounded-[15px]" />
                 </div>
@@ -100,13 +100,13 @@ export const GeneralInfo = () => {
             {/*content*/}
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
-              <div className="flex items-start justify-between pt-5 pl-14 pr-12 rounded-t">
+              <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[36px] text-white font-medium tracking-[0.02em]">
                   Choose profile picture
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
               </div>
-              <div className="relative p-14 flex-auto">
+              <div className="relative p-[32px] lg:p-14 flex-auto">
                 <Dropzone onDrop={acceptedFiles => {console.log(acceptedFiles); setFiles(acceptedFiles.length);}}>
                   {({getRootProps, getInputProps}) => (
                     <div className="max-w-xl" {...getRootProps()}>
@@ -140,7 +140,7 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full p-14 flex-auto absolute bottom-0">
+              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
                 <div className="inline-block w-[20%] pr-2">
                   <BackButton onClick={() => setStep(1)} styles="rounded-[15px]" />
                 </div>
@@ -151,7 +151,7 @@ export const GeneralInfo = () => {
             </div>
           </div>
         </div>:""}
-        <div className="text-center">
+        <div className="hidden lg:block text-center">
           <Logo />
           <div className="relative h-[calc(100vh-180px)]">
             <div className="absolute w-[576px] h-[384px] bg-[#159C6C] left-0 right-0 top-0 bottom-0 m-auto rounded-[40px] passport-card z-10">

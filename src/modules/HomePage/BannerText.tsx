@@ -25,15 +25,15 @@ export const BannerText = () => {
           <div className="my-[2.2vh] mb-[56px] text-left">
             <div className="flex items-center mb-[1.5vh]">
                 <ButtonLabel icon={BannericonImg1} />
-                <label className="leading-[60px] text-white pl-6">Connect your wallet</label> 
+                <label className="leading-[60px] text-[#B3B3B7] pl-6">Connect your wallet</label> 
             </div>
             <div className="flex items-center mb-[1.5vh]">
                 <ButtonLabel icon={BannericonImg2} />
-                <label className="leading-[60px] text-white pl-6">Create passport</label> 
+                <label className="leading-[60px] text-[#B3B3B7] pl-6">Create passport</label> 
             </div>
             <div className="flex items-center mb-[1.5vh]">
                 <ButtonLabel icon={BannericonImg3} />
-                <label className="leading-[60px] text-white pl-6">Start exploring!</label> 
+                <label className="leading-[60px] text-[#B3B3B7] pl-6">Start exploring!</label> 
             </div>
           </div>
         </AnimationOnScroll>

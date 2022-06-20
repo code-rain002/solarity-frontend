@@ -8,6 +8,7 @@ export const HomePage = () => {
   return (
     <>
       <div className="block sm:hidden mobile-gradient"></div>
+      <div className="block sm:hidden mobile-gradient-2"></div>
       <div className="absolute block sm:hidden -ml-[20px] -mt-[50px] w-[50vw]">
         <Image src={BannerLeftImg} alt="Solarity" layout="responsive" className="custom-animation-bounce banner-image"></Image>
       </div>
