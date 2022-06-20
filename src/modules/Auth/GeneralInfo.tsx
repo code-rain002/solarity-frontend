@@ -24,7 +24,7 @@ export const GeneralInfo = () => {
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
-                <h3 className="text-[36px] text-white font-medium tracking-[0.02em]">
+                <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   Creating a passport
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
@@ -68,7 +68,7 @@ export const GeneralInfo = () => {
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
-                <h3 className="text-[36px] text-white font-medium tracking-[0.02em]">
+                <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   DAOs you&apos;re already in 
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
@@ -101,7 +101,7 @@ export const GeneralInfo = () => {
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
-                <h3 className="text-[36px] text-white font-medium tracking-[0.02em]">
+                <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   Choose profile picture
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
