@@ -18,7 +18,7 @@ export const GeneralInfo = () => {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
-        {step == 0?<div className=" pr-[0] lg:pr-[20%]">
+        {step == 0?<div className=" pr-[0] lg:pr-[5%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
@@ -62,7 +62,7 @@ export const GeneralInfo = () => {
             </div>
           </div>
         </div>:""}
-        {step == 1?<div className=" pr-[0] lg:pr-[20%]">
+        {step == 1?<div className=" pr-[0] lg:pr-[5%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
@@ -95,7 +95,7 @@ export const GeneralInfo = () => {
             </div>
           </div>
         </div>:""}
-        {step == 2?<div className=" pr-[0] lg:pr-[20%]">
+        {step == 2?<div className=" pr-[0] lg:pr-[5%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
