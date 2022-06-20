@@ -8,8 +8,11 @@ export const ConnectWalletModal = () => {
 
     return (
       <>
-        <Button caption="Connect wallet" icon="" bordered={false} onClick={() => setShowModal(true)} />
-        <Link href="/auth/register"><a className="text-[#929298] mx-8">Skip</a></Link>
+        <div className="text-center sm:text-left relative z-50">
+          <Button caption="Connect wallet" icon="" bordered={false} onClick={() => setShowModal(true)} />
+          <br className="block sm:hidden"></br>
+          <Link href="/auth/register"><a className="text-[#929298] mx-8 py-1 w-[100%] sm:w-[auto] mt-[10px]">Skip</a></Link>
+        </div>
         {showModal ? (
           <>
             <div

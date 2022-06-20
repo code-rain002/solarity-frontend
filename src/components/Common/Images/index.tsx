@@ -24,6 +24,9 @@ export { default as BannericonImg2 } from "assets/images/landing/bannericon2.png
 export { default as BannericonImg3 } from "assets/images/landing/bannericon3.png";
 export { default as BannerImg } from "assets/images/landing/bannerImg.png";
 export { default as BannerMobileImg } from "assets/images/landing/bannerMobile.png";
+export { default as BannerLeftImg } from "assets/images/landing/left_NFT.png";
+export { default as BannerRightImg } from "assets/images/landing/right_NFT.png";
+
 
 // social
 
