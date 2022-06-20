@@ -45,7 +45,7 @@ export const GeneralInfo = () => {
                     <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 mt-[30px]">
+                <div className="grid grid-cols-1 mt-[15px] lg:mt-[30px]">
                   <div className="my-3">
                     <WalletButton caption="Connect ETH wallet" icon={EthereumImg} onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
