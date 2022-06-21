@@ -7,8 +7,8 @@ export interface AvatarPanelProps {
 
 const AvatarPanel = (props: AvatarPanelProps) => {
   return (
-    <div className="relative w-full h-[200px] rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer">
-        <div className="absolute top-1 left-1 right-1 rounded-[20px] avatar-panel h-[150px]">
+    <div className="relative w-full h-[200px] rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer max-w-[190px]">
+        <div className="absolute top-1 left-1 right-1 rounded-[20px] avatar-panel h-[150px] max-w-[180px]">
             <Image
                 src={props.imageSrc}
                 alt={props.title}

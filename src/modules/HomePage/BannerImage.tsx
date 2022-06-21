@@ -9,8 +9,8 @@ export const BannerImage = (props) => {
             <div className="round-glow-1 z-50"></div>
             <div className="round-glow-2 z-50"></div>
             <div className="round-glow-3 z-50"></div>
-            <div className="round-glow-4 z-50"></div>
-            <div className="round-glow-5 z-50"></div>
+            {/* <div className="round-glow-4 z-50 hidden lg:block"></div> */}
+            {/* <div className="round-glow-5 z-50 hidden lg:block"></div> */}
             {props.isMobile ? 
               <Image src={BannerImg} alt="Solarity" objectFit={'contain'} className="custom-animation-bounce banner-image" layout="fixed"></Image> : 
               <>

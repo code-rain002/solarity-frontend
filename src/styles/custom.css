@@ -4,11 +4,13 @@
 }
 
 body {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
+    overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto;
+    }
 }
 
 .banner-image-container span {
@@ -60,9 +62,9 @@ body {
 
 .round-glow-1 {
     position: absolute;
-    width: 465px;
-    height: 465px;
-    left: 722px;
+    width: 30vw;
+    height: 40vh;
+    left: 45vw;
     top: -197px;
 
     background: rgba(27, 168, 116, 0.3);
@@ -71,8 +73,8 @@ body {
 
 .round-glow-2 {
     position: absolute;
-    width: 614px;
-    height: 832px;
+    width: 40vh;
+    height: 70vh;
     left: -310px;
     top: 84px;
 
@@ -85,7 +87,7 @@ body {
     width: 265px;
     height: 265px;
     left: 613px;
-    top: 773px;
+    bottom: 0px;
 
     background: rgba(27, 168, 116, 0.4);
     filter: blur(160px);
@@ -96,7 +98,7 @@ body {
     width: 308px;
     height: 308px;
     left: 899px;
-    top: 902px;
+    bottom: -600px;
 
     background: rgba(27, 168, 116, 0.4);
     filter: blur(160px);
@@ -173,15 +175,15 @@ sup {
 
 .mobile-gradient {
     width: 90vw;
-    height: 40vh;
+    height: 500px;
     position: absolute;
     z-index: 10;
-    margin-left: -20px;
+    margin-left: -37px;
     background: linear-gradient(180deg, rgba(19, 19, 20, 0) 0%, rgba(19, 19, 20, 0.0086472) 6.67%, rgba(19, 19, 20, 0.03551) 13.33%, rgba(19, 19, 20, 0.0816599) 20%, rgba(19, 19, 20, 0.147411) 26.67%, rgba(19, 19, 20, 0.231775) 33.33%, rgba(19, 19, 20, 0.331884) 40%, rgba(19, 19, 20, 0.442691) 46.67%, rgba(19, 19, 20, 0.557309) 53.33%, rgba(19, 19, 20, 0.668116) 60%, rgba(19, 19, 20, 0.768225) 66.67%, rgba(19, 19, 20, 0.852589) 73.33%, rgba(19, 19, 20, 0.91834) 80%, rgba(19, 19, 20, 0.96449) 86.67%, rgba(19, 19, 20, 0.991353) 93.33%, #131314 100%);
 }
 .mobile-gradient-2 {
     width: 10vw;
-    height: 90vh;
+    height: 810px;
     right: 0;
     position: absolute;
     z-index: 10;

@@ -21,7 +21,7 @@ export const GeneralInfo = () => {
         {step == 0?<div className=" pr-[0] lg:pr-[5%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
-            <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
+            <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
@@ -45,7 +45,7 @@ export const GeneralInfo = () => {
                     <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 mt-[15px] lg:mt-[30px]">
+                <div className="grid grid-cols-1 mt-[25px] lg:mt-[30px]">
                   <div className="my-3">
                     <WalletButton caption="Connect ETH wallet" icon={EthereumImg} onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
@@ -54,7 +54,7 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
+              <div className="w-full p-[32px] lg:p-14 flex-auto">
                 <div>
                   <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => setStep(1)} disabled={inputValue?false:true} styles="rounded-[15px]" />
                 </div>
@@ -109,7 +109,7 @@ export const GeneralInfo = () => {
               <div className="relative p-[32px] lg:p-14 flex-auto">
                 <Dropzone onDrop={acceptedFiles => {console.log(acceptedFiles); setFiles(acceptedFiles.length);}}>
                   {({getRootProps, getInputProps}) => (
-                    <div className="max-w-xl" {...getRootProps()}>
+                    <div {...getRootProps()}>
                       <input {...getInputProps()} />
                       <label
                           className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
