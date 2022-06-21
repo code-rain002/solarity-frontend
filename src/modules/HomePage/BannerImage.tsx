@@ -7,8 +7,8 @@ export const BannerImage = (props) => {
     <>
         <div className={`grid grid-cols-1 relative text-right absolute ${props.isMobile?'banner-image-container':'banner-image-container-mobile'}`}>
             <div className="round-glow-1 z-50"></div>
-            <div className="round-glow-2 z-50"></div>
-            <div className="round-glow-3 z-50"></div>
+            <div className="round-glow-2 z-50 hidden lg:block"></div>
+            <div className="round-glow-3 z-50 hidden lg:block"></div>
             {/* <div className="round-glow-4 z-50 hidden lg:block"></div> */}
             {/* <div className="round-glow-5 z-50 hidden lg:block"></div> */}
             {props.isMobile ? 
