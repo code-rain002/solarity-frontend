@@ -54,8 +54,8 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full p-[32px] lg:p-14 flex-auto">
-                <div>
+              <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end">
+                <div className="w-[100%]">
                   <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => setStep(1)} disabled={inputValue?false:true} styles="rounded-[15px]" />
                 </div>
               </div>
@@ -136,7 +136,7 @@ export const GeneralInfo = () => {
                     )}
                   </Dropzone>
                 </div>
-                <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[210px] overflow-scroll">
+                <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh] overflow-scroll">
                   <div className="p-2">
                     <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
                   </div>
