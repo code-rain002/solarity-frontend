@@ -136,7 +136,7 @@ export const GeneralInfo = () => {
                     )}
                   </Dropzone>
                 </div>
-                <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[510px] overflow-scroll">
+                <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[210px] overflow-scroll">
                   <div className="p-2">
                     <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
                   </div>
