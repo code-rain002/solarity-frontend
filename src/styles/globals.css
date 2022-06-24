@@ -8,7 +8,7 @@
     --darkprimary-color: rgba(41, 176, 128, 0.2);
     --grey-color: rgba(255, 255, 255, 0.4);
     --focus-color: rgba(41, 176, 128, 0.4);
-    --focusbackground-color: rgba(41, 176, 128, 0.04);
+    --focusbackground-color: #162724;
     --secondary-color: #fff;
     --footer-color: #9b9b9b;
     --gradient-color-stops: rgb(27, 168, 116, 0.3) 0%, transparent 70%;

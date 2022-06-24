@@ -8,8 +8,13 @@ export interface DaoPanelProps {
 
 const DaoPanel = (props: DaoPanelProps) => {
   return (
+<<<<<<< HEAD
     <div className="relative w-full h-[180px] rounded-[20px] border-[1.5px] border-white/10 z-10 bg-transparent">
         <div className="absolute top-0 left-0 w-[100%] rounded-[20px] dao-panel h-[71px]">
+=======
+    <div className="relative w-full h-[180px] rounded-[20px] border-[1.5px] border-white/10 z-10 bg-transparent max-w-[180px]">
+        <div className="absolute top-0 left-0 w-[100%] rounded-[20px] dao-panel h-[71px] max-w-[180px]">
+>>>>>>> master
             <Image
                 src={props.backSrc}
                 alt={props.title}
