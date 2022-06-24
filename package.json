@@ -10,6 +10,7 @@
     "@metamask/detect-provider": "^1.2.0",
     "@metaplex-foundation/mpl-token-metadata": "^2.2.0",
     "@oysterr/common": "^0.1.4",
+    "@reduxjs/toolkit": "^1.8.2",
     "@solana/wallet-adapter-react": "^0.15.5",
     "FormData": "^0.10.1",
     "animate.css": "^4.1.1",
@@ -20,7 +21,11 @@
     "react-animation-on-scroll": "^5.1.0",
     "react-dom": "17.0.2",
     "react-dropzone": "^14.2.1",
-    "react-router-dom": "^6.3.0"
+    "react-redux": "7.2.8",
+    "react-router-dom": "^6.3.0",
+    "react-toastify": "^9.0.5",
+    "socket.io-client": "^4.5.1",
+    "web3": "^3.0.0-rc.5"
   },
   "devDependencies": {
     "@types/node": "^17.0.4",

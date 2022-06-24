@@ -6,7 +6,7 @@ import socket from "utils/socket-client";
 import { sendAndConfirmTransaction, PublicKey } from "@solana/web3.js";
 import { connectWallet } from "utils/walletHelpers";
 import { connect } from "socket.io-client";
-import { extractError } from "../../utils";
+import { extractError } from "utils";
 
 const initialState = {
   data: {},

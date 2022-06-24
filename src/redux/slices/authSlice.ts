@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { apiCaller } from "../../utils/fetcher";
+import { apiCaller } from "utils/fetcher";
 import { setProfile } from "./profileSlice";
 import { startLoadingApp, stopLoadingApp } from "./commonSlice";
-import socket from "../../utils/socket-client";
-import { signMessage } from "../../utils/walletHelpers";
+import socket from "utils/socket-client";
+import { signMessage } from "utils/walletHelpers";
 
 export interface CounterState {
   roomName: string;
@@ -74,7 +74,7 @@ export const checkSession = createAsyncThunk(
     dispatch(startLoadingApp());
     try {
       if (!("socket" in window)) {
-        window["socket"] = socket();
+        (window as any).socket = socket();
       }
       const { data } = await apiCaller.get("/auth/check");
       dispatch(setProfile(data.profile));
