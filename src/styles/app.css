@@ -10,17 +10,10 @@ body {
     background-color: #141414;
 }
 
-<<<<<<< HEAD:src/styles/app.css
-::-webkit-scrollbar { width: 9px; height: 1px; z-index: 190;}
-::-webkit-scrollbar-button {  background-color: transparent; height: 0;  z-index: 190;}
-::-webkit-scrollbar-track-piece { background-color: rgba(0,0,0,0.0); z-index: 190;}
-::-webkit-scrollbar-thumb { background: rgb(41, 176, 128, 0.8); border-radius: 15px; z-index: 190;}
-=======
 ::-webkit-scrollbar { width: 6px; height: 1px; z-index: 190;}
 ::-webkit-scrollbar-button {  background-color: transparent; height: 0;  z-index: 190;}
 ::-webkit-scrollbar-track-piece { background-color: rgba(0,0,0,0.0); z-index: 190;}
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 15px; z-index: 190;}
->>>>>>> master:styles/app.css
 ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0.1); z-index: 190;}
 ::-webkit-resizer { background-color: var(--primary-color); z-index: 190;}
 

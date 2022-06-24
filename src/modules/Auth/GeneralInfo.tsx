@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
-=======
-import React, { useState } from "react";
->>>>>>> master
 import Image from "next/image";
 
 import Dropzone from 'react-dropzone'
@@ -14,7 +10,6 @@ import Logo from "components/Common/Logo";
 import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
 import { DomainInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
-<<<<<<< HEAD
 import axios from 'axios'
 
 import {
@@ -70,9 +65,11 @@ export const GeneralInfo = () => {
   // const { step_param }: { step_param: string } = useParams();
   // const history = useHistory();
   
-  const [step, setStep] = useState(0);
-  const [files, setFiles] = useState(null);
-  const [inputValue, setInputValue] = useState('');
+  const [step, setStep] = useState<Number>(0);
+  const [files, setFiles] = useState<File[]>(null);
+  const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
 
   const mint = async () => {
     const metadata = {
@@ -142,21 +139,7 @@ export const GeneralInfo = () => {
     }
   };
 
-  return (
-    <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
-        {step == 0?<div className=" pr-[0] lg:pr-[5%]">
-          <div className="relative w-auto my-6 mx-auto">
-            {/*content*/}
-            <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
-=======
-
-export const GeneralInfo = () => {
-  const [step, setStep] = useState<Number>(0);
-  const [files, setFiles] = useState<File[]>(null);
-  const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
-  const [inputValue, setInputValue] = useState<String>('');
-  const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
+  
 
   const onLoadAvatar = (files) => {
     setFiles(files);
@@ -173,6 +156,7 @@ export const GeneralInfo = () => {
 
     reader.readAsDataURL(files[0]);
   }
+
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
@@ -180,17 +164,12 @@ export const GeneralInfo = () => {
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
->>>>>>> master
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   Creating a passport
                 </h3>
-<<<<<<< HEAD
-                <AddressButton caption={publicKey.toBase58()} icon={AddressImg} onClick={null} />
-=======
-                <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
->>>>>>> master
+                <AddressButton caption={publicKey?publicKey.toBase58():""} icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
               <div className="relative p-[32px] lg:p-14 flex-auto">
@@ -208,11 +187,7 @@ export const GeneralInfo = () => {
                     <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
                   </div>
                 </div>
-<<<<<<< HEAD
-                <div className="grid grid-cols-1 mt-[15px] lg:mt-[30px]">
-=======
                 <div className="grid grid-cols-1 mt-[25px] lg:mt-[30px]">
->>>>>>> master
                   <div className="my-3">
                     <WalletButton caption="Connect ETH wallet" icon={EthereumImg} onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
@@ -221,42 +196,23 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
-                <div>
-=======
               <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end">
                 <div className="w-[100%]">
->>>>>>> master
                   <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => setStep(1)} disabled={inputValue?false:true} styles="rounded-[15px]" />
                 </div>
               </div>
             </div>
           </div>
         </div>:""}
-<<<<<<< HEAD
-        {step == 1?<div className=" pr-[0] lg:pr-[5%]">
-          <div className="relative w-auto my-6 mx-auto">
-            {/*content*/}
-            <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
-=======
         {step == 1?<div className=" pr-[0] lg:pr-[7%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
->>>>>>> master
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   DAOs you&apos;re already in 
                 </h3>
-<<<<<<< HEAD
-                <AddressButton caption="" icon={AddressImg} onClick={null} />
-              </div>
-              {/*body*/}
-              <div className="relative p-[32px] lg:p-14 flex-auto">
-                <div className="grid grid-cols-2 xl:grid-cols-3">
-=======
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
@@ -265,7 +221,6 @@ export const GeneralInfo = () => {
                   <div className="p-2">
                     <DaoPanel imageSrc={DaoPicImg} backSrc={DaoBGImg} title="Solana Money Boys" />
                   </div>
->>>>>>> master
                   <div className="p-2">
                     <DaoPanel imageSrc={DaoPicImg} backSrc={DaoBGImg} title="Solana Money Boys" />
                   </div>
@@ -274,11 +229,7 @@ export const GeneralInfo = () => {
                   </div>
                 </div>
               </div>
-<<<<<<< HEAD
-              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
-=======
               <div className="w-full px-[32px] py-[32px] lg:px-14 lg:py-8 flex-auto flex items-end">
->>>>>>> master
                 <div className="inline-block w-[20%] pr-2">
                   <BackButton onClick={() => setStep(0)} styles="rounded-[15px]" />
                 </div>
@@ -289,17 +240,10 @@ export const GeneralInfo = () => {
             </div>
           </div>
         </div>:""}
-<<<<<<< HEAD
-        {step == 2?<div className=" pr-[0] lg:pr-[5%]">
-          <div className="relative w-auto my-6 mx-auto">
-            {/*content*/}
-            <div className="rounded-[30px] h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
-=======
         {step == 2?<div className=" pr-[0] lg:pr-[7%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
->>>>>>> master
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
@@ -308,42 +252,6 @@ export const GeneralInfo = () => {
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
               </div>
               <div className="relative p-[32px] lg:p-14 flex-auto">
-<<<<<<< HEAD
-                <Dropzone onDrop={acceptedFiles => {console.log(acceptedFiles); setFiles(acceptedFiles.length);}}>
-                  {({getRootProps, getInputProps}) => (
-                    <div className="max-w-xl" {...getRootProps()}>
-                      <input {...getInputProps()} />
-                      <label
-                          className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
-                          <span className="flex items-center space-x-2 mr-3">
-                            <Image src={GalleryImg} />
-                          </span>
-                          <span className="flex items-center space-x-2">
-                              {files?<span className="font-medium text-[#f3f3f3]">
-                                  <label className="text-primary">{files}</label> file&#40;s&#41; selected
-                                  <br></br>
-                                  <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
-                              </span>:<span className="font-medium text-[#f3f3f3]">
-                                  Drop image here or&nbsp;<label className="text-primary">browse</label>
-                                  <br></br>
-                                  <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
-                              </span>}
-                          </span>
-                      </label>
-                    </div>
-                  )}
-                </Dropzone>
-                <div className="grid grid-cols-2 xl:grid-cols-3 mt-5">
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                </div>
-              </div>
-              <div className="w-full p-[32px] lg:p-14 flex-auto absolute bottom-0">
-=======
                 <div className="mb-10">
                   <Dropzone onDrop={acceptedFiles => { onLoadAvatar(acceptedFiles);}}>
                     {({getRootProps, getInputProps}) => (
@@ -383,16 +291,11 @@ export const GeneralInfo = () => {
                 </div>
               </div>
               <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end px-[32px] py-[32px] lg:px-14 lg:py-8">
->>>>>>> master
                 <div className="inline-block w-[20%] pr-2">
                   <BackButton onClick={() => setStep(1)} styles="rounded-[15px]" />
                 </div>
                 <div className="inline-block w-[80%] pl-2">
-<<<<<<< HEAD
-                  <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => setStep(3)} disabled={false} styles="rounded-[15px]" />
-=======
                   <PrimaryButton caption="Continue" icon="" bordered={false} onClick={null} disabled={false} styles="rounded-[15px]" />
->>>>>>> master
                 </div>
               </div>
             </div>
