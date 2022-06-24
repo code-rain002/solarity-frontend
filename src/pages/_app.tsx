@@ -23,7 +23,7 @@ import "animate.css/animate.min.css";
 import 'font-awesome/css/font-awesome.min.css'
 import "react-toastify/dist/ReactToastify.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ children }) {
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {Children}
+      {children}
     </>
   );
 }
@@ -68,20 +68,22 @@ function ReduxWrapped({ Component, pageProps }) {
         <title>Solarity</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" ></meta>
       </Head>
-      <ToastContainer
-        style={{ position: "fixed", zIndex: "100000000" }}
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-      <Component {...pageProps} />
+      <MyApp>
+        <ToastContainer
+          style={{ position: "fixed", zIndex: "100000000" }}
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <Component {...pageProps} />
+      </MyApp>
     </Provider>
   );
 }
