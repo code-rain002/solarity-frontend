@@ -12,9 +12,27 @@ import { DomainInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 
 export const GeneralInfo = () => {
-  const [step, setStep] = useState(0);
-  const [files, setFiles] = useState(0);
-  const [inputValue, setInputValue] = useState('');
+  const [step, setStep] = useState<Number>(0);
+  const [files, setFiles] = useState<File[]>(null);
+  const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
+  const [inputValue, setInputValue] = useState<String>('');
+  const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
+
+  const onLoadAvatar = (files) => {
+    setFiles(files);
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        let listFiles = loadedFiles;
+        listFiles.push(reader.result);
+        setLoadedFiles([...listFiles]);
+        console.log(loadedFiles);
+      }
+    };
+
+    reader.readAsDataURL(files[0]);
+  }
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
@@ -111,7 +129,7 @@ export const GeneralInfo = () => {
               </div>
               <div className="relative p-[32px] lg:p-14 flex-auto">
                 <div className="mb-10">
-                  <Dropzone onDrop={acceptedFiles => {console.log(acceptedFiles); setFiles(acceptedFiles.length);}}>
+                  <Dropzone onDrop={acceptedFiles => { onLoadAvatar(acceptedFiles);}}>
                     {({getRootProps, getInputProps}) => (
                       <div {...getRootProps()}>
                         <input {...getInputProps()} />
@@ -122,7 +140,7 @@ export const GeneralInfo = () => {
                             </span>
                             <span className="flex items-center space-x-2">
                                 {files?<span className="font-medium text-[#f3f3f3]">
-                                    <label className="text-primary">{files}</label> file&#40;s&#41; selected
+                                    <label className="text-primary">{files.length}</label> file&#40;s&#41; selected
                                     <br></br>
                                     <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
                                 </span>:<span className="font-medium text-[#f3f3f3]">
@@ -138,35 +156,14 @@ export const GeneralInfo = () => {
                 </div>
                 <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh] overflow-scroll">
                   <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
+                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
                   </div>
                   <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
+                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
                   </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
-                  <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." />
-                  </div>
+                  {loadedFiles.map((imgBlob) => {
+                    return (<div className="p-2"><AvatarPanel imageSrc={imgBlob} title="RESSURECTION..." onClick={() => setSelectedAvatar(imgBlob)} selected={imgBlob == selectedAvatar} /></div>)
+                  })}
                 </div>
               </div>
               <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end px-[32px] py-[32px] lg:px-14 lg:py-8">
