@@ -1,7 +1,8 @@
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/modules/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -28,4 +29,18 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(mt|mb|mr|ml|my|mx|px|py|pt|pb|pl|pr)-[0-9]+/
+    },
+    {
+      pattern: /flex-.*/
+    },
+    {
+      pattern: /(bottom|right|top|left)-[0-9]+/
+    },
+    {
+      pattern: /(w|h)-[0-9]+/
+    }
+  ]
 }
