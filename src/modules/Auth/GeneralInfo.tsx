@@ -8,14 +8,17 @@ import { AddressButton, WalletButton, PrimaryButton, BackButton } from "componen
 import Logo from "components/Common/Logo";
 
 import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
-import { DomainInput } from "components/Common/Forms";
+import { DomainInput, SharedInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
+import { DiscordLink } from "./Links";
+import { TwitterLink } from "./Links/TwitterLink";
 
 export const GeneralInfo = () => {
   const [step, setStep] = useState<Number>(0);
   const [files, setFiles] = useState<File[]>(null);
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
   const [inputValue, setInputValue] = useState<String>('');
+  const [title, setTitle] = useState<String>('');
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
 
   const onLoadAvatar = (files) => {
@@ -52,12 +55,15 @@ export const GeneralInfo = () => {
                 <div>
                   <DomainInput changeValue={setInputValue} />
                 </div>
+                <div className="mt-6">
+                  <SharedInput changeValue={setTitle} caption="Input your title" />
+                </div>
                 <div className="grid grid-cols-1 xl:grid-cols-3">
                   <div className="mt-6 mb-3 xl:mt-6 xl:mb-6 xl:text-left">
-                    <WalletButton caption="Connect" icon={TwitterImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
+                    <TwitterLink />
                   </div>
                   <div className="my-3 xl:my-6 xl:text-center">
-                    <WalletButton caption="Connected" icon={DiscordImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" connected={true} />
+                    <DiscordLink />
                   </div>
                   <div className="my-3 xl:my-6 xl:text-right">
                     <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
