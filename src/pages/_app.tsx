@@ -1,7 +1,9 @@
 import { Children, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import { ToastContainer } from "react-toastify";
+import { ConnectionProvider } from "@solana/wallet-adapter-react";
 
 // For redux
 import {
@@ -22,6 +24,15 @@ import 'styles/custom.css';
 import "animate.css/animate.min.css";
 import 'font-awesome/css/font-awesome.min.css'
 import "react-toastify/dist/ReactToastify.css";
+
+const endpoint = "https://ssc-dao.genesysgo.net";
+
+const WalletProvider = dynamic(
+  () => import("utils/contexts/ClientWalletProvider"),
+  {
+    ssr: false,
+  }
+);
 
 function MyApp({ children }) {
 
@@ -55,9 +66,9 @@ function MyApp({ children }) {
   }, []);
 
   return (
-    <>
-      {children}
-    </>
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider>{children}</WalletProvider>
+    </ConnectionProvider>
   );
 }
 
