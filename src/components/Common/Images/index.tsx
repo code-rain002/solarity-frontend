@@ -43,4 +43,5 @@ export { default as SolletImg } from "assets/images/wallets/sollet.png";
 export { default as SolletExImg } from "assets/images/wallets/sollet_ex.png";
 export { default as TorusImg } from "assets/images/wallets/torus.png";
 export { default as EthereumImg } from "assets/images/wallets/ethereum.png";
+export { default as MetamaskImg } from "assets/images/wallets/metamask.png";
 export { default as PolygonImg } from "assets/images/wallets/polygon.png";

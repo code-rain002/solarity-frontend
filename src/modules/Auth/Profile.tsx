@@ -42,7 +42,7 @@ import { MintLayout } from '@solana/spl-token';
 import { mintNFT } from 'actions';
 import { updateNFT } from 'actions'; // This is update function
 
-export const GeneralInfo = () => {
+export const ProfileInfo = () => {
   const [attributes, setAttributes] = useState<IMetadataExtension>({
     name: '',
     symbol: 'PST',
@@ -320,13 +320,10 @@ export const GeneralInfo = () => {
                 <div className="mt-[45px]">
                   <Image src={AvatarImg} />
                 </div>
-                <div className="mt-[18px]">
+                <div className="mt-[26px]">
                   <span className="text-white/80 text-[24px] z-[30]">{inputValue?inputValue:"Enter your domain"}</span>
                 </div>
                 <div className="mt-[5px]">
-                  <span className="text-white/80 text-[18px] z-[30]">{title?title:"Enter your title"}</span>
-                </div>
-                <div className="mt-[3px]">
                   <span className="text-white/60 text-[16px] z-[30]">Connect your socials</span>
                 </div>
               </div>
