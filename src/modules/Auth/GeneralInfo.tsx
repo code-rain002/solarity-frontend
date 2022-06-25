@@ -144,8 +144,6 @@ export const GeneralInfo = () => {
     }
   };
 
-  
-
   const onLoadAvatar = (files) => {
     setFiles(files);
     const reader = new FileReader();
