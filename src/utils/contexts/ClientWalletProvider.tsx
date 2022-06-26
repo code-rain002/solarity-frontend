@@ -10,9 +10,9 @@ import { Wallet } from '@solana/wallet-adapter-wallets';
 
 import("@solana/wallet-adapter-react-ui/styles.css" as any);
 
-export function ClientWalletProvider(
+const ClientWalletProvider = (
   props: Omit<WalletProviderProps, "wallets">
-): JSX.Element {
+) => {
   const wallets: any[] = useMemo(
     () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
     []

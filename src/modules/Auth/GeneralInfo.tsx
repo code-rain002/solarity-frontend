@@ -36,13 +36,15 @@ import {
   ConnectButton,
 } from '@oysterr/common';
 
-import { useWallet } from '@solana/wallet-adapter-react';
+// import { useWallet } from '@solana/wallet-adapter-react';
 import { Connection } from '@solana/web3.js';
 import { MintLayout } from '@solana/spl-token';
+import { minifyAddress } from "utils";
 // import { useHistory, useParams } from 'react-router-dom';
 
 import { mintNFT } from 'actions';
 import { updateNFT } from 'actions'; // This is update function
+import { RootStateOrAny, useSelector } from "react-redux";
 
 export const GeneralInfo = () => {
   const [attributes, setAttributes] = useState<IMetadataExtension>({
@@ -63,10 +65,18 @@ export const GeneralInfo = () => {
   });
   const connection = useConnection();
   const { endpoint } = useConnectionConfig();
-  
+  const { profileData, discordConnected, discordUsername } = useSelector((state: RootStateOrAny) => state.profile.data);
+
+  // bug code
   const publicKey = localStorage.getItem('publickey');
+  const walletType = localStorage.getItem('type');
+
+
+  const miniPublicKey = minifyAddress(publicKey, 3);
+  const provider = (window as any).phantom.solana;
+  alert(provider.isConnected);
   // const { publicKey, connected } = useWallet();
-  const wallet = useWallet();
+  // const wallet = useWallet();
   // const [alertMessage, setAlertMessage] = useState<string>();
   // const { step_param }: { step_param: string } = useParams();
   // const history = useHistory();
@@ -97,7 +107,7 @@ export const GeneralInfo = () => {
       },
     };
     setAttributes({...attributes, name: inputValue});
-    alert(process.env.NEXT_PUBLIC_BACKEND_URL);
+
     axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/tmeta?includeDao=true`).then(response => {
       let resp = response.data;
       console.log("response", resp)
@@ -127,24 +137,24 @@ export const GeneralInfo = () => {
     // setStepsVisible(false);
     // setMinting(true);
 
-    try {
-      // I used the same frontend for nft mint and update.
-      const _nft = await mintNFT(
-      // const _nft = await updateNFT(
-        connection,
-        wallet,
-        endpoint.name,
-        files,
-        metadata,
-        attributes.properties?.maxSupply,
-      );
-      // if (_nft) setNft(_nft);
-      // setAlertMessage('');
-    } catch (e: any) {
-      // setAlertMessage(e.message);
-    } finally {
-      // setMinting(false);
-    }
+    // try {
+    //   // I used the same frontend for nft mint and update.
+    //   const _nft = await mintNFT(
+    //   // const _nft = await updateNFT(
+    //     connection,
+    //     wallet,
+    //     endpoint.name,
+    //     files,
+    //     metadata,
+    //     attributes.properties?.maxSupply,
+    //   );
+    //   // if (_nft) setNft(_nft);
+    //   // setAlertMessage('');
+    // } catch (e: any) {
+    //   // setAlertMessage(e.message);
+    // } finally {
+    //   // setMinting(false);
+    // }
   };
 
   const onLoadAvatar = (files) => {
@@ -175,9 +185,10 @@ export const GeneralInfo = () => {
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   Creating a passport
                 </h3>
-                <AddressButton caption={publicKey?publicKey:""} icon={AddressImg} onClick={null} />
+                <AddressButton caption={miniPublicKey?miniPublicKey:""} icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
+              {discordUsername?discordUsername:'dasd'}
               <div className="relative p-[32px] lg:p-14 flex-auto">
                 <div>
                   <DomainInput changeValue={setInputValue} />

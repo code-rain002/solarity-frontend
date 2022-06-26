@@ -4,17 +4,19 @@ import { Button, WalletButton } from "components/Common/Buttons";
 import WalletSelector from "modules/WalletSelector";
 import { PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 import { useRouter } from "next/router";
+import { login } from "redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 export const ConnectWalletModal = () => {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
-
+    const dispatch = useDispatch();
     return (
       <>
         <div className="text-center sm:text-left relative z-50">
           <Button caption="Connect wallet" icon="" bordered={false} onClick={() => setShowModal(true)} />
           <br className="block sm:hidden"></br>
-          <Link href="/auth/register"><a className="text-[#929298] mx-8 py-1 w-[100%] sm:w-[auto] mt-[10px]">Skip</a></Link>
+          <Link href="#"><a className="text-[#929298] mx-8 py-1 w-[100%] sm:w-[auto] mt-[10px]">Skip</a></Link>
         </div>
         <WalletSelector
           type="all"
@@ -24,14 +26,15 @@ export const ConnectWalletModal = () => {
           onClose={() => setShowModal(false)}
           onSelect={(address, type, provider) => {
             localStorage.setItem('publickey', address);
+            localStorage.setItem('type', type);
+            dispatch(
+              login({
+                publicKey: address,
+                walletType: type,
+                provider,
+              })
+            );
             router.push('/auth/register');
-            // dispatch(
-            //   login({
-            //     publicKey: address,
-            //     walletType: type,
-            //     provider,
-            //   })
-            // );
           }}
         />
       </>

@@ -67,7 +67,9 @@ function MyApp({ children }) {
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider>{children}</WalletProvider>
+      <WalletProvider>
+        {children}
+      </WalletProvider>
     </ConnectionProvider>
   );
 }
