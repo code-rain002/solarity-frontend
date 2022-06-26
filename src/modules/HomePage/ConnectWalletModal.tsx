@@ -23,6 +23,7 @@ export const ConnectWalletModal = () => {
           open={showModal}
           onClose={() => setShowModal(false)}
           onSelect={(address, type, provider) => {
+            localStorage.setItem('publickey', address);
             router.push('/auth/register');
             // dispatch(
             //   login({

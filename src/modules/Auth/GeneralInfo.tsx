@@ -32,6 +32,8 @@ import {
   getAssetCostToStore,
   LAMPORT_MULTIPLIER,
   Attribute,
+  Wallet,
+  ConnectButton,
 } from '@oysterr/common';
 
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -62,12 +64,13 @@ export const GeneralInfo = () => {
   const connection = useConnection();
   const { endpoint } = useConnectionConfig();
   
-  const { publicKey, connected } = useWallet();
+  const publicKey = localStorage.getItem('publickey');
+  // const { publicKey, connected } = useWallet();
   const wallet = useWallet();
   // const [alertMessage, setAlertMessage] = useState<string>();
   // const { step_param }: { step_param: string } = useParams();
   // const history = useHistory();
-  
+
   const [step, setStep] = useState<Number>(0);
   const [files, setFiles] = useState<File[]>(null);
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
@@ -172,7 +175,7 @@ export const GeneralInfo = () => {
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   Creating a passport
                 </h3>
-                <AddressButton caption={publicKey?publicKey.toBase58():""} icon={AddressImg} onClick={null} />
+                <AddressButton caption={publicKey?publicKey:""} icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
               <div className="relative p-[32px] lg:p-14 flex-auto">
