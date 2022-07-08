@@ -20,6 +20,10 @@ module.exports = {
         'secondary': 'var(--secondary-color)',
         'footer': 'var(--footer-color)',
         'content': '#cecece',
+        // kisikbo5 wrote this
+        'globalBgColor': '#131314',
+        'semiSplitter' : '#1d1f1f'
+        // end of kisikbo5
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--gradient-color-stops))',
