@@ -7,6 +7,7 @@ import { sendAndConfirmTransaction, PublicKey } from "@solana/web3.js";
 import { connectWallet } from "utils/walletHelpers";
 import { connect } from "socket.io-client";
 import { extractError } from "utils";
+import { title } from "process";
 
 const initialState = {
   data: {},
@@ -41,7 +42,7 @@ export const undoSetupStep = createAsyncThunk(
 );
 
 export const setup = createAsyncThunk(
-  "profile/setup",
+  "profile/init",
   async ({
     data,
     successFunction,
@@ -57,7 +58,7 @@ export const setup = createAsyncThunk(
     try {
       const {
         data: { profile },
-      } = await apiCaller.post("/profile/setup", data);
+      } = await apiCaller.post("/profile/initProfile", data);
       successFunction();
       returnValue = profile;
     } catch (err) {
@@ -356,6 +357,36 @@ export const unlinkAccounts = createAsyncThunk(
   }
 );
 
+export const getUserDaos = createAsyncThunk(
+  "profile/getUserDaos",
+  async ({
+    successFunction,
+    errorFunction,
+    finalFunction,
+  }: {
+    successFunction: () => void;
+    errorFunction: (error: string) => void;
+    finalFunction: () => void;
+  }) => {
+    let returnValue = null;
+    try {
+      const {
+        data: { data },
+      } = await apiCaller.get("/daos?member=true");
+      successFunction()
+      console.log(data); return;
+      returnValue = data;
+      showSuccessToast("User Daos successfully taken");
+    } catch (err) {
+      errorFunction(getErrorMessage(err));
+      showErrorToast(extractError(err));
+      returnValue = false;
+    }
+    finalFunction();
+    return returnValue;
+  }
+);
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
@@ -371,15 +402,15 @@ export const profileSlice = createSlice({
         "..." +
         address.substring(address.length - 4, address.length);
       state.data = action.payload;
-      localStorage.setItem("name", action.payload.username);
+      localStorage.setItem("name", action.payload.domain);
       if (!(window as any).socket) {
         (window as any).socket = socket();
       }
       (window as any).socket.emit(ACTIONS.SET_USER_NAME, {
-        username: action.payload.username,
+        domain: action.payload.domain,
       });
     },
-    loadNFTs() {},
+    loadNFTs() { },
     setActiveRoomNo(state: any, action: PayloadAction<any>) {
       state.activeRoomId = action.payload.activeRoomId;
       state.activeRoomNo = action.payload.activeRoomNo;
@@ -427,6 +458,11 @@ export const profileSlice = createSlice({
       }
     });
     builder.addCase(unlinkAccounts.fulfilled, (state, action) => {
+      if (action.payload) {
+        profileSlice.caseReducers.setProfile(state, action);
+      }
+    });
+    builder.addCase(getUserDaos.fulfilled, (state, action) => {
       if (action.payload) {
         profileSlice.caseReducers.setProfile(state, action);
       }

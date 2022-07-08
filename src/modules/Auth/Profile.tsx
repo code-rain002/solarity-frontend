@@ -14,137 +14,15 @@ import { DomainInput, SharedInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { DiscordLink } from "./Links";
 import { TwitterLink } from "./Links/TwitterLink";
-import axios from 'axios'
-
-import {
-  MAX_METADATA_LEN,
-  useConnection,
-  IMetadataExtension,
-  MetadataCategory,
-  useConnectionConfig,
-  Creator,
-  shortenAddress,
-  MetaplexModal,
-  MetaplexOverlay,
-  MetadataFile,
-  StringPublicKey,
-  WRAPPED_SOL_MINT,
-  getAssetCostToStore,
-  LAMPORT_MULTIPLIER,
-  Attribute,
-} from '@oysterr/common';
-
-import { useWallet } from '@solana/wallet-adapter-react';
-import { Connection } from '@solana/web3.js';
-import { MintLayout } from '@solana/spl-token';
-// import { useHistory, useParams } from 'react-router-dom';
-
-import { mintNFT } from 'actions';
-import { updateNFT } from 'actions'; // This is update function
 
 export const ProfileInfo = () => {
-  const [attributes, setAttributes] = useState<IMetadataExtension>({
-    name: '',
-    symbol: 'PST',
-    collection: '',
-    description: '',
-    external_url: '',
-    image: '',
-    animation_url: undefined,
-    attributes: undefined,
-    seller_fee_basis_points: 0,
-    creators: [],
-    properties: {
-      files: [],
-      category: MetadataCategory.Image,
-    },
-  });
-  const connection = useConnection();
-  const { endpoint } = useConnectionConfig();
-  
-  const { publicKey, connected } = useWallet();
-  const wallet = useWallet();
-  // const [alertMessage, setAlertMessage] = useState<string>();
-  // const { step_param }: { step_param: string } = useParams();
-  // const history = useHistory();
-  
+  const router = useRouter()
   const [step, setStep] = useState<Number>(0);
   const [files, setFiles] = useState<File[]>(null);
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
   const [inputValue, setInputValue] = useState<String>('');
   const [title, setTitle] = useState<String>('');
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
-
-  const router = useRouter();
-  const mint = async () => {
-    const metadata = {
-      name: attributes.name,
-      symbol: attributes.symbol,
-      creators: attributes.creators,
-      collection: attributes.collection,
-      description: attributes.description,
-      sellerFeeBasisPoints: attributes.seller_fee_basis_points,
-      image: attributes.image,
-      animation_url: attributes.animation_url,
-      attributes: attributes.attributes,
-      external_url: attributes.external_url,
-      properties: {
-        files: attributes.properties.files,
-        category: attributes.properties?.category,
-      },
-    };
-    setAttributes({...attributes, name: inputValue});
-    alert(process.env.NEXT_PUBLIC_BACKEND_URL);
-    axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/tmeta?includeDao=true`).then(response => {
-      let resp = response.data;
-      console.log("response", resp)
-      // alert(resp['user']['twitterConnected'])
-      let nftattributes:Attribute[] = [];
-      if( 'twitterConnected' in resp['user'] ){
-        let nAttribute : Attribute = {
-          'trait_type' : 'Twitter',
-          'display_type' : undefined,
-          'value': String(resp['user']['twitterUsername'])
-        };
-        nftattributes.push(nAttribute)
-      }
-      resp['user']['daos'].forEach(element => {
-        let nAttribute : Attribute = {
-          'trait_type' : 'DAO',
-          'display_type' : undefined,
-          'value': String(element['name'])
-        };
-        nftattributes.push(nAttribute);
-      });
-      // setAttributes({
-      //   ...attributes,
-      //   attributes: nftattributes,
-      // });
-    });
-    // setStepsVisible(false);
-    // setMinting(true);
-
-    try {
-      // I used the same frontend for nft mint and update.
-      const _nft = await mintNFT(
-      // const _nft = await updateNFT(
-        connection,
-        wallet,
-        endpoint.name,
-        files,
-        metadata,
-        attributes.properties?.maxSupply,
-      );
-      // if (_nft) setNft(_nft);
-      // setAlertMessage('');
-    } catch (e: any) {
-      // setAlertMessage(e.message);
-    } finally {
-      // setMinting(false);
-    }
-  };
-
-  
 
   const onLoadAvatar = (files) => {
     setFiles(files);
@@ -165,7 +43,7 @@ export const ProfileInfo = () => {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
-        {step == 0?<div className=" pr-[0] lg:pr-[7%]">
+        {step == 0 ? <div className=" pr-[0] lg:pr-[7%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
@@ -174,7 +52,7 @@ export const ProfileInfo = () => {
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
                   Creating a passport
                 </h3>
-                <AddressButton caption={publicKey?publicKey.toBase58():""} icon={AddressImg} onClick={null} />
+                <AddressButton caption={"test address"} icon={AddressImg} onClick={null} />
               </div>
               {/*body*/}
               <div className="relative p-[32px] lg:p-14 flex-auto">
@@ -214,15 +92,15 @@ export const ProfileInfo = () => {
               </div>
             </div>
           </div>
-        </div>:""}
-        {step == 1?<div className=" pr-[0] lg:pr-[7%]">
+        </div> : ""}
+        {step == 1 ? <div className=" pr-[0] lg:pr-[7%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
               {/*header*/}
               <div className="flex items-start justify-between pt-8 pl-[32px] pr-[32px] lg:p-14 lg:pb-0 lg:pr-12 rounded-t">
                 <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
-                  DAOs you&apos;re already in 
+                  DAOs you&apos;re already in
                 </h3>
                 <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
               </div>
@@ -250,8 +128,8 @@ export const ProfileInfo = () => {
               </div>
             </div>
           </div>
-        </div>:""}
-        {step == 2?<div className=" pr-[0] lg:pr-[7%]">
+        </div> : ""}
+        {step == 2 ? <div className=" pr-[0] lg:pr-[7%]">
           <div className="relative w-auto my-6 mx-auto">
             {/*content*/}
             <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
@@ -264,26 +142,26 @@ export const ProfileInfo = () => {
               </div>
               <div className="relative p-[32px] lg:p-14 flex-auto">
                 <div className="mb-10">
-                  <Dropzone onDrop={acceptedFiles => { onLoadAvatar(acceptedFiles);}}>
-                    {({getRootProps, getInputProps}) => (
+                  <Dropzone onDrop={acceptedFiles => { onLoadAvatar(acceptedFiles); }}>
+                    {({ getRootProps, getInputProps }) => (
                       <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         <label
-                            className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
-                            <span className="flex items-center space-x-2 mr-3">
-                              <Image src={GalleryImg} />
-                            </span>
-                            <span className="flex items-center space-x-2">
-                                {files?<span className="font-medium text-[#f3f3f3]">
-                                    <label className="text-primary">{files.length}</label> file&#40;s&#41; selected
-                                    <br></br>
-                                    <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
-                                </span>:<span className="font-medium text-[#f3f3f3]">
-                                    Drop image here or&nbsp;<label className="text-primary">browse</label>
-                                    <br></br>
-                                    <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
-                                </span>}
-                            </span>
+                          className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
+                          <span className="flex items-center space-x-2 mr-3">
+                            <Image src={GalleryImg} />
+                          </span>
+                          <span className="flex items-center space-x-2">
+                            {files ? <span className="font-medium text-[#f3f3f3]">
+                              <label className="text-primary">{files.length}</label> file&#40;s&#41; selected
+                              <br></br>
+                              <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
+                            </span> : <span className="font-medium text-[#f3f3f3]">
+                              Drop image here or&nbsp;<label className="text-primary">browse</label>
+                              <br></br>
+                              <label className="text-[14px] text-white/30">Supports&#58; JPEG, JPEG2000, PNG</label>
+                            </span>}
+                          </span>
                         </label>
                       </div>
                     )}
@@ -311,7 +189,7 @@ export const ProfileInfo = () => {
               </div>
             </div>
           </div>
-        </div>:""}
+        </div> : ""}
         <div className="hidden lg:block text-center">
           <Logo />
           <div className="relative h-[calc(100vh-180px)]">
@@ -321,7 +199,7 @@ export const ProfileInfo = () => {
                   <Image src={AvatarImg} />
                 </div>
                 <div className="mt-[26px]">
-                  <span className="text-white/80 text-[24px] z-[30]">{inputValue?inputValue:"Enter your domain"}</span>
+                  <span className="text-white/80 text-[24px] z-[30]">{inputValue ? inputValue : "Enter your domain"}</span>
                 </div>
                 <div className="mt-[5px]">
                   <span className="text-white/60 text-[16px] z-[30]">Connect your socials</span>
@@ -330,7 +208,7 @@ export const ProfileInfo = () => {
               <div className="grid grid-cols-2 mt-[268px] h-[116px]">
                 <div className="z-10 passport-liner !pt-3">
                   <span className="text-white/60">Wallets</span>
-                  <div className="mt-3"><Image src={AddressImg}/></div>
+                  <div className="mt-3"><Image src={AddressImg} /></div>
                 </div>
                 <div className="z-10 !pt-3">
                   <span className="text-white/60">Your DAOs</span>
