@@ -57,10 +57,10 @@ const UserInfo = (props) => {
           {/* {discordUsername ? discordUsername : 'dasd'} */}
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div>
-              <DomainInput changeValue={setDomain} value={profileData?.domain} />
+              <DomainInput changeValue={setDomain} />
             </div>
             <div className="mt-6">
-              <SharedInput changeValue={setTitle} value={profileData?.title} caption="Input your title" />
+              <SharedInput changeValue={setTitle} caption="Input your title" />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-3">
               <div className="mt-6 mb-3 xl:mt-6 xl:mb-6 xl:text-left">

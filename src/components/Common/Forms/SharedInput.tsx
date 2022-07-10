@@ -18,11 +18,11 @@ const DomainInput = (props) => {
   }
 
   useEffect(() => {
-    if (props.value) {
-      focusInput()
-      props.changeValue(props.value)
-      setTitleValue(props.value)
-    }
+    // if (props.value) {
+    //   focusInput()
+    //   props.changeValue(props.value)
+    //   setTitleValue(props.value)
+    // }
   }, [])
 
   return (

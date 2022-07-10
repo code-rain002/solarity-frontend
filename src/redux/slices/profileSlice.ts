@@ -10,7 +10,17 @@ import { extractError } from "utils";
 import { title } from "process";
 
 const initialState = {
-  data: {},
+  data: {
+    daoMemberships: {
+      daos: []
+    },
+    stepsCompleted: {
+      infoAdded: false,
+      daoClaimed: false,
+      accountsLinked: false,
+      profilePicUpdated: false
+    }
+  },
   nfts: [],
   nftsLoaded: false,
   activeRoomId: "",
@@ -249,6 +259,43 @@ export const setProfilePic = createAsyncThunk(
   }
 );
 
+export const setUploadPic = createAsyncThunk(
+  "profile/setUploadPic",
+  async ({
+    data,
+    successFunction,
+    errorFunction,
+    finalFunction,
+  }: {
+    data: any;
+    successFunction: () => void;
+    errorFunction: (error: string) => void;
+    finalFunction: () => void;
+  }) => {
+    console.log('before: ', data)
+    const { fileBlob, fileName, fileSize, filePath } = data
+    let formData = new FormData()
+    formData.append("image", fileBlob)
+    formData.append("fileName", fileName)
+    formData.append("fileSize", fileSize)
+    formData.append("filePath", filePath)
+
+    let returnValue = null;
+    try {
+      const {
+        data: { profile },
+      } = await apiCaller.post("/profile/uploadPic", formData);
+      successFunction();
+      returnValue = profile;
+    } catch (err) {
+      errorFunction(getErrorMessage(err));
+      returnValue = false;
+    }
+    finalFunction();
+    return returnValue;
+  }
+);
+
 export const updateProfileInfo = createAsyncThunk(
   "profile/updateProfileInfo",
   async ({
@@ -374,7 +421,7 @@ export const getUserDaos = createAsyncThunk(
         data: { data },
       } = await apiCaller.get("/daos?member=true");
       successFunction()
-      console.log(data); return;
+      console.log(data);
       returnValue = data;
       showSuccessToast("User Daos successfully taken");
     } catch (err) {
@@ -410,11 +457,19 @@ export const profileSlice = createSlice({
         domain: action.payload.domain,
       });
     },
-    loadNFTs() { },
+    loadNFTs(state, action: PayloadAction<any>) {
+
+    },
     setActiveRoomNo(state: any, action: PayloadAction<any>) {
       state.activeRoomId = action.payload.activeRoomId;
       state.activeRoomNo = action.payload.activeRoomNo;
     },
+    setProfileDaos(state, action: PayloadAction<any>) {
+      const {
+        payload
+      } = action;
+      state.data.daoMemberships.daos = payload
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(setup.fulfilled, (state, action) => {
@@ -464,12 +519,12 @@ export const profileSlice = createSlice({
     });
     builder.addCase(getUserDaos.fulfilled, (state, action) => {
       if (action.payload) {
-        profileSlice.caseReducers.setProfile(state, action);
+        profileSlice.caseReducers.setProfileDaos(state, action);
       }
     });
   },
 });
 
-export const { setProfile, loadNFTs, setActiveRoomNo } = profileSlice.actions;
+export const { setProfile, loadNFTs, setActiveRoomNo, setProfileDaos } = profileSlice.actions;
 
 export default profileSlice.reducer;

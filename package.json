@@ -8,6 +8,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.5",
     "@metamask/detect-provider": "^1.2.0",
+    "@nfteyez/sol-rayz": "^0.10.2",
     "@reduxjs/toolkit": "^1.8.2",
     "@solana/wallet-adapter-base": "0.7.1",
     "@solana/wallet-adapter-phantom": "0.7.0",
@@ -19,6 +20,7 @@
     "FormData": "^0.10.1",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
+    "bluebird": "^3.7.2",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
     "next": "^12.2.0",

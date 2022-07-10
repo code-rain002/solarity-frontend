@@ -17,7 +17,7 @@ const DomainInput = (props) => {
   const [classFocus, setClassFocus] = useState('text-white/60');
   const [classBorder, setClassBorder] = useState('border-white/10');
   const [domainValue, setDomainValue] = useState('');
-  const [domainFooter, setDomainFooter] = useState('.sol');
+  const [domainFooter, setDomainFooter] = useState('.verse');
   const focusInput = () => {
     setClassFocus('top-[-15%] !text-[12px] text-primary');
     setClassBorder('border-primary');
@@ -32,15 +32,15 @@ const DomainInput = (props) => {
   }
 
   useEffect(() => {
-    console.log(props.value)
-    if (props.value) {
-      focusInput()
-      let value = props.value.split('.')
-      value.pop()
-      let result = value.join(".")
-      props.changeValue(props.value)
-      setDomainValue(result)
-    }
+    // console.log(props.value)
+    // if (props.value) {
+    //   focusInput()
+    //   let value = props.value.split('.')
+    //   value.pop()
+    //   let result = value.join(".")
+    //   props.changeValue(props.value)
+    //   setDomainValue(result)
+    // }
   }, [])
 
   return (

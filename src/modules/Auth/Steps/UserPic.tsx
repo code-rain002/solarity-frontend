@@ -2,32 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import Image from "next/image";
-
 import Dropzone from 'react-dropzone'
 
 import { AddressButton, WalletButton, PrimaryButton, BackButton } from "components/Common/Buttons";
-
-import Logo from "components/Common/Logo";
-
-import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
-import { DomainInput, SharedInput } from "components/Common/Forms";
-import { AvatarPanel, DaoPanel } from "components/Common/Panels";
-import { DiscordLink } from "../Links";
-import { TwitterLink } from "../Links/TwitterLink";
+import { AddressImg, GalleryImg } from "components/Common/Images";
+import { AvatarPanel, NftPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
+import { getNfts } from '../../../hooks'
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { setup } from '../../../redux/slices/profileSlice'
+import { setProfilePic, setUploadPic, undoSetupStep } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
+import { showErrorToast, showSuccessToast } from "utils";
 
 const UserPic = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { submit } = props
-  const { profileData } = useSelector(
-    (state: RootStateOrAny) => ({
-      profileData: state.profile.data
-    })
+  const { submit, setAvatar } = props
+  const { domain, solanaAddress } = useSelector(
+    (state: RootStateOrAny) => state.profile.data
+  );
+  const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(
+    domain,
+    solanaAddress,
+    true
   );
 
   // bug code
@@ -37,29 +35,120 @@ const UserPic = (props) => {
   const miniPublicKey = minifyAddress(publicKey, 3);
   const provider = (window as any).phantom.solana;
 
-  const [step, setStep] = useState<Number>(0);
   const [files, setFiles] = useState<File[]>(null);
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
-
+  const [selectedNft, setSelectedNft] = useState<any>(null);
 
   useEffect(() => {
+    fetchNFTs();
+  }, []);
 
-  }, [])
+  useEffect(() => {
+    if (selectedNft) {
+      dispatch(startLoadingApp());
+      dispatch(
+        setProfilePic({
+          data: selectedNft,
+          successFunction: () => {
+            showSuccessToast("You profile pic has been updated");
+          },
+          errorFunction: () => {
+            showErrorToast("Unable to update the profile pic");
+          },
+          finalFunction: () => {
+            dispatch(stopLoadingApp());
+            setSelectedAvatar(null)
+          },
+        })
+      );
+    }
+  }, [selectedNft])
+
+  useEffect(() => {
+    if (selectedAvatar) {
+      dispatch(
+        setUploadPic({
+          data: selectedAvatar,
+          successFunction: () => {
+            showSuccessToast("You profile pic has been updated");
+          },
+          errorFunction: () => {
+            showErrorToast("Unable to update the profile pic");
+          },
+          finalFunction: () => {
+            dispatch(stopLoadingApp());
+            setSelectedNft(null)
+          },
+        })
+      );
+    }
+  }, [selectedAvatar])
+
+  // if (nftLoading) {
+  //   return (
+  //     <div className="alert alert-warning w-full shadow-lg">
+  //       <span>Loading NFTs...</span>
+  //     </div>
+  //   );
+  // }
+  // if (nftError) {
+  //   return (
+  //     <div className="alert alert-error w-full shadow-lg">
+  //       <span>Error While Loading NFTs</span>
+  //     </div>
+  //   );
+  // }
+  // if (nfts.length == 0) {
+  //   return (
+  //     <div className="alert alert-info w-full shadow-lg">
+  //       <span>
+  //         You don't own any NFTs so you will not be able to set your profile pic
+  //       </span>
+  //     </div>
+  //   );
+  // }
 
   const onLoadAvatar = (files) => {
     setFiles(files);
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        let listFiles = loadedFiles;
-        listFiles.push(reader.result);
-        setLoadedFiles([...listFiles]);
-        console.log(loadedFiles);
+    let listFiles = loadedFiles;
+    files.forEach(file => {
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        if (reader.readyState === 2) {
+          listFiles.push({
+            fileBlob: reader.result,
+            fileName: file.name,
+            fileSize: file.size,
+            filePath: file.path
+          });
+          setLoadedFiles([...listFiles]);
+          console.log(loadedFiles);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const undoUserPic = () => {
+    dispatch(startLoadingApp())
+
+    dispatch(undoSetupStep({
+      stepName: "profilePic",
+      onFinally: () => {
+        dispatch(undoSetupStep({
+          stepName: "dao",
+          onFinally: () => {
+            router.push({
+              pathname: '/auth/register/userInfo'
+            })
+          }
+        }))
       }
-    };
-    reader.readAsDataURL(files[0]);
+    }))
+
+    dispatch(stopLoadingApp())
   }
 
   return (
@@ -72,7 +161,7 @@ const UserPic = (props) => {
             <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
               Choose profile picture
             </h3>
-            <AddressButton caption="Ak...VqT9" icon={AddressImg} onClick={null} />
+            <AddressButton caption={miniPublicKey ? miniPublicKey : ""} icon={AddressImg} onClick={null} />
           </div>
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div className="mb-10">
@@ -101,21 +190,69 @@ const UserPic = (props) => {
                 )}
               </Dropzone>
             </div>
-            <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh] overflow-scroll">
-              <div className="p-2">
-                <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
+            <div className="overflow-scroll">
+              {
+                nftLoading ?
+                  <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
+                    Loading NFTs...
+                  </h3>
+                  :
+                  <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+                    {
+                      nfts.map(({ type, mintAddress, contractAddress, tokenId, name, image, collectionName }, index) => (
+                        <div className="p-2" key={index}>
+                          <NftPanel
+                            image={image}
+                            name={name}
+                            collectionName={collectionName}
+                            type={type}
+                            key={index}
+                            selected={(() => {
+                              if (!selectedNft || !selectedNft.imageNetwork) return false;
+                              if (selectedNft.imageNetwork === "Ethereum") {
+                                return (
+                                  selectedNft.tokenId == tokenId &&
+                                  selectedNft.contractAddress == contractAddress
+                                );
+                              }
+                              return selectedNft.mintAddress == mintAddress;
+                            })()}
+                            onClick={() => {
+                              setAvatar(image)
+                              setSelectedNft({
+                                imageNetwork: type,
+                                mintAddress,
+                                contractAddress,
+                                tokenId,
+                              });
+                            }}
+                          />
+                        </div>
+                      ))
+                    }
+                  </div>
+              }
+              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+                {
+                  loadedFiles.map((file, index) => (
+                    <div className="p-2" key={index}>
+                      <AvatarPanel
+                        imageSrc={file.fileBlob}
+                        title={file.fileName}
+                        onClick={() => {
+                          setAvatar(file.fileBlob)
+                          setSelectedAvatar(file)
+                        }}
+                        selected={file == selectedAvatar} />
+                    </div>)
+                  )
+                }
               </div>
-              <div className="p-2">
-                <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
-              </div>
-              {loadedFiles.map((imgBlob) => {
-                return (<div className="p-2"><AvatarPanel imageSrc={imgBlob} title="RESSURECTION..." onClick={() => setSelectedAvatar(imgBlob)} selected={imgBlob == selectedAvatar} /></div>)
-              })}
             </div>
           </div>
           <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end px-[32px] py-[32px] lg:px-14 lg:py-8">
             <div className="inline-block w-[20%] pr-2">
-              <BackButton onClick={() => router.push({ pathname: '/auth/register/userDaos' })} styles="rounded-[15px]" />
+              <BackButton onClick={undoUserPic} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
               <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />

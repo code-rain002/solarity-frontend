@@ -36,7 +36,7 @@ export { default as GithubImg } from "assets/images/social/github.png";
 
 // wallets
 
-export { default as PhantomImg } from "assets/images/wallets/phantom.png";
+export { default as PhantomImg } from "assets/images/wallets/phantomIcon.png";
 export { default as SlopeImg } from "assets/images/wallets/slope.png";
 export { default as SolflareImg } from "assets/images/wallets/solflare.png";
 export { default as SolletImg } from "assets/images/wallets/sollet.png";

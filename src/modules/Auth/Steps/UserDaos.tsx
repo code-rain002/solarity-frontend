@@ -14,13 +14,13 @@ import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { setup } from '../../../redux/slices/profileSlice'
+import { claimDaos, undoSetupStep } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
 
 const UserDaos = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { getDaos } = props
+  const { getDaos, setDaos } = props
   const { profileData } = useSelector(
     (state: RootStateOrAny) => ({
       profileData: state.profile.data
@@ -39,10 +39,47 @@ const UserDaos = (props) => {
     getDaos()
   }, [])
 
+  useEffect(() => {
+    setDaos(profileData.daoMemberships.daos)
+  }, [profileData.daoMemberships.daos])
+
   const undoUserInfo = () => {
-    router.push({
-      pathname: '/auth/register/userInfo'
-    })
+    dispatch(startLoadingApp())
+
+    dispatch(undoSetupStep({
+      stepName: "info",
+      onFinally: () => {
+        dispatch(undoSetupStep({
+          stepName: "link",
+          onFinally: () => {
+            router.push({
+              pathname: '/auth/register/userInfo'
+            })
+          }
+        }))
+      }
+    }))
+
+    dispatch(stopLoadingApp())
+  }
+
+  const submit = () => {
+    dispatch(startLoadingApp())
+
+    dispatch(claimDaos({
+      data: {},
+      successFunction: () => { },
+      errorFunction: () => { },
+      finalFunction: () => {
+        router.push({
+          pathname: '/auth/register/userPic'
+        })
+      },
+    }))
+    // router.push({
+    //   pathname: '/auth/register/userPic'
+    // })
+    dispatch(stopLoadingApp())
   }
 
   return (
@@ -59,24 +96,27 @@ const UserDaos = (props) => {
           </div>
           {/*body*/}
           <div className="relative p-[32px] lg:p-14 flex-auto">
-            <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
-              <div className="p-2">
-                <DaoPanel imageSrc={DaoPicImg} backSrc={DaoBGImg} title="Solana Money Boys" />
-              </div>
-              <div className="p-2">
-                <DaoPanel imageSrc={DaoPicImg} backSrc={DaoBGImg} title="Solana Money Boys" />
-              </div>
-              <div className="p-2">
-                <DaoPanel imageSrc={DaoPicImg} backSrc={DaoBGImg} title="Solana Money Boys" />
-              </div>
-            </div>
+            {
+              profileData.daoMemberships.daos?.length ?
+                <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
+                  {
+                    profileData.daoMemberships.daos.map((dao, index) => (
+                      <div className="p-2">
+                        <DaoPanel imageSrc={dao.profileImageLink} backSrc={DaoBGImg} title={dao.name} />
+                      </div>
+                    ))
+                  }
+                </div>
+                :
+                <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">No DAOs you are in.</div>
+            }
           </div>
           <div className="w-full px-[32px] py-[32px] lg:px-14 lg:py-8 flex-auto flex items-end">
             <div className="inline-block w-[20%] pr-2">
               <BackButton onClick={undoUserInfo} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => router.push({ pathname: '/auth/register/userPic' })} disabled={false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>
