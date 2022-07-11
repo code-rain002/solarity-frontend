@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import * as yup from "yup";
 
 import { AddressButton, WalletButton, PrimaryButton, BackButton } from "components/Common/Buttons";
 
-import Logo from "components/Common/Logo";
-
-import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
+import { AddressImg, EthereumImg, GithubImg, PolygonImg } from "components/Common/Images";
 import { DomainInput, SharedInput } from "components/Common/Forms";
-import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { DiscordLink } from "../Links";
 import { TwitterLink } from "../Links/TwitterLink";
 import { minifyAddress } from "utils";
+import { apiCaller, getErrorMessage } from "utils/fetcher";
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
 import { setup } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
 
+const infoSchema = yup.object({
+  domain: yup.string()
+    .min(3, "Please enter your domain name more than 3 characters.")
+    .max(30, "Please enter your domain name less than 30 characters.")
+    .required("This field is required."),
+  title: yup.string()
+    .nullable()
+})
+
 const UserInfo = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { setTitle, setDomain, submit } = props
+  const { setTitle, domain, setDomain, submit } = props
   const { profileData } = useSelector(
     (state: RootStateOrAny) => ({
       profileData: state.profile.data
@@ -33,13 +41,42 @@ const UserInfo = (props) => {
   const miniPublicKey = minifyAddress(publicKey, 3);
   const provider = (window as any).phantom.solana;
 
+  const [error, setError] = useState(undefined)
+
   useEffect(() => {
-    // if (profileData.stepsCompleted.infoAdded) {
-    //   router.push({
-    //     pathname: '/auth/register/userDaos'
-    //   })
-    // }
+    if (profileData.stepsCompleted.infoAdded) {
+      // router.push({
+      //   pathname: '/auth/register/userDaos'
+      // })
+    }
   }, [])
+
+  useEffect(() => {
+    if (domain === "") {
+      setError("Please input your domain name.")
+      return;
+    }
+    if (domain !== undefined) {
+      let formatted = domain.toLowerCase()
+      formatted = formatted.replace(" ", "")
+      formatted = formatted.substr(0, formatted.lastIndexOf("."))
+      console.log(formatted)
+      checkDomainAvailability(formatted)
+    }
+  }, [domain])
+
+  const checkDomainAvailability = (formattedDomain) => {
+    apiCaller
+      .get(`profile/domainAvailability/${formattedDomain}`)
+      .then((response) => {
+        console.log(response.data)
+        setError("")
+      })
+      .catch((err) => {
+        const message = getErrorMessage(err)
+        setError(message)
+      });
+  };
 
   return (
     <div className=" pr-[0] lg:pr-[7%]">
@@ -57,7 +94,10 @@ const UserInfo = (props) => {
           {/* {discordUsername ? discordUsername : 'dasd'} */}
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div>
-              <DomainInput changeValue={setDomain} />
+              <DomainInput changeValue={setDomain} isError={error ? true : false} />
+              {
+                error ? <div className="text-[16px] text-rose-600">{error}</div> : null
+              }
             </div>
             <div className="mt-6">
               <SharedInput changeValue={setTitle} caption="Input your title" />
@@ -87,7 +127,7 @@ const UserInfo = (props) => {
               <BackButton onClick={() => router.push('/')} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={error || error == undefined ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

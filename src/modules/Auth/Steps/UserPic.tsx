@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import Image from "next/image";
@@ -10,7 +11,6 @@ import { AvatarPanel, NftPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
 import { getNfts } from '../../../hooks'
 
-import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
 import { setProfilePic, setUploadPic, undoSetupStep } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
 import { showErrorToast, showSuccessToast } from "utils";
@@ -19,12 +19,14 @@ const UserPic = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
   const { submit, setAvatar } = props
-  const { domain, solanaAddress } = useSelector(
-    (state: RootStateOrAny) => state.profile.data
+  const { profileData } = useSelector(
+    (state: RootStateOrAny) => ({
+      profileData: state.profile.data
+    })
   );
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(
-    domain,
-    solanaAddress,
+    profileData.domain,
+    profileData.solanaAddress,
     true
   );
 
@@ -41,6 +43,9 @@ const UserPic = (props) => {
   const [selectedNft, setSelectedNft] = useState<any>(null);
 
   useEffect(() => {
+    if (profileData.stepsCompleted.infoAdded) {
+
+    }
     fetchNFTs();
   }, []);
 
@@ -141,7 +146,7 @@ const UserPic = (props) => {
           stepName: "dao",
           onFinally: () => {
             router.push({
-              pathname: '/auth/register/userInfo'
+              pathname: '/auth/register/userDaos'
             })
           }
         }))

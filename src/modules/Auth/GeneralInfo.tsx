@@ -43,7 +43,7 @@ export const GeneralInfo = () => {
     })
   );
 
-  const [domain, setDomain] = useState<String>('');
+  const [domain, setDomain] = useState<String>(undefined);
   const [title, setTitle] = useState<String>('');
   const [daos, setDaos] = useState<Object[]>([]);
   const [avatar, setAvatar] = useState<Object>(null);
@@ -52,6 +52,22 @@ export const GeneralInfo = () => {
   const walletType = localStorage.getItem('type');
 
   useEffect(() => {
+    if (profileData.stepsCompleted.profilePicUpdated) {
+      setDomain(profileData.domain)
+      setTitle(profileData.title)
+      setDaos(profileData.daoMemberships.daos)
+      router.push({
+        pathname: '/auth/register/userPic'
+      })
+    }
+    if (profileData.stepsCompleted.daoClaimed) {
+      setDomain(profileData.domain)
+      setTitle(profileData.title)
+      setDaos(profileData.daoMemberships.daos)
+      router.push({
+        pathname: '/auth/register/userPic'
+      })
+    }
     if (profileData.stepsCompleted.infoAdded) {
       setDomain(profileData.domain)
       setTitle(profileData.title)
@@ -59,24 +75,12 @@ export const GeneralInfo = () => {
         pathname: '/auth/register/userDaos'
       })
     }
-    if (profileData.stepsCompleted.daoClaimed) {
-      setDaos(profileData.daoMemberships.daos)
-      router.push({
-        pathname: '/auth/register/userPic'
-      })
-    }
-    if (profileData.stepsCompleted.profilePicUpdated) {
-      // setAvatar(profileData.daoMemberships.daos)
-      // router.push({
-      //   pathname: '/auth/register/userPic'
-      // })
-    }
   }, [])
 
   const handleUserInfo = () => {
     dispatch(startLoadingApp())
 
-    if (domain !== "" && title !== "") {
+    if (domain !== "") {
       const payload = {
         action: "info",
         domain,
@@ -125,6 +129,7 @@ export const GeneralInfo = () => {
         steps === 'userInfo' ?
           <UserInfo
             setTitle={setTitle}
+            domain={domain}
             setDomain={setDomain}
             submit={handleUserInfo}
           />

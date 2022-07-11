@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
-
-import Dropzone from 'react-dropzone'
-
 import { AddressButton, WalletButton, PrimaryButton, BackButton } from "components/Common/Buttons";
 
-import Logo from "components/Common/Logo";
-
-import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg } from "components/Common/Images";
+import { AddressImg, DaoBGImg } from "components/Common/Images";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
 
@@ -36,7 +30,13 @@ const UserDaos = (props) => {
 
   useEffect(() => {
     // console.log(profileData)
-    getDaos()
+    if (profileData.stepsCompleted.daoClaimed) {
+      // router.push({
+      //   pathname: '/auth/register/userPic'
+      // })
+    } else {
+      getDaos()
+    }
   }, [])
 
   useEffect(() => {
@@ -47,10 +47,10 @@ const UserDaos = (props) => {
     dispatch(startLoadingApp())
 
     dispatch(undoSetupStep({
-      stepName: "info",
+      stepName: "link",
       onFinally: () => {
         dispatch(undoSetupStep({
-          stepName: "link",
+          stepName: "info",
           onFinally: () => {
             router.push({
               pathname: '/auth/register/userInfo'

@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as yup from "yup";
-// import { Container, Button, Stack, Error } from "components/FormComponents";
-import { addInfo } from "redux/slices/profileSlice";
-// import { ProfileFields } from "modules/Profile/UpdateInfoView";
-import { setup } from "../../../redux/slices/profileSlice";
 import { showErrorToast } from "utils";
 
 const infoFormSchema = yup.object({
