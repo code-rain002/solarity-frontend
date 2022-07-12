@@ -272,19 +272,19 @@ export const setUploadPic = createAsyncThunk(
     errorFunction: (error: string) => void;
     finalFunction: () => void;
   }) => {
-    console.log('before: ', data)
-    const { fileBlob, fileName, fileSize, filePath } = data
-    let formData = new FormData()
-    formData.append("image", fileBlob)
-    formData.append("fileName", fileName)
-    formData.append("fileSize", fileSize)
-    formData.append("filePath", filePath)
+    // console.log('before: ', data)
+    // const { fileBlob, fileName, fileSize, filePath } = data
+    // let formData = new FormData()
+    // formData.append("image", fileBlob)
+    // formData.append("fileName", fileName)
+    // formData.append("fileSize", fileSize)
+    // formData.append("filePath", filePath)
 
     let returnValue = null;
     try {
       const {
         data: { profile },
-      } = await apiCaller.post("/profile/uploadPic", formData);
+      } = await apiCaller.post("/profile/uploadPic", data);
       successFunction();
       returnValue = profile;
     } catch (err) {
@@ -454,7 +454,7 @@ export const profileSlice = createSlice({
         (window as any).socket = socket();
       }
       (window as any).socket.emit(ACTIONS.SET_USER_NAME, {
-        domain: action.payload.domain,
+        username: action.payload.domain,
       });
     },
     loadNFTs(state, action: PayloadAction<any>) {
@@ -517,9 +517,14 @@ export const profileSlice = createSlice({
         profileSlice.caseReducers.setProfile(state, action);
       }
     });
-    builder.addCase(getUserDaos.fulfilled, (state, action) => {
+    builder.addCase(setUploadPic.fulfilled, (state, action) => {
       if (action.payload) {
-        profileSlice.caseReducers.setProfileDaos(state, action);
+        profileSlice.caseReducers.setProfile(state, action);
+      }
+    });
+    builder.addCase(undoSetupStep.fulfilled, (state, action) => {
+      if (action.payload) {
+        profileSlice.caseReducers.setProfile(state, action);
       }
     });
   },

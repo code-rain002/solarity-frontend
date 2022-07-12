@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 import Image from "next/image";
 import Dropzone from 'react-dropzone'
+import cloudinary from "cloudinary/lib/cloudinary";
 
 import { AddressButton, WalletButton, PrimaryButton, BackButton } from "components/Common/Buttons";
 import { AddressImg, GalleryImg } from "components/Common/Images";
@@ -14,6 +16,12 @@ import { getNfts } from '../../../hooks'
 import { setProfilePic, setUploadPic, undoSetupStep } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
 import { showErrorToast, showSuccessToast } from "utils";
+
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,
+  api_key: process.env.NEXT_PUBLIC_API_KEY,
+  api_secret: process.env.NEXT_PUBLIC_API_SECRET
+});
 
 const UserPic = (props) => {
   const dispatch = useDispatch()
@@ -41,6 +49,9 @@ const UserPic = (props) => {
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
   const [selectedNft, setSelectedNft] = useState<any>(null);
+
+  const [image, setImage] = useState("");
+  const [imageData, setImageData] = useState([]);
 
   useEffect(() => {
     if (profileData.stepsCompleted.infoAdded) {
@@ -114,27 +125,57 @@ const UserPic = (props) => {
   //   );
   // }
 
-  const onLoadAvatar = (files) => {
-    setFiles(files);
+  // const onLoadAvatar = (files) => {
+  //   setFiles(files);
 
-    let listFiles = loadedFiles;
-    files.forEach(file => {
-      let reader = new FileReader();
-      reader.onload = (event) => {
-        if (reader.readyState === 2) {
-          listFiles.push({
-            fileBlob: reader.result,
-            fileName: file.name,
-            fileSize: file.size,
-            filePath: file.path
-          });
-          setLoadedFiles([...listFiles]);
-          console.log(loadedFiles);
-        }
-      };
-      reader.readAsDataURL(file);
+  //   let listFiles = loadedFiles;
+  //   files.forEach(file => {
+  //     let reader = new FileReader();
+  //     reader.onload = (event) => {
+  //       if (reader.readyState === 2) {
+  //         listFiles.push({
+  //           fileBlob: reader.result,
+  //           fileName: file.name,
+  //           fileSize: file.size,
+  //           filePath: file.path
+  //         });
+  //         setLoadedFiles([...listFiles]);
+  //         console.log(loadedFiles);
+  //       }
+  //     };
+  //     reader.readAsDataURL(file);
+  //   });
+  // }
+
+  const uploadImage = async (files) => {
+    // setImage(files);
+    let images = []
+    files.forEach(async (file: any) => {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
+      data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
+      data.append("folder", "assets/avatars");
+      try {
+        const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, data);
+        console.log(resp)
+        images.push({ url: resp.data.url, public_id: resp.data.public_id, title: resp.data.original_filename })
+        setImageData([...images]);
+      } catch (err) {
+        console.log("errr : ", err);
+      }
     });
+    console.log(imageData)
   }
+
+  // const deleteImage = async (e) => {
+  //   e.preventDefault();
+  //   cloudinary.v2.uploader.destroy(imageData.public_id, function (error, result) {
+  //     console.log(result, error)
+  //   })
+  //     .then(resp => console.log(resp))
+  //     .catch(_err => console.log("Something went wrong, please try again later."));
+  // }
 
   const undoUserPic = () => {
     dispatch(startLoadingApp())
@@ -145,6 +186,7 @@ const UserPic = (props) => {
         dispatch(undoSetupStep({
           stepName: "dao",
           onFinally: () => {
+            setAvatar(null)
             router.push({
               pathname: '/auth/register/userDaos'
             })
@@ -170,7 +212,7 @@ const UserPic = (props) => {
           </div>
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div className="mb-10">
-              <Dropzone onDrop={acceptedFiles => { onLoadAvatar(acceptedFiles); }}>
+              <Dropzone onDrop={acceptedFiles => { uploadImage(acceptedFiles); }}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
@@ -239,16 +281,17 @@ const UserPic = (props) => {
               }
               <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
                 {
-                  loadedFiles.map((file, index) => (
+                  imageData.map((image, index) => (
                     <div className="p-2" key={index}>
                       <AvatarPanel
-                        imageSrc={file.fileBlob}
-                        title={file.fileName}
+                        imageUrl={image.url}
+                        title={image.title}
                         onClick={() => {
-                          setAvatar(file.fileBlob)
-                          setSelectedAvatar(file)
+                          setAvatar(image.url)
+                          setSelectedAvatar(image)
                         }}
-                        selected={file == selectedAvatar} />
+                        selected={image == selectedAvatar}
+                      />
                     </div>)
                   )
                 }

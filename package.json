@@ -21,6 +21,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "bluebird": "^3.7.2",
+    "cloudinary": "^1.30.0",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
     "next": "^12.2.0",

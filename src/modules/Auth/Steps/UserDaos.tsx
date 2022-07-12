@@ -52,6 +52,7 @@ const UserDaos = (props) => {
         dispatch(undoSetupStep({
           stepName: "info",
           onFinally: () => {
+            setDaos([])
             router.push({
               pathname: '/auth/register/userInfo'
             })
@@ -67,7 +68,9 @@ const UserDaos = (props) => {
     dispatch(startLoadingApp())
 
     dispatch(claimDaos({
-      data: {},
+      data: {
+        daos: profileData.daoMemberships.daos
+      },
       successFunction: () => { },
       errorFunction: () => { },
       finalFunction: () => {

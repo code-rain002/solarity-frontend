@@ -78,6 +78,14 @@ const UserInfo = (props) => {
       });
   };
 
+  const undoRgister = () => {
+    setTitle('')
+    setDomain(undefined)
+    router.push({
+      pathname: '/'
+    })
+  }
+
   return (
     <div className=" pr-[0] lg:pr-[7%]">
       <div className="relative w-auto my-6 mx-auto">
@@ -124,7 +132,7 @@ const UserInfo = (props) => {
           </div>
           <div className="w-full px-[32px] py-[32px] lg:px-14 lg:py-8 flex-auto flex items-end">
             <div className="inline-block w-[20%] pr-2">
-              <BackButton onClick={() => router.push('/')} styles="rounded-[15px]" />
+              <BackButton onClick={undoRgister} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
               <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={error || error == undefined ? true : false} styles="rounded-[15px]" />
