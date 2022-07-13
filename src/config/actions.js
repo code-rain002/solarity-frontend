@@ -22,5 +22,4 @@ const ACTIONS = {
     MUTE: 'mute',
     UNMUTE: 'unmute',
 };
-
 export default ACTIONS;
