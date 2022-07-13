@@ -39,14 +39,14 @@ const WalletSelector: FC<{
   type: "all" | "ethereum" | "solana";
 }> = ({ open, onClose, onSelect, title, subtitle, type }) => {
   return (
-      <>
-        {open ? (
-          <>
+    <>
+      {open ? (
+        <>
           <div
             className="justify-center items-center hidden sm:flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[120] outline-none focus:outline-none"
             onClick={onClose}
           >
-            <div className="relative w-auto my-6 mx-auto max-w-[380px]" onClick={(e) => {e.stopPropagation()}}>
+            <div className="relative w-auto my-6 mx-auto max-w-[380px]" onClick={(e) => { e.stopPropagation() }}>
               {/*content*/}
               <div className=" rounded-[30px] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
                 {/*header*/}
@@ -65,7 +65,7 @@ const WalletSelector: FC<{
                 </div>
                 {/*body*/}
                 <div className="relative p-8 flex-auto">
-                  {WALLETS.map(({ label, id, type, image })  => (
+                  {WALLETS.map(({ label, id, type, image }) => (
                     <div className="py-3" key={id}>
                       <WalletButton caption={label} icon={image} onClick={() => {
                         connectWallet(id, type, ({ address, type, provider }) => {
@@ -81,15 +81,15 @@ const WalletSelector: FC<{
           <div className="justify-center items-center flex sm:hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-[120] outline-none focus:outline-none"
             onClick={onClose}
           >
-            <div className="absolute bottom-0 w-[100%] mx-auto" onClick={(e) => {e.stopPropagation()}}>
+            <div className="absolute bottom-0 w-[100%] mx-auto" onClick={(e) => { e.stopPropagation() }}>
               {/*content*/}
-              
+
               <div className="rounded-t-[30px] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
                 {/*header*/}
                 <button
-                    className="absolute -top-[60px] left-[calc(50%-12px)] p-1 ml-auto bg-transparent text-red float-right text-4xl leading-none outline-none focus:outline-none"
-                    onClick={onClose}
-                  >
+                  className="absolute -top-[60px] left-[calc(50%-12px)] p-1 ml-auto bg-transparent text-red float-right text-4xl leading-none outline-none focus:outline-none"
+                  onClick={onClose}
+                >
                   <span className="bg-transparent text-white h-6 w-6 text-4xl block outline-none focus:outline-none">
                     ×
                   </span>
@@ -98,11 +98,11 @@ const WalletSelector: FC<{
                   <h3 className="text-[20px] text-white font-medium tracking-[0.02em]">
                     Choose your wallet
                   </h3>
-                  
+
                 </div>
                 {/*body*/}
                 <div className="relative p-8 flex-auto">
-                  {WALLETS.map(({ label, id, type, image })  => (
+                  {WALLETS.map(({ label, id, type, image }) => (
                     <div className="py-3" key={id}>
                       <WalletButton caption={label} icon={image} onClick={() => {
                         connectWallet(id, type, ({ address, type, provider }) => {
@@ -117,7 +117,7 @@ const WalletSelector: FC<{
           </div>
           <div className="bg-black/70 backdrop-blur-sm fixed inset-0 z-[100]"></div>
         </>) : null}
-      </>
+    </>
     // <Transition appear show={open} as={Fragment}>
     //   <Dialog
     //     onClose={onClose}
