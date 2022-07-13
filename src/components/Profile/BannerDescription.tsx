@@ -1,25 +1,28 @@
 import Image from "next/image"
-
+import React, {useState} from "react"
 import SocialIcon from "../Common/SocialIcon"
 import WalletBalanceIcon from "./WalletBalanceIcon"
 
 import {WalletBalanceData} from '../../data/WalletBalanceData'
+import ShowSettingsModal from "modules/Profile/settings"
 type UName = string
 
 const BannerDescription = ({ uName : UName }) => {
+  const [toggleModal, setToggleModal] = useState(false)
 
     return (
-        <div className="w-full flex mt-[60px] justify-between">
+        <div className="w-full flex custom-2xl:flex-row xl:flex-row lg:flex-col mt-[60px] justify-between">
+            <ShowSettingsModal toggleShow={toggleModal} onClose={() => setToggleModal(false)} />
             <div className="flex flex-col">
                 
                 <div className="flex flex-row">
-                    <div className="text-[#F3F3F3] font-500 text-[28px] flex items-center">
+                    <div className="text-[#F3F3F3] font-500 custom-2xl:text-[28px] xl:text-[24px] lg:text-[28px] flex items-center">
                         Konstantin1982.sol
                     </div>
-                    <div className="flex items-center text-[#29B080] text-[14px] font-500 ml-[16px] cursor-pointer">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#29B080" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <div className="flex gap-[5px] items-center text-[#29B080] text-[14px] font-500 ml-[16px] cursor-pointer select-none" onClick={() => setToggleModal(true)}>
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.25 6.83252V11.16C2.25 12.75 2.25 12.75 3.75 13.7625L7.875 16.1475C8.4975 16.5075 9.51 16.5075 10.125 16.1475L14.25 13.7625C15.75 12.75 15.75 12.75 15.75 11.1675V6.83252C15.75 5.25002 15.75 5.25002 14.25 4.23752L10.125 1.85252C9.51 1.49252 8.4975 1.49252 7.875 1.85252L3.75 4.23752C2.25 5.25002 2.25 5.25002 2.25 6.83252Z" stroke="#29B080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z" stroke="#29B080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                       Setting
                     </div>
@@ -40,18 +43,20 @@ const BannerDescription = ({ uName : UName }) => {
 
             </div>
 
-            <div className="flex h-30 rounded-[25px] border-[#272829] border-[1px] p-[10px] relative cursor-pointer">
+            <div className="flex h-30 rounded-[25px] border-[#272829] border-[1px] p-[10px] relative cursor-pointer
+                            custom-2xl:my-0 xl:my-0 lg:my-[30px]
+                            justify-between">
               
               <div className="p-4 flex flex-col justify-end justify-items-end"  onClick={() => (alert("coming soon"))}>
                 <div className="flex flex-row">
-                  <div className="text-[#f3f3f3] font-500 text-5">
+                  <div className="text-[#f3f3f3] font-500 custom-2xl:text-5 xl:text-4 lg:text-5">
                     871.18
                   </div>
-                  <div className="text-[#929298] font-500 text-5 ml-[10px]">
+                  <div className="text-[#929298] font-500 custom-2xl:text-5 xl:text-4 lg:text-5 ml-[10px]">
                   USD
                   </div>
                 </div>
-                <div className="text-4 font-400 text-[#474749]">
+                <div className="custom-2xl:text-4 xl:text-3 lg:text-4 font-400 text-[#474749]">
                   Total balance
                 </div>
                 <div className="absolute top-[-15px]">

@@ -18,6 +18,7 @@ export type ProfileType = {
 }
 
 export type FeedDataType = {
+        badgeUrl : string,
         avatarUrl : string,
         domainName : string,
         date : string,
@@ -30,3 +31,24 @@ export type FeedDataType = {
 
 
 export type UserProfileDataType = ProfileType[]
+
+export type SettingsRoomsTabDataType = {
+    srcUrl : string,
+    title : string,
+    no : number
+}
+
+export type GalleryAvatarDataType = {
+    title : string,
+    subtitle : string,
+    iconUrl : string,
+    price : number,
+    imageSrc : string
+}
+
+export type CommunityAvatarDataType = {
+    bgSrc : string,
+    fgSrc : string,
+    title : string,
+    members : number
+}

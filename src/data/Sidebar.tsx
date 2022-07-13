@@ -14,7 +14,7 @@ export const Your_Daos: DaosType = {
 }
 
 export const Top_Daos: DaosType = {
-    title : 'Your DAOs',
+    title : 'Top DAOs',
     avatars : [
         { url : "/images/DAO_avatars/top_daos/top_daos(1).png", name : 'Axie infinity'},
         { url : "/images/DAO_avatars/top_daos/top_daos(2).png", name : 'Apex Legends'},

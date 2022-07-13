@@ -201,11 +201,14 @@ sup {
     background: linear-gradient(180deg, rgba(19, 19, 20, 0) 0%, rgba(19, 19, 20, 0.0086472) 6.67%, rgba(19, 19, 20, 0.03551) 13.33%, rgba(19, 19, 20, 0.0816599) 20%, rgba(19, 19, 20, 0.147411) 26.67%, rgba(19, 19, 20, 0.231775) 33.33%, rgba(19, 19, 20, 0.331884) 40%, rgba(19, 19, 20, 0.442691) 46.67%, rgba(19, 19, 20, 0.557309) 53.33%, rgba(19, 19, 20, 0.668116) 60%, rgba(19, 19, 20, 0.768225) 66.67%, rgba(19, 19, 20, 0.852589) 73.33%, rgba(19, 19, 20, 0.91834) 80%, rgba(19, 19, 20, 0.96449) 86.67%, rgba(19, 19, 20, 0.991353) 93.33%, #131314 100%);
 }
 
-.avatar-panel-gradient {
-    position: absolute;
+.profile-settings-content:after {
+    z-index : 1001;
+    content : "";
+    position : absolute;
+    left:0px;
+    bottom : 110px;
     width: 100%;
-    height: 20%;
-    top: 410px;
-    background: linear-gradient(180deg, rgba(24, 24, 24, 0) 0%, rgba(15, 15, 15, 0.3) 39.14%, #181818 100%);
-    z-index: 100;
+    height : 60px;
+    /* background-color : rgba(0,0,0,0.5); */
+    background-image :linear-gradient(to top, rgba(19,19,19,1), rgba(19,19,19,1), rgba(19,19,19,0.6), rgba(19,19,19,0));
 }

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import Link from "next/link";
 import { Button, WalletButton } from "components/Common/Buttons";
 import WalletSelector from "modules/WalletSelector";
-import { PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 import { useRouter } from "next/router";
 import { login } from "redux/slices/authSlice";
 import { useDispatch } from "react-redux";

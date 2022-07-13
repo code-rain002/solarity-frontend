@@ -16,14 +16,17 @@ const Header = () => {
         return <HeaderMenuItem key={i} title={i} active={active === i} onClick={() => setActive(i)} />
     })
     return (
-        <div className="flex flex-row justify-between h-[92px] w-full">
-            <div className="flex flex-row h-full">
+        <div className="flex custom-2xl:flex-row xl:flex-row lg:flex-col justify-between custom-2xl:h-[92px] xl:h-[92px] lg:h-[184px]  w-full">
+            <div className="flex flex-row h-full lg:justify-between">
                 {item_arr}
             </div>
-            <div className='flex flex-row h-full'>
+            <div className='flex flex-row h-full self-center justify-between 
+                            custom-2xl:w-fit xl:w-fit lg:w-full'>
                 <SearchBox />
-                <BalanceBox openState={balanceBoxToggle} onEnter={() => setBalanceBoxToggle(true)} onLeave={() => setBalanceBoxToggle(false)} />
-                <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
+                <div className="flex flex-row">
+                    <BalanceBox openState={balanceBoxToggle} onEnter={() => setBalanceBoxToggle(true)} onLeave={() => setBalanceBoxToggle(false)} />
+                    <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
+                </div>
             </div>
         </div>
     )

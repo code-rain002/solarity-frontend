@@ -2,7 +2,10 @@
 import SocialIcon from "components/Common/SocialIcon"
 import Image from "next/image"
 import ReactHtmlParser from 'react-html-parser'
+import ProfileFeedSharedBadge from "./ProfileFeedSharedBadge"
+
 type Props = {
+    badgeUrl : string,
     avatarUrl : string,
     domainName : string,
     date : string,
@@ -16,7 +19,12 @@ type Props = {
 
 const ProfileFeed = (props : Props) => {
     return (
-        <div className="p-8  flex flex-row justify-start bg-[#181818] rounded-[20px] mb-[32px]">
+        <div className="relative p-8  flex flex-row justify-start bg-[#181818] rounded-[20px] mb-[32px]">
+
+            <div className="absolute top-[-10px] left-[-10px]">
+                <ProfileFeedSharedBadge srcUrl={props.badgeUrl} />
+            </div>
+
             <div className="feedavatar mr-6 min-w-[40px]">
                 <Image src={props.avatarUrl} width={40} height={40} alt="feed avatar" />
             </div>

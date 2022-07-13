@@ -16,7 +16,16 @@ const SidebarAvatar = (props) => {
         <div className="group relative border-[1px] border-[#272829]  duration-800 
                         rounded-[20px] w-[48px] h-[48px] mb-[16px] flex items-center justify-center cursor-pointer" onClick={() => (alert("DAO!"))}>
             <Image src={props.img_url} width={32} height={32} alt={props.img_url} />
-            <ToolTip>{props.name}</ToolTip>
+            {props.expanded ? <ToolTip>{props.name}</ToolTip> : '' }
+        </div>
+    )
+}
+
+export const SidebarAvatarName = (props) => {
+    return (
+        <div className="duration-300 font-500 text-[16px] text-[#929298] truncate hover:text-[#f3f3f3]
+                        w-full h-[48px] mb-[16px] flex items-start justify-start cursor-pointer" onClick={() => (alert("DAO!"))}>
+            {props.name}
         </div>
     )
 }
