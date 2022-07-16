@@ -19,49 +19,71 @@ type Props = {
 
 const ProfileFeed = (props : Props) => {
     return (
-        <div className="relative p-8  flex flex-row justify-start bg-[#181818] rounded-[20px] mb-[32px]">
+        <div className="relative p-8  flex flex-row justify-start bg-[#181818] rounded-[20px] mb-[32px] break-all md:flex-nowrap xs:flex-wrap">
 
             <div className="absolute top-[-10px] left-[-10px]">
                 <ProfileFeedSharedBadge srcUrl={props.badgeUrl} />
             </div>
 
-            <div className="feedavatar mr-6 min-w-[40px]">
-                <Image src={props.avatarUrl} width={40} height={40} alt="feed avatar" />
+            <div className="feedavatar mr-6 min-w-[40px] flex">
+                <div className="md:min-w-[40px] xs:min-w-[24px]">
+                    <Image src={props.avatarUrl} layout="responsive" width={40} height={40} alt="feed avatar" />
+                </div>
+                <div className="md:hidden flex-row items-center xs:flex pl-4 truncate">
+                    <div className="profileFeedName text-[#929298] font-500 md:text-[16px] xs:text-[14px]">
+                        {props.domainName}
+                    </div>
+                    <div className="profileFeedDate text-[#474749] font-400 md:text-[14px] xs:text-[12px] pl-2">{props.date}</div>
+                </div>
             </div>
 
             <div className="flex flex-col ">
-                <div className="flex flex-row items-center">
+                <div className="md:flex flex-row items-center xs:hidden">
                     <div className="profileFeedName text-[#929298] font-500 text-[16px]">
                         {props.domainName}
                     </div>
                     <div className="profileFeedDate text-[#474749] font-400 text-[14px] pl-2">{props.date}</div>
                 </div>
 
-                <div className="profileFeed font-400 text-[#b3b3b7] text-[20px] leading-[200%] flex-wrap">
+                <div className="profileFeed font-400 text-[#b3b3b7] md:text-[20px] xs:text-[16px] leading-[200%] flex-wrap">
                     {ReactHtmlParser(props.content)}
                 </div>
                 <div className={props.imageUrl ? "my-[32px]" : ""}>
                     {props.imageUrl ? <Image src={props.imageUrl} width={680} height={383} alt="feed image" /> : ''}
                 </div>
                 
-                <div className="flex flex-row text-[#929298] font-500 text-[16px]">
-                    <div>
-                        {props.retweets ? props.retweets : ''}
-                    </div>{' '}
-                    <div className="mx-[5px]">
-                        {props.retweets ? ReactHtmlParser('retweets <div style="display:inline-block; width:12px"></div>•') : ''}
+                <div className="flex md:flex-row text-[#929298] font-500 text-[16px] xs:text-[12px] xs:flex-col">
+                    <div className="flex">
+                        <div  className="mx-[5px]">
+                            {props.retweets ? props.retweets : ''}
+                        </div>{' '}
+                        <div className="mx-[5px]">
+                            {props.retweets ? ReactHtmlParser('retweets') : ''}
+                        </div>
+                        <div className="md:block xs:hidden">
+                        {props.retweets ? '•' : ''}
+                        </div>
                     </div>
-                    <div className="mx-[5px]">
-                        {props.twWithQuotes ? props.twWithQuotes : ''}
-                    </div>{' '}
-                    <div className="mx-[5px]">
-                        {props.twWithQuotes ? ReactHtmlParser('tweets with quotes <div style="display:inline-block; width:12px"></div>•') : ''}
+
+                    <div className="flex">
+                        <div className="mx-[5px]">
+                            {props.twWithQuotes ? props.twWithQuotes : ''}
+                        </div>{' '}
+                        <div className="mx-[5px]">
+                            {props.twWithQuotes ? ReactHtmlParser('tweets with quotes') : ''}
+                        </div>
+                        <div className="md:block xs:hidden">
+                        {props.twWithQuotes ? '•' : ''}
+                        </div>
                     </div>
-                    <div className="mx-[5px]">
-                        {props.likes ? props.likes : ''}
-                    </div>{' '}
-                    <div className="mx-[5px]">
-                    {props.likes ? 'likes' : ''}
+
+                    <div className="flex">
+                        <div className="mx-[5px]">
+                            {props.likes ? props.likes : ''}
+                        </div>{' '}
+                        <div className="mx-[5px]">
+                        {props.likes ? 'likes' : ''}
+                        </div>
                     </div>
                 </div>
 

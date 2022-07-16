@@ -4,7 +4,10 @@ const SearchBox = () => {
     const [typing, setTyping] = useState(false)
 
     return (
-        <div className="flex h-full items-center custom-2xl:mr-[20px] xl:mr-[10px] custom-2xl:w-[346px] xl:w-[200px] relative">
+        <div className="flex h-full items-center
+                        custom-2xl:mr-[20px] xl:mr-[10px] 
+                        custom-2xl:w-[346px] xl:w-[200px]
+                        relative">
             <input type="search" placeholder="Search" className={`bg-globalBgColor  border-[1.2px] rounded-[15px] focus:border-primary
                                                                 px-[16px] py-[11px] text-[#929298] w-full ${typing ? 'border-primary' : 'border-[#272829]'}`} onChange={(e) => { e.target.value !== '' ? setTyping(true) : setTyping(false)}}/>
             <div className={`absolute right-[20px] ${typing ? 'hidden' : 'block'}`} >

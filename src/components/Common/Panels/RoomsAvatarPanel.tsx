@@ -27,7 +27,7 @@ const RoomsAvatarPanel = (props: RoomsAvatarPanelProps) => {
             <div className="flex max-w-[60%] items-start">
                 <span className="text-left font-500 text-[14px] text-[#f3f3f3] w-full truncate">{props.title}</span>
             </div>
-            <div className="flex max-w-[40%]">
+            <div className="flex max-w-[40%] truncate">
                 <div className="font-500 text-[18px] text-[#f3f3f3]">
                     #{props.no}
                 </div>

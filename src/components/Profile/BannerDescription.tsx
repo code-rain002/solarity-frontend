@@ -5,26 +5,29 @@ import WalletBalanceIcon from "./WalletBalanceIcon"
 
 import {WalletBalanceData} from '../../data/WalletBalanceData'
 import ShowSettingsModal from "modules/Profile/settings"
+import { GreenSettingsIcon, TotalBalanceIcon } from "components/icons"
+import BannerDescriptionWallet from "./BannerDescriptionWallet"
 type UName = string
 
-const BannerDescription = ({ uName : UName }) => {
+const BannerDescription = ({ uName : UName, sidebarToggler }) => {
   const [toggleModal, setToggleModal] = useState(false)
 
     return (
-        <div className="w-full flex custom-2xl:flex-row xl:flex-row lg:flex-col mt-[60px] justify-between">
+        <div className="w-full flex
+                        custom-2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col
+                        mt-[60px] justify-between">
             <ShowSettingsModal toggleShow={toggleModal} onClose={() => setToggleModal(false)} />
             <div className="flex flex-col">
                 
-                <div className="flex flex-row">
-                    <div className="text-[#F3F3F3] font-500 custom-2xl:text-[28px] xl:text-[24px] lg:text-[28px] flex items-center">
+                <div className="flex flex-row md:justify-start xs:justify-between">
+                    <div className="text-[#F3F3F3] font-500 custom-2xl:text-[28px] xl:text-[24px] lg:text-[24px] md:text-[24px] sm:text-[24px] xs:text-[24px] flex items-center">
                         Konstantin1982.sol
                     </div>
-                    <div className="flex gap-[5px] items-center text-[#29B080] text-[14px] font-500 ml-[16px] cursor-pointer select-none" onClick={() => setToggleModal(true)}>
-                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.25 6.83252V11.16C2.25 12.75 2.25 12.75 3.75 13.7625L7.875 16.1475C8.4975 16.5075 9.51 16.5075 10.125 16.1475L14.25 13.7625C15.75 12.75 15.75 12.75 15.75 11.1675V6.83252C15.75 5.25002 15.75 5.25002 14.25 4.23752L10.125 1.85252C9.51 1.49252 8.4975 1.49252 7.875 1.85252L3.75 4.23752C2.25 5.25002 2.25 5.25002 2.25 6.83252Z" stroke="#29B080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z" stroke="#29B080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                      Setting
+                    <div className="flex md:gap-[5px] items-center text-[#29B080] text-[14px] font-500 ml-[16px] cursor-pointer select-none" onClick={() => setToggleModal(true)}>
+                      <GreenSettingsIcon />
+                      <div className="md:block xs:hidden">
+                        Setting
+                      </div>
                     </div>
                 </div>
 
@@ -42,41 +45,7 @@ const BannerDescription = ({ uName : UName }) => {
                 </div>
 
             </div>
-
-            <div className="flex h-30 rounded-[25px] border-[#272829] border-[1px] p-[10px] relative cursor-pointer
-                            custom-2xl:my-0 xl:my-0 lg:my-[30px]
-                            justify-between">
-              
-              <div className="p-4 flex flex-col justify-end justify-items-end"  onClick={() => (alert("coming soon"))}>
-                <div className="flex flex-row">
-                  <div className="text-[#f3f3f3] font-500 custom-2xl:text-5 xl:text-4 lg:text-5">
-                    871.18
-                  </div>
-                  <div className="text-[#929298] font-500 custom-2xl:text-5 xl:text-4 lg:text-5 ml-[10px]">
-                  USD
-                  </div>
-                </div>
-                <div className="custom-2xl:text-4 xl:text-3 lg:text-4 font-400 text-[#474749]">
-                  Total balance
-                </div>
-                <div className="absolute top-[-15px]">
-                  <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="-1" y="-1" width="34" height="34" rx="13" fill="#162724"/>
-                    <path opacity="0.4" d="M23.5 13.75V18.25H22.75C20.5 18.25 19.75 19 19.75 21.25V22.375H12.25V21.25C12.25 19 11.5 18.25 9.25 18.25H8.5V13.75H9.25C11.5 13.75 12.25 13 12.25 10.75V9.625H19.75V10.75C19.75 13 20.5 13.75 22.75 13.75H23.5Z" fill="#29B080"/>
-                    <path d="M16 18.25C17.2426 18.25 18.25 17.2426 18.25 16C18.25 14.7574 17.2426 13.75 16 13.75C14.7574 13.75 13.75 14.7574 13.75 16C13.75 17.2426 14.7574 18.25 16 18.25Z" fill="#29B080"/>
-                    <path d="M12.25 9.625V10.75C12.25 13 11.5 13.75 9.25 13.75H8.5V13.375C8.5 10.75 10 9.625 12.25 9.625Z" fill="#29B080"/>
-                    <path d="M23.5 13.375V13.75H22.75C20.5 13.75 19.75 13 19.75 10.75V9.625C22 9.625 23.5 10.75 23.5 13.375Z" fill="#29B080"/>
-                    <path d="M12.25 21.25V22.375C10 22.375 8.5 21.25 8.5 18.625V18.25H9.25C11.5 18.25 12.25 19 12.25 21.25Z" fill="#29B080"/>
-                    <path d="M23.5 18.25V18.625C23.5 21.25 22 22.375 19.75 22.375V21.25C19.75 19 20.5 18.25 22.75 18.25H23.5Z" fill="#29B080"/>
-                    <rect x="-1" y="-1" width="34" height="34" rx="13" stroke="#131314" stroke-width="2"/>
-                  </svg>
-                </div>
-              </div>
-              {WalletBalanceData.map(i => {
-                return <WalletBalanceIcon kind={i.kind} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} />
-              })}
-              
-            </div>
+            <BannerDescriptionWallet sidebarToggler={sidebarToggler} />
         </div>
     )
 }

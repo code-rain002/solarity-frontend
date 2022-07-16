@@ -14,7 +14,7 @@ const ProfileRoomsContent = () => {
     })
 
     return (
-        <div className="flex flex-row gap-[32px] flex-wrap my-[32px]">
+        <div className="flex flex-row gap-[32px] flex-wrap my-[32px]  sm:justify-around xs:justify-center">
             { uName === "no_room" ? <NoGalleryCollection text="The user has no rooms" /> : content}
         </div>
     )

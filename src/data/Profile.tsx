@@ -5,7 +5,7 @@ export const UsersProfileData : UserProfileDataType = [
     {
         id : 0,
         domain_name : "Konstantin1982.sol",
-        avatar_img : "../../assets/images/temp/Avatar_Konstantin1982.png",
+        avatar_img : "../../assets/images/temp/Avatar_Konstantin1982.webp",
         banner_img : "../../assets/images/temp/Profile_banner_Konstantin1982.webp",
         balance : {
             total : 871.18,

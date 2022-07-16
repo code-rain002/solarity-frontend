@@ -5,33 +5,51 @@ import NoRoomBannerImage from "components/Profile/NoRoomBannerImage"
 
 import Image from "next/image"
 import { useState } from "react"
+import useWindowDimensions from "utils/layout"
 
 
 
 const BannerImage = ({ uName }) => {
+
+            const {width, height} = useWindowDimensions()
             // /////////////////////////////////////
             // must be edited when backend comes real : now, only for testing no room banner
-                const banner_img = uName === "no_room" ? <NoRoomBannerImage /> : <Image src={"/images/profile/Profile_banner_Konstantin1982.webp"} layout="responsive" width={1708} height={450} alt="Banner Image" />
+                const banner_img = uName === "no_room" ? <NoRoomBannerImage /> : width > 640 ? <Image src={"/images/profile/Profile_banner_Konstantin1982.webp"} layout="responsive" width={1708} height={450} alt="Banner Image" /> : <Image src={"/images/profile/mobile_banner.webp"} layout="responsive" width={327} height={300} alt="Banner Image" />
             // end of "must be edited when backend comes real"
             // /////////////////////////////////////
             const [shareMenuToggle, setShareMenuToggle] = useState(false)
              return (
                 <div className="w-full relative">
-                    { banner_img }
-                    <div className="absolute
-                                    custom-2xl:bottom-[-32px] custom-2xl:w-[136px]
-                                    xl:bottom-[-25px] xl:w-[120px]
-                                    md:bottom-[-15px] md:w-[110px]">
-                        <Image src={"/images/profile/temp/Avatar_Konstantin1982.png"} layout="responsive" width={136} height={136} alt="user avatar"/>
-                        <div className="absolute
-                                        custom-2xl:right-[4px] custom-2xl:bottom-[4px] custom-2xl:w-[28px]
-                                        xl:right-[0px] xl:bottom-[2px] xl:w-[26px]
-                                        md:right-[0px] md:bottom-[0px] md:w-[24px]">
-                            <Image src={"/images/profile/temp/Verified.png"} layout="responsive" width={28} height={28} alt="verified badge" />
+                    <div className="rounded-[25px] sm:mt-[0px] xs:mt-[24px] overflow-hidden w-full">
+                        { banner_img }
+                    </div>
+                    <div className="absolute flex sm:justify-start xs:justify-center w-full
+                                    custom-2xl:bottom-[-32px] custom-2xl:left-[0px]
+                                    xl:bottom-[-30px] xl:left-[0px]
+                                    md:bottom-[-30px] md:left-[0px]
+                                    sm:bottom-[-30px] sm:left-[0px]
+                                    xs:bottom-[-30px] xs:left-[0px]">
+                        <div className="relative custom-2xl:w-[136px] xl:w-[120px] md:w-[110px] sm:w-[100px] xs:w-[100px] 
+                                        custom-2xl:rounded-[45px] xl:rounded-[40px] lg:rounded-[40px] md:rounded-[40px] sm:rounded-[35px] xs:rounded-[35px]
+                                        border-[3px] border-globalBgColor">
+                            <Image src={"/images/profile/temp/Avatar_Konstantin1982.webp"} layout="responsive" width={136} height={136} alt="user avatar"/>
+                            <div className="absolute
+                                        custom-2xl:right-[0px] custom-2xl:bottom-[0px] custom-2xl:w-[28px]
+                                        xl:right-[0px] xl:bottom-[0px] xl:w-[26px]
+                                        md:right-[0px] md:bottom-[0px] md:w-[24px]
+                                        sm:right-[0px] sm:bottom-[0px] sm:w-[24px]
+                                        xs:right-[0px] xs:bottom-[0px] xs:w-[24px]">
+                                <Image src={"/images/profile/temp/Verified.png"} layout="responsive" width={28} height={28} alt="verified badge" />
+                            </div>
                         </div>
+                        
+                        
                     </div>
 
-                    <div className={`absolute top-[24px] right-[120px] select-none ${uName === "no_room" ? "hidden" : "block"}`}>
+                    <div className={`absolute top-[24px]
+                                    ${width < 640 ? "xs:left-[24px]" : ""}
+                                    custom-2xl:right-[120px] xl:right-[120px] lg:right-[120px] md:right-[120px] sm:right-[120px]
+                                    select-none ${uName === "no_room" ? "hidden" : "block"}`}>
                         <SocialIcon onClick={() => setShareMenuToggle(!shareMenuToggle)}>
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.58203 6.41712L12.3654 1.63379" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -39,7 +57,7 @@ const BannerImage = ({ uName }) => {
                                 <path d="M6.41797 1.16699H5.2513C2.33464 1.16699 1.16797 2.33366 1.16797 5.25032V8.75032C1.16797 11.667 2.33464 12.8337 5.2513 12.8337H8.7513C11.668 12.8337 12.8346 11.667 12.8346 8.75032V7.58366" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </SocialIcon>
-                        <div className={`absolute top-[58px] left-[-135px] w-[183px] h-[184px]
+                        <div className={`absolute top-[58px] sm:left-[-135px] xs:left-[0px] w-[183px] h-[184px]
                                         bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[12px]
                                         p-[16px] gap-[16px] ${shareMenuToggle ? "flex flex-col" : "hidden"}`}>
                             <NormalButton caption="Continue" styles="bg-[#1F1F20]" onClick={() => {alert("go go go");setShareMenuToggle(false);}}/>

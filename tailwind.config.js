@@ -1,3 +1,5 @@
+const { NonceAccount } = require("@solana/web3.js");
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -32,6 +34,7 @@ module.exports = {
       }
     },
     screens: {
+      'xs' : '220px',
       'sm' : '640px',
       'md' : '768px',
       'lg' : '1024px',

@@ -212,3 +212,12 @@ sup {
     /* background-color : rgba(0,0,0,0.5); */
     background-image :linear-gradient(to top, rgba(19,19,19,1), rgba(19,19,19,1), rgba(19,19,19,0.6), rgba(19,19,19,0));
 }
+
+.banner-description-wallet::-webkit-scrollbar, .mobile-description-wallet::-webkit-scrollbar, .profile-feed-category::-webkit-scrollbar,.profile-tab::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-description-wallet, .profile-feed-category, .profile-tab, .mobile-description-wallet {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

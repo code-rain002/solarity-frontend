@@ -26,23 +26,22 @@ const ToggleShowBtn = (props) => {
     return (
         <div
             className={`cursor-pointer w-[28px] h-[28px] rounded-[5px] border-[#272829] border-[2px] flex items-center justify-center bg-globalBgColor
-                        absolute ${props.toggle ? 'custom-2xl:right-[-154px] xl:right-[-154px] lg:right-[-154px]' : 'right-[-14px]'} top-[36px] z-[999]`}  onClick={props.onClick}>
+                        absolute ${props.toggle ? 'right-[-154px]' : 'right-[-14px]'} top-[36px] z-[999]`}  onClick={props.onClick}>
                 {props.toggle ? <LeftArrow /> : <RightArrow />}
         </div>
     )
 }
 
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 
-    const [sidebarToggler, setSidebarToggler] = useState(false)
 
     const your_daos_avatars = Your_Daos.avatars.map(function(i){
-        return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!sidebarToggler} />
+        return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!props.sidebarToggler} />
     })
 
     const top_daos_avatars = Top_Daos.avatars.map(function(i){
-        return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!sidebarToggler} />
+        return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!props.sidebarToggler} />
     })
 
     const your_daos_names = Your_Daos.avatars.map(function(i){
@@ -54,13 +53,13 @@ const Sidebar = () => {
     })
 
     return (
-        <div className='flex flex-row border-r-[1px] border-semiSplitter bg-globalBgColor'>
+        <div className='sm:flex xs:hidden flex-row border-r-[1px] border-semiSplitter bg-globalBgColor'>
             <div className={`relative flex flex-col w-[100px]  items-center`} >
                 <div className="px-[30px] py-[26px] border-b-[1px] border-semiSplitter relative">
                     <div className="border-[1px] border-[#f3f3f3] rounded-[20px] w-10 h-10 cursor-pointer">
                         <Image src={LogoSVGImg} width={40} height={40}></Image>
                     </div>
-                    <ToggleShowBtn toggle={sidebarToggler} onClick={(e) => (setSidebarToggler(!sidebarToggler))} />
+                    <ToggleShowBtn toggle={props.sidebarToggler} onClick={props.onClick} />
                 </div>
                 <div className={`w-full pt-[18px] pb-[26px] border-b-[1px] border-semiSplitter flex flex-col items-center`}>
                     <div className={`text-[14px] font-[500] text-[#474749] text-center pb-[16px]`}>
@@ -77,7 +76,7 @@ const Sidebar = () => {
                         {MagnifyIcon}
                         <div className={`absolute left-[65px] z-[1000] pt-[8px] pb-[10px] px-[0px]  bg-[#181818] border-[#1d1f1f] rounded-tl-[3px]
                             rounded-r-[12px] rounded-b-[12px] font-500 text-primary text-[14px] w-[0px] shadow-none shadow-transparent
-                            overflow-hidden  truncate opacity-0 ${sidebarToggler ? "" : "group-hover:opacity-100 group-hover:w-max group-hover:px-[12px]"}`}>
+                            overflow-hidden  truncate opacity-0 ${props.sidebarToggler ? "" : "group-hover:opacity-100 group-hover:w-max group-hover:px-[12px]"}`}>
                                 Browse
                         </div>
                     </div>
@@ -85,7 +84,7 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            <div className={`flex flex-col ${sidebarToggler ? 'custom-2xl:w-[140px] xl:w-[140px] lg:w-[140px]' : 'w-[0px]'} h-full items-start`}>
+            <div className={`flex flex-col ${props.sidebarToggler ? 'w-[140px]' : 'w-[0px]'} h-full items-start`}>
                 <div className="px-[0px] py-[35.5px] border-b-[1px] border-semiSplitter relative w-full">
                     <div className={`w-full h-full cursor-pointer font-500 text-[14px] text-[#f3f3f3] truncate ml-[-11px]`}>
                         SOLARITY

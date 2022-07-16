@@ -16,7 +16,7 @@ const ProfileGalleryContent = () => {
     })
     
     return (
-        <div className="my-8 flex flex-row flex-wrap gap-[32px]">
+        <div className="my-8 flex flex-row flex-wrap gap-[32px] sm:justify-around xs:justify-center">
             {uName === "no_room" ? <NoGalleryCollection text="The user has no collections" /> : content }
         </div>
     )
