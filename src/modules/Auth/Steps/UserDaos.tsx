@@ -79,9 +79,6 @@ const UserDaos = (props) => {
         })
       },
     }))
-    // router.push({
-    //   pathname: '/auth/register/userPic'
-    // })
     dispatch(stopLoadingApp())
   }
 

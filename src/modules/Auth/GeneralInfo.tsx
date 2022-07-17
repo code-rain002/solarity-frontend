@@ -52,6 +52,7 @@ export const GeneralInfo = () => {
   const walletType = localStorage.getItem('type');
 
   useEffect(() => {
+    console.log("hihihi", profileData.stepsCompleted.profilePicUpdated)
     if (profileData.stepsCompleted.profilePicUpdated) {
       setDomain(profileData.domain)
       setTitle(profileData.title)
