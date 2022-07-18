@@ -6,22 +6,19 @@ import NoRoomBannerImage from "components/Profile/NoRoomBannerImage"
 import Image from "next/image"
 import { useState } from "react"
 import useWindowDimensions from "utils/layout"
+import VisitorNoRoomBannerImage from "./VisitorNoRoomBannerImage"
 
 
 
 const BannerImage = ({ uName }) => {
 
             const {width, height} = useWindowDimensions()
-            // /////////////////////////////////////
-            // must be edited when backend comes real : now, only for testing no room banner
-                const banner_img = uName === "no_room" ? <NoRoomBannerImage /> : width > 640 ? <Image src={"/images/profile/Profile_banner_Konstantin1982.webp"} layout="responsive" width={1708} height={450} alt="Banner Image" /> : <Image src={"/images/profile/mobile_banner.webp"} layout="responsive" width={327} height={300} alt="Banner Image" />
-            // end of "must be edited when backend comes real"
-            // /////////////////////////////////////
+            
             const [shareMenuToggle, setShareMenuToggle] = useState(false)
              return (
                 <div className="w-full relative">
                     <div className="rounded-[25px] sm:mt-[0px] xs:mt-[24px] overflow-hidden w-full">
-                        { banner_img }
+                        { uName === "no_room" ? <NoRoomBannerImage /> : uName === "visitor_no_room" ? <VisitorNoRoomBannerImage /> : width > 640 ? <Image src={"/images/profile/Profile_banner_Konstantin1982.webp"} layout="responsive" width={1708} height={450} alt="Banner Image" /> : <Image src={"/images/profile/mobile_banner.webp"} layout="responsive" width={327} height={300} alt="Banner Image" /> }
                     </div>
                     <div className="absolute flex sm:justify-start xs:justify-center w-full
                                     custom-2xl:bottom-[-32px] custom-2xl:left-[0px]

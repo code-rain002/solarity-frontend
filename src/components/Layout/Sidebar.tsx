@@ -1,26 +1,11 @@
 import React, { useState } from 'react'
-import { LogoSVGImg } from "../Common/Images"
 import Image from 'next/image'
+
+import { LogoSVGImg } from "../Common/Images"
 import { Your_Daos, Top_Daos, MagnifyIcon } from '../../data/Sidebar'
 import  SideAvatar, { SidebarAvatarName }  from '../Common/Layout/SidebarAvatar'
-
-
-const RightArrow = () => {
-    return (
-        <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.941223 9.99156C1.16289 9.99156 1.38456 9.90989 1.55956 9.73489L5.67789 5.61656C6.01622 5.27823 6.01622 4.71823 5.67789 4.3799L1.55956 0.261562C1.22122 -0.0767708 0.661223 -0.0767708 0.32289 0.261562C-0.0154433 0.599896 -0.0154433 1.1599 0.32289 1.49823L3.82289 4.99823L0.32289 8.49823C-0.0154433 8.83656 -0.0154433 9.39656 0.32289 9.73489C0.486223 9.90989 0.70789 9.99156 0.941223 9.99156Z" fill="#3F3F43"/>
-        </svg>
-
-    )
-}
-
-const LeftArrow = () => {
-    return (
-        <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.05878 9.99156C4.83711 9.99156 4.61544 9.90989 4.44044 9.73489L0.322109 5.61656C-0.016224 5.27823 -0.016224 4.71823 0.322109 4.3799L4.44044 0.261562C4.77878 -0.0767708 5.33878 -0.0767708 5.67711 0.261562C6.01544 0.599896 6.01544 1.1599 5.67711 1.49823L2.17711 4.99823L5.67711 8.49823C6.01544 8.83656 6.01544 9.39656 5.67711 9.73489C5.51378 9.90989 5.29211 9.99156 5.05878 9.99156Z" fill="#3F3F43"/>
-        </svg>
-    )
-}
+import { RightArrow } from 'components/icons'
+import { LeftArrow } from 'components/icons'
 
 const ToggleShowBtn = (props) => {
     return (
@@ -35,23 +20,6 @@ const ToggleShowBtn = (props) => {
 
 const Sidebar = (props) => {
 
-
-    const your_daos_avatars = Your_Daos.avatars.map(function(i){
-        return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!props.sidebarToggler} />
-    })
-
-    const top_daos_avatars = Top_Daos.avatars.map(function(i){
-        return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!props.sidebarToggler} />
-    })
-
-    const your_daos_names = Your_Daos.avatars.map(function(i){
-        return <SidebarAvatarName key={i.name} name={i.name} />
-    })
-
-    const top_daos_names = Top_Daos.avatars.map(function(i){
-        return <SidebarAvatarName key={i.name} name={i.name} />
-    })
-
     return (
         <div className='sm:flex xs:hidden flex-row border-r-[1px] border-semiSplitter bg-globalBgColor'>
             <div className={`relative flex flex-col w-[100px]  items-center`} >
@@ -65,7 +33,9 @@ const Sidebar = (props) => {
                     <div className={`text-[14px] font-[500] text-[#474749] text-center pb-[16px]`}>
                         {Your_Daos.title}
                     </div>
-                        {your_daos_avatars}
+                        {Your_Daos.avatars.map(function(i){
+                            return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!props.sidebarToggler} />
+                        })}
                 </div>
                 <div className={`w-full pt-[18px] pb-[26px] border-b-[1px] border-semiSplitter flex flex-col items-center`}>
                     <div className={`text-[14px] font-[500] text-[#474749] text-center pb-[16px]`}>
@@ -80,7 +50,9 @@ const Sidebar = (props) => {
                                 Browse
                         </div>
                     </div>
-                        {top_daos_avatars}
+                        {Top_Daos.avatars.map(function(i){
+                            return <SideAvatar key={i.name} img_url={i.url} name={i.name} expanded={!props.sidebarToggler} />
+                        })}
                 </div>
             </div>
 
@@ -91,14 +63,18 @@ const Sidebar = (props) => {
                     </div>
                 </div>
                 <div className={`pt-[65px] pb-[16px] ml-[-11px] border-b-[1px] border-semiSplitter flex flex-col items-center w-full truncate`}>
-                        {your_daos_names}
+                        {Your_Daos.avatars.map(function(i){
+                            return <SidebarAvatarName key={i.name} name={i.name} />
+                        })}
                 </div>
                 <div className={`pt-[65px] pb-[16px] ml-[-11px] border-b-[1px] border-semiSplitter flex flex-col items-center w-full`}>
                     <div className="duration-300 text-primary text-[16px] font-500 truncate
                                     w-full h-[48px] mb-[16px] flex justify-start cursor-pointer">
                                 Browse
                     </div>
-                        {top_daos_names}
+                        {Top_Daos.avatars.map(function(i){
+                            return <SidebarAvatarName key={i.name} name={i.name} />
+                        })}
                 </div>
             </div>
         </div>

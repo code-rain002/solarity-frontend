@@ -6,14 +6,6 @@ import MobileSidebarAvatar from 'components/Common/Layout/MobileSidebarAvatar'
 
 const MobileSidebar = (props) => {
 
-    const your_daos_avatars = Your_Daos.avatars.map(function(i){
-        return <MobileSidebarAvatar key={i.name} img_url={i.url} />
-    })
-
-    const top_daos_avatars = Top_Daos.avatars.map(function(i){
-        return <MobileSidebarAvatar key={i.name} img_url={i.url} />
-    })
-
     return (
         <div className='sm:hidden xs:flex flex-row border-l-[1px] border-semiSplitter bg-globalBgColor'>
             <div className={`relative flex flex-col w-[100px]  items-center`} >
@@ -22,7 +14,9 @@ const MobileSidebar = (props) => {
                     <div className={`text-[14px] font-[500] text-[#474749] text-center pb-[16px]`}>
                         {Your_Daos.title}
                     </div>
-                        {your_daos_avatars}
+                        {Your_Daos.avatars.map(function(i){
+                            return <MobileSidebarAvatar key={i.name} img_url={i.url} />
+                        })}
                 </div>
                 <div className={`w-full pt-[18px] pb-[26px] border-b-[1px] border-semiSplitter flex flex-col items-center`}>
                     <div className={`text-[14px] font-[500] text-[#474749] text-center pb-[16px]`}>
@@ -37,7 +31,9 @@ const MobileSidebar = (props) => {
                                 Browse
                         </div>
                     </div>
-                        {top_daos_avatars}
+                        {Top_Daos.avatars.map(function(i){
+                            return <MobileSidebarAvatar key={i.name} img_url={i.url} />
+                        })}
                 </div>
             </div>
             

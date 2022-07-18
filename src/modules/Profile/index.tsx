@@ -7,7 +7,7 @@ import ProfileRoomsContent from "components/Profile/ProfileRoomsContent"
 import ProfileCommunitiesContent from "components/Profile/ProfileCommunitiesContent"
 import { LeftArrow, RightArrow } from "components/icons"
 
-const Profile = ({st}) => {
+const Profile = ({sidebarToggler}) => {
 
     const rightScroll = () => {
       document.querySelector(".profile-tab").scrollLeft += 80;
@@ -25,7 +25,7 @@ const Profile = ({st}) => {
             </div>
             <div className={`relative w-fit`}>
                 <div className={`profile-tab flex flex-row mt-8 relative sm:px-[0px] xs:px-[20px]
-                                md:w-full ${st ? "md:w-[64vw] sm:w-[58vw]" : "md:w-[80vw] sm:w-[77vw]"} xs:w-[87vw]
+                                md:w-full ${sidebarToggler ? "md:w-[64vw] sm:w-[58vw]" : "md:w-[80vw] sm:w-[77vw]"} xs:w-[85vw]
                                 border-b-[1px] border-b-semiSplitter overflow-x-scroll scroll-smooth`}>
                     <TabItem title="Feed" selectedStatus={tabIndex === 0} onClick={() => setTabIndex(0)} />
                     <TabItem title="Gallery" selectedStatus={tabIndex === 1} onClick={() => setTabIndex(1)} />
@@ -42,7 +42,7 @@ const Profile = ({st}) => {
                   <button onClick={leftScroll} className="bg-gradient-to-r from-[rgba(19,19,20,1)] via-[rgba(19,19,20,0.8)] to-[rgba(19,19,20,0)] pr-[35px] h-[73px]"><LeftArrow /></button>
                 </div>
             </div>
-            {tabIndex === 0 ? <ProfileFeedContent sidebarToggler={st} /> : tabIndex === 1 ? <ProfileGalleryContent /> : tabIndex === 2 ? <ProfileRoomsContent /> : tabIndex == 3 ? <ProfileCommunitiesContent /> : ""}
+            {tabIndex === 0 ? <ProfileFeedContent sidebarToggler={sidebarToggler} /> : tabIndex === 1 ? <ProfileGalleryContent /> : tabIndex === 2 ? <ProfileRoomsContent /> : tabIndex == 3 ? <ProfileCommunitiesContent /> : ""}
         </div>
     )
 }

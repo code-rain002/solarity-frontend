@@ -7,7 +7,7 @@ const rooms = SettingsRoomsTabData.map((i) => {
 
 const TabRoomsContent = () => {
     return (
-        <div className="profile-settings-content h-full min-w-[330px] flex flex-col gap-[32px] mt-8  pt-[2px] pb-[2px] mb-[30px] overflow-y-auto overflow-x-visible items-center">
+        <div className="profile-settings-content tab-rooms-content h-full min-w-[330px] flex flex-col gap-[32px] mt-8  pt-[2px] pb-[2px] mb-[30px] overflow-y-auto overflow-x-visible items-center">
             {rooms}
         </div>
     )

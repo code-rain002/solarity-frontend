@@ -1,13 +1,13 @@
+import { useState } from "react"
 import MobileUserInfoMenu from "components/Common/Forms/MobileUserInfoMenu"
 import SearchBox from "components/Common/Forms/SearchBox"
 import MobileHeaderMenuItem from "components/Common/Layout/MobileHeaderMenuItem"
 import MobileHeaderWallet from "components/Profile/MobileHeaderWallet"
-import { HeaderMenuTitles } from "data/HeaderMenu"
-import { useState } from "react"
 import MobileSidebar from "./MobileSidebar"
+import { HeaderMenuTitles } from "data/HeaderMenu"
 
 type MobileMenuProps = {
-    mmt : boolean,
+    mobileMenuToggler : boolean,
     onClick : any,
 }
 
@@ -20,7 +20,9 @@ const MobileMenu = (props : MobileMenuProps) => {
     })
     
     return (
-        <div className={`absolute transition ease-in-out sm:hidden xs:flex-col w-full h-[0px] bg-globalBgColor z-[1000] pt-[80px] text-white ${props.mmt ? "h-[100vh] xs:flex" : "h-[0px] xs:hidden"} justify-end`}>
+        <div className={`absolute transition ease-in-out sm:hidden xs:flex-col w-full h-[0px]
+                        bg-globalBgColor z-[1000] pt-[80px] text-white
+                        ${props.mobileMenuToggler ? "h-[100vh] xs:flex" : "h-[0px] xs:hidden"} justify-end`}>
             <div className="mobile-header-menu flex h-full items-start pt-[170px]">
                 <div className="mobile-searchbar-menu flex-col w-full justify-start">
                     <div className="w-full p-[24px] border-b-[1px] border-[#272829]">
