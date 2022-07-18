@@ -46,7 +46,7 @@ const BannerImage = ({ uName }) => {
                     <div className={`absolute top-[24px]
                                     ${width < 640 ? "xs:left-[24px]" : ""}
                                     custom-2xl:right-[120px] xl:right-[120px] lg:right-[120px] md:right-[120px] sm:right-[120px]
-                                    select-none ${uName === "no_room" ? "hidden" : "block"}`}>
+                                    select-none ${uName === "no_room" || uName === "visitor_no_room" ? "hidden" : "block"}`}>
                         <SocialIcon onClick={() => setShareMenuToggle(!shareMenuToggle)}>
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.58203 6.41712L12.3654 1.63379" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,7 +63,7 @@ const BannerImage = ({ uName }) => {
                         </div>
                     </div>
 
-                    <div className={`absolute top-[24px] right-[65px] ${uName === "no_room" ? "hidden" : "block"}`}>
+                    <div className={`absolute top-[24px] right-[65px] ${uName === "no_room" || uName === "visitor_no_room" ? "hidden" : "block"}`}>
                         <SocialIcon>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.98407 2.85668L2.59678 9.37137C2.3556 9.61877 2.1222 10.1061 2.07552 10.4434L1.78767 12.8724C1.68653 13.7495 2.34004 14.3492 3.24251 14.1993L5.74763 13.787C6.09773 13.727 6.58786 13.4796 6.82904 13.2247L13.2163 6.71002C14.3211 5.5855 14.819 4.30356 13.0996 2.73673C11.3881 1.1849 10.0888 1.73216 8.98407 2.85668Z" stroke="#F3F3F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -72,7 +72,7 @@ const BannerImage = ({ uName }) => {
                         </SocialIcon>
                     </div>
 
-                    <div className={`absolute top-[24px] right-[10px]  ${uName === "no_room" ? "hidden" : "block"}`}>
+                    <div className={`absolute top-[24px] right-[10px]  ${uName === "no_room" || uName === "visitor_no_room" ? "hidden" : "block"}`}>
                         <SocialIcon>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14 6V2H10" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

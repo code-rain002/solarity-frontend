@@ -23,12 +23,12 @@ const BannerDescription = ({ uName : UName, sidebarToggler }) => {
                     <div className="text-[#F3F3F3] font-500 custom-2xl:text-[28px] xl:text-[24px] lg:text-[24px] md:text-[24px] sm:text-[24px] xs:text-[24px] flex items-center">
                         Konstantin1982.sol
                     </div>
-                    <div className="flex md:gap-[5px] items-center text-[#29B080] text-[14px] font-500 ml-[16px] cursor-pointer select-none" onClick={() => setToggleModal(true)}>
+                    {UName === "visitor_no_room" ? "" : <div className="flex md:gap-[5px] items-center text-[#29B080] text-[14px] font-500 ml-[16px] cursor-pointer select-none " onClick={() => setToggleModal(true)}>
                       <GreenSettingsIcon />
                       <div className="md:block xs:hidden">
                         Setting
                       </div>
-                    </div>
+                    </div>}
                 </div>
 
                 <div className="flex flex-row mt-[10px]">
@@ -45,7 +45,7 @@ const BannerDescription = ({ uName : UName, sidebarToggler }) => {
                 </div>
 
             </div>
-            <BannerDescriptionWallet sidebarToggler={sidebarToggler} />
+            {UName === "visitor_no_room" ? "" :<BannerDescriptionWallet sidebarToggler={sidebarToggler} />}
         </div>
     )
 }
