@@ -57,6 +57,7 @@ export const GeneralInfo = () => {
       setDomain(profileData.domain)
       setTitle(profileData.title)
       setDaos(profileData.daoMemberships.daos)
+      profileData.isNftSelectedAsAvatar ? setAvatar(profileData.profileImage.link) : setAvatar(profileData.uploadImage.url)
       router.push({
         pathname: '/auth/register/userPic'
       })
@@ -79,14 +80,13 @@ export const GeneralInfo = () => {
   }, [])
 
   const handleUserInfo = () => {
-    dispatch(startLoadingApp())
-
     if (domain !== "") {
       const payload = {
         action: "info",
         domain,
         title
       }
+      dispatch(startLoadingApp())
       dispatch(setup({
         data: payload,
         successFunction: () => {
@@ -95,33 +95,40 @@ export const GeneralInfo = () => {
           })
         },
         errorFunction: () => { },
-        finalFunction: () => { },
+        finalFunction: () => {
+          dispatch(stopLoadingApp())
+        },
       }))
 
     } else {
       alert('please input field')
       return;
     }
-
-    dispatch(stopLoadingApp())
   }
 
   const handleUserDaos = () => {
     dispatch(startLoadingApp())
-
     dispatch(getUserDaos({
-      successFunction: () => { },
+      successFunction: () => {
+        dispatch(stopLoadingApp())
+      },
       errorFunction: () => { },
       finalFunction: () => { },
     }))
     // router.push({
     //   pathname: '/auth/register/userPic'
     // })
-    dispatch(stopLoadingApp())
   }
 
   const handleUserPic = () => {
-    alert('Mint')
+    // console.log((window as any).phantom.solana)
+    // const provider = (window as any).phantom.solana
+    // await provider.connect();
+    const address = profileData.solanaAddress
+    console.log(address)
+    const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
+    console.log(mintingUrl)
+    window.location.href = `${mintingUrl}/mint/${address}`
   }
 
   return (

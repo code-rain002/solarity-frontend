@@ -238,6 +238,23 @@ const UserPic = (props) => {
               </Dropzone>
             </div>
             <div className="overflow-scroll">
+              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+                {
+                  imageData.map((image, index) => (
+                    <div className="p-2" key={index}>
+                      <AvatarPanel
+                        imageUrl={image.url}
+                        title={image.title}
+                        onClick={() => {
+                          setAvatar(image.url)
+                          setSelectedAvatar(image)
+                        }}
+                        selected={image == selectedAvatar}
+                      />
+                    </div>)
+                  )
+                }
+              </div>
               {
                 nftLoading ?
                   <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
@@ -279,23 +296,6 @@ const UserPic = (props) => {
                     }
                   </div>
               }
-              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
-                {
-                  imageData.map((image, index) => (
-                    <div className="p-2" key={index}>
-                      <AvatarPanel
-                        imageUrl={image.url}
-                        title={image.title}
-                        onClick={() => {
-                          setAvatar(image.url)
-                          setSelectedAvatar(image)
-                        }}
-                        selected={image == selectedAvatar}
-                      />
-                    </div>)
-                  )
-                }
-              </div>
             </div>
           </div>
           <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end px-[32px] py-[32px] lg:px-14 lg:py-8">
@@ -303,7 +303,7 @@ const UserPic = (props) => {
               <BackButton onClick={undoUserPic} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Mint" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

@@ -15,9 +15,10 @@ const UserDaos = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
   const { getDaos, setDaos } = props
-  const { profileData } = useSelector(
+  const { profileData, loading } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data
+      profileData: state.profile.data,
+      loading: state.appLoading
     })
   );
 
@@ -97,18 +98,21 @@ const UserDaos = (props) => {
           {/*body*/}
           <div className="relative p-[32px] lg:p-14 flex-auto">
             {
-              profileData.daoMemberships.daos?.length ?
-                <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
-                  {
-                    profileData.daoMemberships.daos.map((dao, index) => (
-                      <div className="p-2">
-                        <DaoPanel imageSrc={dao.profileImageLink} backSrc={DaoBGImg} title={dao.name} />
-                      </div>
-                    ))
-                  }
-                </div>
+              loading ?
+                <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">Daos Loading...</div>
                 :
-                <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">No DAOs you are in.</div>
+                profileData.daoMemberships.daos?.length ?
+                  <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
+                    {
+                      profileData.daoMemberships.daos.map((dao, index) => (
+                        <div className="p-2">
+                          <DaoPanel imageSrc={dao.profileImageLink} backSrc={DaoBGImg} title={dao.name} />
+                        </div>
+                      ))
+                    }
+                  </div>
+                  :
+                  <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">No DAOs you are in.</div>
             }
           </div>
           <div className="w-full px-[32px] py-[32px] lg:px-14 lg:py-8 flex-auto flex items-end">
