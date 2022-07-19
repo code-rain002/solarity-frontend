@@ -18,7 +18,7 @@ const UserDaos = (props) => {
   const { profileData, loading } = useSelector(
     (state: RootStateOrAny) => ({
       profileData: state.profile.data,
-      loading: state.appLoading
+      loading: state.common.appLoading
     })
   );
 
@@ -41,8 +41,8 @@ const UserDaos = (props) => {
   }, [])
 
   useEffect(() => {
-    setDaos(profileData.daoMemberships.daos)
-  }, [profileData.daoMemberships.daos])
+    setDaos(profileData.daos)
+  }, [profileData.daos])
 
   const undoUserInfo = () => {
     dispatch(startLoadingApp())
@@ -69,9 +69,9 @@ const UserDaos = (props) => {
     dispatch(startLoadingApp())
 
     dispatch(claimDaos({
-      data: {
-        daos: profileData.daoMemberships.daos
-      },
+      // data: {
+      //   daos: profileData.daos
+      // },
       successFunction: () => { },
       errorFunction: () => { },
       finalFunction: () => {
@@ -101,10 +101,10 @@ const UserDaos = (props) => {
               loading ?
                 <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">Daos Loading...</div>
                 :
-                profileData.daoMemberships.daos?.length ?
+                profileData.daos?.length ?
                   <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
                     {
-                      profileData.daoMemberships.daos.map((dao, index) => (
+                      profileData.daos.map((dao, index) => (
                         <div className="p-2">
                           <DaoPanel imageSrc={dao.profileImageLink} backSrc={DaoBGImg} title={dao.name} />
                         </div>
@@ -120,7 +120,7 @@ const UserDaos = (props) => {
               <BackButton onClick={undoUserInfo} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={loading ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

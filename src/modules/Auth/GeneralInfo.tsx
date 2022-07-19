@@ -56,7 +56,7 @@ export const GeneralInfo = () => {
     if (profileData.stepsCompleted.profilePicUpdated) {
       setDomain(profileData.domain)
       setTitle(profileData.title)
-      setDaos(profileData.daoMemberships.daos)
+      setDaos(profileData.daos)
       profileData.isNftSelectedAsAvatar ? setAvatar(profileData.profileImage.link) : setAvatar(profileData.uploadImage.url)
       router.push({
         pathname: '/auth/register/userPic'
@@ -65,7 +65,7 @@ export const GeneralInfo = () => {
     if (profileData.stepsCompleted.daoClaimed) {
       setDomain(profileData.domain)
       setTitle(profileData.title)
-      setDaos(profileData.daoMemberships.daos)
+      setDaos(profileData.daos)
       router.push({
         pathname: '/auth/register/userPic'
       })
@@ -149,6 +149,7 @@ export const GeneralInfo = () => {
             : steps === 'userPic' ?
               <UserPic
                 setAvatar={setAvatar}
+                avatar={avatar}
                 submit={handleUserPic}
               />
               : null

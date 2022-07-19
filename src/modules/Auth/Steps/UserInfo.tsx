@@ -28,9 +28,10 @@ const UserInfo = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
   const { setTitle, domain, setDomain, submit } = props
-  const { profileData } = useSelector(
+  const { profileData, loading } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data
+      profileData: state.profile.data,
+      loading: state.common.appLoading
     })
   );
 
@@ -135,7 +136,7 @@ const UserInfo = (props) => {
               <BackButton onClick={undoRgister} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={error || error == undefined ? true : false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={(error || error == undefined) ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

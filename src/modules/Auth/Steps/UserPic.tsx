@@ -26,10 +26,11 @@ cloudinary.config({
 const UserPic = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { submit, setAvatar } = props
-  const { profileData } = useSelector(
+  const { submit, setAvatar, avatar } = props
+  const { profileData, loading } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data
+      profileData: state.profile.data,
+      loading: state.common.appLoading
     })
   );
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(
@@ -37,7 +38,7 @@ const UserPic = (props) => {
     profileData.solanaAddress,
     true
   );
-
+  console.log(avatar)
   // bug code
   const publicKey = localStorage.getItem('publickey');
   const walletType = localStorage.getItem('type');
@@ -52,6 +53,8 @@ const UserPic = (props) => {
 
   const [image, setImage] = useState("");
   const [imageData, setImageData] = useState([]);
+
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (profileData.stepsCompleted.infoAdded) {
@@ -83,6 +86,7 @@ const UserPic = (props) => {
 
   useEffect(() => {
     if (selectedAvatar) {
+      dispatch(startLoadingApp());
       dispatch(
         setUploadPic({
           data: selectedAvatar,
@@ -148,7 +152,7 @@ const UserPic = (props) => {
   // }
 
   const uploadImage = async (files) => {
-    // setImage(files);
+    setIsUploading(true);
     let images = []
     files.forEach(async (file: any) => {
       const data = new FormData();
@@ -161,11 +165,12 @@ const UserPic = (props) => {
         console.log(resp)
         images.push({ url: resp.data.url, public_id: resp.data.public_id, title: resp.data.original_filename })
         setImageData([...images]);
+        setIsUploading(false);
       } catch (err) {
+        setIsUploading(false);
         console.log("errr : ", err);
       }
     });
-    console.log(imageData)
   }
 
   // const deleteImage = async (e) => {
@@ -238,23 +243,30 @@ const UserPic = (props) => {
               </Dropzone>
             </div>
             <div className="overflow-scroll">
-              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
-                {
-                  imageData.map((image, index) => (
-                    <div className="p-2" key={index}>
-                      <AvatarPanel
-                        imageUrl={image.url}
-                        title={image.title}
-                        onClick={() => {
-                          setAvatar(image.url)
-                          setSelectedAvatar(image)
-                        }}
-                        selected={image == selectedAvatar}
-                      />
-                    </div>)
-                  )
-                }
-              </div>
+              {
+                isUploading ?
+                  <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
+                    Uploading Images...
+                  </h3>
+                  :
+                  <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+                    {
+                      imageData.map((image, index) => (
+                        <div className="p-2" key={index}>
+                          <AvatarPanel
+                            imageUrl={image.url}
+                            title={image.title}
+                            onClick={() => {
+                              setAvatar(image.url)
+                              setSelectedAvatar(image)
+                            }}
+                            selected={image == selectedAvatar}
+                          />
+                        </div>)
+                      )
+                    }
+                  </div>
+              }
               {
                 nftLoading ?
                   <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
@@ -303,7 +315,7 @@ const UserPic = (props) => {
               <BackButton onClick={undoUserPic} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Mint" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Mint" icon="" bordered={false} onClick={submit} disabled={nftLoading || avatar === null ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

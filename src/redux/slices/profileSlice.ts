@@ -11,9 +11,6 @@ import { title } from "process";
 
 const initialState = {
   data: {
-    daoMemberships: {
-      daos: []
-    },
     stepsCompleted: {
       infoAdded: false,
       daoClaimed: false,
@@ -204,12 +201,12 @@ export const placeBid = createAsyncThunk(
 export const claimDaos = createAsyncThunk(
   "profile/claimDaos",
   async ({
-    data,
+    // data,
     successFunction,
     errorFunction,
     finalFunction,
   }: {
-    data: Object;
+    // data: Object;
     successFunction: () => void;
     errorFunction: (error: string) => void;
     finalFunction: () => void;
@@ -218,7 +215,7 @@ export const claimDaos = createAsyncThunk(
     try {
       const {
         data: { profile },
-      } = await apiCaller.post("/profile/setup/claimDaos", data);
+      } = await apiCaller.post("/profile/setup/claimDaos");
       successFunction();
       returnValue = profile;
     } catch (err) {
@@ -419,7 +416,7 @@ export const getUserDaos = createAsyncThunk(
     try {
       const {
         data: { data },
-      } = await apiCaller.get("/daos?member=true");
+      } = await apiCaller.get("/profile/profileDaos");
       successFunction()
       console.log(data);
       returnValue = data;
@@ -464,12 +461,12 @@ export const profileSlice = createSlice({
       state.activeRoomId = action.payload.activeRoomId;
       state.activeRoomNo = action.payload.activeRoomNo;
     },
-    setProfileDaos(state, action: PayloadAction<any>) {
-      const {
-        payload
-      } = action;
-      state.data.daoMemberships.daos = payload
-    }
+    // setProfileDaos(state, action: PayloadAction<any>) {
+    //   const {
+    //     payload
+    //   } = action;
+    //   state.data.daos = payload
+    // }
   },
   extraReducers: (builder) => {
     builder.addCase(setup.fulfilled, (state, action) => {
@@ -527,9 +524,14 @@ export const profileSlice = createSlice({
         profileSlice.caseReducers.setProfile(state, action);
       }
     });
+    builder.addCase(getUserDaos.fulfilled, (state, action) => {
+      if (action.payload) {
+        profileSlice.caseReducers.setProfile(state, action);
+      }
+    });
   },
 });
 
-export const { setProfile, loadNFTs, setActiveRoomNo, setProfileDaos } = profileSlice.actions;
+export const { setProfile, loadNFTs, setActiveRoomNo } = profileSlice.actions;
 
 export default profileSlice.reducer;
