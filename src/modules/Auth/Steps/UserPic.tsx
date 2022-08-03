@@ -13,8 +13,7 @@ import { AvatarPanel, NftPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
 import { getNfts } from '../../../hooks'
 
-import { setProfilePic, setUploadPic, undoSetupStep } from '../../../redux/slices/profileSlice'
-import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
+import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice';
 import { showErrorToast, showSuccessToast } from "utils";
 import { changeInfo } from "redux/slices/authSlice";
 
@@ -51,10 +50,6 @@ const UserPic = (props) => {
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
   const [selectedNft, setSelectedNft] = useState<any>(null);
 
-  const [image, setImage] = useState("");
-  const [imageData, setImageData] = useState([]);
-
-  const [isUploading, setIsUploading] = useState(false);
   const [isNftSelected, setIsNftSelected] = useState(true)
 
   useEffect(() => {
@@ -94,8 +89,6 @@ const UserPic = (props) => {
   }
 
   const uploadImage = async () => {
-    setIsUploading(true);
-    
     const data = new FormData();
     data.append("file", selectedAvatar);
     data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
@@ -116,11 +109,17 @@ const UserPic = (props) => {
         type: "profileImage"
       }
       dispatch(changeInfo({ payload: payload }))
-      setIsUploading(false);
     } catch (err) {
-      setIsUploading(false);
-      console.log("errr : ", err);
+      console.log("error : ", err);
     }
+  }
+
+  const mint = () => {
+    const address = userInfo.solanaAddress
+    console.log(address)
+    const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
+    console.log(mintingUrl)
+    window.location.href = `${mintingUrl}/mint/${address}`
   }
 
   // const deleteImage = async (e) => {
@@ -172,31 +171,24 @@ const UserPic = (props) => {
               </Dropzone>
             </div>
             <div className="overflow-scroll">
-              {
-                isUploading ?
-                  <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
-                    Uploading Images...
-                  </h3>
-                  :
-                  <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
-                    {
-                      loadedFiles.map((image, index) => (
-                        <div className="p-2" key={index}>
-                          <AvatarPanel
-                            imageUrl={image.fileBlob}
-                            title={image.fileName}
-                            onClick={() => {
-                              setIsNftSelected(false)
-                              setAvatar(image.fileBlob)
-                              setSelectedAvatar(image.fileBlob)
-                            }}
-                            selected={image.fileBlob == selectedAvatar}
-                          />
-                        </div>)
-                      )
-                    }
-                  </div>
-              }
+              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+                {
+                  loadedFiles.map((image, index) => (
+                    <div className="p-2" key={index}>
+                      <AvatarPanel
+                        imageUrl={image.fileBlob}
+                        title={image.fileName}
+                        onClick={() => {
+                          setIsNftSelected(false)
+                          setAvatar(image.fileBlob)
+                          setSelectedAvatar(image.fileBlob)
+                        }}
+                        selected={image.fileBlob == selectedAvatar}
+                      />
+                    </div>)
+                  )
+                }
+              </div>
               {
                 nftLoading ?
                   <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">

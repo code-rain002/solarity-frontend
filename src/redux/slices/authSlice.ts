@@ -16,13 +16,13 @@ const initialState = {
   loading: false,
   checkingSession: true,
   userInfo: {
-    solanaAddress: "",
-    domain: "",
-    title: "",
+    solanaAddress: null,
+    domain: null,
+    title: null,
     links: {
-      discord: { username: "", connected: false },
-      twitter: { username: "", connected: false },
-      github: { username: "", connected: false }
+      discord: { username: null, connected: false },
+      twitter: { username: null, connected: false },
+      github: { username: null, connected: false }
     },
     daos: [],
     profileImage: {}

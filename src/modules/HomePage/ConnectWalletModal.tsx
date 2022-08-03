@@ -34,7 +34,7 @@ export const ConnectWalletModal = () => {
               provider,
             })
           );
-          router.push('/auth/register/userInfo');
+          router.push('/auth/register');
         }}
       />
     </>

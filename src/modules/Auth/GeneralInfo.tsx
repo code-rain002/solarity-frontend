@@ -44,9 +44,6 @@ export const GeneralInfo = () => {
     })
   );
 
-  const [domain, setDomain] = useState<String>(undefined);
-  const [title, setTitle] = useState<String>('');
-  const [daos, setDaos] = useState<Object[]>([]);
   const [avatar, setAvatar] = useState<Object>(null);
 
   const publicKey = localStorage.getItem('publickey');
@@ -59,14 +56,6 @@ export const GeneralInfo = () => {
     }
     dispatch(changeInfo({ payload: payload }))
   }, [])
-
-  const handleUserPic = () => {
-    const address = userInfo.solanaAddress
-    console.log(address)
-    const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
-    console.log(mintingUrl)
-    window.location.href = `${mintingUrl}/mint/${address}`
-  }
 
   const onGoStep = (stepNum) => {
     const payload = {
@@ -90,7 +79,6 @@ export const GeneralInfo = () => {
               <UserPic
                 setAvatar={setAvatar}
                 avatar={avatar}
-                submit={handleUserPic}
                 goStep={onGoStep}
               />
               : null
@@ -142,8 +130,8 @@ export const GeneralInfo = () => {
                 <span className="text-white/60">Your DAOs</span>
                 <div className="mt-2 justify-between relative margin-auto">
                   {
-                    daos?.length ?
-                      daos.map((dao, index) => (
+                    userInfo.daos?.length ?
+                      userInfo.daos.map((dao, index) => (
                         <div className="absolute left-0 right-0 -ml-[30px]"><Image src={DaoImg2} /></div>
                       ))
                       : null

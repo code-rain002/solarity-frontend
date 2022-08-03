@@ -10,10 +10,10 @@ const infoFormSchema = yup.object({
 });
 
 const DomainInput = (props) => {
-  const { changeValue, initValue, isError } = props
+  const { changeValue, initValue, isError, setError } = props
 
   const [classFocus, setClassFocus] = useState('text-white/60');
-  const [classBorder, setClassBorder] = useState('border-red/10');
+  const [classBorder, setClassBorder] = useState('border-white/10');
   const [domainValue, setDomainValue] = useState('');
   const [domainFooter, setDomainFooter] = useState('.verse');
 
@@ -25,6 +25,7 @@ const DomainInput = (props) => {
     if (!domainValue) {
       setClassFocus('text-white/60');
       setClassBorder('border-white/10');
+      setError("")
     } else {
 
     }
@@ -36,10 +37,12 @@ const DomainInput = (props) => {
       setClassFocus('top-[-15%] !text-[12px] text-rose-500');
       setClassBorder('border-rose-500');
     } else {
-      setClassFocus('top-[-15%] !text-[12px] text-primary');
-      setClassBorder('border-primary');
+      if (domainValue) {
+        setClassFocus('top-[-15%] !text-[12px] text-primary');
+        setClassBorder('border-primary');
+      }
     }
-  }, [domainValue])
+  }, [domainValue, isError])
 
   return (
     <div className="w-full">

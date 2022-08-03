@@ -43,14 +43,14 @@ const UserInfo = (props) => {
   const miniPublicKey = minifyAddress(publicKey, 3);
   const provider = (window as any).phantom.solana;
 
-  const [error, setError] = useState(undefined)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     if (domain === "") {
       setError("Please input your domain name.")
       return;
     }
-    if (domain !== undefined) {
+    if (domain !== null) {
       let formatted = domain.toLowerCase()
       formatted = formatted.replace(" ", "")
       formatted = formatted.substr(0, formatted.lastIndexOf("."))
@@ -66,7 +66,7 @@ const UserInfo = (props) => {
         // console.log(response.data)
         const result = response.data;
         if (result.available) {
-          setError("")
+          setError(null)
         } else {
           setError(result.reason)
         }
@@ -101,7 +101,12 @@ const UserInfo = (props) => {
           {/* {discordUsername ? discordUsername : 'dasd'} */}
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div>
-              <DomainInput changeValue={changeInfoValue} isError={error ? true : false} initValue={userInfo.domain} />
+              <DomainInput 
+                changeValue={changeInfoValue} 
+                isError={error ? true : false} 
+                initValue={userInfo.domain}
+                setError={setError}
+                />
               {
                 error ? <div className="text-[16px] text-rose-600">{error}</div> : null
               }
@@ -134,7 +139,7 @@ const UserInfo = (props) => {
               <BackButton onClick={() => router.push({pathname: '/'})} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => goStep(2)} disabled={(error || error == undefined) ? true : false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => goStep(2)} disabled={(error || error !== null ) ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>
