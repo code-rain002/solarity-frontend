@@ -85,6 +85,7 @@ const UserPic = (props) => {
       dispatch(changeInfo({ payload: payload }))
     } else {
       await uploadImage()
+      // mint()
     }
   }
 
@@ -116,9 +117,7 @@ const UserPic = (props) => {
 
   const mint = () => {
     const address = userInfo.solanaAddress
-    console.log(address)
     const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
-    console.log(mintingUrl)
     window.location.href = `${mintingUrl}/mint/${address}`
   }
 

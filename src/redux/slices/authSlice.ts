@@ -99,6 +99,36 @@ export const checkSession = createAsyncThunk(
   }
 );
 
+export const checkUser = createAsyncThunk(
+  "auth/checkUser",
+  async ({ publicKey, walletType }: { publicKey: any; walletType: "solana" | "ethereum"; }, { dispatch }) => {
+    let response;
+    dispatch(startLoadingApp());
+    try {
+      const {
+        data: { exist },
+      } = await apiCaller.post("/auth/userExist", {
+        publicKey,
+        walletType,
+      });
+
+      if (exist) {
+        const payload = {
+          value: publicKey,
+          type: "solanaAddress"
+        }
+        dispatch(changeInfo({ payload: payload }))
+      }
+
+      response = exist;
+    } catch (err) {
+      console.log(err)
+    }
+    dispatch(stopLoadingApp());
+    return response;
+  }
+);
+
 export const changeInfo = createAsyncThunk(
   "auth/changeUserInfo",
   async ({

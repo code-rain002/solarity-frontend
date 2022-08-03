@@ -4,13 +4,41 @@ import { Button, WalletButton } from "components/Common/Buttons";
 import WalletSelector from "modules/WalletSelector";
 import { PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 import { useRouter } from "next/router";
-import { login } from "redux/slices/authSlice";
+import { changeInfo, login } from "redux/slices/authSlice";
 import { useDispatch } from "react-redux";
+import { apiCaller } from "utils/fetcher";
+import { signMessage } from "utils/walletHelpers";
 
 export const ConnectWalletModal = () => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const onCheckUser = async (address, type, provider) => {
+    const {
+      data: { exist },
+    } = await apiCaller.post("/auth/userExist", {
+      publicKey: address,
+      walletType: type,
+    });
+
+    if (!exist) {
+      // const payload = {
+      //   value: address,
+      //   type: "solanaAddress"
+      // }
+      // dispatch(changeInfo({ payload: payload, callback: () => { router.push({ pathname: '/auth/register' }) } }))
+      router.push({ pathname: '/auth/register' })
+    } else {
+      dispatch(login({
+        publicKey: address,
+        walletType: type,
+        provider
+      }))
+      console.log('logged in')
+    }
+  }
+
   return (
     <>
       <div className="text-center sm:text-left relative z-50">
@@ -27,14 +55,7 @@ export const ConnectWalletModal = () => {
         onSelect={(address, type, provider) => {
           localStorage.setItem('publickey', address);
           localStorage.setItem('type', type);
-          dispatch(
-            login({
-              publicKey: address,
-              walletType: type,
-              provider,
-            })
-          );
-          router.push('/auth/register');
+          onCheckUser(address, type, provider)
         }}
       />
     </>

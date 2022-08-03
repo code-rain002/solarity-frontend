@@ -35,9 +35,9 @@ const UserDaos = (props) => {
   useEffect(() => {
     dispatch(startLoadingApp());
     if(userInfo.solanaAddress) {
-      apiCaller.get(`users/${userInfo.solanaAddress}?includeDao=true`)
+      apiCaller.get(`daos/${userInfo.solanaAddress}/address?includeDao=true`)
         .then((response) => {
-          const daos = response.data.user.daos
+          const daos = response.data.daos
           console.log(daos)
           const payload = {
             value: daos,
@@ -52,6 +52,7 @@ const UserDaos = (props) => {
         })
         .catch(error => {
           console.log(error)
+          dispatch(stopLoadingApp())
         })
     }
   }, [])
@@ -78,8 +79,8 @@ const UserDaos = (props) => {
                   <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
                     {
                       userInfo.daos.map((dao, index) => (
-                        <div className="p-2">
-                          <DaoPanel imageSrc={dao.profileImageLink} backSrc={DaoBGImg} title={dao.name} />
+                        <div className="p-2" key={index}>
+                          <DaoPanel imageSrc={dao.profileImage.link} backSrc={DaoBGImg} title={dao.name} />
                         </div>
                       ))
                     }

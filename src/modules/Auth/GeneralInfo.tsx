@@ -50,11 +50,13 @@ export const GeneralInfo = () => {
   const walletType = localStorage.getItem('type');
 
   useEffect(() => {
-    const payload = {
-      value: publicKey,
-      type: "solanaAddress"
+    if (publicKey) {
+      const payload = {
+        value: publicKey,
+        type: "solanaAddress"
+      }
+      dispatch(changeInfo({ payload: payload }))
     }
-    dispatch(changeInfo({ payload: payload }))
   }, [])
 
   const onGoStep = (stepNum) => {
@@ -132,7 +134,7 @@ export const GeneralInfo = () => {
                   {
                     userInfo.daos?.length ?
                       userInfo.daos.map((dao, index) => (
-                        <div className="absolute left-0 right-0 -ml-[30px]"><Image src={DaoImg2} /></div>
+                        <div className="absolute left-0 right-0 -ml-[30px]" key={index}><Image src={dao.profileImage.link} /></div>
                       ))
                       : null
                   }
