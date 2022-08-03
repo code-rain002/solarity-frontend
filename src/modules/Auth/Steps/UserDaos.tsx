@@ -8,16 +8,17 @@ import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { claimDaos, undoSetupStep } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
+import { apiCaller } from "utils/fetcher";
+import { changeInfo } from "redux/slices/authSlice";
 
 const UserDaos = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { getDaos, setDaos } = props
-  const { profileData, loading } = useSelector(
+  const { goStep } = props;
+  const { userInfo, loading } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data,
+      userInfo: state.auth.userInfo,
       loading: state.common.appLoading
     })
   );
@@ -29,59 +30,31 @@ const UserDaos = (props) => {
   const miniPublicKey = minifyAddress(publicKey, 3);
   const provider = (window as any).phantom.solana;
 
+  const [daos, setDaos] = useState([]);
+
   useEffect(() => {
-    // console.log(profileData)
-    if (profileData.stepsCompleted.daoClaimed) {
-      // router.push({
-      //   pathname: '/auth/register/userPic'
-      // })
-    } else {
-      getDaos()
+    dispatch(startLoadingApp());
+    if(userInfo.solanaAddress) {
+      apiCaller.get(`users/${userInfo.solanaAddress}?includeDao=true`)
+        .then((response) => {
+          const daos = response.data.user.daos
+          console.log(daos)
+          const payload = {
+            value: daos,
+            type: "daos"
+          }
+          dispatch(changeInfo({
+            payload: payload,
+            callback: () => {
+              dispatch(stopLoadingApp())
+            }
+          }))
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }, [])
-
-  useEffect(() => {
-    setDaos(profileData.daos)
-  }, [profileData.daos])
-
-  const undoUserInfo = () => {
-    dispatch(startLoadingApp())
-
-    dispatch(undoSetupStep({
-      stepName: "link",
-      onFinally: () => {
-        dispatch(undoSetupStep({
-          stepName: "info",
-          onFinally: () => {
-            setDaos([])
-            router.push({
-              pathname: '/auth/register/userInfo'
-            })
-          }
-        }))
-      }
-    }))
-
-    dispatch(stopLoadingApp())
-  }
-
-  const submit = () => {
-    dispatch(startLoadingApp())
-
-    dispatch(claimDaos({
-      // data: {
-      //   daos: profileData.daos
-      // },
-      successFunction: () => { },
-      errorFunction: () => { },
-      finalFunction: () => {
-        router.push({
-          pathname: '/auth/register/userPic'
-        })
-      },
-    }))
-    dispatch(stopLoadingApp())
-  }
 
   return (
     <div className=" pr-[0] lg:pr-[7%]">
@@ -101,10 +74,10 @@ const UserDaos = (props) => {
               loading ?
                 <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">Daos Loading...</div>
                 :
-                profileData.daos?.length ?
+                userInfo.daos?.length ?
                   <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
                     {
-                      profileData.daos.map((dao, index) => (
+                      userInfo.daos.map((dao, index) => (
                         <div className="p-2">
                           <DaoPanel imageSrc={dao.profileImageLink} backSrc={DaoBGImg} title={dao.name} />
                         </div>
@@ -117,10 +90,10 @@ const UserDaos = (props) => {
           </div>
           <div className="w-full px-[32px] py-[32px] lg:px-14 lg:py-8 flex-auto flex items-end">
             <div className="inline-block w-[20%] pr-2">
-              <BackButton onClick={undoUserInfo} styles="rounded-[15px]" />
+              <BackButton onClick={() => goStep(1)} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={loading ? true : false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => goStep(3)} disabled={loading ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

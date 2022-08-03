@@ -99,29 +99,19 @@ export const checkSession = createAsyncThunk(
   }
 );
 
-export const setWalletAddress = createAsyncThunk(
-  "auth/setWalletAddress",
-  async ({
-    payload,
-  }: {
-    payload: {
-      address: String,
-    };
-  }) => {
-    return payload;
-  }
-);
-
 export const changeInfo = createAsyncThunk(
   "auth/changeUserInfo",
   async ({
     payload,
+    callback
   }: {
     payload: {
       value: String,
       type: String
     };
+    callback?: () => void;
   }) => {
+    if (callback) callback();
     return payload;
   }
 );
@@ -166,11 +156,6 @@ export const authSlice = createSlice({
       if (action.payload) {
         state.logged = false;
         window.location.reload();
-      }
-    });
-    builder.addCase(setWalletAddress.fulfilled, (state, action) => {
-      if (action.payload) {
-        authSlice.caseReducers.setUserInfo(state, action);
       }
     });
     builder.addCase(changeInfo.fulfilled, (state, action) => {

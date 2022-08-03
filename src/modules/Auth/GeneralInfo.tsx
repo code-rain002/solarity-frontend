@@ -7,7 +7,6 @@ import Logo from "components/Common/Logo";
 import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, GalleryImg } from "components/Common/Images";
 import { MetamaskImg, PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { setup, getUserDaos } from '../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../redux/slices/commonSlice'
 import { UserDaos, UserInfo, UserPic } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
@@ -61,17 +60,6 @@ export const GeneralInfo = () => {
     dispatch(changeInfo({ payload: payload }))
   }, [])
 
-  const handleUserDaos = () => {
-    dispatch(startLoadingApp())
-    dispatch(getUserDaos({
-      successFunction: () => {
-        dispatch(stopLoadingApp())
-      },
-      errorFunction: () => { },
-      finalFunction: () => { },
-    }))
-  }
-
   const handleUserPic = () => {
     const address = userInfo.solanaAddress
     console.log(address)
@@ -96,14 +84,14 @@ export const GeneralInfo = () => {
           />
           : step === 2 ?
             <UserDaos
-              getDaos={handleUserDaos}
-              setDaos={setDaos}
+              goStep={onGoStep}
             />
             : step === 3 ?
               <UserPic
                 setAvatar={setAvatar}
                 avatar={avatar}
                 submit={handleUserPic}
+                goStep={onGoStep}
               />
               : null
       }

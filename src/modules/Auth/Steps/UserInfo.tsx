@@ -46,10 +46,6 @@ const UserInfo = (props) => {
   const [error, setError] = useState(undefined)
 
   useEffect(() => {
-
-  }, [])
-
-  useEffect(() => {
     if (domain === "") {
       setError("Please input your domain name.")
       return;
@@ -86,7 +82,7 @@ const UserInfo = (props) => {
       value,
       type
     }
-    dispatch(changeInfo({ payload: payload}))
+    dispatch(changeInfo({ payload: payload }))
   }
 
   return (
