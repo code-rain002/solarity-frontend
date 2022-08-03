@@ -8,11 +8,11 @@ import { AddressImg, EthereumImg, GithubImg, PolygonImg } from "components/Commo
 import { DomainInput, SharedInput } from "components/Common/Forms";
 import { DiscordLink } from "../Links";
 import { TwitterLink } from "../Links/TwitterLink";
-import { minifyAddress } from "utils";
+import { minifyAddress, showErrorToast } from "utils";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { setup } from '../../../redux/slices/profileSlice'
+import { changeInfo } from '../../../redux/slices/authSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
 
 const infoSchema = yup.object({
@@ -27,13 +27,14 @@ const infoSchema = yup.object({
 const UserInfo = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { setTitle, domain, setDomain, submit } = props
-  const { profileData, loading } = useSelector(
+  const { goStep } = props
+  const { userInfo, loading } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data,
+      userInfo: state.auth.userInfo,
       loading: state.common.appLoading
     })
   );
+  const { domain, title } = userInfo;
 
   // bug code
   const publicKey = localStorage.getItem('publickey');
@@ -45,11 +46,7 @@ const UserInfo = (props) => {
   const [error, setError] = useState(undefined)
 
   useEffect(() => {
-    if (profileData.stepsCompleted.infoAdded) {
-      // router.push({
-      //   pathname: '/auth/register/userDaos'
-      // })
-    }
+
   }, [])
 
   useEffect(() => {
@@ -61,30 +58,35 @@ const UserInfo = (props) => {
       let formatted = domain.toLowerCase()
       formatted = formatted.replace(" ", "")
       formatted = formatted.substr(0, formatted.lastIndexOf("."))
-      console.log(formatted)
+      // console.log(formatted)
       checkDomainAvailability(formatted)
     }
   }, [domain])
 
   const checkDomainAvailability = (formattedDomain) => {
     apiCaller
-      .get(`profile/domainAvailability/${formattedDomain}`)
+      .get(`auth/domainAvailability/${formattedDomain}`)
       .then((response) => {
-        console.log(response.data)
-        setError("")
+        // console.log(response.data)
+        const result = response.data;
+        if (result.available) {
+          setError("")
+        } else {
+          setError(result.reason)
+        }
       })
       .catch((err) => {
         const message = getErrorMessage(err)
-        setError(message)
+        showErrorToast(message)
       });
   };
 
-  const undoRgister = () => {
-    setTitle('')
-    setDomain(undefined)
-    router.push({
-      pathname: '/'
-    })
+  const changeInfoValue = (value, type) => {
+    const payload = {
+      value,
+      type
+    }
+    dispatch(changeInfo({ payload: payload}))
   }
 
   return (
@@ -103,13 +105,13 @@ const UserInfo = (props) => {
           {/* {discordUsername ? discordUsername : 'dasd'} */}
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div>
-              <DomainInput changeValue={setDomain} isError={error ? true : false} />
+              <DomainInput changeValue={changeInfoValue} isError={error ? true : false} initValue={userInfo.domain} />
               {
                 error ? <div className="text-[16px] text-rose-600">{error}</div> : null
               }
             </div>
             <div className="mt-6">
-              <SharedInput changeValue={setTitle} caption="Input your title" />
+              <SharedInput changeValue={changeInfoValue} caption="Input your title" />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-3">
               <div className="mt-6 mb-3 xl:mt-6 xl:mb-6 xl:text-left">
@@ -133,10 +135,10 @@ const UserInfo = (props) => {
           </div>
           <div className="w-full px-[32px] py-[32px] lg:px-14 lg:py-8 flex-auto flex items-end">
             <div className="inline-block w-[20%] pr-2">
-              <BackButton onClick={undoRgister} styles="rounded-[15px]" />
+              <BackButton onClick={() => router.push({pathname: '/'})} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={(error || error == undefined) ? true : false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={() => goStep(2)} disabled={(error || error == undefined) ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

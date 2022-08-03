@@ -11,6 +11,7 @@ import { setup, getUserDaos } from '../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../redux/slices/commonSlice'
 import { UserDaos, UserInfo, UserPic } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
+import { changeInfo, goStep } from "redux/slices/authSlice";
 
 const WALLETS = [
   {
@@ -37,9 +38,10 @@ export const GeneralInfo = () => {
   const dispatch = useDispatch()
   const router = useRouter();
   const { steps } = router.query
-  const { profileData } = useSelector(
+  const { userInfo, step } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data
+      userInfo: state.auth.userInfo,
+      step: state.auth.step
     })
   );
 
@@ -52,59 +54,12 @@ export const GeneralInfo = () => {
   const walletType = localStorage.getItem('type');
 
   useEffect(() => {
-    console.log("hihihi", profileData.stepsCompleted.profilePicUpdated)
-    if (profileData.stepsCompleted.profilePicUpdated) {
-      setDomain(profileData.domain)
-      setTitle(profileData.title)
-      setDaos(profileData.daos)
-      profileData.isNftSelectedAsAvatar ? setAvatar(profileData.profileImage.link) : setAvatar(profileData.uploadImage.url)
-      router.push({
-        pathname: '/auth/register/userPic'
-      })
+    const payload = {
+      value: publicKey,
+      type: "solanaAddress"
     }
-    if (profileData.stepsCompleted.daoClaimed) {
-      setDomain(profileData.domain)
-      setTitle(profileData.title)
-      setDaos(profileData.daos)
-      router.push({
-        pathname: '/auth/register/userPic'
-      })
-    }
-    if (profileData.stepsCompleted.infoAdded) {
-      setDomain(profileData.domain)
-      setTitle(profileData.title)
-      router.push({
-        pathname: '/auth/register/userDaos'
-      })
-    }
+    dispatch(changeInfo({ payload: payload }))
   }, [])
-
-  const handleUserInfo = () => {
-    if (domain !== "") {
-      const payload = {
-        action: "info",
-        domain,
-        title
-      }
-      dispatch(startLoadingApp())
-      dispatch(setup({
-        data: payload,
-        successFunction: () => {
-          router.push({
-            pathname: '/auth/register/userDaos'
-          })
-        },
-        errorFunction: () => { },
-        finalFunction: () => {
-          dispatch(stopLoadingApp())
-        },
-      }))
-
-    } else {
-      alert('please input field')
-      return;
-    }
-  }
 
   const handleUserDaos = () => {
     dispatch(startLoadingApp())
@@ -115,38 +70,36 @@ export const GeneralInfo = () => {
       errorFunction: () => { },
       finalFunction: () => { },
     }))
-    // router.push({
-    //   pathname: '/auth/register/userPic'
-    // })
   }
 
   const handleUserPic = () => {
-    // console.log((window as any).phantom.solana)
-    // const provider = (window as any).phantom.solana
-    // await provider.connect();
-    const address = profileData.solanaAddress
+    const address = userInfo.solanaAddress
     console.log(address)
     const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
     console.log(mintingUrl)
     window.location.href = `${mintingUrl}/mint/${address}`
   }
 
+  const onGoStep = (stepNum) => {
+    const payload = {
+      stepNum
+    }
+    dispatch(goStep({ payload: payload }))
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
       {
-        steps === 'userInfo' ?
+        step === 1 ?
           <UserInfo
-            setTitle={setTitle}
-            domain={domain}
-            setDomain={setDomain}
-            submit={handleUserInfo}
+            goStep={onGoStep}
           />
-          : steps === 'userDaos' ?
+          : step === 2 ?
             <UserDaos
               getDaos={handleUserDaos}
               setDaos={setDaos}
             />
-            : steps === 'userPic' ?
+            : step === 3 ?
               <UserPic
                 setAvatar={setAvatar}
                 avatar={avatar}
@@ -172,10 +125,10 @@ export const GeneralInfo = () => {
               {/* <Image src={AvatarImg} /> */}
               {/* <AvatarPanel imageSrc={avatar} title="RESSURECTION..." /> */}
               <div className="mt-[18px]">
-                <span className="text-white/80 text-[24px] z-[30]">{domain ? domain : "Enter your domain"}</span>
+                <span className="text-white/80 text-[24px] z-[30]">{userInfo.domain ? userInfo.domain : "Enter your domain"}</span>
               </div>
               <div className="mt-[5px]">
-                <span className="text-white/80 text-[18px] z-[30]">{title ? title : "Enter your title"}</span>
+                <span className="text-white/80 text-[18px] z-[30]">{userInfo.title ? userInfo.title : "Enter your title"}</span>
               </div>
               <div className="mt-[3px]">
                 <span className="text-white/60 text-[16px] z-[30]">Connect your socials</span>
@@ -187,12 +140,12 @@ export const GeneralInfo = () => {
                 <div className="mt-3">
                   {
                     <span className="ml-1">
-                      {profileData.solanaAddress ? <Image src={PhantomImg} /> : null}
+                      {userInfo.solanaAddress ? <Image src={PhantomImg} /> : null}
                     </span>
                   }
                   {
                     <span className="ml-1">
-                      {profileData.ethereumAddress ? <Image src={MetamaskImg} /> : null}
+                      {userInfo.ethereumAddress ? <Image src={MetamaskImg} /> : null}
                     </span>
                   }
                 </div>

@@ -10,18 +10,12 @@ import { extractError } from "utils";
 import { title } from "process";
 
 const initialState = {
-  data: {
-    stepsCompleted: {
-      infoAdded: false,
-      daoClaimed: false,
-      accountsLinked: false,
-      profilePicUpdated: false
-    }
-  },
+  data: {},
   nfts: [],
   nftsLoaded: false,
   activeRoomId: "",
   activeRoomNo: -1,
+  step: 1
 };
 
 export const undoSetupStep = createAsyncThunk(
