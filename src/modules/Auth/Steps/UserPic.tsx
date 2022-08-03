@@ -16,6 +16,7 @@ import { getNfts } from '../../../hooks'
 import { setProfilePic, setUploadPic, undoSetupStep } from '../../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
 import { showErrorToast, showSuccessToast } from "utils";
+import { changeInfo } from "redux/slices/authSlice";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,
@@ -54,52 +55,11 @@ const UserPic = (props) => {
   const [imageData, setImageData] = useState([]);
 
   const [isUploading, setIsUploading] = useState(false);
+  const [isNftSelected, setIsNftSelected] = useState(true)
 
   useEffect(() => {
     fetchNFTs();
   }, []);
-
-  useEffect(() => {
-    if (selectedNft) {
-      dispatch(startLoadingApp());
-      dispatch(
-        setProfilePic({
-          data: selectedNft,
-          successFunction: () => {
-            showSuccessToast("You profile pic has been updated");
-          },
-          errorFunction: () => {
-            showErrorToast("Unable to update the profile pic");
-          },
-          finalFunction: () => {
-            dispatch(stopLoadingApp());
-            setSelectedAvatar(null)
-          },
-        })
-      );
-    }
-  }, [selectedNft])
-
-  useEffect(() => {
-    if (selectedAvatar) {
-      dispatch(startLoadingApp());
-      dispatch(
-        setUploadPic({
-          data: selectedAvatar,
-          successFunction: () => {
-            showSuccessToast("You profile pic has been updated");
-          },
-          errorFunction: () => {
-            showErrorToast("Unable to update the profile pic");
-          },
-          finalFunction: () => {
-            dispatch(stopLoadingApp());
-            setSelectedNft(null)
-          },
-        })
-      );
-    }
-  }, [selectedAvatar])
 
   const onImageLoad = (tempFiles) => {
     setFiles(tempFiles)
@@ -122,7 +82,15 @@ const UserPic = (props) => {
   }
 
   const register = async () => {
-    await uploadImage()
+    if (isNftSelected) {
+      const payload = {
+        value: selectedNft,
+        type: "profileImage"
+      }
+      dispatch(changeInfo({ payload: payload }))
+    } else {
+      await uploadImage()
+    }
   }
 
   const uploadImage = async () => {
@@ -133,10 +101,21 @@ const UserPic = (props) => {
     data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
     data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
     data.append("folder", "assets/avatars");
+    console.log("data", data)
     try {
       const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, data);
       console.log(resp)
-      dispatch
+      const payload = {
+        value: {
+          link: resp.data.url,
+          network: null,
+          contractAddress: null,
+          tokenId: null,
+          mintAddress: null,
+        },
+        type: "profileImage"
+      }
+      dispatch(changeInfo({ payload: payload }))
       setIsUploading(false);
     } catch (err) {
       setIsUploading(false);
@@ -207,10 +186,11 @@ const UserPic = (props) => {
                             imageUrl={image.fileBlob}
                             title={image.fileName}
                             onClick={() => {
+                              setIsNftSelected(false)
                               setAvatar(image.fileBlob)
-                              setSelectedAvatar(image)
+                              setSelectedAvatar(image.fileBlob)
                             }}
-                            selected={image == selectedAvatar}
+                            selected={image.fileBlob == selectedAvatar}
                           />
                         </div>)
                       )
@@ -244,12 +224,14 @@ const UserPic = (props) => {
                               return selectedNft.mintAddress == mintAddress;
                             })()}
                             onClick={() => {
+                              setIsNftSelected(true)
                               setAvatar(image)
                               setSelectedNft({
-                                imageNetwork: type,
-                                mintAddress,
+                                link: image,
+                                network: type,
                                 contractAddress,
                                 tokenId,
+                                mintAddress,
                               });
                             }}
                           />

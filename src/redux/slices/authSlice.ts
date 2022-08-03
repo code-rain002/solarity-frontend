@@ -106,7 +106,7 @@ export const changeInfo = createAsyncThunk(
     callback
   }: {
     payload: {
-      value: String,
+      value: any,
       type: String
     };
     callback?: () => void;
