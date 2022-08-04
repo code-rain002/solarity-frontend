@@ -50,8 +50,8 @@ const UserPic = (props) => {
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
   const [selectedNft, setSelectedNft] = useState<any>(null);
-
-  const [isNftSelected, setIsNftSelected] = useState(true)
+  const [isNftSelected, setIsNftSelected] = useState(true);
+  const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
     fetchNFTs();
@@ -78,55 +78,61 @@ const UserPic = (props) => {
   }
 
   const onComplete = async () => {
+    await uploadImage();
+    // await mint();
+  }
+
+  const uploadImage = async () => {
     if (isNftSelected) {
       const payload = {
         value: selectedNft,
         type: "profileImage"
-      }
-      dispatch(changeInfo({ payload: payload }))
+      };
+      setProfileImage(payload.value);
+      dispatch(changeInfo({ payload: payload }));
     } else {
-      await uploadImage()
-      await register()
-      // await mint()
+      const data = new FormData();
+      data.append("file", selectedAvatar);
+      data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
+      data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
+      data.append("folder", "assets/avatars");
+      try {
+        const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, data);
+        const payload = {
+          value: {
+            link: resp.data.url,
+            network: null,
+            contractAddress: null,
+            tokenId: null,
+            mintAddress: null,
+          },
+          type: "profileImage"
+        };
+        setProfileImage(payload.value);
+        await dispatch(changeInfo({ payload: payload }));
+      } catch (err) {
+        console.log("error : ", err);
+      }
     }
   }
 
-  const uploadImage = async () => {
-    const data = new FormData();
-    data.append("file", selectedAvatar);
-    data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
-    data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
-    data.append("folder", "assets/avatars");
-    try {
-      const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, data);
-      console.log(resp)
-      const payload = {
-        value: {
-          link: resp.data.url,
-          network: null,
-          contractAddress: null,
-          tokenId: null,
-          mintAddress: null,
-        },
-        type: "profileImage"
-      }
-      dispatch(changeInfo({ payload: payload }))
-    } catch (err) {
-      console.log("error : ", err);
+  useEffect(() => {
+    if (profileImage) {
+      register();
     }
-  }
+  }, [profileImage])
 
   const register = async () => {
-    console.log('register: ', userInfo)
+    console.log('register: ', profileImage);
     const payload = {
       publicKey,
       walletType,
       username: userInfo.domain,
       bio: userInfo.title,
-      profileImage: userInfo.profileImage,
+      profileImage: profileImage,
       daos: userInfo.daos
-    }
-    await apiCaller.post("auth/register", payload)
+    };
+    await apiCaller.post("auth/register", payload);
   }
 
   const mint = () => {
