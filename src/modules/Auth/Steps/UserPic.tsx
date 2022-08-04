@@ -16,6 +16,7 @@ import { getNfts } from '../../../hooks'
 import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice';
 import { showErrorToast, showSuccessToast } from "utils";
 import { changeInfo } from "redux/slices/authSlice";
+import { apiCaller } from "utils/fetcher";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,
@@ -76,7 +77,7 @@ const UserPic = (props) => {
     });
   }
 
-  const register = async () => {
+  const onComplete = async () => {
     if (isNftSelected) {
       const payload = {
         value: selectedNft,
@@ -85,7 +86,8 @@ const UserPic = (props) => {
       dispatch(changeInfo({ payload: payload }))
     } else {
       await uploadImage()
-      // mint()
+      await register()
+      // await mint()
     }
   }
 
@@ -95,7 +97,6 @@ const UserPic = (props) => {
     data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
     data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
     data.append("folder", "assets/avatars");
-    console.log("data", data)
     try {
       const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, data);
       console.log(resp)
@@ -113,6 +114,19 @@ const UserPic = (props) => {
     } catch (err) {
       console.log("error : ", err);
     }
+  }
+
+  const register = async () => {
+    console.log('register: ', userInfo)
+    const payload = {
+      publicKey,
+      walletType,
+      username: userInfo.domain,
+      bio: userInfo.title,
+      profileImage: userInfo.profileImage,
+      daos: userInfo.daos
+    }
+    await apiCaller.post("auth/register", payload)
   }
 
   const mint = () => {
@@ -238,7 +252,7 @@ const UserPic = (props) => {
               <BackButton onClick={() => goStep(2)} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Mint" icon="" bordered={false} onClick={() => register()} disabled={nftLoading || avatar === null ? true : false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Mint" icon="" bordered={false} onClick={() => onComplete()} disabled={nftLoading || avatar === null ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>
