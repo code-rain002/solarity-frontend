@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useRouter } from 'next/router'
 import HeaderMenuItem from '../Common/Layout/HeaderMenuItem'
 import { HeaderMenuTitles } from 'data/HeaderMenu'
 import SearchBox from 'components/Common/Forms/SearchBox'
@@ -6,14 +7,19 @@ import BalanceBox from 'components/Common/Forms/HeaderBalanceBox'
 import UserInfoMenu from 'components/Common/Forms/UserInfoMenu'
 
 const Header = () => {
-    const [active, setActive] = useState('Explore')
 
     const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
 
     const [userInfoToggle, setUserInfoToggle] = useState(false)
 
+    const { asPath } = useRouter()
+    const pathSegments = asPath.split("/")
+    const currentPath = pathSegments[pathSegments.length - 1]
+
+    const [active, setActive] = useState(currentPath)
+
     const item_arr = HeaderMenuTitles.map(function (i){
-        return <HeaderMenuItem key={i} title={i} active={active === i} onClick={() => setActive(i)} />
+        return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={() => setActive(i.toLowerCase())} />
     })
     return (
         <div className="sm:flex xs:hidden
