@@ -7,11 +7,26 @@ type LiveRoomListItemType = {
     walletIcon : any,
     collectionName : string,
     roomName : string,
+    roomSelect : any,
+    lgImgUrl : string,
+    activeRoom : any,
 }
 
+const onItemClick = (arg) => {
+    arg.roomSelect(arg.lgImgUrl)
+
+    const distance = document.documentElement.scrollTop
+    const accelerationDistance = distance * 0.3
+
+    const myInterval = setInterval(() => {
+        document.documentElement.scrollTop > 0 ? document.documentElement.scrollTop -= 80 : clearInterval(myInterval)
+    }, 10)
+}
 const LiveRoomListItem = (props : LiveRoomListItemType) => {
     return (
-        <div className=" flex flex-row p-[8px] w-full h-[91px] border-[1.2px] border-[#272829] rounded-[15px] cursor-pointer hover:border-[#29b080] ">
+        <div className={` flex flex-row p-[8px] w-full h-[91px] border-[1.2px] rounded-[15px]
+                        cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl ? "border-primary" : "border-[#272829]" } `}
+                        onClick={() => onItemClick(props)}>
             <div className=" min-w-[120px] rounded-[10px] overflow-hidden ">
                 <Image src={props.imgUrl} alt="room_img" layout="fixed" width={120} height={75} />
             </div>

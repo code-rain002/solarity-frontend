@@ -26,6 +26,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 5,
         imgUrl : "/images/experience/room_images/room_1_avatar_sm.jpg",
+        lgImgUrl : "room_1",
         walletIcon : <SolanaIcon />,
         collectionName : "CollectionName",
         roomName : "The Vincent Van Dough Gallery",
@@ -33,6 +34,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 23,
         imgUrl : "/images/experience/room_images/room_2_avatar_sm.jpg",
+        lgImgUrl : "room_2",
         walletIcon : <SolanaIcon />,
         collectionName : "CollectionName",
         roomName : "Teufzer",
@@ -40,6 +42,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 10,
         imgUrl : "/images/experience/room_images/room_3_avatar_sm.jpg",
+        lgImgUrl : "room_3",
         walletIcon : <SolanaIcon />,
         collectionName : "CollectionName",
         roomName : "RESSURECTION enriched with death #244314213123123",
@@ -47,6 +50,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 144,
         imgUrl : "/images/experience/room_images/room_4_avatar_sm.jpg",
+        lgImgUrl : "room_4",
         walletIcon : <SolanaIcon />,
         collectionName : "Solana Money Boys",
         roomName : "Meta trap house",
@@ -54,6 +58,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 33,
         imgUrl : "/images/experience/room_images/room_5_avatar_sm.jpg",
+        lgImgUrl : "room_5",
         walletIcon : <SolanaIcon />,
         collectionName : "CollectionName",
         roomName : "This room is really fantastic",
@@ -61,6 +66,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 9,
         imgUrl : "/images/experience/room_images/room_6_avatar_sm.jpg",
+        lgImgUrl : "room_6",
         walletIcon : <SolanaIcon />,
         collectionName : "what do you want?",
         roomName : "Dummy text goes here",
@@ -68,6 +74,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 2,
         imgUrl : "/images/experience/room_images/room_7_avatar_sm.jpg",
+        lgImgUrl : "room_7",
         walletIcon : <SolanaIcon />,
         collectionName : "Quiet room",
         roomName : "Leave me alone",
@@ -75,6 +82,7 @@ export const LiveRoomListData : LiveRoomListDataType[] = [
     {
         currentNumberOfMembers : 36,
         imgUrl : "/images/experience/room_images/room_8_avatar_sm.jpg",
+        lgImgUrl : "room_8",
         walletIcon : <SolanaIcon />,
         collectionName : "So Crowd",
         roomName : "The Vincent Van Dough Gallery",
