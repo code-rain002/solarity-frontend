@@ -9,7 +9,7 @@ import { AddressButton, WalletButton, PrimaryButton, BackButton } from "componen
 
 import Logo from "components/Common/Logo";
 
-import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
+import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, TwitterImg } from "components/Common/Images";
 import { DomainInput, SharedInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { DiscordLink } from "../Links";
