@@ -1,4 +1,3 @@
-import { SolanaIcon } from "components/icons"
 import { LiveRoomListData } from "data/Experience"
 import LiveRoomListTitle from "./LiveRoomLilstTitle"
 import LiveRoomListItem from "./LiveRoomListItem"
@@ -15,7 +14,6 @@ const LiveRoomList = () => {
                     )
                 })
             }
-            {/* <LiveRoomListItem imgUrl="/images" walletIcon={<SolanaIcon />} collectionName="Collection Name" roomName="The V" /> */}
         </div>
     )
 }

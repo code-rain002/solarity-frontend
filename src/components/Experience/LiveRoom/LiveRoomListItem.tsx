@@ -11,8 +11,8 @@ type LiveRoomListItemType = {
 
 const LiveRoomListItem = (props : LiveRoomListItemType) => {
     return (
-        <div className=" flex flex-row p-[8px] w-full h-[91px] border-[1.2px] border-[#272829] rounded-[15px] ">
-            <div className=" w-[120px] rounded-[10px] overflow-hidden ">
+        <div className=" flex flex-row p-[8px] w-full h-[91px] border-[1.2px] border-[#272829] rounded-[15px] cursor-pointer hover:border-[#29b080] ">
+            <div className=" min-w-[120px] rounded-[10px] overflow-hidden ">
                 <Image src={props.imgUrl} alt="room_img" layout="fixed" width={120} height={75} />
             </div>
             <div className=" flex flex-col ml-[16px]  ">
