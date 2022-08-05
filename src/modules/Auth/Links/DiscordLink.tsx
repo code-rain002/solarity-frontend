@@ -45,7 +45,7 @@ export const DiscordLink = () => {
 	})();
 
 	const discordConnectionLink = discordLinkGenerator(appUrl);
-	console.log(appUrl)
+	
 	useEffect(() => {
 		// setIsConnected(profileData.discordConnected)
 	}, [])

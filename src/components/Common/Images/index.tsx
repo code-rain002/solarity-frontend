@@ -29,9 +29,9 @@ export { default as BannerRightImg } from "assets/images/landing/right_NFT.png";
 
 // social
 
-// export { default as DiscordImg } from "assets/images/social/discord.png";
-// export { default as TwitterImg } from "assets/images/social/twitter.png";
-// export { default as GithubImg } from "assets/images/social/github.png";
+export { default as DiscordImg } from "assets/images/social/discord.png";
+export { default as TwitterImg } from "assets/images/social/twitter.png";
+export { default as GithubImg } from "assets/images/social/github.png";
 
 // wallets
 

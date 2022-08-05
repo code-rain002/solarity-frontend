@@ -7,10 +7,10 @@ import Logo from "components/Common/Logo";
 import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, GalleryImg } from "components/Common/Images";
 import { MetamaskImg, PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { setup, getUserDaos } from '../../redux/slices/profileSlice'
 import { startLoadingApp, stopLoadingApp } from '../../redux/slices/commonSlice'
 import { UserDaos, UserInfo, UserPic } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
+import { changeInfo, goStep } from "redux/slices/authSlice";
 
 const WALLETS = [
   {
@@ -37,111 +37,51 @@ export const GeneralInfo = () => {
   const dispatch = useDispatch()
   const router = useRouter();
   const { steps } = router.query
-  const { profileData } = useSelector(
+  const { userInfo, step } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data
+      userInfo: state.auth.userInfo,
+      step: state.auth.step
     })
   );
 
-  const [domain, setDomain] = useState<String>(undefined);
-  const [title, setTitle] = useState<String>('');
-  const [daos, setDaos] = useState<Object[]>([]);
   const [avatar, setAvatar] = useState<Object>(null);
 
   const publicKey = localStorage.getItem('publickey');
   const walletType = localStorage.getItem('type');
 
   useEffect(() => {
-    if (profileData.stepsCompleted.profilePicUpdated) {
-      setDomain(profileData.domain)
-      setTitle(profileData.title)
-      setDaos(profileData.daoMemberships.daos)
-      router.push({
-        pathname: '/auth/register/userPic'
-      })
-    }
-    if (profileData.stepsCompleted.daoClaimed) {
-      setDomain(profileData.domain)
-      setTitle(profileData.title)
-      setDaos(profileData.daoMemberships.daos)
-      router.push({
-        pathname: '/auth/register/userPic'
-      })
-    }
-    if (profileData.stepsCompleted.infoAdded) {
-      setDomain(profileData.domain)
-      setTitle(profileData.title)
-      router.push({
-        pathname: '/auth/register/userDaos'
-      })
+    if (publicKey) {
+      const payload = {
+        value: publicKey,
+        type: "solanaAddress"
+      }
+      dispatch(changeInfo({ payload: payload }))
     }
   }, [])
 
-  const handleUserInfo = () => {
-    dispatch(startLoadingApp())
-
-    if (domain !== "") {
-      const payload = {
-        action: "info",
-        domain,
-        title
-      }
-      dispatch(setup({
-        data: payload,
-        successFunction: () => {
-          router.push({
-            pathname: '/auth/register/userDaos'
-          })
-        },
-        errorFunction: () => { },
-        finalFunction: () => { },
-      }))
-
-    } else {
-      alert('please input field')
-      return;
+  const onGoStep = (stepNum) => {
+    const payload = {
+      stepNum
     }
-
-    dispatch(stopLoadingApp())
-  }
-
-  const handleUserDaos = () => {
-    dispatch(startLoadingApp())
-
-    dispatch(getUserDaos({
-      successFunction: () => { },
-      errorFunction: () => { },
-      finalFunction: () => { },
-    }))
-    // router.push({
-    //   pathname: '/auth/register/userPic'
-    // })
-    dispatch(stopLoadingApp())
-  }
-
-  const handleUserPic = () => {
-    alert('Mint')
+    dispatch(goStep({ payload: payload }))
   }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 mt-[20px] items-baseline">
       {
-        steps === 'userInfo' ?
+        step === 1 ?
           <UserInfo
-            setTitle={setTitle}
-            domain={domain}
-            setDomain={setDomain}
-            submit={handleUserInfo}
+            goStep={onGoStep}
           />
-          : steps === 'userDaos' ?
+          : step === 2 ?
             <UserDaos
-              getDaos={handleUserDaos}
-              setDaos={setDaos}
+              goStep={onGoStep}
             />
-            : steps === 'userPic' ?
+            : step === 3 ?
               <UserPic
                 setAvatar={setAvatar}
-                submit={handleUserPic}
+                avatar={avatar}
+                goStep={onGoStep}
               />
               : null
       }
@@ -163,10 +103,10 @@ export const GeneralInfo = () => {
               {/* <Image src={AvatarImg} /> */}
               {/* <AvatarPanel imageSrc={avatar} title="RESSURECTION..." /> */}
               <div className="mt-[18px]">
-                <span className="text-white/80 text-[24px] z-[30]">{domain ? domain : "Enter your domain"}</span>
+                <span className="text-white/80 text-[24px] z-[30]">{userInfo.domain ? userInfo.domain : "Enter your domain"}</span>
               </div>
               <div className="mt-[5px]">
-                <span className="text-white/80 text-[18px] z-[30]">{title ? title : "Enter your title"}</span>
+                <span className="text-white/80 text-[18px] z-[30]">{userInfo.title ? userInfo.title : "Enter your title"}</span>
               </div>
               <div className="mt-[3px]">
                 <span className="text-white/60 text-[16px] z-[30]">Connect your socials</span>
@@ -178,12 +118,12 @@ export const GeneralInfo = () => {
                 <div className="mt-3">
                   {
                     <span className="ml-1">
-                      {profileData.solanaAddress ? <Image src={PhantomImg} /> : null}
+                      {userInfo.solanaAddress ? <Image src={PhantomImg} /> : null}
                     </span>
                   }
                   {
                     <span className="ml-1">
-                      {profileData.ethereumAddress ? <Image src={MetamaskImg} /> : null}
+                      {userInfo.ethereumAddress ? <Image src={MetamaskImg} /> : null}
                     </span>
                   }
                 </div>
@@ -192,9 +132,9 @@ export const GeneralInfo = () => {
                 <span className="text-white/60">Your DAOs</span>
                 <div className="mt-2 justify-between relative margin-auto">
                   {
-                    daos?.length ?
-                      daos.map((dao, index) => (
-                        <div className="absolute left-0 right-0 -ml-[30px]"><Image src={DaoImg2} /></div>
+                    userInfo.daos?.length ?
+                      userInfo.daos.map((dao, index) => (
+                        <div className="absolute left-0 right-0 -ml-[30px]" key={index}><Image src={dao.profileImage.link} /></div>
                       ))
                       : null
                   }
