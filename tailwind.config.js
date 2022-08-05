@@ -1,3 +1,5 @@
+const { NonceAccount } = require("@solana/web3.js");
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -20,6 +22,10 @@ module.exports = {
         'secondary': 'var(--secondary-color)',
         'footer': 'var(--footer-color)',
         'content': '#cecece',
+        // kisikbo5 wrote this
+        'globalBgColor': '#131314',
+        'semiSplitter' : '#1d1f1f'
+        // end of kisikbo5
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--gradient-color-stops))',
@@ -27,6 +33,14 @@ module.exports = {
         'gradient-linear': 'linear-gradient(var(--gradient-linear-stops))',
       }
     },
+    screens: {
+      'xs' : '220px',
+      'sm' : '640px',
+      'md' : '768px',
+      'lg' : '1024px',
+      'xl' : '1280px',
+      'custom-2xl' : '1680px'
+    }
   },
   plugins: [],
   safelist: [

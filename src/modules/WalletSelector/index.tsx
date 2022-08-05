@@ -4,26 +4,25 @@ import connectWallet from "./connectWallet";
 
 import { Button, WalletButton } from "components/Common/Buttons";
 
-import { MetamaskImg, PhantomImg, SlopeImg, SolflareImg, SolletExImg, SolletImg, TorusImg } from "components/Common/Images";
 
 const WALLETS = [
   {
     label: "Phantom",
     id: "phantom",
     type: "solana",
-    image: PhantomImg,
+    image: "/images/wallets/phantom.png",
   },
   {
     label: "Solflare",
     id: "solflare",
     type: "solana",
-    image: SolflareImg,
+    image: "/images/wallets/solflare.png",
   },
   {
     label: "Metamask",
     id: "metamask",
     type: "ethereum",
-    image: MetamaskImg,
+    image: "/images/wallets/metamask.png"
   },
 ];
 

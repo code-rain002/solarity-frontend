@@ -9,7 +9,7 @@ import { AddressButton, WalletButton, PrimaryButton, BackButton } from "componen
 
 import Logo from "components/Common/Logo";
 
-import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, DiscordImg, EthereumImg, GalleryImg, GithubImg, PolygonImg, ProfileImg, TwitterImg } from "components/Common/Images";
+import { AddressImg, AvatarImg, DaoBGImg, DaoImg1, DaoImg2, DaoPicImg, GalleryImg } from "components/Common/Images";
 import { DomainInput, SharedInput } from "components/Common/Forms";
 import { AvatarPanel, DaoPanel } from "components/Common/Panels";
 import { DiscordLink } from "./Links";
@@ -70,15 +70,15 @@ export const ProfileInfo = () => {
                     <DiscordLink />
                   </div>
                   <div className="my-3 xl:my-6 xl:text-right">
-                    <WalletButton caption="Connect" icon={GithubImg} onClick={null} styles="!w-[100%] xl:!w-[95%]" />
+                    <WalletButton caption="Connect" icon="/images/social/github.png" onClick={null} styles="!w-[100%] xl:!w-[95%]" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 mt-[25px] lg:mt-[30px]">
                   <div className="my-3">
-                    <WalletButton caption="Connect ETH wallet" icon={EthereumImg} onClick={null} styles="!w-[100%]" description="optional" />
+                    <WalletButton caption="Connect ETH wallet" icon="/images/wallets/ethereum.png" onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
                   <div className="my-3 hidden lg:block">
-                    <WalletButton caption="Connect Polygon wallet" icon={PolygonImg} onClick={null} styles="!w-[100%]" description="optional" />
+                    <WalletButton caption="Connect Polygon wallet" icon="/images/wallets/polygon.png" onClick={null} styles="!w-[100%]" description="optional" />
                   </div>
                 </div>
               </div>
@@ -169,10 +169,10 @@ export const ProfileInfo = () => {
                 </div>
                 <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh] overflow-scroll">
                   <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
+                    <AvatarPanel imageSrc="/images/profile/profile.png" title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
                   </div>
                   <div className="p-2">
-                    <AvatarPanel imageSrc={ProfileImg} title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
+                    <AvatarPanel imageSrc="/images/profile/profile.png" title="RESSURECTION..." onClick={() => setSelectedAvatar(null)} />
                   </div>
                   {loadedFiles.map((imgBlob) => {
                     return (<div className="p-2"><AvatarPanel imageSrc={imgBlob} title="RESSURECTION..." onClick={() => setSelectedAvatar(imgBlob)} selected={imgBlob == selectedAvatar} /></div>)
