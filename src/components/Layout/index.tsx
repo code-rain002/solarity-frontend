@@ -5,7 +5,12 @@ import Header from './Header'
 import MobileTopBar from "./MobileTopBar"
 import MobileMenu from "./MobileMenu"
 
-const Layout = ({ children, banner, onClick, sidebarToggler }) => {
+const Layout = ({ children, banner, onClick, sidebarToggler }: {
+    children: any,
+    banner?: any,
+    onClick: Function,
+    sidebarToggler: boolean
+}) => {
 
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
     return (
