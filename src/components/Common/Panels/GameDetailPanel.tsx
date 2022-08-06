@@ -6,7 +6,7 @@ const GameDetailPanel = (props) => {
     const { data } = props
 
     return (
-        <div className="flex flex-col relative overflow-hidden cursor-pointer
+        <div className="flex flex-col relative overflow-hidden
                         w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]">
             <div className="w-full "><img src={data.image} style={{ width: "100%" }} /></div>
             <div className="py-[10px] px-[20px]">

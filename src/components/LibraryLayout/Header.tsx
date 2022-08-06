@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import UserInfoMenu from 'components/Common/Forms/UserInfoMenu'
 import { LogoSVGImg } from 'components/Common/Images'
 import SearchGameBox from 'components/Common/Forms/SearchGameBox'
 
 const Header = () => {
+    const router = useRouter()
     const [active, setActive] = useState('Explore')
-
-    const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
-
     const [userInfoToggle, setUserInfoToggle] = useState(false)
 
     return (
@@ -21,14 +20,14 @@ const Header = () => {
                             custom-2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-col xs:flex-col
                             h-full self-center 
                             custom-2xl:w-fit xl:w-fit lg:w-full md:w-full sm:w-full items-center'>
-                <div className='h-[92px] w-[92px] flex items-center justify-center border-b-[1px] border-[#1D1F1F] md:mr-[25px]'>
+                <div className='h-[92px] w-[92px] flex items-center justify-center border-b-[1px] border-[#1D1F1F] md:mr-[25px] cursor-pointer' onClick={() => router.push({ pathname: "/" })}>
                     <Image src={LogoSVGImg} width={40} height={40}></Image>
                 </div>
                 <SearchGameBox />
             </div>
             <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;

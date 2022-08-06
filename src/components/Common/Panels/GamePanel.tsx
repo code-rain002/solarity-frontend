@@ -1,4 +1,5 @@
 import { LikesIcon, UsersIcon } from "assets/svgs"
+import { useRouter } from "next/router";
 import Image from "next/image"
 
 type GamePanelProps = {
@@ -9,9 +10,11 @@ type GamePanelProps = {
 }
 
 const GamePanel = (props : GamePanelProps) => {
+    const router = useRouter()
+
     return (
         <div className="flex flex-col relative overflow-hidden cursor-pointer
-                        w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]">
+                        w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]" onClick={() => {router.push({pathname: '/library/collect'})}}>
             <div className="w-full "><img src={props.image} style={{ width: "100%" }} /></div>
             <div className="py-[8px] px-[20px]">
                 <div className="text-[20px] text-[#F3F3F3] leading-[32px]">{props.title}</div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Image from 'next/image';
 import { LeftArrow, RightArrow } from "components/icons";
 import { LibraryMenu } from "data/LibraryMenu";
@@ -8,11 +9,12 @@ import { GameDetailData } from "data/GameLibrary";
 
 
 const GameDetail = () => {
+	const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <div className="flex flex-col w-full pl-[30px]">
-      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px]">
+      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer" onClick={() => router.push({ pathname: "/library" })}>
         Collect all pets!
       </div>
       
