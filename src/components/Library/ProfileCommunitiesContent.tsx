@@ -8,14 +8,14 @@ const GameLibraryContent = () => {
 
     return (
         <div className="gap-[32px] 
-                        grid custom-2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-center
+                        grid custom-2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 justify-items-center
                         my-[32px]">
             {
                 GameLibraryData.map((item, index) => (
                     <GamePanel image={item.image} title={item.title} likes={item.likes} members={item.members} />
                 ))
             }
-            <GameMorePanel />
+            {/* <GameMorePanel /> */}
         </div>
     )
 }
