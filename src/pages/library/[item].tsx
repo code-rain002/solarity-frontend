@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 
 import LibraryLayout from "components/LibraryLayout"
-import Library from "modules/Library"
+import GameDetail from "modules/Library/GameDetail"
 
 const LibraryIndex = () => {
     return (
         <LibraryLayout>
-            <Library />
+            <GameDetail />
         </LibraryLayout>
     )
 }

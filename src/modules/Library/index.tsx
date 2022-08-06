@@ -17,7 +17,7 @@ const Library = () => {
   const [active, setActive] = useState("Up and Coming");
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full px-[30px]">
       <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px]">
         Explore Library
       </div>

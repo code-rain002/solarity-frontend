@@ -1,4 +1,4 @@
-import { GameLibraryDataType } from "modal/library"
+import { GameDetailDataType, GameLibraryDataType } from "modal/library"
 
 export const GameLibraryData : GameLibraryDataType[] = [
     {
@@ -72,5 +72,13 @@ export const GameLibraryData : GameLibraryDataType[] = [
         likes: 97,
         members : 231
     }, 
-
 ]
+
+export const GameDetailData : GameDetailDataType = {
+    image : "/images/library/temp/pets.png",
+    title: "Colloct all pets!",
+    likes: 97,
+    members : 231,
+    owner: "@TwoZoos",
+    category: "P2E"
+}
