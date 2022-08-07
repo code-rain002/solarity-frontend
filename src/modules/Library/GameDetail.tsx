@@ -6,6 +6,7 @@ import { LeftArrow, RightArrow } from "components/icons";
 import { LibraryMenu } from "data/LibraryMenu";
 import GameDetailPanel from "components/Common/Panels/GameDetailPanel";
 import { GameDetailData } from "data/GameLibrary";
+import { ArrowLeftIcon } from "assets/svgs";
 
 
 const GameDetail = () => {
@@ -14,8 +15,9 @@ const GameDetail = () => {
 
   return (
     <div className="flex flex-col w-full pl-[30px]">
-      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer" onClick={() => router.push({ pathname: "/library" })}>
-        Collect all pets!
+      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center" onClick={() => router.push({ pathname: "/library" })}>
+        <ArrowLeftIcon />
+        <span className="ml-[10px]">Collect all pets!</span>
       </div>
       
       <div className={`relative mt-[15px]`}>
