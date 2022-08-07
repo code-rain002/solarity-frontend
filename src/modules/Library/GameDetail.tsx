@@ -9,13 +9,14 @@ import { GameDetailData } from "data/GameLibrary";
 import { ArrowLeftIcon } from "assets/svgs";
 
 
-const GameDetail = () => {
+const GameDetail = (props) => {
+    const { setPage } = props
 	const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <div className="flex flex-col w-full">
-      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center" onClick={() => router.push({ pathname: "/library" })}>
+      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center" onClick={() => setPage(0)}>
         <ArrowLeftIcon />
         <span className="ml-[10px]">Collect all pets!</span>
       </div>
@@ -41,7 +42,7 @@ const GameDetail = () => {
                         <div className="flex flex-col lg:flex-row">
                             <div className="w-full lg:w-[75%] pl-[20px] lg:pl-[50px]">
                                 <div className="text-white font-bold py-[20px] text-[21px]">Description</div>
-                                <div className="text-[14px] text-[#B3B3B7] lg:h-[500px] overflow-scroll pr-[10px]">
+                                <div className="text-[14px] text-[#B3B3B7] lg:h-[400px] overflow-scroll pr-[10px]">
                                     New awakening, new island, new boss raid, new weapon, and LOTS MORE! 
                                     <br />
                                     Welcome to Blox Fruits! Become a master swordsman or a powerful blox fruit user as you train to become the strongest player to ever live. You can choose to fight against tough enemies or have powerful boss battles while sailing across the ocean to find hidden secrets. 
@@ -101,7 +102,7 @@ const GameDetail = () => {
                     <>
                         <div className="sm:pl-[20px] lg:pl-[50px]">
                             <div className="text-white font-bold py-[20px] text-[21px]">Passes</div>
-                            <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-[32px] justify-items-center lg:max-h-[500px] overflow-auto sm:pr-[10px]">
+                            <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-[32px] justify-items-center lg:max-h-[400px] overflow-auto sm:pr-[10px]">
                                 {
                                     [0,1,2,3,4,5,6,7,8,9].map(index => (
                                         <div className="bg-[#181818] px-[15px] py-[20px] rounded-[20px] w-[70%] sm:w-full">

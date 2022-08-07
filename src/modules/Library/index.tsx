@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { LeftArrow, RightArrow } from "components/icons";
 import { LibraryMenu } from "data/LibraryMenu";
-import GameLibraryContent from "components/Library/ProfileCommunitiesContent";
+import { GameLibraryData } from "data/GameLibrary";
+import GamePanel from "components/Common/Panels/GamePanel";
 
-const Library = () => {
+const Library = (props) => {
+  const { setPage } = props
   const rightScroll = () => {
     document.querySelector(".library-tab").scrollLeft += 80;
   };
@@ -57,7 +59,13 @@ const Library = () => {
           </button>
         </div>
       </div>
-      <GameLibraryContent />
+      <div className="gap-[32px] grid custom-2xl:grid-cols-7 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 justify-items-center my-[32px]">
+            {
+                GameLibraryData.map((item, index) => (
+                    <GamePanel image={item.image} title={item.title} likes={item.likes} members={item.members} onClick={() => setPage(1)} />
+                ))
+            }
+        </div>
     </div>
   );
 };

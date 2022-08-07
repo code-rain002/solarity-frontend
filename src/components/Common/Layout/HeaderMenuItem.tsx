@@ -4,7 +4,8 @@ import React from "react";
 type HeaderMenuItemProps = {
     title : string,
     active : boolean,
-    onClick : any
+    onClick : any,
+    setToggle: any
 }
 
 const HeaderMenuItem = (props : HeaderMenuItemProps) => {
@@ -17,9 +18,14 @@ const HeaderMenuItem = (props : HeaderMenuItemProps) => {
                 </svg>
             </div>
 
-            <Link href={`/${props.title.toLowerCase()}`}>
+            {
+                props.title === "Library" ?
                 <a>{props.title}</a>
-            </Link>
+                :
+                <Link href={`/${props.title.toLowerCase()}`}>
+                    <a>{props.title}</a>
+                </Link>
+            }
         </div>
     )
 }
