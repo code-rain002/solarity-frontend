@@ -1,4 +1,4 @@
-import { LikesIcon, UsersIcon } from "assets/svgs"
+import { UsersLargeIcon, FavoriteLargeIcon, LikesLargeIcon } from "assets/svgs"
 import Image from "next/image"
 import { Button } from "../Buttons"
 
@@ -16,9 +16,9 @@ const GameDetailPanel = (props) => {
                     <div>Category: {data.category}</div>
                 </div>
                 <div className="flex items-center justify-between text-[#29B080] text-[16px] ">
-                    <div>Save</div>
-                    <div>{data.likes}%</div>
-                    <div>{data.members}</div>
+                    <div className="flex flex-row items-center"><FavoriteLargeIcon />&nbsp;Save</div>
+                    <div className="flex flex-row items-center"><LikesLargeIcon />&nbsp;{data.likes}%</div>
+                    <div className="flex flex-row items-center"><UsersLargeIcon />&nbsp;{data.members}</div>
                 </div>
                 <div className="mt-[20px]">
                     <button className={`solarity-button font-medium py-[10px] rounded-[12px] mb-[15px] text-white w-[100%] text-[21px] sm:text-[18px] text-center tracking-wider  inline-flex items-center justify-center bg-primary hover:bg-lightprimary`}>

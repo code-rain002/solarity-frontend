@@ -19,8 +19,8 @@ const GamePanel = (props : GamePanelProps) => {
             <div className="py-[8px] px-[20px]">
                 <div className="text-[20px] text-[#F3F3F3] leading-[32px]">{props.title}</div>
                 <div className="flex items-center justify-between text-[#29B080] text-[14px]">
-                    <div>{props.likes}%</div>
-                    <div>{props.members}</div>
+                    <div className="flex flex-row items-center"><LikesIcon />&nbsp;{props.likes}%</div>
+                    <div className="flex flex-row items-center"><UsersIcon />&nbsp;{props.members}</div>
                 </div>
             </div>
         </div>
