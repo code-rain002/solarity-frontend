@@ -1,20 +1,44 @@
+import { SearchIcon } from "assets/svgs";
+import Image from "next/image";
 import React, {useState} from "react";
 
 const SearchGameBox = () => {
-    const [typing, setTyping] = useState(false)
+    const [typing, setTyping] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
+    const searchGames = (e) => {
+        const value = e.target.value;
+        if (value === '') {
+            setSearchValue('')
+            setTyping(false)
+        } else {
+            setTyping(true)
+            setSearchValue(value)
+        }
+    }
 
     return (
         <div className="flex h-full items-center
                         custom-2xl:mr-[20px] xl:mr-[10px] 
                         custom-2xl:w-[516px] xl:w-[516px]
                         relative">
-            <input type="search" placeholder="Search" className={`bg-globalBgColor  border-[1.2px] rounded-[15px] focus:border-primary
-                                                                px-[16px] py-[11px] text-[#929298] w-full ${typing ? 'border-primary' : 'border-[#272829]'}`} onChange={(e) => { e.target.value !== '' ? setTyping(true) : setTyping(false)}}/>
+            <input type="search" placeholder="Search" className={`bg-globalBgColor  border-[1.2px] rounded-[15px] focus:border-primary px-[16px] py-[11px] text-[#929298] w-full ${typing ? 'border-primary' : 'border-[#272829]'}`} onChange={(e) => searchGames(e)}/>
             <div className={`absolute right-[20px] ${typing ? 'hidden' : 'block'}`} >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 16C11.866 16 15 12.866 15 9C15 5.13401 11.866 2 8 2C4.13401 2 1 5.13401 1 9C1 12.866 4.13401 16 8 16Z" stroke="#474749" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M17 17L15 15" stroke="#474749" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <SearchIcon />
+            </div>
+            <div className={`absolute top-[85px] z-50 bg-[#131314] w-full rounded-[15px] shadow-[0_0_5px_1px_rgba(118,118,118,0.25)] overflow-hidden ${searchValue === '' ? 'hidden' : 'block'}`}>
+                <ul className="flex flex-col">
+                    {
+                        [0,1,2].map(index => (
+                            <li className={`flex flex-row items-center px-[18px] py-[20px] ${index !== 0 ? 'border-t-[1px] border-t-[#272829]' : ''}`} key={index}>
+                                <div className="w-[74px] h-[60px]">
+                                    <Image src="/images/library/temp/searched.png" height={60} width={74} layout="responsive" />
+                                </div>
+                                <div className="text-[18px] text-[#F3F3F3] font-medium ml-[25px]">Collects all pets!</div>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
         </div>
     )

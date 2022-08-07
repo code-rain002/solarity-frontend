@@ -14,36 +14,36 @@ const GameDetail = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <div className="flex flex-col w-full pl-[30px]">
+    <div className="flex flex-col w-full">
       <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center" onClick={() => router.push({ pathname: "/library" })}>
         <ArrowLeftIcon />
         <span className="ml-[10px]">Collect all pets!</span>
       </div>
       
       <div className={`relative mt-[15px]`}>
-        <div className="flex flex-row">
-            <div className="w-[25%]">
+        <div className="flex flex-col sm:flex-row">
+            <div className="w-full mx-auto xs:w-[75%] xl:w-[25%] lg:w-[30%] md:w-[35%] sm:w-[45%]">
                 <GameDetailPanel
                     data={GameDetailData}
                 />
             </div>
-            <div className="w-[75%]">
-                <div className="border-y-[1px] border-[#1D1F1F] pl-[50px]">
+            <div className="w-full xl:w-[75%] lg:w-[70%] md:w-[65%] sm:w-[55%]">
+                <div className="border-y-[1px] border-[#1D1F1F] pl-[50px] mt-[25px] sm:mt-0">
                     <ul className="flex flex-row text-[14px] py-[17.5px]">
-                        <li className={`${tabIndex === 0 ? 'text-[#29B080]' : "text-[#929298]"} w-[100px] cursor-pointer`} onClick={() => setTabIndex(0)}>About</li>
-                        <li className={`${tabIndex === 1 ? 'text-[#29B080]' : "text-[#929298]"} w-[100px] cursor-pointer`} onClick={() => setTabIndex(1)}>Store</li>
-                        <li className={`${tabIndex === 2 ? 'text-[#29B080]' : "text-[#929298]"} w-[100px] cursor-pointer`} onClick={() => setTabIndex(2)}>Server</li>
+                        <li className={`${tabIndex === 0 ? 'text-[#29B080]' : "text-[#929298]"} w-[100px]`}><span className="cursor-pointer" onClick={() => setTabIndex(0)}>About</span></li>
+                        <li className={`${tabIndex === 1 ? 'text-[#29B080]' : "text-[#929298]"} w-[100px]`}><span className="cursor-pointer" onClick={() => setTabIndex(1)}>Store</span></li>
+                        <li className={`${tabIndex === 2 ? 'text-[#29B080]' : "text-[#929298]"} w-[100px]`}><span className="cursor-pointer" onClick={() => setTabIndex(2)}>Server</span></li>
                     </ul>
                 </div>
                 {
                     tabIndex === 0 ?
                     <>
-                        <div className="flex flex-row">
-                            <div className="w-[75%] pl-[50px]">
+                        <div className="flex flex-col lg:flex-row">
+                            <div className="w-full lg:w-[75%] pl-[20px] lg:pl-[50px]">
                                 <div className="text-white font-bold py-[20px] text-[21px]">Description</div>
-                                <div className="text-[14px] text-[#B3B3B7] h-[500px] overflow-scroll pr-[10px]">
+                                <div className="text-[14px] text-[#B3B3B7] lg:h-[500px] overflow-scroll pr-[10px]">
                                     New awakening, new island, new boss raid, new weapon, and LOTS MORE! 
-<br />
+                                    <br />
                                     Welcome to Blox Fruits! Become a master swordsman or a powerful blox fruit user as you train to become the strongest player to ever live. You can choose to fight against tough enemies or have powerful boss battles while sailing across the ocean to find hidden secrets. 
                                     <br />
                                     Current level cap: 2300
@@ -80,7 +80,7 @@ const GameDetail = () => {
                                     - More info in the group description
                                 </div>
                             </div>
-                            <div className="w-[25%] pl-[35px]">
+                            <div className="w-full lg:w-[25%] pl-[20px] lg:pl-[35px]">
                                 <div className="text-white font-bold py-[20px] text-[21px]">Badges</div>
                                 {
                                     [0, 1, 2, 3].map(index => (
@@ -99,12 +99,12 @@ const GameDetail = () => {
                     </>
                     : tabIndex === 1 ?
                     <>
-                        <div className="pl-[50px]">
+                        <div className="sm:pl-[20px] lg:pl-[50px]">
                             <div className="text-white font-bold py-[20px] text-[21px]">Passes</div>
-                            <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-[32px] justify-items-center max-h-[500px] overflow-auto pr-[10px]">
+                            <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-[32px] justify-items-center lg:max-h-[500px] overflow-auto sm:pr-[10px]">
                                 {
                                     [0,1,2,3,4,5,6,7,8,9].map(index => (
-                                        <div className="bg-[#181818] px-[15px] py-[20px] rounded-[20px] w-[100%]">
+                                        <div className="bg-[#181818] px-[15px] py-[20px] rounded-[20px] w-[70%] sm:w-full">
                                             <div className="text-center mb-[15px]">
                                                 <Image src="/images/library/temp/stores.png" height={80} width={80} />
                                             </div>
@@ -122,9 +122,9 @@ const GameDetail = () => {
                         </div>
                     </>
                     : tabIndex === 2 ?
-                    <>
-                        <div className="text-white font-medium p-[20px]">There are currently no running experiences.</div>
-                    </>
+                    <div className="pl-[50px]">
+                        <div className="text-white font-medium py-[20px]">There are currently no running experiences.</div>
+                    </div>
                     : null
                 }
             </div>
