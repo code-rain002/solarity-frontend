@@ -19,3 +19,8 @@ export type ExploreRoomDataType = {
     collectionName : string,
     roomName : string,
 }
+
+export type PsuedoAvatarItemDataType = {
+    imgUrl : string,
+    title : string,
+}

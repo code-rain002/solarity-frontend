@@ -7,6 +7,7 @@ type ExperienceType = {
     sidebarToggler : boolean,
     roomSelect : any,
     activeRoom : any,
+    setActiveRoomId : any,
 }
 
 const Experience = (props : ExperienceType) => {
@@ -14,7 +15,7 @@ const Experience = (props : ExperienceType) => {
         <div className=" flex flex-col my-[39px] ">
             <CreateRoomButton />
             <div className=" flex flex-row justify-between ">
-                <LiveRoomSection activeRoom={props.activeRoom} roomSelect={props.roomSelect} />
+                <LiveRoomSection activeRoom={props.activeRoom} roomSelect={props.roomSelect} setActiveRoomId={props.setActiveRoomId} />
                 <ExploreSection />
             </div>
         </div>
