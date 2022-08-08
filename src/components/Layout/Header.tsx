@@ -22,12 +22,13 @@ const Header = () => {
 
     const innerWidth = window.innerWidth
     const innerHeight = window.innerHeight
-    console.log(innerWidth)
+    console.log(innerWidth * 85 / 100)
+    console.log(innerWidth * 85 * 9 / 100 / 16)
 
     const defaultStatus = {
-        width: '85vw',
-        height: '85vh',
-        x: innerWidth * (100 - 85) / 100 / 2,
+        width: innerHeight * 85 / 100 * 16 / 9,
+        height: innerHeight * 85 / 100,
+        x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
         y: innerHeight * (100 - 85) / 100 / 2
     };
     const [status, setStatus] = useState(defaultStatus);
@@ -118,21 +119,21 @@ const Header = () => {
                         onDragStop={(e, d) => { setStatus({ ...status, x: d.x, y: d.y }) }}
                         onResizeStop={(e, direction, ref, delta, position) => {
                             setStatus({
-                            width: ref.style.width,
-                            height: ref.style.height,
+                            width: Number(ref.style.width),
+                            height: Number(ref.style.height),
                             ...position,
                             });
                         }}
-                        lockAspectRatio={true}
-                        minHeight={'40vh'}
+                        lockAspectRatio={16/9}
+                        minHeight={'281'}
                         maxHeight={'90vh'}
-                        minWidth={'40vw'}
+                        minWidth={'500'}
                         maxWidth={'90vw'}
-                        dragHandleClassName={'handleDraggling'}
+                        dragHandleClassName={`${isIframe ? '' : 'handleDraggling'}`}
                         enableResizing={enabledResizing}
                         >
                         <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
-                            <div className='handleDraggling cursor-move absolute top-0 left-0 w-full h-[30px] z-[10000]'></div>
+                            <div className={`${isIframe ? 'h-full w-full' : 'handleDraggling h-[30px] w-[97%] m-auto'} absolute top-0 left-0 z-[10000] rounded-[50px] overflow-hidden cursor-move`}></div>
                             {
                                 isIframe ?
                                     <div className='w-full h-full overflow-hidden rounded-[25px]'>
