@@ -9,11 +9,9 @@ const ProfileGalleryContent = () => {
     let uName = asPath.replace(/\/profile$/, '')
     uName = uName.replace(/\//,'')
 
-    const content = GalleryAvatarData.map((i) => {
-        return (
+    const content = GalleryAvatarData.map((i) => 
             <GalleryAvatarPanel imageSrc={i.imageSrc} iconUrl={i.iconUrl} title={i.title} subtitle={i.subtitle} price={i.price} onClick={() => alert("your nft")} />
-        )
-    })
+     )
     
     return (
         <div className="my-8 gap-[32px]

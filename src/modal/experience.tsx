@@ -10,6 +10,7 @@ export type LiveRoomListDataType = {
     walletIcon : any,
     collectionName : string,
     roomName : string,
+    lgImgUrl : string,
 }
 
 export type ExploreRoomDataType = {
@@ -17,4 +18,9 @@ export type ExploreRoomDataType = {
     walletIcon : any,
     collectionName : string,
     roomName : string,
+}
+
+export type PsuedoAvatarItemDataType = {
+    imgUrl : string,
+    title : string,
 }
