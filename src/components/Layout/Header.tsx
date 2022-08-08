@@ -9,7 +9,7 @@ import LibraryLayout from 'components/LibraryLayout'
 import { CloseIcon } from 'components/icons'
 import Library from 'modules/Library'
 import GameDetail from 'modules/Library/GameDetail'
-import {Rnd} from 'react-rnd'
+import { Rnd } from 'react-rnd'
 
 const Header = () => {
 

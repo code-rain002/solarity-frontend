@@ -33,6 +33,7 @@
     "react-dropzone": "^14.2.1",
     "react-html-parser": "^2.0.2",
     "react-redux": "7.2.8",
+    "react-rnd": "^10.3.7",
     "react-router-dom": "^6.3.0",
     "react-toastify": "^9.0.5",
     "socket.io-client": "^4.5.1",
