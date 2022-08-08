@@ -9,9 +9,6 @@ import LibraryLayout from 'components/LibraryLayout'
 import { CloseIcon } from 'components/icons'
 import Library from 'modules/Library'
 import GameDetail from 'modules/Library/GameDetail'
-import DragResizeContainer from 'react-drag-resize';
-import Draggable from 'react-draggable';
-import { Resizable, ResizableBox  } from 'react-resizable';
 import {Rnd} from 'react-rnd'
 
 const Header = () => {
