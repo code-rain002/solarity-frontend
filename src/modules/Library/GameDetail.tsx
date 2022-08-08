@@ -10,13 +10,13 @@ import { ArrowLeftIcon } from "assets/svgs";
 
 
 const GameDetail = (props) => {
-    const { setPage } = props
+    const { setPage, setIframe } = props
 	const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <div className="flex flex-col w-full">
-      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center" onClick={() => setPage(0)}>
+      <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center w-fit" onClick={() => setPage(0)}>
         <ArrowLeftIcon />
         <span className="ml-[10px]">Collect all pets!</span>
       </div>
@@ -26,6 +26,7 @@ const GameDetail = (props) => {
             <div className="w-full mx-auto xs:w-[75%] xl:w-[25%] lg:w-[30%] md:w-[35%] sm:w-[45%]">
                 <GameDetailPanel
                     data={GameDetailData}
+                    onPlay={setIframe}
                 />
             </div>
             <div className="w-full xl:w-[75%] lg:w-[70%] md:w-[65%] sm:w-[55%]">
