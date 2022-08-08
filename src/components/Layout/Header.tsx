@@ -11,6 +11,8 @@ import Library from 'modules/Library'
 import GameDetail from 'modules/Library/GameDetail'
 import DragResizeContainer from 'react-drag-resize';
 import Draggable from 'react-draggable';
+import { Resizable, ResizableBox  } from 'react-resizable';
+import {Rnd} from 'react-rnd'
 
 const Header = () => {
 
@@ -19,7 +21,19 @@ const Header = () => {
     const [userInfoToggle, setUserInfoToggle] = useState(false)
     const [gameLibraryToggle, setGameLibraryToggle] = useState(false);
     const [gameLibraryPageFlag, setGameLibraryPageFlag] = useState(0);
-    const [isIframe, setIsIframe] = useState(false)
+    const [isIframe, setIsIframe] = useState(false);
+
+    const innerWidth = window.innerWidth
+    const innerHeight = window.innerHeight
+    console.log(innerWidth)
+
+    const defaultStatus = {
+        width: '85vw',
+        height: '85vh',
+        x: innerWidth * (100 - 85) / 100 / 2,
+        y: innerHeight * (100 - 85) / 100 / 2
+    };
+    const [status, setStatus] = useState(defaultStatus);
 
     const { asPath } = useRouter()
     const pathSegments = asPath.split("/")
@@ -34,6 +48,7 @@ const Header = () => {
     const onClose = () => {
         setGameLibraryToggle(false);
         setIsIframe(false);
+        setStatus(defaultStatus)
     }
 
     return (
@@ -63,7 +78,7 @@ const Header = () => {
             {
                 gameLibraryToggle ?
                 <div className='fixed left-0 top-0 right-0 bottom-0 bg-[rgba(12,12,14,0.7)] flex items-center justify-center z-[1001]'>
-                    <Draggable
+                    {/* <Draggable
                      handle=".handle"
                     >
                         <div className={`modal-content w-[85vw] h-[80vh] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
@@ -87,10 +102,52 @@ const Header = () => {
                                 <CloseIcon />
                             </div>
                         </div>
-                    </Draggable>
+                    </Draggable> */}
+                    
+                    <Rnd
+                        size={{ width: status.width,  height: status.height }}
+                        position={{ x: status.x, y: status.y }}
+                        onDragStop={(e, d) => { setStatus({ ...status, x: d.x, y: d.y }) }}
+                        onResizeStop={(e, direction, ref, delta, position) => {
+                            setStatus({
+                            width: ref.style.width,
+                            height: ref.style.height,
+                            ...position,
+                            });
+                        }}
+                        lockAspectRatio={true}
+                        minHeight={'60vh'}
+                        maxHeight={'90vh'}
+                        minWidth={'60vw'}
+                        maxWidth={'90vw'}
+                        dragHandleClassName={'handleDraggling'}
+                        >
+                        <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
+                            <div className='handleDraggling cursor-move absolute top-0 left-0 w-full h-[30px] z-[10000]'></div>
+                            {
+                                isIframe ?
+                                    <div className='w-full h-full overflow-hidden rounded-[25px]'>
+                                        <iframe frameborder="0" src="https://solarity-frontend.vercel.app/oraziogrinzosih/hub/" featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
+                                    </div>
+                                :
+                                <LibraryLayout>
+                                    {
+                                        gameLibraryPageFlag === 0 ?
+                                        <Library setPage={setGameLibraryPageFlag} />
+                                        :
+                                        <GameDetail setPage={setGameLibraryPageFlag} setIframe={setIsIframe} />
+                                    }
+                                </LibraryLayout>
+                            }
+                            <div className="absolute top-[-27px] right-[-20px] cursor-pointer" onClick={onClose}>
+                                <CloseIcon />
+                            </div>
+                        </div>
+                    </Rnd>
                 </div>
                 : null
             }
+            
         </>
     )
 }

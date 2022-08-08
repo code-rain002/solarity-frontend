@@ -71,6 +71,21 @@ export const GameLibraryData : GameLibraryDataType[] = [
         title: "Colloct all pets!",
         likes: 97,
         members : 231
+    }, {
+        image : "/images/library/temp/pets.png",
+        title: "Colloct all pets!",
+        likes: 97,
+        members : 231
+    }, {
+        image : "/images/library/temp/pets.png",
+        title: "Colloct all pets!",
+        likes: 97,
+        members : 231
+    }, {
+        image : "/images/library/temp/pets.png",
+        title: "Colloct all pets!",
+        likes: 97,
+        members : 231
     }, 
 ]
 
