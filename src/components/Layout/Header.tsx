@@ -54,7 +54,7 @@ const Header = () => {
             {
                 gameLibraryToggle ?
                 <div className='fixed left-0 top-0 right-0 bottom-0 bg-[rgba(12,12,14,0.7)] flex items-center justify-center z-[1001]'>
-                    <div className="modal-content w-[85vw] h-[80vh] flex flex-col relative p-[15px] bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] select-none">
+                    <div className="modal-content w-[85vw] h-[80vh] flex flex-col relative p-[10px] bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] select-none">
                         <LibraryLayout>
                             {
                                 gameLibraryPageFlag === 0 ?
