@@ -133,7 +133,7 @@ const Header = () => {
                         enableResizing={enabledResizing}
                         >
                         <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
-                            <div className={`${isIframe ? 'h-full w-full' : 'handleDraggling h-[30px] w-[95%] m-auto right-0'} absolute top-0 left-0 z-[10000] rounded-[50px] overflow-hidden cursor-move`}></div>
+                            <div className={`${isIframe ? '' : 'handleDraggling'} m-auto right-0 h-[30px] w-[95%] absolute top-0 left-0 z-[10000] rounded-[50px] overflow-hidden cursor-move`}></div>
                             {
                                 isIframe ?
                                     <div className='w-full h-full overflow-hidden rounded-[25px]'>
