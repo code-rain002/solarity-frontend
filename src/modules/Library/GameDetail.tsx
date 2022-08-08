@@ -40,9 +40,9 @@ const GameDetail = (props) => {
                     tabIndex === 0 ?
                     <>
                         <div className="flex flex-col lg:flex-row">
-                            <div className="w-full lg:w-[75%] pl-[20px] lg:pl-[50px]">
+                            <div className="w-full lg:w-[65%] pl-[20px] lg:pl-[50px]">
                                 <div className="text-white font-bold py-[20px] text-[21px]">Description</div>
-                                <div className="text-[14px] text-[#B3B3B7] lg:h-[400px] overflow-scroll pr-[10px]">
+                                <div className="text-[16px] text-[#B3B3B7] lg:h-[400px] overflow-scroll pr-[10px]">
                                     New awakening, new island, new boss raid, new weapon, and LOTS MORE! 
                                     <br />
                                     Welcome to Blox Fruits! Become a master swordsman or a powerful blox fruit user as you train to become the strongest player to ever live. You can choose to fight against tough enemies or have powerful boss battles while sailing across the ocean to find hidden secrets. 
@@ -58,30 +58,9 @@ const GameDetail = (props) => {
                                     New awakening, new island, new boss raid, new weapon, and LOTS MORE! 
                                     <br />
                                     Welcome to Blox Fruits! Become a master swordsman or a powerful blox fruit user as you train to become the strongest player to ever live. You can choose to fight against tough enemies or have powerful boss battles while sailing across the ocean to find hidden secrets. 
-                                    <br />
-                                    Current level cap: 2300
-                                    Current fruits in the game:
-                                    Bomb, Spike, Chop, Spring, Kilo, Smoke, Spin, Flame, Falcon, Ice, Sand, Dark, Revive, Diamond, Light, Love, Magma, Door, Rubber, Quake, Human Buddha, Barrier, String, Bird Phoenix, Rumble, Paw, Gravity, Dough, Shadow, Venom, Control, Soul, and Dragon.
-                                    <br />
-                                    FAQ:
-                                    - Fruits spawn in the map every hour / despawn after 20. 
-                                    - You can buy fruits from the Blox Fruits Dealer. He restocks random fruits every 4 hours 
-                                    - More info in the group description
-                                    New awakening, new island, new boss raid, new weapon, and LOTS MORE! 
-                                    <br />
-                                    Welcome to Blox Fruits! Become a master swordsman or a powerful blox fruit user as you train to become the strongest player to ever live. You can choose to fight against tough enemies or have powerful boss battles while sailing across the ocean to find hidden secrets. 
-                                    <br />
-                                    Current level cap: 2300
-                                    Current fruits in the game:
-                                    Bomb, Spike, Chop, Spring, Kilo, Smoke, Spin, Flame, Falcon, Ice, Sand, Dark, Revive, Diamond, Light, Love, Magma, Door, Rubber, Quake, Human Buddha, Barrier, String, Bird Phoenix, Rumble, Paw, Gravity, Dough, Shadow, Venom, Control, Soul, and Dragon.
-                                    <br />
-                                    FAQ:
-                                    - Fruits spawn in the map every hour / despawn after 20. 
-                                    - You can buy fruits from the Blox Fruits Dealer. He restocks random fruits every 4 hours 
-                                    - More info in the group description
                                 </div>
                             </div>
-                            <div className="w-full lg:w-[25%] pl-[20px] lg:pl-[35px]">
+                            <div className="w-full lg:w-[35%] pl-[20px] lg:pl-[35px]">
                                 <div className="text-white font-bold py-[20px] text-[21px]">Badges</div>
                                 {
                                     [0, 1, 2, 3].map(index => (
