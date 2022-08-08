@@ -31,6 +31,16 @@ const Header = () => {
         y: innerHeight * (100 - 85) / 100 / 2
     };
     const [status, setStatus] = useState(defaultStatus);
+    const enabledResizing = {
+        bottom: false,
+        bottomLeft: true,
+        bottomRight: true,
+        left: false,
+        right: false,
+        top: false,
+        topLeft: true,
+        topRight: true,
+    }
 
     const { asPath } = useRouter()
     const pathSegments = asPath.split("/")
@@ -102,6 +112,7 @@ const Header = () => {
                     </Draggable> */}
                     
                     <Rnd
+                        className='transition-none'
                         size={{ width: status.width,  height: status.height }}
                         position={{ x: status.x, y: status.y }}
                         onDragStop={(e, d) => { setStatus({ ...status, x: d.x, y: d.y }) }}
@@ -113,11 +124,12 @@ const Header = () => {
                             });
                         }}
                         lockAspectRatio={true}
-                        minHeight={'60vh'}
+                        minHeight={'40vh'}
                         maxHeight={'90vh'}
-                        minWidth={'60vw'}
+                        minWidth={'40vw'}
                         maxWidth={'90vw'}
                         dragHandleClassName={'handleDraggling'}
+                        enableResizing={enabledResizing}
                         >
                         <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
                             <div className='handleDraggling cursor-move absolute top-0 left-0 w-full h-[30px] z-[10000]'></div>
