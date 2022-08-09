@@ -8,7 +8,7 @@ const GameDetailPanel = (props) => {
     return (
         <div className="flex flex-col relative overflow-hidden
                         w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]">
-            <div className="w-full h-[80%]"><img src={data.image} style={{ width: "100%", height: "280px" }} /></div>
+            <div className="w-full"><Image src={data.image} width="100%" height="100%" layout="responsive" /></div>
             <div className="py-[10px] px-[20px]">
                 <div className="text-[24px] text-[#F3F3F3] leading-[36px]">{data.title}</div>
                 <div className="flex flex-row justify-between items-center text-[#929298] text-[16px] mb-[20px]">

@@ -18,7 +18,7 @@ const GameDetail = (props) => {
     <div className="flex flex-col w-full">
       <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center w-fit" onClick={() => setPage(0)}>
         <ArrowLeftIcon />
-        <span className="ml-[10px]">Collect all pets!</span>
+        <span className="ml-[10px]">Tired Turtles</span>
       </div>
       
       <div className={`relative mt-[15px]`}>
@@ -62,7 +62,7 @@ const GameDetail = (props) => {
                                 </div>
                             </div>
                             <div className="w-full lg:w-[35%] pl-[20px] lg:pl-[35px]">
-                                <div className="text-white font-bold py-[20px] text-[21px]">Badges</div>
+                                <div className="text-white font-bold py-[20px] text-[21px]">Quests</div>
                                 {
                                     [0, 1, 2, 3].map(index => (
                                         <div className="flex flex-row">
