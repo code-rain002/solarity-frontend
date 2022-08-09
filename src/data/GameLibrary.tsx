@@ -7,7 +7,7 @@ export const GameLibraryData : GameLibraryDataType[] = [
         likes: 97,
         members : 231
     }, {
-        image : "/images/library/temp/pets.png",
+        image : "/images/experience/experience_banner.jpg",
         title: "Colloct all pets!",
         likes: 97,
         members : 231
@@ -90,7 +90,7 @@ export const GameLibraryData : GameLibraryDataType[] = [
 ]
 
 export const GameDetailData : GameDetailDataType = {
-    image : "/images/library/temp/pets.png",
+    image : "/images/experience/experience_banner.jpg",
     title: "Colloct all pets!",
     likes: 97,
     members : 231,
