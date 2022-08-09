@@ -19,6 +19,7 @@ const Header = () => {
     const [gameLibraryToggle, setGameLibraryToggle] = useState(false);
     const [gameLibraryPageFlag, setGameLibraryPageFlag] = useState(0);
     const [isIframe, setIsIframe] = useState(false);
+    const [selectedGame, setSelectedGame] = useState(null);
 
     const innerWidth = window.innerWidth
     const innerHeight = window.innerHeight
@@ -143,9 +144,9 @@ const Header = () => {
                                 <LibraryLayout>
                                     {
                                         gameLibraryPageFlag === 0 ?
-                                        <Library setPage={setGameLibraryPageFlag} />
+                                        <Library setPage={setGameLibraryPageFlag} selectGame={setSelectedGame} />
                                         :
-                                        <GameDetail setPage={setGameLibraryPageFlag} setIframe={setIsIframe} />
+                                        <GameDetail setPage={setGameLibraryPageFlag} setIframe={setIsIframe} selectedGame={selectedGame} />
                                     }
                                 </LibraryLayout>
                             }

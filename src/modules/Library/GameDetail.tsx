@@ -5,12 +5,11 @@ import Image from 'next/image';
 import { LeftArrow, RightArrow } from "components/icons";
 import { LibraryMenu } from "data/LibraryMenu";
 import GameDetailPanel from "components/Common/Panels/GameDetailPanel";
-import { GameDetailData } from "data/GameLibrary";
 import { ArrowLeftIcon } from "assets/svgs";
 
 
 const GameDetail = (props) => {
-    const { setPage, setIframe } = props
+    const { setPage, setIframe, selectedGame } = props
 	const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -25,7 +24,7 @@ const GameDetail = (props) => {
         <div className="flex flex-col sm:flex-row">
             <div className="w-full mx-auto xs:w-[75%] xl:w-[25%] lg:w-[30%] md:w-[35%] sm:w-[45%]">
                 <GameDetailPanel
-                    data={GameDetailData}
+                    data={selectedGame}
                     onPlay={setIframe}
                 />
             </div>
