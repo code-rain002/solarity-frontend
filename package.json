@@ -34,6 +34,7 @@
     "react-html-parser": "^2.0.2",
     "react-redux": "7.2.8",
     "react-router-dom": "^6.3.0",
+    "react-textarea-autosize": "^8.3.4",
     "react-toastify": "^9.0.5",
     "socket.io-client": "^4.5.1",
     "web3": "^3.0.0-rc.5",
