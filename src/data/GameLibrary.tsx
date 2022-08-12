@@ -6,192 +6,9 @@ export const GameLibraryData : GameLibraryDataType[] = [
         title: "Mini Royale",
         likes: 97,
         members : 231,
-        owner: "@TwoZoos",
+        owner: "@MiniRoyale",
         category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/experience/experience_banner.jpg",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/somnium.webp",
-        title: "Somnium",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/ev.io.webp",
-        title: "Ev.Io",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
+        iframe: "https://miniroyale.io/",
         description: "Description",
         twitter: "https://twitter.com",
         discord: "https://discord.com",
@@ -250,9 +67,9 @@ export const GameLibraryData : GameLibraryDataType[] = [
         title: "Aurory",
         likes: 97,
         members : 231,
-        owner: "@TwoZoos",
+        owner: "@Aurory",
         category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
+        iframe: "https://app.aurory.io/",
         description: "Description",
         twitter: "https://twitter.com",
         discord: "https://discord.com",
@@ -307,8 +124,313 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/panzer.png",
-        title: "PanzerDogs",
+        image : "/images/library/temp/somnium.webp",
+        title: "Somnium",
+        likes: 97,
+        members : 231,
+        owner: "@Somnium",
+        category: "P2E",
+        iframe: "https://somniumspace.com/parcel/",
+        description: "Description",
+        twitter: "https://twitter.com",
+        discord: "https://discord.com",
+        website: "https://solarity.xyz",
+        quests: [
+            {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }
+        ],
+        stores: [
+            {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            },
+        ]
+    }, {
+        image : "/images/library/temp/tetris.png",
+        title: "Tetris",
+        likes: 97,
+        members : 231,
+        owner: "@Tetris",
+        category: "P2E",
+        iframe: "https://tetr.io/",
+        description: "Description",
+        twitter: "https://twitter.com",
+        discord: "https://discord.com",
+        website: "https://solarity.xyz",
+        quests: [
+            {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }
+        ],
+        stores: [
+            {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            },
+        ]
+    }, {
+        image : "/images/library/temp/webaverse.jpeg",
+        title: "Webaverse",
+        likes: 97,
+        members : 231,
+        owner: "@MMMORG",
+        category: "P2E",
+        iframe: "https://app.webaverse.com/",
+        description: "Description",
+        twitter: "https://twitter.com",
+        discord: "https://discord.com",
+        website: "https://solarity.xyz",
+        quests: [
+            {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }
+        ],
+        stores: [
+            {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            },
+        ]
+    }, {
+        image : "/images/library/temp/oncyber.png",
+        title: "OnCyber.io",
+        likes: 97,
+        members : 231,
+        owner: "@PanzerDogs",
+        category: "P2E",
+        iframe: "https://oncyber.io/6529om",
+        description: "Description",
+        twitter: "https://twitter.com",
+        discord: "https://discord.com",
+        website: "https://solarity.xyz",
+        quests: [
+            {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }
+        ],
+        stores: [
+            {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            },
+        ]
+    }, {
+        image : "/images/library/temp/portals.jpeg",
+        title: "Portals",
+        likes: 97,
+        members : 231,
+        owner: "@Portals",
+        category: "P2E",
+        iframe: "https://theportal.to/demo",
+        description: "Description",
+        twitter: "https://twitter.com",
+        discord: "https://discord.com",
+        website: "https://solarity.xyz",
+        quests: [
+            {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }, {
+                title: "Second Sea",
+                description: "You've unlocked the Second Sea!",
+                image: "/images/library/temp/badges.png",
+                rarity: 0.6
+            }
+        ],
+        stores: [
+            {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            }, {
+                title: "2x Money",
+                image: "/images/library/temp/stores.png",
+                price: 450,
+            },
+        ]
+    }, {
+        image : "/images/library/temp/plaza.png",
+        title: "Solarity Plaza",
         likes: 97,
         members : 231,
         owner: "@TwoZoos",
@@ -368,11 +490,11 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/pets.png",
-        title: "Rugged Revenant",
+        image : "/images/library/temp/poker.jpg",
+        title: "Poker Night",
         likes: 97,
         members : 231,
-        owner: "@TwoZoos",
+        owner: "@888",
         category: "P2E",
         iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
         description: "Description",
@@ -429,562 +551,13 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/pets.png",
-        title: "Catchking Explorer",
+        image : "/images/library/temp/minecraft.webp",
+        title: "Minecraft",
         likes: 97,
         members : 231,
-        owner: "@TwoZoos",
+        owner: "@Mojanc",
         category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
-        quests: [
-            {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }, {
-                title: "Second Sea",
-                description: "You've unlocked the Second Sea!",
-                image: "/images/library/temp/badges.png",
-                rarity: 0.6
-            }
-        ],
-        stores: [
-            {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            }, {
-                title: "2x Money",
-                image: "/images/library/temp/stores.png",
-                price: 450,
-            },
-        ]
-    }, {
-        image : "/images/library/temp/pets.png",
-        title: "Colloct all pets!",
-        likes: 97,
-        members : 231,
-        owner: "@TwoZoos",
-        category: "P2E",
-        iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
+        iframe: "https://classic.minecraft.net/?join=Aklaj1y66iD8xJvx",
         description: "Description",
         twitter: "https://twitter.com",
         discord: "https://discord.com",
