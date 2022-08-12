@@ -5,15 +5,20 @@ export type GameLibraryDataType = {
     members : number,
     owner: string,
     category: string,
-    description?: string,
-    badges?: [{
+    iframe: string,
+    description: string,
+    twitter?: string,
+    discord?: string,
+    website?: string,
+    quests?: Array<{
         title: string,
         description: string,
         image: string,
-        rarity: Float32Array
-    }],
-    stores?: [{
+        rarity: number
+    }>,
+    stores?: Array<{
+        title: string,
         image: string,
         price: number,
-    }],
+    }>,
 }

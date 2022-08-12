@@ -23,8 +23,6 @@ const Header = () => {
 
     const innerWidth = window.innerWidth
     const innerHeight = window.innerHeight
-    console.log(innerWidth * 85 / 100)
-    console.log(innerWidth * 85 * 9 / 100 / 16)
 
     const defaultStatus = {
         width: innerHeight * 85 / 100 * 16 / 9,
@@ -138,7 +136,7 @@ const Header = () => {
                             {
                                 isIframe ?
                                     <div className='w-full h-full overflow-hidden rounded-[25px]'>
-                                        <iframe frameborder="0" src="https://solarity-frontend.vercel.app/oraziogrinzosih/hub/" featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
+                                        <iframe frameborder="0" src={selectedGame.iframe} featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
                                     </div>
                                 :
                                 <LibraryLayout>
