@@ -18,6 +18,7 @@ const LiveEventPanel = (props) => {
                                 <div className={`flex flex-row ${index !== 0 ? 'ml-[-10px]' : '' }`} key={index}><Image src={user.avatar} height={25} width={25} /></div>
                             ))
                         }
+                        <div className="text-white bg-[#1F1F20] h-[25px] w-[27px] rounded-[10px] flex flex-row justify-center items-center">{ data.users.length - 3 }+</div>
                     </div>
                     <div className="flex flex-row items-center"><TimerIcon />&nbsp;{ "50 min" }</div>
                 </div>
