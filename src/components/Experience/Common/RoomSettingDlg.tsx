@@ -18,23 +18,27 @@ const RoomSettingDlg = (props : RoomSettingDlgType) => {
 
     const [activeAvatar, setActiveAvatar] = useState(0)
     const [activeAvatarImg, setActiveAvatarImg] = useState(PsuedoAvatarItemData[0].imgUrl)
-    // const imgUrl = LiveRoomListData[props.activeRoomId].lgImgUrl
     const router = useRouter()
+    const [uName, setUName] = useState("")
 
     let j = -1
     
     const toLoadingScr = () => {
-        // props.setRoomSettingDlgToggle()
-        router.push('/experience/')
-        
+        uName === "" ? alert(props.roomSettingDlgToggle[1] === "join" || props.roomSettingDlgToggle[1] === "setting_member" ? "Your nickname, please." : props.roomSettingDlgToggle[1] === "create" || props.roomSettingDlgToggle[1] === "setting" ? "Room title, please" : "") : router.push('/experience/' + props.activeRoomId)
+    }
+
+    const closeDlg = (e) => {
+        if ( e.target.id == "room_setting_dlg"){
+            props.setRoomSettingDlgToggle()
+        }
     }
     
     return (
         <div className={` flex justify-center items-center top-[0px] left-[0px] right-[0px] bottom-[0px]
                         backdrop-blur-[20px] bg-[rgba(12,12,14,0.7)]
-                        z-[1002] ${props.roomSettingDlgToggle[0] === true ? "fixed" : "hidden"} `}>
+                        z-[1002] ${props.roomSettingDlgToggle[0] === true ? "fixed" : "hidden"} `} id="room_setting_dlg" onClick={(e) => closeDlg(e)}>
             <div className=" fixed w-[426px] h-[875px] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px]
-                            flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] ">
+                            flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] overscroll-contain">
                 <div className=" absolute right-[-18px] top-[-18px] cursor-pointer " onClick={props.setRoomSettingDlgToggle}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.9564 11.866L8.09082 7.00022L12.9565 2.13448C13.2581 1.83285 13.2581 1.34522 12.9565 1.04359C12.6548 0.741963 12.1672 0.741963 11.8656 1.04359L6.99995 5.90933L2.13428 1.04359C1.83265 0.741963 1.34503 0.741963 1.04341 1.04359C0.741781 1.34522 0.741781 1.83285 1.04341 2.13448L5.90905 7.00022L1.04341 11.866C0.741781 12.1676 0.741781 12.6552 1.04341 12.9568C1.19383 13.1073 1.3914 13.1829 1.58884 13.1829C1.78629 13.1829 1.98386 13.1072 2.13428 12.9568L2.09892 12.9215L2.13428 12.9568L6.99993 8.09111L11.8656 12.9568C12.016 13.1073 12.2136 13.1829 12.411 13.1829C12.6085 13.1829 12.806 13.1072 12.9564 12.9568L12.9211 12.9215L12.9564 12.9568C13.2581 12.6552 13.2581 12.1676 12.9564 11.866Z" fill="#5F5F63" stroke="#5F5F63" stroke-width="0.1"/>
@@ -76,7 +80,7 @@ const RoomSettingDlg = (props : RoomSettingDlgType) => {
 
                     <div className="flex w-[100%] justify-center items-center">
                             <input type="text" className="w-full bg-transparent font-400 text-[#f3f3f3] text-[16px] px-[16px]
-                                                    border-r-[1.5px] border-r-[#272829] box-border"  />
+                                                    border-r-[1.5px] border-r-[#272829] box-border" value={uName} onChange={(e) => setUName(e.target.value)} />
                     </div>
                 </div>
 
@@ -106,7 +110,7 @@ const RoomSettingDlg = (props : RoomSettingDlgType) => {
 
                 <div className="relative">
                     <div className=" grid grid-cols-2 gap-[24px] h-[254px] overflow-y-scroll overflow-x-visible pr-[10px]
-                                    pb-[30px] ">
+                                    pb-[30px] overscroll-contain">
                         {
                             PsuedoAvatarItemData.map((i) => {
                                 j++
@@ -119,7 +123,8 @@ const RoomSettingDlg = (props : RoomSettingDlgType) => {
                 </div>
                 
                 <div className=" mt-[24px]  ">
-                    <PrimaryButton caption="Join the room" bordered={false} onClick={() => {toLoadingScr()}} disabled={false} styles="pt-[12px] pb-[16px] h-fit rounded-[15px]" /> 
+                    <PrimaryButton caption={props.roomSettingDlgToggle[1] === "create" ? "Create your room" : props.roomSettingDlgToggle[1] === "join" ? "Join the room" : props.roomSettingDlgToggle[1] === "setting" || props.roomSettingDlgToggle[1] === "setting_member" ? "Save changes" : "" }
+                                    bordered={false} onClick={() => {toLoadingScr()}} disabled={false} styles="pt-[12px] pb-[16px] h-fit rounded-[15px]" /> 
                 </div>
 
 

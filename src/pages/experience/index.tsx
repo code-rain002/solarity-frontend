@@ -19,7 +19,8 @@ const ProfileIndex = () => {
             onClick={() => setSidebarToggler(!sidebarToggler)}
         >
             <Experience sidebarToggler={sidebarToggler} activeRoom={activeRoom} roomSelect={(arg) => setActiveRoom(arg)} 
-                        setActiveRoomId={(i) => setActiveRoomId(i)} />
+                        setActiveRoomId={(i) => setActiveRoomId(i)}
+                        activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])} />
             <RoomSettingDlg activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([false, "join"])} />
         </Layout>
     )

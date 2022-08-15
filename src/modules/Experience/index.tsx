@@ -8,12 +8,15 @@ type ExperienceType = {
     roomSelect : any,
     activeRoom : any,
     setActiveRoomId : any,
+    activeRoomId : number,
+    roomSettingDlgToggle : any,
+    setRoomSettingDlgToggle : any,
 }
 
 const Experience = (props : ExperienceType) => {
     return (
         <div className=" flex flex-col my-[39px] ">
-            <CreateRoomButton />
+            <CreateRoomButton onClick={props.setRoomSettingDlgToggle} />
             <div className=" flex flex-row justify-between ">
                 <LiveRoomSection activeRoom={props.activeRoom} roomSelect={props.roomSelect} setActiveRoomId={props.setActiveRoomId} />
                 <ExploreSection />

@@ -9,7 +9,8 @@ type LiveRoomSectionType = {
 const LiveRoomSection = (props : LiveRoomSectionType) => {
     return (
         <div className=" flex flex-col w-[379px] ">
-            <LiveRoomList activeRoom={props.activeRoom} roomSelect={props.roomSelect} setActiveRoomId={props.setActiveRoomId} />
+            <LiveRoomList activeRoom={props.activeRoom} roomSelect={props.roomSelect} setActiveRoomId={props.setActiveRoomId}
+                             />
         </div>
     )
 }

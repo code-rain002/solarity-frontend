@@ -24,3 +24,10 @@ export type PsuedoAvatarItemDataType = {
     imgUrl : string,
     title : string,
 }
+
+export type ChattingBoxDataType = {
+    imgUrl : string,
+    uName : string,
+    before : string,
+    text : string,
+}
