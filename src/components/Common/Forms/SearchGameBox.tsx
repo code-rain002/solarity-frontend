@@ -26,7 +26,7 @@ const SearchGameBox = () => {
             <div className={`absolute right-[20px] ${typing ? 'hidden' : 'block'}`} >
                 <SearchIcon />
             </div>
-            <div className={`absolute top-[85px] z-50 bg-[#131314] w-full rounded-[15px] shadow-[0_0_5px_1px_rgba(118,118,118,0.25)] overflow-hidden ${searchValue === '' ? 'hidden' : 'block'}`}>
+            <div className={`absolute top-[70px] z-50 bg-[#131314] w-full rounded-[15px] shadow-[0_1px_16px_1px_#29B080] overflow-hidden ${searchValue === '' ? 'hidden' : 'block'}`}>
                 <ul className="flex flex-col">
                     {
                         [0,1,2].map(index => (
