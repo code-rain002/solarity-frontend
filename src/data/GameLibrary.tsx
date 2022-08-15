@@ -3,7 +3,7 @@ import { GameLibraryDataType, LiveEventsDataType } from "modal/library";
 export const LiveEventsData : LiveEventsDataType[] = [
     {
         image: "/images/library/temp/shareholders_meeting.png",
-        title: "Shareholders' meeting",
+        title: "Shareholders",
         users: [
             {
                 avatar: "/images/library/temp/users/user1.png",
