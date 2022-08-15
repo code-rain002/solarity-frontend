@@ -7,7 +7,7 @@ const LiveEventPanel = (props) => {
 
     return (
         <div className="flex flex-col relative overflow-hidden cursor-pointer
-                        w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]" onClick={onClick}>
+                        w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]" onClick={() => {}}>
             <div className="w-full"><Image src={data.image} width="100%" height="70%" layout="responsive" /></div>
             <div className="py-[8px] px-[20px] h-full flex flex-col justify-between">
                 <div className="text-[20px] text-[#F3F3F3] leading-[32px]">{data.title}</div>
