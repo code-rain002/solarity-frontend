@@ -6,7 +6,7 @@ type TypingNotification = {
 
 const TypingNotification = (props: TypingNotification) => {
   return (
-    <div className=" absolute px-[26px] bottom-[0px] font-['Outfit'] font-[400] text-[12px] text-[#929298] ">
+    <div className=" absolute px-[26px] bottom-[0px] font-['Outfit'] font-[400] text-[12px] text-[#929298] " onDragStart={(e) => e.preventDefault()}>
       {props.who.length === 0 ? (
         ""
       ) : props.who.length === 1 ? (

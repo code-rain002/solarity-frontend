@@ -5,6 +5,7 @@ import TypingNotification from "./TypingNotification";
 
 type ChattingThreadBoxType = {
   yourMsg: string;
+  setReplyMsg : any;
 };
 
 const ChattingThreadBox = (props: ChattingThreadBoxType) => {
@@ -21,6 +22,7 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
               uName={i.uName}
               text={i.text}
               before={i.before}
+              setReplyMsg={props.setReplyMsg}
             />
           );
         })}
@@ -32,7 +34,8 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
             uName="You"
             text={props.yourMsg}
             before="1m"
-          />
+            setReplyMsg={props.setReplyMsg}
+            />
         )}
       </div>
       <div className=" absolute bottom-[0px] right-[0px] h-[30px] w-full bg-gradient-to-t from-[#131314] via-[#131314] to-transparent"></div>
