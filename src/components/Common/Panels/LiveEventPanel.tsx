@@ -1,4 +1,5 @@
 import { LikesIcon, TimerIcon, UsersIcon } from "assets/svgs"
+import moment from "moment";
 import Image from "next/image"
 
 const LiveEventPanel = (props) => {
@@ -18,7 +19,7 @@ const LiveEventPanel = (props) => {
                             ))
                         }
                     </div>
-                    <div className="flex flex-row items-center"><TimerIcon />&nbsp;50 min</div>
+                    <div className="flex flex-row items-center"><TimerIcon />&nbsp;{ "50 min" }</div>
                 </div>
             </div>
         </div>
