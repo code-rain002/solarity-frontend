@@ -22,3 +22,13 @@ export type GameLibraryDataType = {
         price: number,
     }>,
 }
+
+export type LiveEventsDataType = {
+    image: string,
+    title: string,
+    users: Array<{
+        avatar: string,
+        name: string
+    }>,
+    createAt: string
+}

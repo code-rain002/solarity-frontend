@@ -1,4 +1,52 @@
-import { GameLibraryDataType } from "modal/library"
+import { GameLibraryDataType, LiveEventsDataType } from "modal/library";
+
+export const LiveEventsData : LiveEventsDataType[] = [
+    {
+        image: "/images/library/temp/shareholders_meeting.png",
+        title: "Shareholders' meeting",
+        users: [
+            {
+                avatar: "/images/library/temp/users/user1.png",
+                name: "Meta",
+            }, {
+                avatar: "/images/library/temp/users/user2.png",
+                name: "Rocco",
+            }, {
+                avatar: "/images/library/temp/users/user3.png",
+                name: "Beka",
+            }, {
+                avatar: "/images/library/temp/users/user4.png",
+                name: "Supa",
+            }, {
+                avatar: "/images/library/temp/users/user5.png",
+                name: "Bella",
+            }, 
+        ],
+        createAt: "2022.08.14 18:42:00"
+    }, {
+        image: "/images/library/temp/artist_auction.png",
+        title: "Artist auction",
+        users: [
+            {
+                avatar: "/images/library/temp/users/user1.png",
+                name: "Meta",
+            }, {
+                avatar: "/images/library/temp/users/user2.png",
+                name: "Rocco",
+            }, {
+                avatar: "/images/library/temp/users/user3.png",
+                name: "Beka",
+            }, {
+                avatar: "/images/library/temp/users/user4.png",
+                name: "Supa",
+            }, {
+                avatar: "/images/library/temp/users/user5.png",
+                name: "Bella",
+            }, 
+        ],
+        createAt: "2022.08.14 18:42:00"
+    }, 
+]
 
 export const GameLibraryData : GameLibraryDataType[] = [
     {
