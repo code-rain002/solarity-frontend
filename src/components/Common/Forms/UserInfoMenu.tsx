@@ -26,7 +26,7 @@ const UserInfoMenu = (props) => {
               </a>
             </Link>
             <div className="group relative ml-[14px] py-[15px] text-[#929298] text-[14px] font-500 cursor-pointer flex items-center" onMouseEnter={props.onEnter} onMouseLeave={props.onLeave}>
-                Konstantin1982.sol
+                tmeta.verse
                 <div className="ml-[8px]">
                   {props.openState ? <UpArrow /> : <DownArrow />}
                 </div>

@@ -16,10 +16,37 @@ export const LibraryMenu = [
 
 export const LiveEventsData : LiveEventsDataType[] = [
     {
-        image: "/images/library/temp/shareholders_meeting.png",
-        title: "Shareholders",
+        image: "/images/library/temp/plaza.png",
+        title: "Solarity Hall",
         creator: {
-            avatar: "/images/library/temp/users/creator1.png",
+            avatar: "/images/library/temp/users/user1.png",
+            name: "tmeta"
+        },
+        friends: [
+            {
+                avatar: "/images/library/temp/users/user1.png",
+                name: "Meta",
+            }, {
+                avatar: "/images/library/temp/users/user2.png",
+                name: "Rocco",
+            }, {
+                avatar: "/images/library/temp/users/user3.png",
+                name: "Beka",
+            }, {
+                avatar: "/images/library/temp/users/user4.png",
+                name: "Supa",
+            }, {
+                avatar: "/images/library/temp/users/user5.png",
+                name: "Bella",
+            }, 
+        ],
+        createAt: "2022.08.14 18:42:00"
+    }, 
+    {
+        image: "/images/library/temp/poker.jpg",
+        title: "Poker Night",
+        creator: {
+            avatar: "/images/library/temp/users/creator2.png",
             name: "monke DAO"
         },
         friends: [
@@ -42,10 +69,10 @@ export const LiveEventsData : LiveEventsDataType[] = [
         ],
         createAt: "2022.08.14 18:42:00"
     }, {
-        image: "/images/library/temp/artist_auction.png",
-        title: "Artist auction",
+        image: "/images/library/temp/bepple.jpeg",
+        title: "New Auction",
         creator: {
-            avatar: "/images/library/temp/users/creator2.png",
+            avatar: "/images/library/temp/users/creator1.png",
             name: "Beeple"
         },
         friends: [
