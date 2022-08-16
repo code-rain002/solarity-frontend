@@ -14,7 +14,8 @@ export type GameLibraryDataType = {
         title: string,
         description: string,
         image: string,
-        rarity: number
+        rarity: number,
+        price: number
     }>,
     stores?: Array<{
         title: string,
