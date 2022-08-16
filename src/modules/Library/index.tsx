@@ -16,7 +16,8 @@ const Library = (props) => {
     document.querySelector(".library-tab").scrollLeft -= 80;
   };
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const [eventTabIndex, setEventTabIndex] = useState(0);
+  const [gameTabIndex, setGameTabIndex] = useState(0);
   const [activeLibraryMenu, setActiveLibraryMenu] = useState("Up and Coming");
   const [activeEventsMenu, setActiveEventsMenu] = useState("Your DAOs");
 
@@ -24,6 +25,11 @@ const Library = (props) => {
     setPage(1);
     selectGame(data);
   };
+
+  const onClickEventMenu = (index, item) => {
+    setActiveEventsMenu(item);
+    setEventTabIndex(index)
+  }
 
   return (
     <div className="flex flex-col w-full px-[30px]">
@@ -40,7 +46,7 @@ const Library = (props) => {
                         } h-full cursor-pointer hover:text-[#29B080] select-none ${
                 index === 0 ? "pl-0" : ""
               }`}
-              onClick={() => setActiveEventsMenu(item)}
+              onClick={() => onClickEventMenu(index, item)}
             >
               <nobr>{item}</nobr>
             </div>
@@ -48,9 +54,18 @@ const Library = (props) => {
         </div>
       </div>
       <div className="gap-[32px] grid custom-2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 justify-items-center my-[16px]">
-        {LiveEventsData.map((item, index) => (
+        {eventTabIndex === 0 ? LiveEventsData.map((item, index) => (
           <LiveEventPanel data={item} onClick={() => onClickGameItem(item)} />
-        ))}
+        )) : null}
+        {eventTabIndex === 1 ? LiveEventsData.map((item, index) => (
+          <LiveEventPanel data={item} onClick={() => onClickGameItem(item)} />
+        )) : null}
+        {eventTabIndex === 2 ? LiveEventsData.map((item, index) => (
+          <LiveEventPanel data={item} onClick={() => onClickGameItem(item)} />
+        )) : null}
+        {eventTabIndex === 3 ? LiveEventsData.map((item, index) => (
+          <LiveEventPanel data={item} onClick={() => onClickGameItem(item)} />
+        )) : null}
         <EventMorePanel  />
       </div>
       
