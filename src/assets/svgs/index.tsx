@@ -7,6 +7,7 @@ export { default as ArrowLeftIcon } from './library/icons/arrowLeft';
 export { default as PlayIcon } from './library/icons/play';
 export { default as SearchIcon } from './library/icons/search';
 export { default as TimerIcon } from './library/icons/timer';
+export { default as CreateIcon } from './library/icons/create';
 
 // Social Links
 export { default as TwitterIcon } from './library/icons/twitter';

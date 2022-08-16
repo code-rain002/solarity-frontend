@@ -4,6 +4,7 @@ import { LeftArrow, RightArrow } from "components/icons";
 import { GameLibraryData, LiveEventsData, LibraryMenu, EventsMenu } from "data/GameLibrary";
 import GamePanel from "components/Common/Panels/GamePanel";
 import LiveEventPanel from "components/Common/Panels/LiveEventPanel";
+import EventMorePanel from "components/Common/Panels/EventMorePanel";
 
 const Library = (props) => {
   const { setPage, selectGame } = props;
@@ -50,6 +51,7 @@ const Library = (props) => {
         {LiveEventsData.map((item, index) => (
           <LiveEventPanel data={item} onClick={() => onClickGameItem(item)} />
         ))}
+        <EventMorePanel  />
       </div>
       
       <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px]">
