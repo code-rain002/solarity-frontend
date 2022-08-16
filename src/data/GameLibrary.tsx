@@ -1,5 +1,19 @@
 import { GameLibraryDataType, LiveEventsDataType } from "modal/library";
 
+export const EventsMenu = [
+    "Your DAOs",
+    "Friends",
+    "Tournaments",
+    "Events"
+];
+
+export const LibraryMenu = [
+    'Up and Coming',
+    'Popular',
+    'Featured',
+    'Top Rated'
+];
+
 export const LiveEventsData : LiveEventsDataType[] = [
     {
         image: "/images/library/temp/shareholders_meeting.png",
