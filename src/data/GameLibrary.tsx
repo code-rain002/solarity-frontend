@@ -115,17 +115,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -176,17 +179,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -237,17 +243,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -298,17 +307,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -359,17 +371,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -420,17 +435,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -481,17 +499,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -542,17 +563,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -603,17 +627,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [
@@ -664,17 +691,20 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }, {
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
-                rarity: 0.6
+                rarity: 0.6,
+                price: 450
             }
         ],
         stores: [

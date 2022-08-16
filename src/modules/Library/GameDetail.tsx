@@ -132,6 +132,14 @@ const GameDetail = (props) => {
                           <div className="text-[12px] text-[#29B080] font-normal mt-[5px]">
                             Rarity: {quest.rarity}%
                           </div>
+                          <div className="flex flex-row items-center gap-[2px] text-[12px] text-[#29B080] font-normal mt-[5px]">
+                            <Image
+                              src="/images/library/temp/logo.png"
+                              height={18}
+                              width={18}
+                            />
+                            &nbsp;<span>{quest.price}</span>
+                          </div>
                         </div>
                       </div>
                     ))}
