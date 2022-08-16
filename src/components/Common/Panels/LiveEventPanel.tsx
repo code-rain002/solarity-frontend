@@ -7,18 +7,24 @@ const LiveEventPanel = (props) => {
 
     return (
         <div className="flex flex-col relative overflow-hidden cursor-pointer
-                        w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]" onClick={() => {}}>
-            <div className="w-full"><Image src={data.image} width="100%" height="70%" layout="responsive" /></div>
-            <div className="py-[8px] px-[20px] h-full flex flex-col justify-between">
+                        w-full rounded-[10px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]" onClick={() => {}}>
+            <div className="w-full relative">
+                <Image src={data.image} width="100%" height="70%" layout="responsive" />
+                <div className="absolute bottom-[10px] left-[10px] flex flex-row gap-[7px]">
+                    <div className="h-[20px] w-[20px] rounded-full overflow-hidden"><Image src={data.creator.avatar} width={20} height={20} layout="responsive" /></div>
+                    <span className="font-medium text-[12px] text-white">{data.creator.name}</span>
+                </div>
+            </div>
+            <div className="pb-[10px] pt-[5px] px-[10px] h-full flex flex-col justify-between">
                 <div className="text-[20px] text-[#F3F3F3] leading-[24px]">{data.title}</div>
-                <div className="flex items-center justify-between text-[#29B080] text-[14px] mt-[5px]">
+                <div className="flex items-center justify-between text-[#29B080] text-[14px] mt-[10px]">
                     <div className="flex flex-row items-center">
                         {
-                            data.users.filter((user, index) => index < 3).map((user, index) => (
+                            data.friends.filter((user, index) => index < 3).map((user, index) => (
                                 <div className={`flex flex-row ${index !== 0 ? 'ml-[-10px]' : '' }`} key={index}><Image src={user.avatar} height={20} width={20} /></div>
                             ))
                         }
-                        <div className="text-white bg-[#1F1F20] h-[20px] w-[22px] rounded-[5px] flex flex-row justify-center items-center">{ data.users.length - 3 }+</div>
+                        <div className="text-white bg-[#1F1F20] h-full px-[7px] ml-[-10px] z-10 rounded-[5px] flex flex-row justify-center items-center">{ data.friends.length - 3 }+</div>
                     </div>
                     <div className="flex flex-row items-center"><TimerIcon />&nbsp;{ "50 min" }</div>
                 </div>

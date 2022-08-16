@@ -26,7 +26,11 @@ export type GameLibraryDataType = {
 export type LiveEventsDataType = {
     image: string,
     title: string,
-    users: Array<{
+    creator: {
+        avatar: string,
+        name: string,
+    },
+    friends: Array<{
         avatar: string,
         name: string
     }>,

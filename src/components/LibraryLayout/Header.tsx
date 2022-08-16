@@ -7,7 +7,6 @@ import SearchGameBox from 'components/Common/Forms/SearchGameBox'
 
 const Header = () => {
     const router = useRouter()
-    const [active, setActive] = useState('Explore')
     const [userInfoToggle, setUserInfoToggle] = useState(false)
 
     return (
@@ -21,7 +20,7 @@ const Header = () => {
                             h-full self-center 
                             custom-2xl:w-fit xl:w-fit lg:w-full md:w-full sm:w-full items-center'>
                 <div className='h-[92px] w-[92px] flex items-center justify-center border-b-[1px] border-[#1D1F1F] md:mr-[25px] cursor-pointer'>
-                    <Image src={LogoSVGImg} width={40} height={40}></Image>
+                    <Image src={"/images/library/logo.png"} width={40} height={40}></Image>
                 </div>
                 <div className='hidden md:block'>
                     <SearchGameBox />

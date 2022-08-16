@@ -18,7 +18,11 @@ export const LiveEventsData : LiveEventsDataType[] = [
     {
         image: "/images/library/temp/shareholders_meeting.png",
         title: "Shareholders",
-        users: [
+        creator: {
+            avatar: "/images/library/temp/users/creator1.png",
+            name: "monke DAO"
+        },
+        friends: [
             {
                 avatar: "/images/library/temp/users/user1.png",
                 name: "Meta",
@@ -40,7 +44,11 @@ export const LiveEventsData : LiveEventsDataType[] = [
     }, {
         image: "/images/library/temp/artist_auction.png",
         title: "Artist auction",
-        users: [
+        creator: {
+            avatar: "/images/library/temp/users/creator2.png",
+            name: "Beeple"
+        },
+        friends: [
             {
                 avatar: "/images/library/temp/users/user1.png",
                 name: "Meta",
