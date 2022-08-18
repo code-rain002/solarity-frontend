@@ -16,6 +16,7 @@ export const LibraryMenu = [
 
 export const LiveEventsData : LiveEventsDataType[] = [
     {
+<<<<<<< Updated upstream
         image: "/images/library/temp/plaza.png",
         title: "Solarity Hall",
         creator: {
@@ -50,6 +51,11 @@ export const LiveEventsData : LiveEventsDataType[] = [
             name: "monke DAO"
         },
         friends: [
+=======
+        image: "/images/library/temp/poker.jpg",
+        title: "SMB Poker Night",
+        users: [
+>>>>>>> Stashed changes
             {
                 avatar: "/images/library/temp/users/user1.png",
                 name: "Meta",
@@ -70,12 +76,17 @@ export const LiveEventsData : LiveEventsDataType[] = [
         createAt: "2022.08.14 18:42:00"
     }, {
         image: "/images/library/temp/bepple.jpeg",
+<<<<<<< Updated upstream
         title: "New Auction",
         creator: {
             avatar: "/images/library/temp/users/creator1.png",
             name: "Beeple"
         },
         friends: [
+=======
+        title: "Bepple Auction",
+        users: [
+>>>>>>> Stashed changes
             {
                 avatar: "/images/library/temp/users/user1.png",
                 name: "Meta",
@@ -106,12 +117,13 @@ export const GameLibraryData : GameLibraryDataType[] = [
         owner: "@MiniRoyale",
         category: "P2E",
         iframe: "https://miniroyale.io/",
-        description: "Description",
-        twitter: "https://twitter.com",
-        discord: "https://discord.com",
-        website: "https://solarity.xyz",
+        description: "Hone your shooting skills, compete in tournaments, and complete missions with your Clan to earn tokens and coveted rewards.",
+        twitter: "https://twitter.com/mininations",
+        discord: "https://discord.com/invite/miniroyale",
+        website: "https://miniroyale.io/",
         quests: [
             {
+<<<<<<< Updated upstream
                 title: "Second Sea",
                 description: "You've unlocked the Second Sea!",
                 image: "/images/library/temp/badges.png",
@@ -129,6 +141,22 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 image: "/images/library/temp/badges.png",
                 rarity: 0.6,
                 price: 450
+=======
+                title: "First Blood",
+                description: "Take the first kill!",
+                image: "/images/library/temp/1kill.png",
+                rarity: 0.6
+            }, {
+                title: "Social Killer",
+                description: "Invite a friend and play a game together",
+                image: "/images/library/temp/1.webp",
+                rarity: 0.6
+            }, {
+                title: "The king",
+                description: "Win a Battle Royale game",
+                image: "/images/library/temp/1.webp",
+                rarity: 0.6
+>>>>>>> Stashed changes
             }
         ],
         stores: [
