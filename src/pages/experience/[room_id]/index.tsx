@@ -1,5 +1,4 @@
 import { useRouter } from "next/router"
-import Image from "next/image"
 import LoadingScr from "components/Experience/RoomInterior/LoadingScr"
 import { useState } from "react"
 import MainScr from "components/Experience/RoomInterior/MainScr"

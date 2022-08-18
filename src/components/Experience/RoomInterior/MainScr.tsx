@@ -22,7 +22,7 @@ const MainScr = (props : MainScrTyp) => {
             <TopRightMenu setLeftSideActive={(any) => setLeftSideActive(any)} leftSideActive={leftSideActive}/>
             <ChattingBox setLeftSideActive={(any) => setLeftSideActive(any)} leftSideActive={leftSideActive}/>
             <UsersBox setLeftSideActive={(any) => setLeftSideActive(any)} leftSideActive={leftSideActive}/>
-            <SettingBox setLeftSideActive={(any) => setLeftSideActive(any)} leftSideActive={leftSideActive}/>
+            <SettingBox setLeftSideActive={(any) => setLeftSideActive(any)} leftSideActive={leftSideActive} kind="setting"/>
         </div>
     )
 }

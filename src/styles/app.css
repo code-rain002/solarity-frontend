@@ -1,30 +1,51 @@
 body {
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: 'Outfit';
-    font-size: 20px;
-    height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
-    background-color: #141414;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Outfit";
+  font-size: 20px;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: #141414;
 }
 
-::-webkit-scrollbar { width: 6px; height: 1px; z-index: 190;}
-::-webkit-scrollbar-button {  background-color: transparent; height: 0;  z-index: 190;}
-::-webkit-scrollbar-track-piece { background-color: rgba(0,0,0,0.0); z-index: 190;}
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 15px; z-index: 190;}
-::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0.1); z-index: 190;}
-::-webkit-resizer { background-color: var(--primary-color); z-index: 190;}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 1px;
+  z-index: 190;
+}
+::-webkit-scrollbar-button {
+  background-color: transparent;
+  height: 0;
+  z-index: 190;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 190;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  z-index: 190;
+}
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 190;
+}
+::-webkit-resizer {
+  background-color: var(--primary-color);
+  z-index: 190;
+}
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-  
-* {
-    transition: 0.1s ease-in;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
+* {
+  transition: 0.1s ease-in;
+}
 
 .progress svg {
   width: 330px;
@@ -44,77 +65,78 @@ code {
 .progress svg circle:last-of-type {
   stroke-dasharray: 1005px;
   stroke-dashoffset: calc(1005px - (1005px * var(--percent)) / 100);
-  stroke: #2ecc71; 
+  stroke: #2ecc71;
 }
 
 @media screen and (max-width: 640px) {
   .progress svg {
-      width: 210px;
-      height: 210px;
-      transform: rotate(-90deg);
+    width: 210px;
+    height: 210px;
+    transform: rotate(-90deg);
   }
-    
+
   .progress svg circle {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: rgba(255, 255, 255, 0.1);
-      stroke-width: 4;
-      stroke-linecap: round;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 4;
+    stroke-linecap: round;
   }
-    
+
   .progress svg circle:last-of-type {
-      stroke-dasharray: 628px;
-      stroke-dashoffset: calc(628px - (628px * var(--percent)) / 100);
-      stroke: #2ecc71; 
+    stroke-dasharray: 628px;
+    stroke-dashoffset: calc(628px - (628px * var(--percent)) / 100);
+    stroke: #2ecc71;
   }
 }
 
 /* =============================================== */
 
 .progress svg {
-    width: 330px;
-    height: 330px;
+  width: 330px;
+  height: 330px;
+  transform: rotate(-90deg);
+}
+
+.progress svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.progress svg circle:last-of-type {
+  stroke-dasharray: 1005px;
+  stroke-dashoffset: calc(1005px - (1005px * var(--percent)) / 100);
+  stroke: #2ecc71;
+}
+
+@media screen and (max-width: 640px) {
+  .progress svg {
+    width: 210px;
+    height: 210px;
     transform: rotate(-90deg);
   }
-  
+
   .progress svg circle {
     width: 100%;
     height: 100%;
     fill: none;
     stroke: rgba(255, 255, 255, 0.1);
-    stroke-width: 6;
+    stroke-width: 4;
     stroke-linecap: round;
   }
-  
+
   .progress svg circle:last-of-type {
-    stroke-dasharray: 1005px;
-    stroke-dashoffset: calc(1005px - (1005px * var(--percent)) / 100);
-    stroke: #2ecc71; 
+    stroke-dasharray: 628px;
+    stroke-dashoffset: calc(628px - (628px * var(--percent)) / 100);
+    stroke: #2ecc71;
   }
-  
-  @media screen and (max-width: 640px) {
-    .progress svg {
-        width: 210px;
-        height: 210px;
-        transform: rotate(-90deg);
-    }
-      
-    .progress svg circle {
-        width: 100%;
-        height: 100%;
-        fill: none;
-        stroke: rgba(255, 255, 255, 0.1);
-        stroke-width: 4;
-        stroke-linecap: round;
-    }
-      
-    .progress svg circle:last-of-type {
-        stroke-dasharray: 628px;
-        stroke-dashoffset: calc(628px - (628px * var(--percent)) / 100);
-        stroke: #2ecc71; 
-    }
-  }
+}
 
-
-
+.tas::-webkit-scrollbar {
+  display: none;
+}
