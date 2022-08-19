@@ -1,4 +1,4 @@
-import { UpArrow } from "components/icons";
+import { DownArrow, UpArrow } from "components/icons";
 import { useState } from "react";
 import ChattingThreadBox from "./ChattingThreadBox";
 import Input from "./Input";
@@ -29,7 +29,7 @@ const ChattingBox = (props: ChattingBoxType) => {
 
   return (
     <div
-      className={` absolute bottom-[32px] right-[32px] w-[426px] top-[108px] rounded-[24px] border-[#1d1f1f] border-[1px] bg-[#131314]
+      className={` absolute md:bottom-[32px] xs:bottom-[78px] md:right-[32px] xs:right-[0px] w-[426px] md:top-[108px] xs:top-[0px] md:w-fit xs:w-full md:rounded-[24px] xs:rounded-[0px] border-[#1d1f1f] border-[1px] bg-[#131314]
                         ${
                           props.leftSideActive === "chatting"
                             ? "flex flex-col"
@@ -45,7 +45,7 @@ const ChattingBox = (props: ChattingBoxType) => {
           Chat
         </div>
         <div
-          className=" flex cursor-pointer "
+          className=" md:flex xs:hidden cursor-pointer "
           onClick={() =>
             props.leftSideActive === "chatting"
               ? props.setLeftSideActive("")
@@ -53,6 +53,16 @@ const ChattingBox = (props: ChattingBoxType) => {
           }
         >
           <UpArrow />
+        </div>
+        <div
+          className=" md:hidden xs:flex cursor-pointer "
+          onClick={() =>
+            props.leftSideActive === "chatting"
+              ? props.setLeftSideActive("")
+              : ""
+          }
+        >
+          <DownArrow />
         </div>
       </div>
 

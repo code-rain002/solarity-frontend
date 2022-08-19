@@ -19,11 +19,14 @@ type ChattingThreadType = {
 const ChattingThread = (props: ChattingThreadType) => {
   const [showReplyBtn, setShowReplyBtn] = useState(false);
   const [replyHover, setReplyHover] = useState(false);
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     let box = document.getElementById("chatting_thread_box_1");
     let height = box.scrollHeight + 113;
     box.scroll({ top: height, behavior: "smooth" });
+    let tempMsg = props.text;
+    // tempMsg.search(/http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+/g)
   }, [props.text]);
 
   let j = 0;
@@ -34,10 +37,10 @@ const ChattingThread = (props: ChattingThreadType) => {
       onMouseEnter={() => setShowReplyBtn(true)}
       onMouseLeave={() => setShowReplyBtn(false)}
     >
-      <div className=" h-[40px] w-[40px] rounded-[15px] overflow-hidden relative ">
+      <div className=" min-h-[40px] min-w-[40px] rounded-[15px] overflow-hidden relative ">
         <Image src={props.imgUrl} layout="responsive" width={40} height={40} />
       </div>
-      <div className=" flex flex-col gap-[10px] justify-between items-start ">
+      <div className=" flex flex-col gap-[10px] justify-between items-start md:w-[278px] xs:max-w-[100%]">
         <div className=" flex flex-row gap-[10px] justify-start items-center ">
           <div
             className={` font-['Outfit'] text-[14px] ${
@@ -52,7 +55,7 @@ const ChattingThread = (props: ChattingThreadType) => {
         </div>
 
         <div
-          className={` flex flex-col max-w-[276px] rounded-tl-[3px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] break-words whitespace-pre-wrap
+          className={` flex flex-col md:max-w-[260px] xs:max-w-[100%] rounded-tl-[3px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] break-all whitespace-pre-wrap
                                 pt-[14px] pb-[20px] px-[20px] ${
                                   props.uName === "You"
                                     ? "bg-[#3f3f43]"
@@ -74,7 +77,7 @@ const ChattingThread = (props: ChattingThreadType) => {
           <div
             className={`absolute ${
               showReplyBtn ? "flex" : "hidden"
-            } top-[0px] right-[-26px] cursor-pointer`}
+            } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
             onMouseEnter={() => setReplyHover(true)}
             onMouseLeave={() => setReplyHover(false)}
             onClick={() =>

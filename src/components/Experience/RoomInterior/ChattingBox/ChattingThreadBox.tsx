@@ -1,3 +1,4 @@
+import useWindowDimensions from "components/Common/useWindowDimensions";
 import { ChattingBoxData } from "data/Experience";
 import { useEffect, useState } from "react";
 import { setMsg } from "redux/slices/chatSlice";
@@ -66,6 +67,7 @@ const initChatbox = (props) => {
 
 const ChattingThreadBox = (props: ChattingThreadBoxType) => {
   const [msgs, setMsgs] = useState(initChatbox(props));
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     if (props.newMsgSendingState) {
@@ -74,7 +76,7 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
   }, [props.newMsgSendingState]);
   return (
     <div
-      className=" flex h-[76%] gap-[24px] relative mb-[24px] "
+      className={` flex custom-2xl:h-[76%] xs:h-[73%] gap-[24px] relative mb-[24px] `}
       id="chatting_thread_box"
     >
       <div
@@ -83,8 +85,7 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
       >
         {msgs.map((msg) => msg)}
       </div>
-      <div className=" absolute bottom-[0px] right-[0px] h-[30px] w-full bg-gradient-to-t from-[#131314] via-[#131314] to-transparent"></div>
-      <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} />
+      {/* <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} /> */}
     </div>
   );
 };

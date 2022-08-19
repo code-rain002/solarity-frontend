@@ -7,6 +7,7 @@ import EmojiButton from "./EmojiButton";
 import UploadButton from "./UploadButton";
 import ReplyPart from "./ReplyPart";
 import FileListPart from "./FileListPart";
+import TypingNotification from "./TypingNotification";
 
 type InputType = {
   focusState: boolean;
@@ -161,10 +162,12 @@ const Input = (props: InputType) => {
         props.focusState ? "border-primary" : "border-[#272829]"
       } 
             mx-[26px]
-            absolute bottom-[32px] w-[85%] bg-globalBgColor `}
+            absolute bottom-[32px] w-[85%] bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
       id="chatting_input_container"
       onDragStart={(e) => e.preventDefault()}
     >
+      {/* <div className=" absolute top-[-51px] right-[0px] custom-2xl:h-[30px] xs:h-[50px] w-full bg-gradient-to-t from-[#131314] via-[#131314] to-transparent"></div> */}
+      <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} />
       <ReplyPart
         newMsgDataState={props.newMsgDataState}
         setNewMsgDataState={props.setNewMsgDataState}
