@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ReactHtmlParser from "react-html-parser";
+
 import ImgFileType from "./ImgFileType";
 import OtherFileType from "./OtherFileType";
 
@@ -20,30 +22,103 @@ const ChattingThread = (props: ChattingThreadType) => {
   const [showReplyBtn, setShowReplyBtn] = useState(false);
   const [replyHover, setReplyHover] = useState(false);
   const [msg, setMsg] = useState("");
+  const [hisMsg, setHisMsg] = useState("");
 
   useEffect(() => {
     let box = document.getElementById("chatting_thread_box_1");
     let height = box.scrollHeight + 113;
     box.scroll({ top: height, behavior: "smooth" });
-    let tempMsg: string = props.text;
-    let resultMsg = props.text;
 
-    let urlArrays = tempMsg.match(
+    let tempMsg: string = props.text;
+
+    let urlArray: string[] = tempMsg.match(
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
     );
 
-    for (let j in urlArrays) {
+    if (urlArray != null) {
+      let uniqueUrlArray = [];
+      urlArray.forEach((element) => {
+        if (!uniqueUrlArray.includes(element)) {
+          uniqueUrlArray.push(element);
+        }
+      });
+
+      for (let j in uniqueUrlArray) {
+        let regExp = new RegExp(uniqueUrlArray[j], "g");
+        tempMsg = tempMsg.replace(
+          regExp,
+          "<a href='" +
+            uniqueUrlArray[j] +
+            "' class='urlPart' target='__blank'>" +
+            uniqueUrlArray[j] +
+            "</a>"
+        );
+      }
+    }
+    let nameArray: string[] = tempMsg.match(/@[-a-zA-Z0-9@._#]{1,256}/g);
+    if (nameArray != null) {
+      let uniqueNameArray = [];
+      nameArray.forEach((element) => {
+        if (!uniqueNameArray.includes(element)) {
+          uniqueNameArray.push(element);
+        }
+      });
+
+      for (let j in uniqueNameArray) {
+        let regExp = new RegExp(uniqueNameArray[j], "g");
+        tempMsg = tempMsg.replace(
+          regExp,
+          "<a href='#' class='namePart'>" + uniqueNameArray[j] + "</a>"
+        );
+      }
     }
 
-    // if (urlPartIndexStart === null) {
-    //   break;
-    // }
-    // let subPart = tempMsg.substring(urlPartIndexStart)
-    // let urlPartIndexEnd = subPart.search(/[]/)
+    setMsg(tempMsg);
 
-    // let urlPartIndexEnd = tempMsg.indexOf(/[\.\n]/g, urlPartIndexStart);
-    // let styledUrl = "<span className='underline italic text-primary'>" + urlPart + "</span>";
-    // tempMsg = tempMsg.replace(urlPart, styledUrl);
+    let tempHisMsg: string = props.hisMsg;
+
+    let urlHisArray: string[] = tempHisMsg.match(
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
+    );
+
+    if (urlHisArray != null) {
+      let uniqueUrlHisArray = [];
+      urlHisArray.forEach((element) => {
+        if (!uniqueUrlHisArray.includes(element)) {
+          uniqueUrlHisArray.push(element);
+        }
+      });
+
+      for (let j in uniqueUrlHisArray) {
+        let regExp = new RegExp(uniqueUrlHisArray[j], "g");
+        tempHisMsg = tempHisMsg.replace(
+          regExp,
+          "<a href='" +
+            uniqueUrlHisArray[j] +
+            "' class='urlPart' target='__blank'>" +
+            uniqueUrlHisArray[j] +
+            "</a>"
+        );
+      }
+    }
+    let nameHisArray: string[] = tempHisMsg.match(/@[-a-zA-Z0-9@._#]{1,256}/g);
+    if (nameHisArray != null) {
+      let uniqueNameHisArray = [];
+      nameHisArray.forEach((element) => {
+        if (!uniqueNameHisArray.includes(element)) {
+          uniqueNameHisArray.push(element);
+        }
+      });
+
+      for (let j in uniqueNameHisArray) {
+        let regExp = new RegExp(uniqueNameHisArray[j], "g");
+        tempHisMsg = tempHisMsg.replace(
+          regExp,
+          "<a href='#' class='namePart'>" + uniqueNameHisArray[j] + "</a>"
+        );
+      }
+    }
+    setHisMsg(tempHisMsg);
   }, [props.text]);
 
   let j = 0;
@@ -83,14 +158,14 @@ const ChattingThread = (props: ChattingThreadType) => {
             className={` font-['Outfit'] text-[14px] font-[400] text-[#b3b3b7] italic pb-[10px] border-b-[1px] border-b-[#b3b3b7]
                           ${props.hisMsg === "" ? "hidden" : ""}`}
           >
-            " {props.hisMsg} "
+            " {ReactHtmlParser(hisMsg)} "
             <div
               className={` font-['Outfit'] text-[12px] font-[400] text-[#b3b3b7] not-italic`}
             >
               {props.replyToWhom}
             </div>
           </div>
-          <div className="pt-[5px]">{props.text}</div>
+          <div className="pt-[5px]">{ReactHtmlParser(msg)}</div>
           <div
             className={`absolute ${
               showReplyBtn ? "flex" : "hidden"

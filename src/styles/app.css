@@ -140,3 +140,18 @@ code {
 .tas::-webkit-scrollbar {
   display: none;
 }
+
+.urlPart {
+  color:#29b080!important;
+  text-decoration-line: underline!important;
+}
+.urlPart:hover {
+  color: #00ffc8!important;
+}
+
+.namePart {
+  color:#29b080!important;
+}
+.namePart:hover {
+  color: #00ffc8!important;
+}
