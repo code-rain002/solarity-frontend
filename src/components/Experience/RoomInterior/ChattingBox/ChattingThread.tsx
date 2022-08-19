@@ -25,8 +25,25 @@ const ChattingThread = (props: ChattingThreadType) => {
     let box = document.getElementById("chatting_thread_box_1");
     let height = box.scrollHeight + 113;
     box.scroll({ top: height, behavior: "smooth" });
-    let tempMsg = props.text;
-    // tempMsg.search(/http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+/g)
+    let tempMsg: string = props.text;
+    let resultMsg = props.text;
+
+    let urlArrays = tempMsg.match(
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
+    );
+
+    for (let j in urlArrays) {
+    }
+
+    // if (urlPartIndexStart === null) {
+    //   break;
+    // }
+    // let subPart = tempMsg.substring(urlPartIndexStart)
+    // let urlPartIndexEnd = subPart.search(/[]/)
+
+    // let urlPartIndexEnd = tempMsg.indexOf(/[\.\n]/g, urlPartIndexStart);
+    // let styledUrl = "<span className='underline italic text-primary'>" + urlPart + "</span>";
+    // tempMsg = tempMsg.replace(urlPart, styledUrl);
   }, [props.text]);
 
   let j = 0;

@@ -6,17 +6,24 @@ import UsersBoxItem from "./UsersBoxItem";
 type UsersBoxType = {
   setLeftSideActive: any;
   leftSideActive: string;
+  usersBoxActive: boolean;
+  setUsersBoxActive: any;
+  isAndroid: boolean;
 };
 
 const UsersBox = (props: UsersBoxType) => {
   return (
     <div
       className={` absolute
-                        md:bottom-[32px] md:right-[32px] md:w-[426px] md:top-[108px] md:rounded-[24px]
-                        xs:bottom-[78px] xs:right-[0px] xs:w-full xs:top-[0px] xs:rounded-[0px]
+                        md:bottom-[32px] md:left-[32px] md:w-[426px] md:top-[108px] md:rounded-[24px]
+                        xs:bottom-[78px] xs:left-[0px] xs:w-full xs:top-[0px] xs:rounded-[0px]
                         border-[#1d1f1f] border-[1px] bg-[#131314]
                         ${
-                          props.leftSideActive === "users"
+                          props.isAndroid
+                            ? props.leftSideActive === "users"
+                              ? "flex flex-col"
+                              : "hidden"
+                            : props.usersBoxActive
                             ? "flex flex-col"
                             : "hidden"
                         } pt-[6px] pb-[0px] px-[6px] overflow-hidden 
@@ -39,9 +46,11 @@ const UsersBox = (props: UsersBoxType) => {
           <div
             className=" md:flex xs:hidden cursor-pointer "
             onClick={() =>
-              props.leftSideActive === "users"
-                ? props.setLeftSideActive("")
-                : ""
+              props.isAndroid
+                ? props.leftSideActive === "users"
+                  ? props.setLeftSideActive("")
+                  : ""
+                : props.setUsersBoxActive(false)
             }
           >
             <UpArrow />
@@ -49,9 +58,11 @@ const UsersBox = (props: UsersBoxType) => {
           <div
             className=" md:hidden xs:flex cursor-pointer "
             onClick={() =>
-              props.leftSideActive === "users"
-                ? props.setLeftSideActive("")
-                : ""
+              props.isAndroid
+                ? props.leftSideActive === "users"
+                  ? props.setLeftSideActive("")
+                  : ""
+                : props.setUsersBoxActive(false)
             }
           >
             <DownArrow />

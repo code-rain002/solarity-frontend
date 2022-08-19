@@ -10,6 +10,9 @@ import SpeakerIcon from "./SpeakerIcon";
 type TopRightMenuType = {
   setLeftSideActive: any;
   leftSideActive: string;
+  usersBoxActive: boolean;
+  setUsersBoxActive: any;
+  isAndroid: boolean;
 };
 
 const TopRightMenu = (props: TopRightMenuType) => {
@@ -31,6 +34,9 @@ const TopRightMenu = (props: TopRightMenuType) => {
       <UsersIcon
         setLeftSideActive={props.setLeftSideActive}
         leftSideActive={props.leftSideActive}
+        isAndroid={props.isAndroid}
+        usersBoxActive={props.usersBoxActive}
+        setUsersBoxActive={props.setUsersBoxActive}
       />
 
       <SettingIcon

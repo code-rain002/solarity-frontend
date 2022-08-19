@@ -6,6 +6,7 @@ import ChattingBox from "./ChattingBox";
 import TopRightMenu from "./TopRightMenu";
 import UsersBox from "./UsersBox";
 import SettingBox from "./RoomSettingBox";
+import { checkBrowser } from "utils";
 
 type MainScrTyp = {
   roomId: string;
@@ -14,6 +15,9 @@ type MainScrTyp = {
 
 const MainScr = (props: MainScrTyp) => {
   const [leftSideActive, setLeftSideActive] = useState("");
+  const [usersBoxActive, setUsersBoxActive] = useState(false);
+
+  const isAndroid = checkBrowser();
 
   return (
     <div
@@ -31,6 +35,9 @@ const MainScr = (props: MainScrTyp) => {
       <TopRightMenu
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}
+        usersBoxActive={usersBoxActive}
+        setUsersBoxActive={setUsersBoxActive}
+        isAndroid={isAndroid}
       />
       <ChattingBox
         setLeftSideActive={(any) => setLeftSideActive(any)}
@@ -39,6 +46,9 @@ const MainScr = (props: MainScrTyp) => {
       <UsersBox
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}
+        usersBoxActive={usersBoxActive}
+        setUsersBoxActive={setUsersBoxActive}
+        isAndroid={isAndroid}
       />
       <SettingBox
         setLeftSideActive={(any) => setLeftSideActive(any)}
