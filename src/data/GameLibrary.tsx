@@ -14,7 +14,7 @@ export const LibraryMenu = [
     'Top Rated'
 ];
 
-export const LiveEventsData : LiveEventsDataType[] = [
+export const LiveEventsData: LiveEventsDataType[] = [
     {
         image: "/images/library/temp/shareholders_meeting.png",
         title: "Shareholders",
@@ -38,7 +38,7 @@ export const LiveEventsData : LiveEventsDataType[] = [
             }, {
                 avatar: "/images/library/temp/users/user5.png",
                 name: "Bella",
-            }, 
+            },
         ],
         createAt: "2022.08.14 18:42:00"
     }, {
@@ -64,18 +64,18 @@ export const LiveEventsData : LiveEventsDataType[] = [
             }, {
                 avatar: "/images/library/temp/users/user5.png",
                 name: "Bella",
-            }, 
+            },
         ],
         createAt: "2022.08.14 18:42:00"
-    }, 
+    },
 ]
 
-export const GameLibraryData : GameLibraryDataType[] = [
+export const GameLibraryData: GameLibraryDataType[] = [
     {
-        image : "/images/library/temp/miniroyale.png",
+        image: "/images/library/temp/miniroyale.png",
         title: "Mini Royale",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@MiniRoyale",
         category: "P2E",
         iframe: "https://miniroyale.io/",
@@ -136,10 +136,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/aurory.jpeg",
+        image: "/images/library/temp/aurory.jpeg",
         title: "Aurory",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@Aurory",
         category: "P2E",
         iframe: "https://app.aurory.io/",
@@ -200,10 +200,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/somnium.webp",
+        image: "/images/library/temp/somnium.webp",
         title: "Somnium",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@Somnium",
         category: "P2E",
         iframe: "https://somniumspace.com/parcel/",
@@ -264,10 +264,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/tetris.png",
+        image: "/images/library/temp/tetris.png",
         title: "Tetris",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@Tetris",
         category: "P2E",
         iframe: "https://tetr.io/",
@@ -328,10 +328,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/webaverse.jpeg",
+        image: "/images/library/temp/webaverse.jpeg",
         title: "Webaverse",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@MMMORG",
         category: "P2E",
         iframe: "https://app.webaverse.com/",
@@ -392,10 +392,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/oncyber.png",
+        image: "/images/library/temp/oncyber.png",
         title: "OnCyber.io",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@PanzerDogs",
         category: "P2E",
         iframe: "https://oncyber.io/6529om",
@@ -456,10 +456,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/portals.jpeg",
+        image: "/images/library/temp/portals.jpeg",
         title: "Portals",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@Portals",
         category: "P2E",
         iframe: "https://theportal.to/demo",
@@ -520,10 +520,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/plaza.png",
+        image: "/images/library/temp/plaza.png",
         title: "Solarity Plaza",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@TwoZoos",
         category: "P2E",
         iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
@@ -584,10 +584,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/poker.jpg",
+        image: "/images/library/temp/poker.jpg",
         title: "Poker Night",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@888",
         category: "P2E",
         iframe: "https://solarity-frontend.vercel.app/oraziogrinzosih/hub/",
@@ -648,10 +648,10 @@ export const GameLibraryData : GameLibraryDataType[] = [
             },
         ]
     }, {
-        image : "/images/library/temp/minecraft.webp",
+        image: "/images/library/temp/minecraft.webp",
         title: "Minecraft",
         likes: 97,
-        members : 231,
+        members: 231,
         owner: "@Mojanc",
         category: "P2E",
         iframe: "https://classic.minecraft.net/?join=Aklaj1y66iD8xJvx",
@@ -711,5 +711,5 @@ export const GameLibraryData : GameLibraryDataType[] = [
                 price: 450,
             },
         ]
-    }, 
+    },
 ]

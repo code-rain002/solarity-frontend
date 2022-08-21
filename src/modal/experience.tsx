@@ -1,33 +1,43 @@
-import { Component } from "react"
+import { Component } from "react";
 
 export type RoomMemberAvatarSmallDataType = {
-    imgUrl : string
-}
+  imgUrl: string;
+};
 
 export type LiveRoomListDataType = {
-    currentNumberOfMembers : number,
-    imgUrl : string,
-    walletIcon : any,
-    collectionName : string,
-    roomName : string,
-    lgImgUrl : string,
-}
+  currentNumberOfMembers: number;
+  imgUrl: string;
+  walletIcon: any;
+  collectionName: string;
+  roomName: string;
+  lgImgUrl: string;
+};
 
 export type ExploreRoomDataType = {
-    imgUrl : string,
-    walletIcon : any,
-    collectionName : string,
-    roomName : string,
-}
+  imgUrl: string;
+  walletIcon: any;
+  collectionName: string;
+  roomName: string;
+};
 
 export type PsuedoAvatarItemDataType = {
-    imgUrl : string,
-    title : string,
-}
+  imgUrl: string;
+  title: string;
+};
 
 export type ChattingBoxDataType = {
-    imgUrl : string,
-    uName : string,
-    before : string,
-    text : string,
-}
+  imgUrl: string;
+  uName: string;
+  before: string;
+  text: string;
+  replyToWhom: string;
+  hisMsg: string;
+  fileUrls: string[];
+};
+
+export type UsersBoxDataType = {
+  imgUrl: string;
+  uName: string;
+  uState: string;
+  mute: boolean;
+};
