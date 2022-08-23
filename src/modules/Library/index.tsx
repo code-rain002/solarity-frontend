@@ -53,6 +53,14 @@ const Library = (props) => {
     selectGame(data);
   };
 
+  const onClickEventItem = (data) => {
+    if (data.isPrivate) {
+      alert("You need creator's permission")
+    } else {
+      alert("Welcome to our room")
+    }
+  };
+
   const onClickEventMenu = (index, item) => {
     setActiveEventsMenu(item);
     setEventTabIndex(index);
@@ -83,16 +91,16 @@ const Library = (props) => {
       </div>
       <div className="gap-[32px] grid custom-2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 justify-items-center my-[16px]">
         {eventTabIndex === 0 && eventsList ? eventsList.filter((event, index) => event.type === activeEventsMenu ).map((item, index) => (
-          <LiveEventPanel data={item} key={index} onClick={() => onClickGameItem(item)} />
+          <LiveEventPanel data={item} key={index} onClick={() => onClickEventItem(item)} />
         )) : null}
         {eventTabIndex === 1 && eventsList ? eventsList.filter((event, index) => event.type === activeEventsMenu ).map((item, index) => (
-          <LiveEventPanel data={item} key={index} onClick={() => onClickGameItem(item)} />
+          <LiveEventPanel data={item} key={index} onClick={() => onClickEventItem(item)} />
         )) : null}
         {eventTabIndex === 2 && eventsList ? eventsList.filter((event, index) => event.type === activeEventsMenu ).map((item, index) => (
-          <LiveEventPanel data={item} key={index} onClick={() => onClickGameItem(item)} />
+          <LiveEventPanel data={item} key={index} onClick={() => onClickEventItem(item)} />
         )) : null}
         {eventTabIndex === 3 && eventsList ? eventsList.filter((event, index) => event.type === activeEventsMenu ).map((item, index) => (
-          <LiveEventPanel data={item} key={index} onClick={() => onClickGameItem(item)} />
+          <LiveEventPanel data={item} key={index} onClick={() => onClickEventItem(item)} />
         )) : null}
         <EventMorePanel setCreateEventToggle={setCreateEventToggle} />
       </div>

@@ -15,9 +15,10 @@ import { apiCaller } from "utils/fetcher";
 const CreateEventModal = (props) => {
     const { createEventToggle, setCreateEventToggle } = props;
     const dispatch = useDispatch();
-    const { eventInfo, step } = useSelector(
+    const { eventInfo, step, userInfo } = useSelector(
         (state: RootStateOrAny) => ({
             eventInfo: state.event.eventInfo,
+            userInfo: state.profile.data,
             step: state.event.step
         })
     );
@@ -51,8 +52,13 @@ const CreateEventModal = (props) => {
                 image: eventInfo.room.imgUrl,
                 type: eventInfo.type,
                 friends: eventInfo.friends,
-                isPrivate: eventInfo.isPrivate
+                isPrivate: eventInfo.isPrivate,
+                creator: {
+                    avatar: userInfo.profileImageLink,
+                    name: userInfo.username
+                }
             }
+
             apiCaller.post("/events", payload)
                 .then(response => {
                     console.log(response)
