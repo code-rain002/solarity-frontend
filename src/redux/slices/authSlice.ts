@@ -34,7 +34,7 @@ type loginProps = {
   publicKey: any;
   walletType: "solana" | "ethereum";
   provider: any;
-  onFinally?: () => void;
+  onFinally?: any;
 };
 
 export const login = createAsyncThunk(
@@ -63,8 +63,9 @@ export const login = createAsyncThunk(
         walletType,
         requestNonce: false,
         signature,
-      });
+      })
       dispatch(setProfile(profile));
+      
       response = true;
     } catch (err) {}
     dispatch(stopLoadingApp());
