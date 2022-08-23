@@ -36,9 +36,9 @@ const UsersIcon = (props: UsersIconType) => {
               ? "#29b080"
               : "#f3f3f3"
           }
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15.4416 16.5C15.4416 13.5975 12.5541 11.25 8.99914 11.25C5.44414 11.25 2.55664 13.5975 2.55664 16.5"
@@ -51,9 +51,9 @@ const UsersIcon = (props: UsersIconType) => {
               ? "#29b080"
               : "#f3f3f3"
           }
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

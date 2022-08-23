@@ -49,9 +49,9 @@ const BannerImage = ({ uName }) => {
                                     select-none ${uName === "no_room" || uName === "visitor_no_room" ? "hidden" : "block"}`}>
                         <SocialIcon onClick={() => setShareMenuToggle(!shareMenuToggle)}>
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.58203 6.41712L12.3654 1.63379" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12.8312 3.96699V1.16699H10.0312" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6.41797 1.16699H5.2513C2.33464 1.16699 1.16797 2.33366 1.16797 5.25032V8.75032C1.16797 11.667 2.33464 12.8337 5.2513 12.8337H8.7513C11.668 12.8337 12.8346 11.667 12.8346 8.75032V7.58366" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.58203 6.41712L12.3654 1.63379" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M12.8312 3.96699V1.16699H10.0312" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M6.41797 1.16699H5.2513C2.33464 1.16699 1.16797 2.33366 1.16797 5.25032V8.75032C1.16797 11.667 2.33464 12.8337 5.2513 12.8337H8.7513C11.668 12.8337 12.8346 11.667 12.8346 8.75032V7.58366" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </SocialIcon>
                         <div className={`absolute top-[58px] sm:left-[-135px] xs:left-[0px] w-[183px] h-[184px]
@@ -66,8 +66,8 @@ const BannerImage = ({ uName }) => {
                     <div className={`absolute top-[24px] right-[65px] ${uName === "no_room" || uName === "visitor_no_room" ? "hidden" : "block"}`}>
                         <SocialIcon>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.98407 2.85668L2.59678 9.37137C2.3556 9.61877 2.1222 10.1061 2.07552 10.4434L1.78767 12.8724C1.68653 13.7495 2.34004 14.3492 3.24251 14.1993L5.74763 13.787C6.09773 13.727 6.58786 13.4796 6.82904 13.2247L13.2163 6.71002C14.3211 5.5855 14.819 4.30356 13.0996 2.73673C11.3881 1.1849 10.0888 1.73216 8.98407 2.85668Z" stroke="#F3F3F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8 4.44434C8.28053 6.34984 9.7419 7.80658 11.5556 7.99989" stroke="#F3F3F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8.98407 2.85668L2.59678 9.37137C2.3556 9.61877 2.1222 10.1061 2.07552 10.4434L1.78767 12.8724C1.68653 13.7495 2.34004 14.3492 3.24251 14.1993L5.74763 13.787C6.09773 13.727 6.58786 13.4796 6.82904 13.2247L13.2163 6.71002C14.3211 5.5855 14.819 4.30356 13.0996 2.73673C11.3881 1.1849 10.0888 1.73216 8.98407 2.85668Z" stroke="#F3F3F3" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M8 4.44434C8.28053 6.34984 9.7419 7.80658 11.5556 7.99989" stroke="#F3F3F3" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </SocialIcon>
                     </div>
@@ -75,10 +75,10 @@ const BannerImage = ({ uName }) => {
                     <div className={`absolute top-[24px] right-[10px]  ${uName === "no_room" || uName === "visitor_no_room" ? "hidden" : "block"}`}>
                         <SocialIcon>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 6V2H10" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2 10V14H6" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14 2L9 7" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M7 9L2 14" stroke="#F3F3F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 6V2H10" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M2 10V14H6" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M14 2L9 7" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M7 9L2 14" stroke="#F3F3F3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </SocialIcon>
                     </div>

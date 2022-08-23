@@ -21,9 +21,9 @@ const BalanceBox = (props) => {
                             top-[50px] opacity-0 left-[-12px] h-[0px] w-full bg-[#131314]
                             border-[#1d1f1f] border-[2px] rounded-[12px] text-white z-[1000] group-hover:h-[150px] group-hover:opacity-100 overflow-hidden
                             `} >
-                {WalletBalanceData.map(i => {
+                {WalletBalanceData.map((i, index) => {
                     return (
-                        <div className="rounded-[10px] hover:bg-[#1d1d1f] bg-transparent px-[10px] py-[8px] w-full flex flex-row py-[6px] font-500 text-[#f3f3f3] group-hover:flex hidden hover:text-primary">
+                        <div className="rounded-[10px] hover:bg-[#1d1d1f] bg-transparent px-[10px] py-[8px] w-full flex flex-row py-[6px] font-500 text-[#f3f3f3] group-hover:flex hidden hover:text-primary" key={index}>
                             {i.balance}
                             <div className="text-[#929298] ml-[5px] ">
                                 {i.kind}

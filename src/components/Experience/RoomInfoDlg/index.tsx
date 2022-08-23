@@ -25,15 +25,15 @@ const RoomInfoDlg = (props: RoomInfoDlgType) => {
       <RoomInfoDlgText text={text} />
       <div className="md:mt-[32px] xs:mt-[24px] flex md:flex-row xs:flex-col md:h-fit xs:h-full items-center justify-between">
         <div className="flex">
-          {RoomMemberAvatarSmallData[props.activeRoomId].map(function (i) {
+          {RoomMemberAvatarSmallData[props.activeRoomId].map(function (i, index) {
             counter++;
             rest = counter - 5;
             return counter >= 6 ? (
               false
             ) : i.imgUrl === "" ? (
-              <DummyAvatarSmall4Experience />
+              <DummyAvatarSmall4Experience key={index} />
             ) : (
-              <UserAvatarSmall imageUrl={i.imgUrl} />
+              <UserAvatarSmall imageUrl={i.imgUrl} key={index} />
             );
           })}
           {rest < 1 ? "" : <MoreUsersAvatar rest={rest} />}

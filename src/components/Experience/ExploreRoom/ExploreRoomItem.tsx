@@ -10,7 +10,7 @@ type ExploreRoomItemType = {
 const ExploreRoomItem = (props: ExploreRoomItemType) => {
   return (
     <div
-      className=" flex flex-col w-[100%] h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
+      className=" flex flex-col h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
                         relative cursor-pointer hover:border-primary custom-2xl:col-span-4 xl:col-span-6 lg:col-span-12 xs:col-span-6"
     >
       <div className=" rounded-[15px] overflow-hidden">

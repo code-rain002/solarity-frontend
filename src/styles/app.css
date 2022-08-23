@@ -58,8 +58,8 @@ code {
   height: 100%;
   fill: none;
   stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 6;
-  stroke-linecap: round;
+  strokeWidth: 6;
+  strokeLinecap: round;
 }
 
 .progress svg circle:last-of-type {
@@ -80,8 +80,8 @@ code {
     height: 100%;
     fill: none;
     stroke: rgba(255, 255, 255, 0.1);
-    stroke-width: 4;
-    stroke-linecap: round;
+    strokeWidth: 4;
+    strokeLinecap: round;
   }
 
   .progress svg circle:last-of-type {
@@ -104,8 +104,8 @@ code {
   height: 100%;
   fill: none;
   stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 6;
-  stroke-linecap: round;
+  strokeWidth: 6;
+  strokeLinecap: round;
 }
 
 .progress svg circle:last-of-type {
@@ -126,8 +126,8 @@ code {
     height: 100%;
     fill: none;
     stroke: rgba(255, 255, 255, 0.1);
-    stroke-width: 4;
-    stroke-linecap: round;
+    strokeWidth: 4;
+    strokeLinecap: round;
   }
 
   .progress svg circle:last-of-type {

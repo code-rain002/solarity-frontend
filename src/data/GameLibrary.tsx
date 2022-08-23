@@ -1,4 +1,4 @@
-import { GameLibraryDataType, LiveEventsDataType } from "modal/library";
+import { GameLibraryDataType, LiveEventsDataType, FriendsDataType, RoomListDataType } from "modal/library";
 
 export const EventsMenu = [
     "Your DAOs",
@@ -713,3 +713,153 @@ export const GameLibraryData: GameLibraryDataType[] = [
         ]
     },
 ]
+
+export const FriendsData: FriendsDataType[] = [
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+    name: "Jimma1xdetwedddd",
+    link: "https://solarity.xyz/Jimma1xdetwedddd"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+    name: "Muhamad1",
+    link: "https://solarity.xyz/Muhamad1"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+    name: "Chenwang1",
+    link: "https://solarity.xyz/Chenwang1"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+    name: "Satoshi1",
+    link: "https://solarity.xyz/Satoshi1"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+    name: "Jimma2",
+    link: "https://solarity.xyz/Jimma2"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+    name: "Muhamad2",
+    link: "https://solarity.xyz/Muhamad2"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+    name: "Chenwang2",
+    link: "https://solarity.xyz/Chenwang2"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+    name: "Satoshi2",
+    link: "https://solarity.xyz/Satoshi2"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+    name: "Jimma3",
+    link: "https://solarity.xyz/Jimma3"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+    name: "Muhamad3",
+    link: "https://solarity.xyz/Muhamad3"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+    name: "Chenwang3",
+    link: "https://solarity.xyz/Chenwang3"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+    name: "Satoshi3",
+    link: "https://solarity.xyz/Satoshi3"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+    name: "Jimma4",
+    link: "https://solarity.xyz/Jimma4"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+    name: "Muhamad4",
+    link: "https://solarity.xyz/Muhamad4"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+    name: "Chenwang4",
+    link: "https://solarity.xyz/Chenwang4"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+    name: "Satoshi4",
+    link: "https://solarity.xyz/Satoshi4"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+    name: "Jimma5",
+    link: "https://solarity.xyz/Jimma5"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+    name: "Muhamad5",
+    link: "https://solarity.xyz/Muhamad5"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+    name: "Chenwang5",
+    link: "https://solarity.xyz/Chenwang5"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+    name: "Satoshi5",
+    link: "https://solarity.xyz/Satoshi5"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+    name: "Jimma6",
+    link: "https://solarity.xyz/Jimma6"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+    name: "Muhamad6",
+    link: "https://solarity.xyz/Muhamad6"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+    name: "Chenwang6",
+    link: "https://solarity.xyz/Chenwang6"
+  },
+  {
+    avatar: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+    name: "Satoshi6",
+    link: "https://solarity.xyz/Satoshi6"
+  },
+];
+
+export const RoomListData: RoomListDataType[] = [
+  {
+    imgUrl: "/images/experience/room_images/room_8_avatar_lg.jpg",
+    roomName: "6529 Photo A",
+  },
+  {
+    imgUrl: "/images/experience/room_images/room_7_avatar_lg.jpg",
+    roomName: "Justin Aversano’s Twin Flames",
+  },
+  {
+    imgUrl: "/images/experience/room_images/room_6_avatar_lg.jpg",
+    roomName: "CyberKongz",
+  },
+  {
+    imgUrl: "/images/experience/room_images/room_5_avatar_lg.jpg",
+    roomName: "Dummy text",
+  },
+  {
+    imgUrl: "/images/experience/room_images/room_4_avatar_lg.jpg",
+    roomName: "9438 Photo C",
+  },
+  {
+    imgUrl: "/images/experience/room_images/room_3_avatar_lg.jpg",
+    roomName: "6529 Photo A",
+  },
+];

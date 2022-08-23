@@ -7,9 +7,10 @@ const ExploreSection = () => {
     <div className=" md:mt-[35px] xs:mt-[32px] w-full">
       <ExploreRoomTitle number="19" />
       <div className=" grid grid-cols-12 lg:gap-[32px] xs:gap-[16px] w-full ">
-        {ExploreRoomData.map((i) => {
+        {ExploreRoomData.map((i, index) => {
           return (
             <ExploreRoomItem
+              key={index}
               walletIcon={i.walletIcon}
               collectionName={i.collectionName}
               imgUrl={i.imgUrl}
