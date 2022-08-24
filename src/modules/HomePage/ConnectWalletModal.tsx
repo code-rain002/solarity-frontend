@@ -45,6 +45,7 @@ export const ConnectWalletModal = () => {
       // let temp = userInfo.username.split('.')
       // temp.pop()
       // let realDomain = temp.toString()
+      console.log(userInfo)
       router.push({ pathname: `/${userInfo.username}/profile` })
 
       console.log("logged in");

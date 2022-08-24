@@ -440,12 +440,12 @@ export const profileSlice = createSlice({
         "..." +
         address.substring(address.length - 4, address.length);
       state.data = action.payload;
-      localStorage.setItem("name", action.payload.domain);
+      localStorage.setItem("name", action.payload.username);
       if (!(window as any).socket) {
         (window as any).socket = socket();
       }
       (window as any).socket.emit(ACTIONS.SET_USER_NAME, {
-        username: action.payload.domain,
+        username: action.payload.username,
       });
     },
     loadNFTs(state, action: PayloadAction<any>) {
