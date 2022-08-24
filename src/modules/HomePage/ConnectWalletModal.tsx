@@ -42,10 +42,10 @@ export const ConnectWalletModal = () => {
           // onFinally: router.push({ pathname: `/123/profile` })
         })
       );
-      let temp = userInfo.username.split('.')
-      temp.pop()
-      let realDomain = temp.toString()
-      router.push({ pathname: `/${realDomain}/profile` })
+      // let temp = userInfo.username.split('.')
+      // temp.pop()
+      // let realDomain = temp.toString()
+      router.push({ pathname: `/${userInfo.username}/profile` })
 
       console.log("logged in");
     }
