@@ -8,11 +8,9 @@ import EventMorePanel from "components/Common/Panels/EventMorePanel";
 import { useDispatch } from "react-redux";
 import { changeInfo } from "redux/slices/eventSlice";
 import { apiCaller } from "utils/fetcher";
-import { useRouter } from "next/router";
 
 const Library = (props) => {
   const { setPage, selectGame, createEventToggle, setCreateEventToggle } = props;
-  const router = useRouter()
   const dispatch = useDispatch()
   const rightScroll = () => {
     document.querySelector(".library-tab").scrollLeft += 80;
@@ -69,7 +67,7 @@ const Library = (props) => {
   }
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full px-[30px]">
       <div className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px]">
         Live Now
       </div>
@@ -86,7 +84,7 @@ const Library = (props) => {
               onClick={() => onClickEventMenu(index, item)}
               key={index}
             >
-              {item}
+              <nobr>{item}</nobr>
             </div>
           ))}
         </div>
@@ -123,7 +121,7 @@ const Library = (props) => {
               onClick={() => setActiveLibraryMenu(item)}
               key={index}
             >
-              {item}
+              <nobr>{item}</nobr>
             </div>
           ))}
         </div>
@@ -154,7 +152,7 @@ const Library = (props) => {
             title={item.title}
             likes={item.likes}
             members={item.members}
-            onClick={() => router.push({ pathname: `/library/${item.title}` })}
+            onClick={() => onClickGameItem(item)}
           />
         ))}
       </div>

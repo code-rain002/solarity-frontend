@@ -7,8 +7,8 @@ import BalanceBox from 'components/Common/Forms/HeaderBalanceBox'
 import UserInfoMenu from 'components/Common/Forms/UserInfoMenu'
 import LibraryLayout from 'components/LibraryLayout'
 import { CloseIcon } from 'components/icons'
-import Library from 'modules/Library'
-import GameDetail from 'modules/Library/GameDetail'
+import Library from 'modules/Popup'
+import GameDetail from 'modules/Popup/GameDetail'
 import { Rnd } from 'react-rnd'
 import CreateEventModal from 'components/Library/CreateEventModal'
 
@@ -51,7 +51,7 @@ const Header = () => {
     const [active, setActive] = useState(currentPath)
 
     const item_arr = HeaderMenuTitles.map(function (i){
-        return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={i === "Library" ? () => setGameLibraryToggle(true) : () => setActive(i.toLowerCase())} setToggle={setGameLibraryToggle} />
+        return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={i === "Popup" ? () => setGameLibraryToggle(true) : () => setActive(i.toLowerCase())} setToggle={setGameLibraryToggle} />
     })
 
     const onClose = () => {
