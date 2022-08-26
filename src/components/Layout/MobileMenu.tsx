@@ -9,6 +9,8 @@ import { HeaderMenuTitles } from "data/HeaderMenu"
 type MobileMenuProps = {
     mobileMenuToggler : boolean,
     onClick : any,
+    searchString: string;
+    setSearchString: Function;
 }
 
 const MobileMenu = (props : MobileMenuProps) => {
@@ -26,7 +28,7 @@ const MobileMenu = (props : MobileMenuProps) => {
             <div className="mobile-header-menu flex h-full items-start pt-[170px]">
                 <div className="mobile-searchbar-menu flex-col w-full justify-start">
                     <div className="w-full p-[24px] border-b-[1px] border-[#272829]">
-                        <SearchBox />
+                        <SearchBox searchString={props.searchString} setSearchString={props.setSearchString} />
                     </div>
                     <div className="flex-col w-full h-full pt-[24px]">
                         {item_arr}

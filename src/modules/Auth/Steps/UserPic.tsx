@@ -13,9 +13,10 @@ import { AvatarPanel, NftPanel } from "components/Common/Panels";
 import { minifyAddress } from "utils";
 import { getNfts } from '../../../hooks'
 
-import { setProfilePic, setUploadPic, undoSetupStep } from '../../../redux/slices/profileSlice'
-import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice'
+import { startLoadingApp, stopLoadingApp } from '../../../redux/slices/commonSlice';
 import { showErrorToast, showSuccessToast } from "utils";
+import { changeInfo } from "redux/slices/authSlice";
+import { apiCaller } from "utils/fetcher";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,
@@ -26,18 +27,18 @@ cloudinary.config({
 const UserPic = (props) => {
   const dispatch = useDispatch()
   const router = useRouter();
-  const { submit, setAvatar } = props
-  const { profileData } = useSelector(
+  const { setAvatar, avatar, goStep } = props
+  const { userInfo, loading } = useSelector(
     (state: RootStateOrAny) => ({
-      profileData: state.profile.data
+      userInfo: state.auth.userInfo,
+      loading: state.common.appLoading
     })
   );
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(
-    profileData.domain,
-    profileData.solanaAddress,
+    userInfo.domain,
+    userInfo.solanaAddress,
     true
   );
-
   // bug code
   const publicKey = localStorage.getItem('publickey');
   const walletType = localStorage.getItem('type');
@@ -49,123 +50,95 @@ const UserPic = (props) => {
   const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
   const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
   const [selectedNft, setSelectedNft] = useState<any>(null);
-
-  const [image, setImage] = useState("");
-  const [imageData, setImageData] = useState([]);
+  const [isNftSelected, setIsNftSelected] = useState(true);
+  const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
-    if (profileData.stepsCompleted.infoAdded) {
-
-    }
     fetchNFTs();
   }, []);
 
-  useEffect(() => {
-    if (selectedNft) {
-      dispatch(startLoadingApp());
-      dispatch(
-        setProfilePic({
-          data: selectedNft,
-          successFunction: () => {
-            showSuccessToast("You profile pic has been updated");
-          },
-          errorFunction: () => {
-            showErrorToast("Unable to update the profile pic");
-          },
-          finalFunction: () => {
-            dispatch(stopLoadingApp());
-            setSelectedAvatar(null)
-          },
-        })
-      );
-    }
-  }, [selectedNft])
+  const onImageLoad = (tempFiles) => {
+    setFiles(tempFiles)
+    const listFiles = []
+    tempFiles.forEach(async (file: any) => {
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        if (reader.readyState === 2) {
+          listFiles.push({
+            fileBlob: reader.result,
+            fileName: file.name,
+            fileSize: file.size,
+            filePath: file.path
+          });
+          setLoadedFiles([...loadedFiles, ...listFiles]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
 
-  useEffect(() => {
-    if (selectedAvatar) {
-      dispatch(
-        setUploadPic({
-          data: selectedAvatar,
-          successFunction: () => {
-            showSuccessToast("You profile pic has been updated");
-          },
-          errorFunction: () => {
-            showErrorToast("Unable to update the profile pic");
-          },
-          finalFunction: () => {
-            dispatch(stopLoadingApp());
-            setSelectedNft(null)
-          },
-        })
-      );
-    }
-  }, [selectedAvatar])
+  const onComplete = async () => {
+    await uploadImage();
+    // await mint();
+  }
 
-  // if (nftLoading) {
-  //   return (
-  //     <div className="alert alert-warning w-full shadow-lg">
-  //       <span>Loading NFTs...</span>
-  //     </div>
-  //   );
-  // }
-  // if (nftError) {
-  //   return (
-  //     <div className="alert alert-error w-full shadow-lg">
-  //       <span>Error While Loading NFTs</span>
-  //     </div>
-  //   );
-  // }
-  // if (nfts.length == 0) {
-  //   return (
-  //     <div className="alert alert-info w-full shadow-lg">
-  //       <span>
-  //         You don't own any NFTs so you will not be able to set your profile pic
-  //       </span>
-  //     </div>
-  //   );
-  // }
-
-  // const onLoadAvatar = (files) => {
-  //   setFiles(files);
-
-  //   let listFiles = loadedFiles;
-  //   files.forEach(file => {
-  //     let reader = new FileReader();
-  //     reader.onload = (event) => {
-  //       if (reader.readyState === 2) {
-  //         listFiles.push({
-  //           fileBlob: reader.result,
-  //           fileName: file.name,
-  //           fileSize: file.size,
-  //           filePath: file.path
-  //         });
-  //         setLoadedFiles([...listFiles]);
-  //         console.log(loadedFiles);
-  //       }
-  //     };
-  //     reader.readAsDataURL(file);
-  //   });
-  // }
-
-  const uploadImage = async (files) => {
-    // setImage(files);
-    let images = []
-    files.forEach(async (file: any) => {
+  const uploadImage = async () => {
+    if (isNftSelected) {
+      const payload = {
+        value: selectedNft,
+        type: "profileImage"
+      };
+      setProfileImage(payload.value);
+      dispatch(changeInfo({ payload: payload }));
+    } else {
       const data = new FormData();
-      data.append("file", file);
+      data.append("file", selectedAvatar);
       data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
       data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
       data.append("folder", "assets/avatars");
       try {
         const resp = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, data);
-        console.log(resp)
-        images.push({ url: resp.data.url, public_id: resp.data.public_id, title: resp.data.original_filename })
-        setImageData([...images]);
+        const payload = {
+          value: {
+            link: resp.data.url,
+            network: null,
+            contractAddress: null,
+            tokenId: null,
+            mintAddress: null,
+          },
+          type: "profileImage"
+        };
+        setProfileImage(payload.value);
+        await dispatch(changeInfo({ payload: payload }));
       } catch (err) {
-        console.log("errr : ", err);
+        console.log("error : ", err);
       }
-    });
-    console.log(imageData)
+    }
+  }
+
+  useEffect(() => {
+    if (profileImage) {
+      register();
+    }
+  }, [profileImage])
+
+  const register = async () => {
+    console.log('register: ', profileImage);
+    const payload = {
+      publicKey,
+      walletType,
+      username: userInfo.domain,
+      bio: userInfo.title,
+      profileImage: profileImage,
+      daos: userInfo.daos
+    };
+    await apiCaller.post("auth/register", payload);
+  }
+
+  const mint = () => {
+    const address = userInfo.solanaAddress
+    const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
+    window.location.href = `${mintingUrl}/mint/${address}`
   }
 
   // const deleteImage = async (e) => {
@@ -176,27 +149,6 @@ const UserPic = (props) => {
   //     .then(resp => console.log(resp))
   //     .catch(_err => console.log("Something went wrong, please try again later."));
   // }
-
-  const undoUserPic = () => {
-    dispatch(startLoadingApp())
-
-    dispatch(undoSetupStep({
-      stepName: "profilePic",
-      onFinally: () => {
-        dispatch(undoSetupStep({
-          stepName: "dao",
-          onFinally: () => {
-            setAvatar(null)
-            router.push({
-              pathname: '/auth/register/userDaos'
-            })
-          }
-        }))
-      }
-    }))
-
-    dispatch(stopLoadingApp())
-  }
 
   return (
     <div className=" pr-[0] lg:pr-[7%]">
@@ -212,7 +164,7 @@ const UserPic = (props) => {
           </div>
           <div className="relative p-[32px] lg:p-14 flex-auto">
             <div className="mb-10">
-              <Dropzone onDrop={acceptedFiles => { uploadImage(acceptedFiles); }}>
+              <Dropzone onDrop={acceptedFiles => { onImageLoad(acceptedFiles); }}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
@@ -238,6 +190,24 @@ const UserPic = (props) => {
               </Dropzone>
             </div>
             <div className="overflow-scroll">
+              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+                {
+                  loadedFiles.map((image, index) => (
+                    <div className="p-2" key={index}>
+                      <AvatarPanel
+                        imageUrl={image.fileBlob}
+                        title={image.fileName}
+                        onClick={() => {
+                          setIsNftSelected(false)
+                          setAvatar(image.fileBlob)
+                          setSelectedAvatar(image.fileBlob)
+                        }}
+                        selected={image.fileBlob == selectedAvatar}
+                      />
+                    </div>)
+                  )
+                }
+              </div>
               {
                 nftLoading ?
                   <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
@@ -265,12 +235,14 @@ const UserPic = (props) => {
                               return selectedNft.mintAddress == mintAddress;
                             })()}
                             onClick={() => {
+                              setIsNftSelected(true)
                               setAvatar(image)
                               setSelectedNft({
-                                imageNetwork: type,
-                                mintAddress,
+                                link: image,
+                                network: type,
                                 contractAddress,
                                 tokenId,
+                                mintAddress,
                               });
                             }}
                           />
@@ -279,31 +251,14 @@ const UserPic = (props) => {
                     }
                   </div>
               }
-              <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
-                {
-                  imageData.map((image, index) => (
-                    <div className="p-2" key={index}>
-                      <AvatarPanel
-                        imageUrl={image.url}
-                        title={image.title}
-                        onClick={() => {
-                          setAvatar(image.url)
-                          setSelectedAvatar(image)
-                        }}
-                        selected={image == selectedAvatar}
-                      />
-                    </div>)
-                  )
-                }
-              </div>
             </div>
           </div>
           <div className="w-full p-[32px] lg:p-14 flex-auto flex items-end px-[32px] py-[32px] lg:px-14 lg:py-8">
             <div className="inline-block w-[20%] pr-2">
-              <BackButton onClick={undoUserPic} styles="rounded-[15px]" />
+              <BackButton onClick={() => goStep(2)} styles="rounded-[15px]" />
             </div>
             <div className="inline-block w-[80%] pl-2">
-              <PrimaryButton caption="Continue" icon="" bordered={false} onClick={submit} disabled={false} styles="rounded-[15px]" />
+              <PrimaryButton caption="Mint" icon="" bordered={false} onClick={() => onComplete()} disabled={nftLoading || avatar === null ? true : false} styles="rounded-[15px]" />
             </div>
           </div>
         </div>

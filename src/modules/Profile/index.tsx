@@ -25,13 +25,12 @@ const Profile = ({sidebarToggler}) => {
             </div>
             <div className={`relative w-fit`}>
                 <div className={`profile-tab flex flex-row mt-8 relative sm:px-[0px] xs:px-[20px]
-                                md:w-full ${sidebarToggler ? "md:w-[64vw] sm:w-[58vw]" : "md:w-[80vw] sm:w-[77vw]"} xs:w-[85vw]
+                                md:w-full ${sidebarToggler ? "md:w-[64vw] sm:w-[58vw]" : "md:w-[80vw] sm:w-[77vw]"} xs:w-[87vw]
                                 border-b-[1px] border-b-semiSplitter overflow-x-scroll scroll-smooth`}>
                     <TabItem title="Feed" selectedStatus={tabIndex === 0} onClick={() => setTabIndex(0)} />
                     <TabItem title="Gallery" selectedStatus={tabIndex === 1} onClick={() => setTabIndex(1)} />
                     <TabItem title="Rooms" selectedStatus={tabIndex === 2} onClick={() => setTabIndex(2)} />
                     <TabItem title="Communities" selectedStatus={tabIndex === 3} onClick={() => setTabIndex(3)} />
-
                 </div>
 
                 <div className="absolute right-[-3px] text-white top-[33px] sm:hidden xs:block">

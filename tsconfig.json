@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/Experience/ExploreRoom"  ],
   "exclude": [
     "node_modules"
   ]

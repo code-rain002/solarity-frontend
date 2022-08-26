@@ -4,6 +4,7 @@ import { setProfile } from "./profileSlice";
 import { startLoadingApp, stopLoadingApp } from "./commonSlice";
 import socket from "utils/socket-client";
 import { signMessage } from "utils/walletHelpers";
+import { showErrorToast } from "utils";
 
 export interface CounterState {
   roomName: string;
@@ -14,6 +15,19 @@ const initialState = {
   logged: false,
   loading: false,
   checkingSession: true,
+  userInfo: {
+    solanaAddress: null,
+    domain: null,
+    title: null,
+    links: {
+      discord: { username: null, connected: false },
+      twitter: { username: null, connected: false },
+      github: { username: null, connected: false }
+    },
+    daos: [],
+    profileImage: {}
+  },
+  step: 1,
 };
 
 type loginProps = {
@@ -85,10 +99,81 @@ export const checkSession = createAsyncThunk(
   }
 );
 
+export const checkUser = createAsyncThunk(
+  "auth/checkUser",
+  async ({ publicKey, walletType }: { publicKey: any; walletType: "solana" | "ethereum"; }, { dispatch }) => {
+    let response;
+    dispatch(startLoadingApp());
+    try {
+      const {
+        data: { exist },
+      } = await apiCaller.post("/auth/userExist", {
+        publicKey,
+        walletType,
+      });
+
+      if (exist) {
+        const payload = {
+          value: publicKey,
+          type: "solanaAddress"
+        }
+        dispatch(changeInfo({ payload: payload }))
+      }
+
+      response = exist;
+    } catch (err) {
+      console.log(err)
+    }
+    dispatch(stopLoadingApp());
+    return response;
+  }
+);
+
+export const changeInfo = createAsyncThunk(
+  "auth/changeUserInfo",
+  async ({
+    payload,
+    callback
+  }: {
+    payload: {
+      value: any,
+      type: String
+    };
+    callback?: () => void;
+  }) => {
+    if (callback) callback();
+    return payload;
+  }
+);
+
+export const goStep = createAsyncThunk(
+  "auth/goStep",
+  async ({
+    payload,
+  }: {
+    payload: {
+      stepNum: number
+    };
+  }) => {
+    console.log("step", payload)
+    return payload;
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    setUserInfo(state, action: PayloadAction<any>) {
+      state.userInfo = {
+        ...state.userInfo,
+        [action.payload.type]: action.payload.value
+      }
+    },
+    setStep(state, action: PayloadAction<any>) {
+      state.step = action.payload.stepNum
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       state.logged = action.payload;
@@ -103,7 +188,19 @@ export const authSlice = createSlice({
         window.location.reload();
       }
     });
+    builder.addCase(changeInfo.fulfilled, (state, action) => {
+      if (action.payload) {
+        authSlice.caseReducers.setUserInfo(state, action);
+      }
+    });
+    builder.addCase(goStep.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.step = action.payload.stepNum;
+      }
+    });
   },
 });
+
+export const { setUserInfo, setStep } = authSlice.actions;
 
 export default authSlice.reducer;
