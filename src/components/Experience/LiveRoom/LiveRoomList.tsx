@@ -33,10 +33,11 @@ const LiveRoomList = (props: LiveRoomListType) => {
         className={`md:h-[690px] xs:h-[440px] pr-[10px] md:overflow-y-scroll xs:overflow-y-hidden overflow-x-visible flex flex-col items-left md:gap-[24px] xs:gap-[16px] `}
         id="lrl"
       >
-        {LiveRoomListData.map((i) => {
+        {LiveRoomListData.map((i, index) => {
           k++;
           return (
             <LiveRoomListItem
+              key={index}
               imgUrl={i.imgUrl}
               walletIcon={i.walletIcon}
               collectionName={i.collectionName}

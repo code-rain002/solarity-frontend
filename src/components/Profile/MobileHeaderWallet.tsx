@@ -42,8 +42,8 @@ const MobileHeaderWallet = () => {
                 </div>
               </div>
               
-              {WalletBalanceData.map(i => {
-                return <WalletBalanceIcon kind={i.kind} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} />
+              {WalletBalanceData.map((i, index) => {
+                return <WalletBalanceIcon key={index} kind={i.kind} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} />
               })}
               
               

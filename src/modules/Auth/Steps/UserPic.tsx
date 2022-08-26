@@ -132,7 +132,13 @@ const UserPic = (props) => {
       profileImage: profileImage,
       daos: userInfo.daos
     };
-    await apiCaller.post("auth/register", payload);
+    await apiCaller.post("auth/register", payload)
+      .then(response => {
+        router.push({ pathname: '/' })
+      })
+      .catch(error => {
+        console.log(error)
+      });
   }
 
   const mint = () => {

@@ -37,3 +37,14 @@ export type LiveEventsDataType = {
     }>,
     createAt: string
 }
+
+export type FriendsDataType = {
+    avatar: string,
+    name: string,
+    link?: string
+}
+
+export type RoomListDataType = {
+    imgUrl: string,
+    roomName: string
+}

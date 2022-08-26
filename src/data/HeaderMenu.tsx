@@ -4,5 +4,6 @@ export const HeaderMenuTitles = [
     'Community',
     'Experience',
     'Quests',
-    'Library'
+    'Library',
+    'Popup',
 ]

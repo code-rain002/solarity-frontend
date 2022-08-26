@@ -1,34 +1,44 @@
 import Image from "next/image";
 
-type PsuedoAvatarItemType = {
-  setActiveAvatar: any;
-  itemId: number;
-  activeAvatar: number;
-  imgUrl: string;
-  title: string;
-  setActiveAvatarImg: any;
+type FriendAvatarItemType = {
+  key: number;
+  friendData: any;
+  selected: boolean;
+  setSelectedAvatars: any;
+  selectedAvatars: any;
 };
 
-const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
+const FriendAvatarItem = (props: FriendAvatarItemType) => {
+  const { friendData, selected, setSelectedAvatars, selectedAvatars } = props;
+
+  const onClickAvatar = (selectedItem) => {
+    let newArr;
+    console.log(selectedAvatars)
+    let index = selectedAvatars.findIndex((item, index) => item.name === selectedItem.name)
+    if (index >= 0) {
+      newArr = selectedAvatars.filter((item, index) => item.name !== selectedItem.name);
+    } else {
+      newArr = [...selectedAvatars, selectedItem];
+    }
+    setSelectedAvatars(newArr);
+  }
+
   return (
     // <div className={` relative border-[1.2px] rounded-[15px] w-[169px] h-[169px] p-[8px] cursor-pointer
     <div
       className={` relative border-[1.2px] rounded-[15px] p-[8px] cursor-pointer
                         flex flex-row justify-center hover:border-primary select-none
                         ${
-                          props.activeAvatar === props.itemId
+                          selected
                             ? "border-primary"
                             : "border-[#272829]"
                         } `}
-      onClick={() => {
-        props.setActiveAvatar(props.itemId);
-        props.setActiveAvatarImg(props.imgUrl);
-      }}
+      onClick={() => onClickAvatar(friendData)}
     >
       <div className=" flex flex-row w-full h-full rounded-[10px] bg-[#181818] justify-center items-center p-[24px] ">
         <div className=" block w-full h-full ">
           <Image
-            src={props.imgUrl}
+            src={friendData.avatar}
             layout="responsive"
             width={1500}
             height={1500}
@@ -36,16 +46,16 @@ const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
         </div>
       </div>
       <div
-        className=" absolute bottom-[18px] font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3]
+        className=" absolute bottom-[10px] font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3]
                             w-[90%] flex flex-row justify-center
-                            h-content bg-gradient-to-t from-[#181818] via-[#181818] to-transparent leading-[2rem] "
+                            h-content bg-gradient-to-t from-[#181818] via-[#181818] to-transparent leading-[2rem]"
       >
-        {props.title}
+        {friendData.name}
       </div>
 
       <div
         className={` top-[18px] left-[18px] ${
-          props.activeAvatar === props.itemId ? "absolute" : "hidden"
+          selected ? "absolute" : "hidden"
         } `}
       >
         <svg
@@ -75,4 +85,4 @@ const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
   );
 };
 
-export default PsuedoAvatarItem;
+export default FriendAvatarItem;

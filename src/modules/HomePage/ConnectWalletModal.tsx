@@ -4,7 +4,7 @@ import { Button, WalletButton } from "components/Common/Buttons";
 import WalletSelector from "modules/WalletSelector";
 import { useRouter } from "next/router";
 import { changeInfo, login } from "redux/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { apiCaller } from "utils/fetcher";
 import { signMessage } from "utils/walletHelpers";
 
@@ -12,6 +12,11 @@ export const ConnectWalletModal = () => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+  const { userInfo } = useSelector(
+    (state: RootStateOrAny) => ({
+      userInfo: state.profile.data,
+    })
+  );
 
   const onCheckUser = async (address, type, provider) => {
     const {
@@ -27,23 +32,40 @@ export const ConnectWalletModal = () => {
       //   type: "solanaAddress"
       // }
       // dispatch(changeInfo({ payload: payload, callback: () => { router.push({ pathname: '/auth/register' }) } }))
-      router.push({ pathname: '/auth/register' })
+      router.push({ pathname: "/auth/register" });
     } else {
-      dispatch(login({
-        publicKey: address,
-        walletType: type,
-        provider
-      }))
-      console.log('logged in')
+      await dispatch(
+        login({
+          publicKey: address,
+          walletType: type,
+          provider,
+          // onFinally: router.push({ pathname: `/123/profile` })
+        })
+      );
+      // let temp = userInfo.username.split('.')
+      // temp.pop()
+      // let realDomain = temp.toString()
+      router.push({ pathname: `/${userInfo.username}/profile` })
+
+      console.log("logged in");
     }
-  }
+  };
 
   return (
     <>
       <div className="text-center sm:text-left relative z-50">
-        <Button caption="Connect wallet" icon="" bordered={false} onClick={() => setShowModal(true)} />
+        <Button
+          caption="Connect wallet"
+          icon=""
+          bordered={false}
+          onClick={() => setShowModal(true)}
+        />
         <br className="block sm:hidden"></br>
-        <Link href="#"><a className="text-[#929298] mx-8 py-1 w-[100%] sm:w-[auto] mt-[10px]">Skip</a></Link>
+        <Link href="#">
+          <a className="text-[#929298] mx-8 py-1 w-[100%] sm:w-[auto] mt-[10px]">
+            Skip
+          </a>
+        </Link>
       </div>
       <WalletSelector
         type="all"
@@ -52,9 +74,9 @@ export const ConnectWalletModal = () => {
         open={showModal}
         onClose={() => setShowModal(false)}
         onSelect={(address, type, provider) => {
-          localStorage.setItem('publickey', address);
-          localStorage.setItem('type', type);
-          onCheckUser(address, type, provider)
+          localStorage.setItem("publickey", address);
+          localStorage.setItem("type", type);
+          onCheckUser(address, type, provider);
         }}
       />
     </>

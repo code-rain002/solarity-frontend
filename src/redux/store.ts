@@ -5,6 +5,7 @@ import authReducer from "./slices/authSlice";
 import profileReducer from "./slices/profileSlice";
 import marketplaceReducer from "./slices/marketplaceSlice";
 import commonReducer from "./slices/commonSlice";
+import eventReducer from "./slices/eventSlice";
 
 export function makeStore() {
   return configureStore({
@@ -14,6 +15,7 @@ export function makeStore() {
       auth: authReducer,
       profile: profileReducer,
       marketplace: marketplaceReducer,
+      event: eventReducer
     },
   });
 }

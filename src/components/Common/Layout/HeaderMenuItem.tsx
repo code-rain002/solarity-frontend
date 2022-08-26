@@ -19,7 +19,7 @@ const HeaderMenuItem = (props : HeaderMenuItemProps) => {
             </div>
 
             {
-                props.title === "Library" ?
+                props.title === "Popup" ?
                 <a>{props.title}</a>
                 :
                 <Link href={`/${props.title.toLowerCase()}`}>

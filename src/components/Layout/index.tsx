@@ -10,8 +10,8 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
     banner?: any,
     onClick: Function,
     sidebarToggler: boolean,
-    searchString: string;
-    setSearchString: Function;
+    searchString?: string;
+    setSearchString?: Function;
 }) => {
 
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
