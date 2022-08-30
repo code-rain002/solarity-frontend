@@ -3,12 +3,19 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import GameDetailPanel from "components/Common/Panels/GameDetailPanel";
-import { GameLibraryData, LiveEventsData, LibraryMenu, EventsMenu } from "data/GameLibrary";
+import { GameLibraryData, LiveEventsData, LibraryMenu, EventsMenu, GameDetailMenu } from "data/GameLibrary";
 import {
   ArrowLeftIcon,
   DiscordIcon,
   WebsiteIcon,
   TwitterIcon,
+  SendIcon,
+  ImageIcon,
+  GifIcon,
+  EmojiIcon,
+  ArrowDownIcon,
+  LikesIcon,
+  DislikesIcon,
 } from "assets/svgs";
 
 const socialIcons = [
@@ -48,47 +55,27 @@ const GameDetail = (props) => {
           <div className={`relative mt-[15px]`}>
             <div className="flex flex-col sm:flex-row">
               <div className="w-full mx-auto xs:w-[75%] xl:w-[25%] lg:w-[30%] md:w-[35%] sm:w-[45%]">
-                <GameDetailPanel data={detailData} onPlay={setIframe} />
+                <GameDetailPanel data={detailData} onPlay={() => setIframe(true)} />
               </div>
               <div className="w-full xl:w-[75%] lg:w-[70%] md:w-[65%] sm:w-[55%]">
                 <div className="border-y-[1px] border-[#1D1F1F] pl-[50px] mt-[25px] sm:mt-0">
                   <ul className="flex flex-row text-[14px] py-[17.5px]">
-                    <li
-                      className={`${
-                        tabIndex === 0 ? "text-[#29B080]" : "text-[#929298]"
-                      } w-[100px]`}
-                    >
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => setTabIndex(0)}
-                      >
-                        About
-                      </span>
-                    </li>
-                    <li
-                      className={`${
-                        tabIndex === 1 ? "text-[#29B080]" : "text-[#929298]"
-                      } w-[100px]`}
-                    >
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => setTabIndex(1)}
-                      >
-                        Store
-                      </span>
-                    </li>
-                    <li
-                      className={`${
-                        tabIndex === 2 ? "text-[#29B080]" : "text-[#929298]"
-                      } w-[100px]`}
-                    >
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => setTabIndex(2)}
-                      >
-                        Server
-                      </span>
-                    </li>
+                    {
+                      GameDetailMenu.map((menu, index) => (
+                        <li
+                          className={`${
+                            tabIndex === index ? "text-[#29B080]" : "text-[#929298]"
+                          } w-[100px]`}
+                        >
+                          <span
+                            className="cursor-pointer"
+                            onClick={() => setTabIndex(index)}
+                          >
+                            {menu}
+                          </span>
+                        </li>
+                      )) 
+                    }
                   </ul>
                 </div>
                 {tabIndex === 0 ? (
@@ -160,7 +147,8 @@ const GameDetail = (props) => {
                       </div>
                     </div>
                   </>
-                ) : tabIndex === 1 ? (
+                ) : null} 
+                {tabIndex === 1 ? (
                   <>
                     <div className="sm:pl-[20px] lg:pl-[50px]">
                       <div className="text-white font-bold py-[20px] text-[21px]">
@@ -197,10 +185,60 @@ const GameDetail = (props) => {
                       </div>
                     </div>
                   </>
-                ) : tabIndex === 2 ? (
+                ) : null} 
+                {tabIndex === 2 ? (
                   <div className="pl-[50px]">
                     <div className="text-white font-medium py-[20px]">
                       There are currently no running experiences.
+                    </div>
+                  </div>
+                ) : null}
+                {tabIndex === 3 ? (
+                  <div className="flex flex-col py-[20px] pl-[20px] sm:pl-[50px] w-[80%]">
+                    <div className="flex flex-row justify-between items-center">
+                      <div className="text-white font-bold text-[21px]">
+                        Community
+                      </div>
+                      <div className="flex flex-row gap-[5px] items-center">
+                        <span className="font-medium text-[14px] text-[#474749]">Sort by</span>
+                        <ArrowDownIcon />
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-[15px] bg-[#1D1D1E] rounded-[15px] px-[20px] py-[15px] mt-[20px]">
+                      <div><Image src="/images/library/default_avatar.png" height={24} width={24} /></div>
+                      <div className="flex flex-col w-full">
+                        <input type="text" placeholder="Share your thoughts..." className="bg-transparent text-[#B3B3B7] text-[16px]" />
+                        <div className="flex flex-row justify-between items-center mt-[10px]">
+                          <div className="flex flex-row gap-[15px]">
+                            <ImageIcon />
+                            <GifIcon />
+                            <EmojiIcon />
+                          </div>
+                          <div className="bg-primary px-[15px] rounded-[5px] flex flex-row items-center cursor-pointer">
+                            <span className="text-white text-[14px]">Send</span>&nbsp;
+                            <SendIcon />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-row gap-[15px] bg-[#1D1D1E] rounded-[15px] px-[20px] py-[15px] mt-[20px]">
+                      <div><Image src="/images/library/temp/users/avatar.png" height={24} width={24} /></div>
+                      <div className="flex flex-col w-full justify-between">
+                        <div className="flex flex-row justify-between items-center">
+                          <div className="text-[14px]">
+                            <span className="text-[#929298]">Konstantin1982</span>&nbsp;&nbsp;&nbsp;
+                            <span className="text-[#474749]">5hrs</span>
+                          </div>
+                          <div className="flex flex-row gap-[15px] text-[16px] text-primary">
+                            <div className="flex items-center gap-[5px]"><LikesIcon /> 57</div>
+                            <div className="flex items-center gap-[5px]"><DislikesIcon /> 2</div>
+                          </div>
+                        </div>
+                        <div className="text-[16px] text-[#B3B3B7] mt-[10px]">
+                          I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is ... more
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : null}

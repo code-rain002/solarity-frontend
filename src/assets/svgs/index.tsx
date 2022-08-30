@@ -9,6 +9,12 @@ export { default as SearchIcon } from './library/icons/search';
 export { default as TimerIcon } from './library/icons/timer';
 export { default as CreateIcon } from './library/icons/create';
 export { default as LockIcon } from './library/icons/lock';
+export { default as SendIcon } from './library/icons/send';
+export { default as ImageIcon } from './library/icons/image';
+export { default as GifIcon } from './library/icons/gif';
+export { default as EmojiIcon } from './library/icons/emoji';
+export { default as ArrowDownIcon } from './library/icons/arrowDown';
+export { default as DislikesIcon } from './library/icons/dislikes';
 
 // Social Links
 export { default as TwitterIcon } from './library/icons/twitter';

@@ -21,7 +21,7 @@ const GameDetailPanel = (props) => {
                     <div className="flex flex-row items-center"><UsersLargeIcon />&nbsp;{data.members}</div>
                 </div>
                 <div className="mt-[20px]">
-                    <button className={`solarity-button font-medium py-[10px] rounded-[12px] mb-[15px] text-white w-[100%] text-[21px] sm:text-[18px] text-center tracking-wider  inline-flex items-center justify-center bg-primary hover:bg-lightprimary`} onClick={() => onPlay(true)}>
+                    <button className={`solarity-button font-medium py-[10px] rounded-[12px] mb-[15px] text-white w-[100%] text-[21px] sm:text-[18px] text-center tracking-wider  inline-flex items-center justify-center bg-primary hover:bg-lightprimary`} onClick={onPlay}>
                         <PlayIcon />
                         <span className="ml-[20px]">Play</span>
                     </button>

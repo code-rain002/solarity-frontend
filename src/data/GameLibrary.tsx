@@ -14,6 +14,13 @@ export const LibraryMenu = [
     'Top Rated'
 ];
 
+export const GameDetailMenu = [
+    "About",
+    "Store",
+    "Server",
+    "Reviews"
+]
+
 export const LiveEventsData: LiveEventsDataType[] = [
     {
         image: "/images/library/temp/shareholders_meeting.png",
