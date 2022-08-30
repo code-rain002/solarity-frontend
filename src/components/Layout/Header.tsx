@@ -55,8 +55,13 @@ const Header = (props: HeaderProps) => {
     const [active, setActive] = useState(currentPath)
 
     const item_arr = HeaderMenuTitles.map(function (i){
-        return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={i === "Popup" ? () => setGameLibraryToggle(true) : () => setActive(i.toLowerCase())} setToggle={setGameLibraryToggle} />
+        return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={i === "Popup" ? () => openPopup(i) : () => setActive(i.toLowerCase())} setToggle={setGameLibraryToggle} />
     })
+
+    const openPopup = (i) => {
+        setGameLibraryToggle(true)
+        setActive(i.toLowerCase())
+    }
 
     const onClose = () => {
         setGameLibraryToggle(false);
@@ -128,9 +133,15 @@ const Header = (props: HeaderProps) => {
                                                 selectGame={setSelectedGame} 
                                                 createEventToggle={createEventToggle}
                                                 setCreateEventToggle={setCreateEventToggle}
+                                                activePath={active}
                                             />
                                             :
-                                            <GameDetail setPage={setGameLibraryPageFlag} setIframe={setIsIframe} selectedGame={selectedGame} />
+                                            <GameDetail 
+                                                setPage={setGameLibraryPageFlag} 
+                                                setIframe={setIsIframe} 
+                                                selectedGame={selectedGame}
+                                                activePath={active}
+                                            />
                                         }
                                     </LibraryLayout>
                                 }

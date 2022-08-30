@@ -11,7 +11,7 @@ import { apiCaller } from "utils/fetcher";
 import { useRouter } from "next/router";
 
 const Library = (props) => {
-  const { setPage, selectGame, createEventToggle, setCreateEventToggle } = props;
+  const { setPage, selectGame, createEventToggle, setCreateEventToggle, activePath } = props;
   const router = useRouter()
   const dispatch = useDispatch()
   const rightScroll = () => {
@@ -27,7 +27,7 @@ const Library = (props) => {
   const [activeLibraryMenu, setActiveLibraryMenu] = useState("Up and Coming");
   const [activeEventsMenu, setActiveEventsMenu] = useState("Your DAOs");
   const [eventsList, setEventsList] = useState([])
-
+console.log(activePath)
   useEffect(() =>  {
     if (!createEventToggle) {
       apiCaller.get("/events?isPrivate=false")
@@ -154,7 +154,7 @@ const Library = (props) => {
             title={item.title}
             likes={item.likes}
             members={item.members}
-            onClick={() => router.push({ pathname: `/library/${item.title}` })}
+            onClick={activePath !== "popup" ? () => router.push({ pathname: `/library/${item.title}` }) : () => onClickGameItem(item)}
           />
         ))}
       </div>

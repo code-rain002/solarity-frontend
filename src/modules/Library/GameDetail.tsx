@@ -18,16 +18,19 @@ const socialIcons = [
 ];
 
 const GameDetail = (props) => {
-  const { setIframe } = props;
+  const { setIframe, setPage, selectedGame, activePath } = props;
   const router = useRouter();
   const { game } = router.query;
   const [detailData, setDetailData] = useState(null);
   const [tabIndex, setTabIndex] = useState(0);
 
   useEffect(() => {
-    let data = GameLibraryData.find((item, index) => item.title == game);
-    console.log(data)
-    setDetailData(data);
+    if (game) {
+      let data = GameLibraryData.find((item, index) => item.title == game);
+      setDetailData(data);
+    } else {
+      setDetailData(selectedGame)
+    }
   }, [game])
 
   return (
@@ -36,7 +39,7 @@ const GameDetail = (props) => {
         <>
           <div
             className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center w-fit"
-            onClick={() => router.push({ pathname: '/library' })}
+            onClick={activePath === "popup" ? () => setPage(0) : () => router.push({ pathname: '/library' })}
           >
             <ArrowLeftIcon />
             <span className="ml-[10px]">{detailData.title}</span>
