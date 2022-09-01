@@ -141,6 +141,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/aurory.jpeg",
@@ -205,6 +220,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/somnium.webp",
@@ -269,6 +299,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/tetris.png",
@@ -333,6 +378,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/webaverse.jpeg",
@@ -397,6 +457,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/oncyber.png",
@@ -461,6 +536,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/portals.jpeg",
@@ -525,6 +615,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/plaza.png",
@@ -589,6 +694,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/poker.jpg",
@@ -653,6 +773,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     }, {
         image: "/images/library/temp/minecraft.webp",
@@ -717,6 +852,21 @@ export const GameLibraryData: GameLibraryDataType[] = [
                 image: "/images/library/temp/stores.png",
                 price: 450,
             },
+        ],
+        reviews: [
+            {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }, {
+                owner: "Lonstantin1982",
+                content: "I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is more motivated and exsited, fantastic, excellent",
+                likes: 57,
+                dislikes: 2,
+                createAt: "2022-8-30 00:00:00"
+            }
         ]
     },
 ]

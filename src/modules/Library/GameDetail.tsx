@@ -200,7 +200,7 @@ const GameDetail = (props) => {
                         Community
                       </div>
                       <div className="flex flex-row gap-[5px] items-center">
-                        <span className="font-medium text-[14px] text-[#474749]">Sort by</span>
+                        <span className="font-medium text-[14px] text-[#474749] cursor-pointer">Sort by</span>
                         <ArrowDownIcon />
                       </div>
                     </div>
@@ -222,24 +222,32 @@ const GameDetail = (props) => {
                       </div>
                     </div>
 
-                    <div className="flex flex-row gap-[15px] bg-[#1D1D1E] rounded-[15px] px-[20px] py-[15px] mt-[20px]">
-                      <div><Image src="/images/library/temp/users/avatar.png" height={24} width={24} /></div>
-                      <div className="flex flex-col w-full justify-between">
-                        <div className="flex flex-row justify-between items-center">
-                          <div className="text-[14px]">
-                            <span className="text-[#929298]">Konstantin1982</span>&nbsp;&nbsp;&nbsp;
-                            <span className="text-[#474749]">5hrs</span>
+                    {detailData.reviews && detailData.reviews.map((review, index) => (
+                      <div className="flex flex-row gap-[15px] bg-[#1D1D1E] rounded-[15px] px-[20px] py-[15px] mt-[20px]">
+                        <div><Image src="/images/library/temp/users/avatar.png" height={24} width={24} /></div>
+                        <div className="flex flex-col w-full justify-between">
+                          <div className="flex flex-row justify-between items-center">
+                            <div className="text-[14px]">
+                              <span className="text-[#929298]">{review.owner}</span>&nbsp;&nbsp;&nbsp;
+                              <span className="text-[#474749]">5hrs</span>
+                            </div>
+                            <div className="flex flex-row gap-[15px] text-[16px] text-primary">
+                              <div className="flex items-center gap-[5px]"><LikesIcon /> {review.likes}</div>
+                              <div className="flex items-center gap-[5px]"><DislikesIcon /> {review.dislikes}</div>
+                            </div>
                           </div>
-                          <div className="flex flex-row gap-[15px] text-[16px] text-primary">
-                            <div className="flex items-center gap-[5px]"><LikesIcon /> 57</div>
-                            <div className="flex items-center gap-[5px]"><DislikesIcon /> 2</div>
+                          <div className="mt-[10px]">
+                            <span
+                              className="text-[16px] text-[#B3B3B7]"
+                              dangerouslySetInnerHTML={{
+                                __html: review.content.length > 150 ? review.content.slice(0, 150) + " ... " : review.content,
+                              }}
+                            ></span>
+                            {review.content.length > 150 ? <span className="text-[16px] text-[#474749] cursor-pointer">more</span> : null}
                           </div>
-                        </div>
-                        <div className="text-[16px] text-[#B3B3B7] mt-[10px]">
-                          I love this game.Before I played Collect All Pets, I had no friends and no purpose in life. These things haven’t changed but this game is ... more
                         </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 ) : null}
               </div>

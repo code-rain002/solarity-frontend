@@ -22,6 +22,13 @@ export type GameLibraryDataType = {
         image: string,
         price: number,
     }>,
+    reviews?: Array<{
+        owner: string,
+        likes: number,
+        dislikes: number,
+        content: string,
+        createAt: string,
+    }>
 }
 
 export type LiveEventsDataType = {
