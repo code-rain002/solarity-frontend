@@ -134,7 +134,8 @@ const UserPic = (props) => {
     };
     await apiCaller.post("auth/register", payload)
       .then(response => {
-        router.push({ pathname: '/' })
+        mint()
+        // router.push({ pathname: '/' })
       })
       .catch(error => {
         console.log(error)
@@ -144,7 +145,7 @@ const UserPic = (props) => {
   const mint = () => {
     const address = userInfo.solanaAddress
     const mintingUrl = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL : process.env.NEXT_PUBLIC_MINTING_URL
-    window.location.href = `${mintingUrl}/mint/${address}`
+    window.location.href = `${mintingUrl}`
   }
 
   // const deleteImage = async (e) => {
