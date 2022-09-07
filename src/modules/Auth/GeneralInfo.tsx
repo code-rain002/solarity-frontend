@@ -87,6 +87,7 @@ export const GeneralInfo = () => {
       }
       <div className="hidden lg:block text-center">
         <Logo />
+        <div className="text-white">{25 * step}/100</div>
         <div className="relative h-[calc(100vh-180px)]">
           <div className="absolute w-[576px] h-[384px] bg-[#159C6C] left-0 right-0 top-0 bottom-0 m-auto rounded-[40px] passport-card z-10">
             <div className="absolute w-[576px] h-[268px] left-0 right-0 top-0 bottom-0 mx-auto rounded-[40px] passport-body">
@@ -140,6 +141,14 @@ export const GeneralInfo = () => {
                   }
                 </div>
               </div>
+            </div>
+            
+            <div className="w-full h-[5px] mt-[25px] flex flex-row gap-3">
+              {
+                [1,2,3,4].map((num, index) => (
+                  <div className={`bg-white  rounded-[5px] transition-all duration-75 delay-75 ${num <= step ? 'w-[25%]' : 'w-[0px]' }`}></div>
+                ))
+              }
             </div>
           </div>
           <div className="eclipse-1 absolute"></div>
