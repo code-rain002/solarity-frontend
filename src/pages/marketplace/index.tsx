@@ -85,7 +85,7 @@ const ProfileIndex = () => {
                     layout="fill"
                 />
                 <div onClick={() => expandRoom(false)}>
-                <BackButton />
+                    <BackButton />
                 </div>
             </div>}
         </>

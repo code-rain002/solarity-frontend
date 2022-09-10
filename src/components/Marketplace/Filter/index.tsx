@@ -1,6 +1,5 @@
 import SearchBox from 'components/Common/Forms/SearchBox';
 import { FilterIcon } from 'components/icons/FilterIcon';
-import { categoriesData, collectionsData } from 'data/Marketplace';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import Category from './Category';
@@ -14,16 +13,17 @@ export interface FilterItemType {
 }
 
 export interface MenuProps {
-  list: FilterItemType[];
   searchString: string;
   setSearchString: Function;
+  categories: FilterItemProps[];
+  collections: FilterItemProps[];
 }
 
 export default function Filter(props: MenuProps) {
 
   const [filterDlgToggle, setFilterDlgToggle] = useState(false);
-  const [categories, setCategaries] = useState(categoriesData);
-  const [collections, setCollections] = useState(collectionsData);
+  const [categories, setCategaries] = useState(props.categories);
+  const [collections, setCollections] = useState(props.collections);
 
   useEffect(() => {
     console.log(categories)
@@ -55,7 +55,7 @@ export default function Filter(props: MenuProps) {
 
   return (
     <div>
-      <div className='grid-cols-12 lg:grid md:grid sm:hidden xs:hidden mt-[36px]'>
+      <div className='grid-cols-12 lg:grid md:grid sm:hidden xs:hidden'>
         <div className='col-span-3 flex'>
           <Category click={onClickCategory} catagories={categories} />
           <div className='justify-center items-center flex mx-auto'>
@@ -67,7 +67,7 @@ export default function Filter(props: MenuProps) {
           <Collection click={onClickCollection} collections={collections} />
         </div>
       </div>
-      <div className='md:hidden flex justify-between'>
+      <div className='md:hidden lg:hidden sm:hidden xs:flex justify-between'>
         <div className='basis-5/6'>
           <SearchBox setSearchString={props.setSearchString} searchString={props.searchString} />
         </div>

@@ -1,9 +1,9 @@
 import Label from 'components/Marketplace/NFTItems/Header/Label'
 import React from 'react'
 
-function Header() {
+function Header({title, count}) {
   return (
-    <Label name='Otherdeed Collection' count={4} />
+    <Label name={title} count={count} />
   )
 }
 

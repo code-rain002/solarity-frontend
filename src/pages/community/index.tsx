@@ -10,7 +10,7 @@ const ProfileIndex = () => {
     return (
         <Layout 
             sidebarToggler={sidebarToggler} 
-            banner={<CommunityBanner sidebarToggler={sidebarToggler}/>}
+            banner={<></>}
             onClick={() => setSidebarToggler(!sidebarToggler)} 
         >
             <Community sidebarToggler={sidebarToggler} />
