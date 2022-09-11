@@ -96,12 +96,12 @@ export const FeedData : FeedDataType[] = [
     },
     {
         badgeUrl : "/images/social/profile_feed_twitter.png",
-        avatarUrl : '/images/profile/Avatar_Konstantin1982.webp',
+        avatarUrl : '/images/profile/Avatar.png',
         domainName : "@tmeta.verse",
         date : "30.05.2022",
         content : "Push the boundaries with @Nanxss’ hand-picked Locker Bundle<br />\
                     Available in the item Shop now",
-        imageUrl : "/images/profile/Avatar_Konstantin1982.webp",
+        imageUrl : "/images/profile/@konstantin1981_img.png",
         retweets : 317,
         twWithQuotes : 97,
         likes : 5512
