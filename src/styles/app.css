@@ -68,6 +68,10 @@ code {
   stroke: #2ecc71;
 }
 
+.progress.register svg circle:last-of-type {
+  stroke: #29b080;
+}
+
 @media screen and (max-width: 640px) {
   .progress svg {
     width: 210px;

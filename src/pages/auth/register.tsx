@@ -1,4 +1,4 @@
-import { GeneralInfo } from "modules/Auth/GeneralInfo";
+import RegisterPage from "modules/Auth/Register";
 
 const Register = () => {
   return (
@@ -7,7 +7,7 @@ const Register = () => {
         <div className="round-glow-1"></div>
         <div className="round-glow-2"></div>
         <div className="round-glow-3 hidden lg:block"></div>
-        <GeneralInfo />
+        <RegisterPage />
       </main>
     </div>
   );
