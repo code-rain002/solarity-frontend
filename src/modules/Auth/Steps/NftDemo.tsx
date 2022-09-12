@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { minifyAddress } from "utils";
-import { Model } from "./Model";
-import { Canvas } from "react-three-fiber";
+// import { Model } from "./Model";
+// import { Canvas } from "react-three-fiber";
 
 const NftDemo = (props) => {
   const { setAvatar, avatar, goStep } = props;
