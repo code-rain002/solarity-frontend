@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { minifyAddress } from "utils";
+import { Model } from "./Model";
+import { Canvas } from "react-three-fiber";
 
 const NftDemo = (props) => {
   const { setAvatar, avatar, goStep } = props;
@@ -94,6 +96,9 @@ const NftDemo = (props) => {
         <div className="eclipse-1 absolute"></div>
         <div className="eclipse-2 absolute"></div>
       </div>
+      {/* <Canvas style={{ background: "#171717" }}>
+        <Model />
+      </Canvas> */}
     </>
   );
 };

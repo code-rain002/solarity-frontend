@@ -98,7 +98,7 @@ export const RegisterPage = () => {
               <Circle />
               <ProgressBar />
             </div>
-            <div className="w-[100%] xl:w-[60%] h-full flex flex-col">
+            <div className="w-[100%] xl:w-[60%] flex flex-col relative">
               {step === 1 && <UserInfo goStep={onGoStep} />}
               {step === 2 && <UserDaos goStep={onGoStep} />}
               {step === 3 && (

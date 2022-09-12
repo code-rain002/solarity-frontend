@@ -85,7 +85,7 @@ const UserPic = (props) => {
 
   const onComplete = async () => {
     await uploadImage();
-    // await mint();
+    goStep(4);
   };
 
   const uploadImage = async () => {
@@ -123,42 +123,6 @@ const UserPic = (props) => {
         console.log("error : ", err);
       }
     }
-  };
-
-  useEffect(() => {
-    if (profileImage) {
-      register();
-    }
-  }, [profileImage]);
-
-  const register = async () => {
-    console.log("register: ", profileImage);
-    const payload = {
-      publicKey,
-      walletType,
-      username: userInfo.domain,
-      bio: userInfo.title,
-      profileImage: profileImage,
-      daos: userInfo.daos,
-    };
-    await apiCaller
-      .post("auth/register", payload)
-      .then((response) => {
-        mint();
-        // router.push({ pathname: '/' })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const mint = () => {
-    const address = userInfo.solanaAddress;
-    const mintingUrl =
-      process.env.NODE_ENV === "development"
-        ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL
-        : process.env.NEXT_PUBLIC_MINTING_URL;
-    window.location.href = `${mintingUrl}`;
   };
 
   // const deleteImage = async (e) => {
@@ -223,7 +187,7 @@ const UserPic = (props) => {
           </Dropzone>
         </div>
         <div className="overflow-scroll">
-          <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+          <div className="grid grid-cols-2 xl:grid-cols-2 mt-5 max-h-[35vh]">
             {loadedFiles.map((image, index) => (
               <div className="p-2" key={index}>
                 <AvatarPanel
@@ -301,10 +265,10 @@ const UserPic = (props) => {
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
-            caption="Mint"
+            caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => goStep(4)}
+            onClick={() => onComplete()}
             disabled={nftLoading || avatar === null ? true : false}
             styles="rounded-[15px]"
           />

@@ -40,6 +40,35 @@ const EditStyle = (props) => {
     
   }, []);
 
+  const register = async () => {
+    const payload = {
+      publicKey,
+      walletType,
+      username: userInfo.domain,
+      bio: userInfo.title,
+      profileImage: userInfo.profileImage,
+      daos: userInfo.daos,
+    };
+    await apiCaller
+      .post("auth/register", payload)
+      .then((response) => {
+        mint();
+        // router.push({ pathname: '/' })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const mint = () => {
+    const address = userInfo.solanaAddress;
+    const mintingUrl =
+      process.env.NODE_ENV === "development"
+        ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL
+        : process.env.NEXT_PUBLIC_MINTING_URL;
+    window.location.href = `${mintingUrl}`;
+  };
+
   return (
     <>
       <div className="flex items-start justify-between pt-8 pl-10 pr-10 lg:p-10 lg:pb-0 lg:pr-12 rounded-t">
@@ -54,7 +83,22 @@ const EditStyle = (props) => {
       </div>
       {/*body*/}
       <div className="relative p-10 lg:p-14 flex-auto">
-        
+        <div className="my-3 flex flex-row justify-between items-center">
+          <span className="text-white">Logo Color: </span>
+          <select className="w-[100px] text-center rounded-[10px] border-[1px] border-white bg-[#141416] text-white">
+            <option>grey</option>
+            <option>red</option>
+            <option>blue</option>
+          </select>
+        </div>
+        <div className="my-3 flex flex-row justify-between items-center">
+          <span className="text-white">Background Color: </span>
+          <select className="w-[100px] text-center rounded-[10px] border-[1px] border-white bg-[#141416] text-white">
+            <option>grey</option>
+            <option>red</option>
+            <option>blue</option>
+          </select>
+        </div>
       </div>
       <div className="w-full px-10 py-10 lg:px-10 lg:py-8 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
@@ -65,7 +109,7 @@ const EditStyle = (props) => {
             caption="Mint"
             icon=""
             bordered={false}
-            onClick={() => goStep(5)}
+            onClick={() => register()}
             disabled={loading ? true : false}
             styles="rounded-[15px]"
           />

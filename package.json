@@ -9,6 +9,8 @@
     "@heroicons/react": "^1.0.5",
     "@metamask/detect-provider": "^1.2.0",
     "@nfteyez/sol-rayz": "^0.10.2",
+    "@react-three/drei": "^9.29.1",
+    "@react-three/fiber": "^8.7.3",
     "@reduxjs/toolkit": "^1.8.2",
     "@solana/wallet-adapter-base": "0.7.1",
     "@solana/wallet-adapter-phantom": "0.7.0",
@@ -39,6 +41,7 @@
     "react-textarea-autosize": "^8.3.4",
     "react-toastify": "^9.0.5",
     "socket.io-client": "^4.5.1",
+    "three": "^0.144.0",
     "web3": "^3.0.0-rc.5",
     "yup": "^0.32.11"
   },
