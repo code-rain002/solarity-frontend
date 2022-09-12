@@ -7,7 +7,7 @@ const stepsContent = [
   "General Information",
   "Claim Daos",
   "Profile Picture",
-  "Review Passport & Mint",
+  "Edit Style & Mint",
   "Buy Room",
 ];
 
@@ -20,7 +20,7 @@ const ProgressBar = (props) => {
   }));
 
   return (
-    <div className="p-10 grid grid-rows-5">
+    <div className="p-5 grid grid-rows-5">
       {stepsContent.map((item, index) => (
         <div className="flex flex-row justify-start items-center mb-[25px] relative" key={index}>
           {step >= index + 1 && (

@@ -128,24 +128,24 @@ const UserInfo = (props) => {
             caption="Input your title"
           />
         </div>
-        <div className="grid grid-cols-1 xl:grid-cols-3">
-          <div className="mt-6 mb-3 xl:mt-6 xl:mb-6 xl:text-left">
+        <div className="grid grid-cols-1 custom-2xl:grid-cols-3 gap-5 my-5">
+          <div className="custom-2xl:text-left">
             <TwitterLink />
           </div>
-          <div className="my-3 xl:my-6 xl:text-center">
+          <div className="custom-2xl:text-center">
             <DiscordLink />
           </div>
-          <div className="my-3 xl:my-6 xl:text-right">
+          <div className="custom-2xl:text-right">
             <WalletButton
               caption="Connect"
               icon={GithubImg}
               onClick={null}
-              styles="!w-[100%] xl:!w-[95%]"
+              styles="!w-[100%]"
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 mt-[25px] lg:mt-[30px]">
-          <div className="my-3">
+        <div className="grid grid-cols-1 mt-[20px] lg:mt-[30px]">
+          <div className="my-2">
             <WalletButton
               caption="Connect ETH wallet"
               icon={EthereumImg}
@@ -154,7 +154,7 @@ const UserInfo = (props) => {
               description="optional"
             />
           </div>
-          <div className="my-3 hidden lg:block">
+          <div className="my-2 hidden lg:block">
             <WalletButton
               caption="Connect Polygon wallet"
               icon={PolygonImg}

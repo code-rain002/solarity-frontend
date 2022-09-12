@@ -48,8 +48,8 @@ code {
 }
 
 .progress svg {
-  width: 330px;
-  height: 330px;
+  width: 200px;
+  height: 200px;
   transform: rotate(-90deg);
 }
 
@@ -98,8 +98,8 @@ code {
 /* =============================================== */
 
 .progress svg {
-  width: 330px;
-  height: 330px;
+  width: 210px;
+  height: 210px;
   transform: rotate(-90deg);
 }
 
@@ -113,8 +113,8 @@ code {
 }
 
 .progress svg circle:last-of-type {
-  stroke-dasharray: 1005px;
-  stroke-dashoffset: calc(1005px - (1005px * var(--percent)) / 100);
+  stroke-dasharray: 628px;
+  stroke-dashoffset: calc(628px - (628px * var(--percent)) / 100);
   stroke: #2ecc71;
 }
 

@@ -26,7 +26,7 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../redux/slices/commonSlice";
-import { UserDaos, UserInfo, UserPic } from "./Steps";
+import { EditStyle, UserDaos, UserInfo, UserPic } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import ProgressBar from "./ProgressBar";
@@ -87,38 +87,37 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center gap-[55px] mt-[20px] items-center">
-      <div className="w-[40%] max-w-[500px] hidden lg:block">
+    <div className="flex flex-row justify-center gap-[25px] mt-[50px] items-center">
+      <div className="w-[90%] xl:w-[60%] md:w-[60%]">
         <div className="relative w-auto mx-auto">
-          <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
-            <div className="pt-6"><Logo /></div>
-            <Circle />
-            <ProgressBar />
+          <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
+            <div className="hidden xl:w-[40%] xl:block h-full">
+              <div className="py-6">
+                <Logo />
+              </div>
+              <Circle />
+              <ProgressBar />
+            </div>
+            <div className="w-[100%] xl:w-[60%] h-full flex flex-col">
+              {step === 1 && <UserInfo goStep={onGoStep} />}
+              {step === 2 && <UserDaos goStep={onGoStep} />}
+              {step === 3 && (
+                <UserPic
+                  setAvatar={setAvatar}
+                  avatar={avatar}
+                  goStep={onGoStep}
+                />
+              )}
+              {step === 4 && (
+                <EditStyle goStep={onGoStep} />    
+              )}
+              {step === 5 && <UserRoom goStep={onGoStep} />}
+            </div>
           </div>
         </div>
       </div>
-      <div className="w-[80%] lg:w-[60%] max-w-[750px]">
-        <div className="relative w-auto my-6 mx-auto">
-          <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative flex flex-col w-full h-full justify-between bg-[#141416] outline-none focus:outline-none">
-            {step === 1 && <UserInfo goStep={onGoStep} />}
-            {step === 2 && <UserDaos goStep={onGoStep} />}
-            {step === 3 && (
-              <UserPic
-                setAvatar={setAvatar}
-                avatar={avatar}
-                goStep={onGoStep}
-              />
-            )}
-            {step === 4 && (
-              <NftDemo
-                setAvatar={setAvatar}
-                avatar={avatar}
-                goStep={onGoStep}
-              />
-            )}
-            {step === 5 && <UserRoom goStep={onGoStep} />}
-          </div>
-        </div>
+      <div className=" w-[50%] xl:w-[40%] hidden lg:block">
+        <NftDemo setAvatar={setAvatar} avatar={avatar} goStep={onGoStep} />
       </div>
     </div>
   );

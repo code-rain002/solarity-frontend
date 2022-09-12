@@ -23,26 +23,26 @@ const Circle = (props) => {
   }, [step]);
 
   return (
-    <div className="px-10">
+    <div className="px-5">
       <div
         className={`relative h-full w-full`}
       >
-        <div className="w-[210px] h-[210px] sm:w-[330px] sm:h-[330px] m-auto">
+        <div className="w-[210px] h-[210px] m-auto">
           <div className="text-white items-center flex h-full">
             <div className="text-center m-auto h-full w-full">
               <div className="progress relative h-full w-full register">
                 <svg className="circle-loading-bar hidden sm:block w-full h-full">
-                  <circle cx="165" cy="165" r="120"></circle>
+                  <circle cx="105" cy="105" r="100"></circle>
                   <circle
-                    cx="165"
-                    cy="165"
-                    r="120"
+                    cx="105"
+                    cy="105"
+                    r="100"
                     style={{ "--percent": percent }}
                   ></circle>
                 </svg>
-                <div className={`absolute ${percent < 10 ? 'sm:left-[130px]' : 'sm:left-[115px]'} top-[60px] left-[65px] sm:top-[90px] `}>
-                  <h2 className="loading-status text-[40px] sm:text-[70px] font-bold font-['Outfit'] mb-2 sm:mb-5">
-                    {percent}<span className="text-[44px]">%</span>
+                <div className={`absolute ${percent < 10 ? 'sm:left-[80px]' : 'sm:left-[66px]'} top-[50px] left-[65px]`}>
+                  <h2 className="loading-status text-[40px] sm:text-[54px] font-bold font-['Outfit']">
+                    {percent}<span className="text-[32px]">%</span>
                   </h2>
                   <span className="text-xs sm:text-lg">{(step-1)*20}/100</span>
                 </div>

@@ -26,20 +26,9 @@ const NftDemo = (props) => {
 
   return (
     <>
-      {/* <Logo /> */}
-      <div className="flex items-start justify-between py-8 px-10 lg:p-10 lg:pb-4 lg:pr-12 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
-          Review your passport
-        </h3>
-        <AddressButton
-          caption={miniPublicKey ? miniPublicKey : ""}
-          icon={AddressImg}
-          onClick={null}
-        />
-      </div>
       <div className="relative h-[600px] text-center">
-        <div className="absolute w-[576px] h-[384px] bg-[#159C6C] left-0 right-0 top-0 bottom-0 m-auto rounded-[40px] passport-card z-10">
-          <div className="absolute w-[576px] h-[268px] left-0 right-0 top-0 bottom-0 mx-auto rounded-[40px] passport-body">
+        <div className="absolute w-[500px] h-[384px] bg-[#159C6C] left-0 right-0 top-0 bottom-0 m-auto rounded-[40px] passport-card z-10">
+          <div className="absolute w-[500px] h-[268px] left-0 right-0 top-0 bottom-0 mx-auto rounded-[40px] passport-body">
             {avatar ? (
               <div className="mt-[26px] flex justify-center">
                 <UserAvatar imageSrc={avatar} title="RESSURECTION..." />
@@ -104,24 +93,6 @@ const NftDemo = (props) => {
         </div>
         <div className="eclipse-1 absolute"></div>
         <div className="eclipse-2 absolute"></div>
-      </div>
-      <div className="w-full px-10 py-10 lg:px-10 lg:py-8 flex-auto flex items-end">
-        <div className="inline-block w-[20%] pr-2">
-          <BackButton
-            onClick={() => goStep(3)}
-            styles="rounded-[15px]"
-          />
-        </div>
-        <div className="inline-block w-[80%] pl-2">
-          <PrimaryButton
-            caption="Mint"
-            icon=""
-            bordered={false}
-            onClick={() => goStep(5)}
-            disabled={false}
-            styles="rounded-[15px]"
-          />
-        </div>
       </div>
     </>
   );
