@@ -68,7 +68,7 @@ const UserDaos = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between pt-8 pl-10 pr-10 lg:p-10 lg:pb-0 lg:pr-12 rounded-t">
+      <div className="flex items-start justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           DAOs you&apos;re already in
         </h3>
@@ -79,7 +79,7 @@ const UserDaos = (props) => {
         />
       </div>
       {/*body*/}
-      <div className="relative p-10 lg:p-14 flex-auto">
+      <div className="relative p-5 lg:p-5 flex-auto">
         {loading ? (
           <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">
             Daos Loading...
@@ -102,7 +102,7 @@ const UserDaos = (props) => {
           </div>
         )}
       </div>
-      <div className="w-full px-10 py-10 lg:px-10 lg:py-8 flex-auto flex items-end">
+      <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
           <BackButton onClick={() => goStep(1)} styles="rounded-[15px]" />
         </div>

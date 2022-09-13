@@ -88,7 +88,7 @@ export const RegisterPage = () => {
 
   return (
     <div className="flex flex-row justify-center gap-[25px] mt-[50px] items-center">
-      <div className="w-[90%] xl:w-[60%] md:w-[60%]">
+      <div className="w-[90%] xl:w-[55%] md:w-[60%]">
         <div className="relative w-auto mx-auto">
           <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
             <div className="hidden xl:w-[40%] xl:block h-full">
@@ -116,7 +116,7 @@ export const RegisterPage = () => {
           </div>
         </div>
       </div>
-      <div className=" w-[50%] xl:w-[40%] hidden lg:block">
+      <div className=" w-[50%] xl:w-[45%] hidden lg:block">
         <NftDemo setAvatar={setAvatar} avatar={avatar} goStep={onGoStep} />
       </div>
     </div>

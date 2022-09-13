@@ -99,6 +99,14 @@ const EditStyle = (props) => {
             <option>blue</option>
           </select>
         </div>
+        <div className="my-3 flex flex-row justify-between items-center">
+          <span className="text-white">Text Color: </span>
+          <select className="w-[100px] text-center rounded-[10px] border-[1px] border-white bg-[#141416] text-white">
+            <option>grey</option>
+            <option>red</option>
+            <option>blue</option>
+          </select>
+        </div>
       </div>
       <div className="w-full px-10 py-10 lg:px-10 lg:py-8 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">

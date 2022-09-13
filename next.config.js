@@ -9,6 +9,9 @@ const withTM = require("next-transpile-modules")([
   "@solana/wallet-adapter-react",
   "@solana/wallet-adapter-solflare",
   "@solana/wallet-adapter-wallets",
+  "three",
+  // "react-three-fiber",
+  // "drei",
 ]);
 
 const plugins = [

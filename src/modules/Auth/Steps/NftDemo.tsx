@@ -4,11 +4,13 @@ import Logo from "components/Common/Logo";
 import { UserAvatar } from "components/Common/Panels";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useRef, Suspense } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { minifyAddress } from "utils";
-// import { Model } from "./Model";
-// import { Canvas } from "react-three-fiber";
+import { Model } from "./Model";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import * as THREE from 'three'
 
 const NftDemo = (props) => {
   const { setAvatar, avatar, goStep } = props;
@@ -26,79 +28,42 @@ const NftDemo = (props) => {
   const miniPublicKey = minifyAddress(publicKey, 3);
   const provider = (window as any).phantom.solana;
 
+  // const initBox = () => {
+  //   const scene = new THREE.Scene()
+  //   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+  //   const renderer = new THREE.WebGLRenderer();
+  //   renderer.setSize( 200, 200 );
+  //   document.getElementById("box").innerHTML = ""
+  //   document.getElementById("box").appendChild( renderer.domElement );
+
+  //   const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  //   const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+  //   const cube = new THREE.Mesh( geometry, material );
+  //   scene.add( cube );
+  //   camera.position.z = 5;
+  //   renderer.render( scene, camera );
+  // }
+
+  // useEffect(() => {
+  //   initBox()
+  // }, [])
+
   return (
     <>
-      <div className="relative h-[600px] text-center">
-        <div className="absolute w-[500px] h-[384px] bg-[#159C6C] left-0 right-0 top-0 bottom-0 m-auto rounded-[40px] passport-card z-10">
-          <div className="absolute w-[500px] h-[268px] left-0 right-0 top-0 bottom-0 mx-auto rounded-[40px] passport-body">
-            {avatar ? (
-              <div className="mt-[26px] flex justify-center">
-                <UserAvatar imageSrc={avatar} title="RESSURECTION..." />
-              </div>
-            ) : (
-              <div className="mt-[45px] flex justify-center">
-                <Image src={AvatarImg} />
-              </div>
-            )}
-            {/* <Image src={AvatarImg} /> */}
-            {/* <AvatarPanel imageSrc={avatar} title="RESSURECTION..." /> */}
-            <div className="mt-[18px]">
-              <span className="text-white/80 text-[24px] z-[30]">
-                {userInfo.domain ? userInfo.domain : "Enter your domain"}
-              </span>
-            </div>
-            <div className="mt-[5px]">
-              <span className="text-white/80 text-[18px] z-[30]">
-                {userInfo.title ? userInfo.title : "Enter your title"}
-              </span>
-            </div>
-            <div className="mt-[3px]">
-              <span className="text-white/60 text-[16px] z-[30]">
-                Connect your socials
-              </span>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 mt-[268px] h-[116px]">
-            <div className="z-10 passport-liner !pt-3">
-              <span className="text-white/60">Wallets</span>
-              <div className="mt-3">
-                {
-                  <span className="ml-1">
-                    {userInfo.solanaAddress ? <Image src={PhantomImg} /> : null}
-                  </span>
-                }
-                {
-                  <span className="ml-1">
-                    {userInfo.ethereumAddress ? (
-                      <Image src={MetamaskImg} />
-                    ) : null}
-                  </span>
-                }
-              </div>
-            </div>
-            <div className="z-10 !pt-3">
-              <span className="text-white/60">Your DAOs</span>
-              <div className="mt-2 justify-between relative margin-auto">
-                {userInfo.daos?.length
-                  ? userInfo.daos.map((dao, index) => (
-                      <div
-                        className="absolute left-0 right-0 -ml-[30px]"
-                        key={index}
-                      >
-                        <Image src={dao.profileImage.link} />
-                      </div>
-                    ))
-                  : null}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="eclipse-1 absolute"></div>
-        <div className="eclipse-2 absolute"></div>
-      </div>
-      {/* <Canvas style={{ background: "#171717" }}>
-        <Model />
-      </Canvas> */}
+      <Canvas style={{width: '650px', height: '650px'}} camera={{ fov: 35, position: [0, 0, 20]}}>
+        <pointLight position={[0, 30, 100]} />
+        <pointLight position={[0, 30, -100]} />
+        <ambientLight intensity={0.1} />
+        <Suspense fallback={null}>
+          <Model 
+            domain={userInfo.domain}
+            title={userInfo.title}
+          />
+          <OrbitControls />
+        </Suspense>
+      </Canvas>
+      {/* <div id="box"></div> */}
     </>
   );
 };

@@ -98,7 +98,7 @@ const UserInfo = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between pt-8 pl-10 pr-10 lg:px-10 lg:pt-8 lg:pb-0 lg:pr-12 rounded-t">
+      <div className="flex items-start justify-between pt-8 pl-5 pr-5 lg:px-5 lg:pt-8 lg:pb-0 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Creating a passport
         </h3>
@@ -110,7 +110,7 @@ const UserInfo = (props) => {
       </div>
       {/*body*/}
       {/* {discordUsername ? discordUsername : 'dasd'} */}
-      <div className="relative px-10 pt-10 lg:px-10 lg:pt-10 flex-auto">
+      <div className="relative px-5 pt-8 lg:px-5 lg:pt-10 flex-auto">
         <div>
           <DomainInput
             changeValue={changeInfoValue}
@@ -165,7 +165,7 @@ const UserInfo = (props) => {
           </div>
         </div>
       </div>
-      <div className="w-full px-10 py-10 lg:px-10 lg:py-8 flex-auto flex items-end">
+      <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
           <BackButton
             onClick={() => router.push({ pathname: "/" })}
