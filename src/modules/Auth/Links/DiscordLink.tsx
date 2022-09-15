@@ -41,6 +41,7 @@ export const DiscordLink = () => {
 		params.delete("state");
 		params.delete("code");
 		params.set("link", "discord");
+		console.log(url.origin + url.pathname + "?" + params.toString())
 		return url.origin + url.pathname + "?" + params.toString();
 	})();
 

@@ -86,9 +86,10 @@ export function Model(props) {
 
     const QRMaterial = renderImageMaterial("/textures/qr.jpg");
     const avatarMaterial = renderImageMaterial("/textures/img.jpg");
+    const logoMaterial = renderImageMaterial(`/logos/logo-green.png`);
     setQRMaterial(QRMaterial);
     setAvatarMaterial(avatarMaterial);
-
+    setLogoMaterial(logoMaterial);
   }, [])
 
   useEffect(() => {
@@ -99,10 +100,8 @@ export function Model(props) {
   }, [profileImage]);
 
   useEffect(() => {
-    const logoMaterial = renderImageMaterial(`/logos/logo-${passportStyle.logo}.png`);
-    setLogoMaterial(logoMaterial);
-    setLineColor(passportStyle.logo)
-  }, [passportStyle.logo]);
+    setLineColor(passportStyle.line)
+  }, [passportStyle.line]);
 
   useEffect(() => {
     setBackgroundColor(passportStyle.background)
@@ -203,14 +202,11 @@ export function Model(props) {
           <mesh geometry={nodes.github_log.geometry} material={materials.github} position={[-4.63, 1.27, 0.12]} />
 
           {/* social texts */}
-          <mesh geometry={nodes.Text.geometry} material={materials.green} position={[-4.42, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
+          {/* <mesh geometry={nodes.Text.geometry} material={materials.green} position={[-4.42, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
           <mesh geometry={nodes.Text001.geometry} material={materials.green} position={[-4.42, 1.66, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
-          <mesh geometry={nodes.Text002.geometry} material={materials.green} position={[-4.42, 1.27, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
+          <mesh geometry={nodes.Text002.geometry} material={materials.green} position={[-4.42, 1.27, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} /> */}
 
           {/* daos images */}
-          {/* <mesh geometry={nodes.group_A.geometry} material={materials['group A']} position={[-4.72, -1.29, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} />
-          <mesh geometry={nodes.group_B.geometry} material={materials['group B']} position={[-4.72, -1.69, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} />
-          <mesh geometry={nodes.group_C.geometry} material={materials['group C']} position={[-4.72, -2.09, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} /> */}
           {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (
             <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.72, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
           )) : null}

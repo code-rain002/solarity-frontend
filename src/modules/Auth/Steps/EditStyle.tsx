@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { HexColorPicker } from 'react-colorful';
 
 import {
   AddressButton,
@@ -42,14 +43,14 @@ const EditStyle = (props) => {
     
   }, []);
 
-  const onChangeStyle = (target, event) => {
+  const onSetColor = (value, target) => {
     let tempStyle = {}
     Object.assign(tempStyle, userInfo.passportStyle)
 
     const payload = {
       value: {
         ...tempStyle,
-        [target]: event.target.value
+        [target]: value
       },
       type: 'passportStyle'
     }
@@ -100,36 +101,17 @@ const EditStyle = (props) => {
       </div>
       {/*body*/}
       <div className="relative p-5 lg:p-5 flex-auto">
-        <div className="my-3 flex flex-row justify-between items-center">
-          <span className="text-white">Logo Color: </span>
-          <select className="w-[150px] text-center rounded-[10px] border-[1px] border-white bg-[#141416] text-white" onChange={() => onChangeStyle('logo', event)}>
-            <option value='green'>green</option>
-            <option value='blue'>blue</option>
-            <option value='purple'>purple</option>
-            <option value='red'>red</option>
-            {/* <option value='red-yellow'>red yellow</option>
-            <option value='red-yellow-green'>red yellow green</option> */}
-          </select>
+        <div className="mb-7 flex flex-row justify-between items-center">
+          <span className="text-white">Line Color: </span>
+          <HexColorPicker color={"#FFFFFF"} onChange={(value) => onSetColor(value, 'line')} />
         </div>
-        <div className="my-3 flex flex-row justify-between items-center">
+        <div className="my-7 flex flex-row justify-between items-center">
           <span className="text-white">Background Color: </span>
-          <select className="w-[150px] text-center rounded-[10px] border-[1px] border-white bg-[#141416] text-white" onChange={() => onChangeStyle('background', event)}>
-            <option>green</option>
-            <option>grey</option>
-            <option>red</option>
-            <option>blue</option>
-            <option>yellow</option>
-          </select>
+          <HexColorPicker color={"#000000"} onChange={(value) => onSetColor(value, 'background')} />
         </div>
-        <div className="my-3 flex flex-row justify-between items-center">
+        <div className="mt-7 flex flex-row justify-between items-center">
           <span className="text-white">Text Color: </span>
-          <select className="w-[150px] text-center rounded-[10px] border-[1px] border-white bg-[#141416] text-white" onChange={() => onChangeStyle('text', event)}>
-            <option>green</option>
-            <option>grey</option>
-            <option>red</option>
-            <option>blue</option>
-            <option>yellow</option>
-          </select>
+          <HexColorPicker color={"#FFFFFF"} onChange={(value) => onSetColor(value, 'text')} />
         </div>
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">

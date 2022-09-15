@@ -241,3 +241,7 @@ sup {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+
+.react-colorful__pointer {
+    transition: none;
+}
