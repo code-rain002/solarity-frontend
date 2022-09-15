@@ -37,6 +37,7 @@ const UserDaos = (props) => {
   const provider = (window as any).phantom.solana;
 
   const [daos, setDaos] = useState([]);
+  const [selectedDaos, setSelectedDaos] = useState([]);
 
   useEffect(() => {
     dispatch(startLoadingApp());
@@ -44,20 +45,61 @@ const UserDaos = (props) => {
       apiCaller
         .get(`daos/${userInfo.solanaAddress}/address?includeDao=true`)
         .then((response) => {
-          const daos = response.data.daos;
-          console.log(daos);
-          const payload = {
-            value: daos,
-            type: "daos",
-          };
-          dispatch(
-            changeInfo({
-              payload: payload,
-              callback: () => {
-                dispatch(stopLoadingApp());
-              },
-            })
-          );
+          // const daos = response.data.daos;
+          const daos = [
+            {
+              name: "New Dao1",
+              symbol: "ND",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/community/avatars/Picture (1).png",
+                address: "/images/community/avatars/Picture (1).png"
+              }
+            }, {
+              name: "New Dao2",
+              symbol: "ND",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/community/avatars/Picture (2).png",
+                address: "/images/community/avatars/Picture (2).png"
+              }
+            }, {
+              name: "New Dao3",
+              symbol: "ND",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/community/avatars/Picture (3).png",
+                address: "/images/community/avatars/Picture (3).png"
+              }
+            }, {
+              name: "New Dao4",
+              symbol: "ND",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/community/avatars/Picture (4).png",
+                address: "/images/community/avatars/Picture (4).png"
+              }
+            }, {
+              name: "New Dao5",
+              symbol: "ND",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/community/avatars/Picture (5).png",
+                address: "/images/community/avatars/Picture (5).png"
+              }
+            }, {
+              name: "New Dao6",
+              symbol: "ND",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/community/avatars/Picture (6).png",
+                address: "/images/community/avatars/Picture (6).png"
+              }
+            }, 
+          ]
+          
+          setDaos(daos);
+          dispatch(stopLoadingApp());
         })
         .catch((error) => {
           console.log(error);
@@ -65,6 +107,36 @@ const UserDaos = (props) => {
         });
     }
   }, []);
+
+  useEffect(() => {
+    const payload = {
+      value: selectedDaos,
+      type: "daos",
+    };
+    dispatch(
+      changeInfo({
+        payload: payload,
+        callback: () => {
+          dispatch(stopLoadingApp());
+        },
+      })
+    );
+  }, [selectedDaos]);
+
+  const onSelectDao = (selected) => {
+    let tempDaos;
+    let index = selectedDaos.findIndex((dao, index) => dao.name === selected.name)
+    if (index >= 0) {
+      tempDaos = selectedDaos.filter((dao, index) => dao.name !== selected.name);
+    } else {
+      tempDaos = [...selectedDaos, selected];
+      if (tempDaos.length > 3) {
+        alert('Maximum count is 3');
+        return;
+      }
+    }
+    setSelectedDaos(tempDaos);
+  }
 
   return (
     <>
@@ -84,14 +156,16 @@ const UserDaos = (props) => {
           <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">
             Daos Loading...
           </div>
-        ) : userInfo.daos?.length ? (
-          <div className="grid grid-cols-2 xl:grid-cols-3 max-h-[510px] overflow-scroll">
-            {userInfo.daos.map((dao, index) => (
+        ) : daos?.length ? (
+          <div className="grid xs:grid-cols-1 sm:grid-cols-2 max-h-[570px] overflow-scroll gap-y-3">
+            {daos.map((dao, index) => (
               <div className="p-2" key={index}>
                 <DaoPanel
                   imageSrc={dao.profileImage.link}
                   backSrc={DaoBGImg}
                   title={dao.name}
+                  selected={selectedDaos.findIndex((item, index) => dao.name === item.name) >= 0 ? true : false}
+                  onClick={() => onSelectDao(dao)}
                 />
               </div>
             ))}

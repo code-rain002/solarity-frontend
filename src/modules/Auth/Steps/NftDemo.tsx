@@ -59,6 +59,9 @@ const NftDemo = (props) => {
           <Model 
             domain={userInfo.domain}
             title={userInfo.title}
+            profileImage={userInfo.profileImage.link}
+            passportStyle={userInfo.passportStyle}
+            daos={userInfo.daos}
           />
           <OrbitControls />
         </Suspense>

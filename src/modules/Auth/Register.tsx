@@ -101,16 +101,8 @@ export const RegisterPage = () => {
             <div className="w-[100%] xl:w-[60%] flex flex-col relative">
               {step === 1 && <UserInfo goStep={onGoStep} />}
               {step === 2 && <UserDaos goStep={onGoStep} />}
-              {step === 3 && (
-                <UserPic
-                  setAvatar={setAvatar}
-                  avatar={avatar}
-                  goStep={onGoStep}
-                />
-              )}
-              {step === 4 && (
-                <EditStyle goStep={onGoStep} />    
-              )}
+              {step === 3 && <UserPic goStep={onGoStep} />}
+              {step === 4 && <EditStyle goStep={onGoStep} />}
               {step === 5 && <UserRoom goStep={onGoStep} />}
             </div>
           </div>

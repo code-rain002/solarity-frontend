@@ -35,7 +35,7 @@ cloudinary.config({
 const UserPic = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { setAvatar, avatar, goStep } = props;
+  const { goStep } = props;
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
@@ -53,52 +53,18 @@ const UserPic = (props) => {
   const provider = (window as any).phantom.solana;
 
   const [files, setFiles] = useState<File[]>(null);
-  const [loadedFiles, setLoadedFiles] = useState<any[]>([]);
-  const [selectedAvatar, setSelectedAvatar] = useState<File>(null);
-  const [selectedNft, setSelectedNft] = useState<any>(null);
-  const [isNftSelected, setIsNftSelected] = useState(true);
-  const [profileImage, setProfileImage] = useState(null);
-
+  const [loadedImages, setLoadedImages] = useState<any[]>([]);
   useEffect(() => {
     fetchNFTs();
   }, []);
 
-  const onImageLoad = (tempFiles) => {
+  const onImageLoad = async (tempFiles) => {
+    console.log(tempFiles)
     setFiles(tempFiles);
-    const listFiles = [];
-    tempFiles.forEach(async (file: any) => {
-      let reader = new FileReader();
-      reader.onload = (event) => {
-        if (reader.readyState === 2) {
-          listFiles.push({
-            fileBlob: reader.result,
-            fileName: file.name,
-            fileSize: file.size,
-            filePath: file.path,
-          });
-          setLoadedFiles([...loadedFiles, ...listFiles]);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const onComplete = async () => {
-    await uploadImage();
-    goStep(4);
-  };
-
-  const uploadImage = async () => {
-    if (isNftSelected) {
-      const payload = {
-        value: selectedNft,
-        type: "profileImage",
-      };
-      setProfileImage(payload.value);
-      dispatch(changeInfo({ payload: payload }));
-    } else {
+    let listImages = [];
+    await tempFiles.forEach(async (file: File) => {
       const data = new FormData();
-      data.append("file", selectedAvatar);
+      data.append("file", file);
       data.append("upload_preset", process.env.NEXT_PUBLIC_PRESET_NAME);
       data.append("cloud_name", process.env.NEXT_PUBLIC_CLOUD_NAME);
       data.append("folder", "assets/avatars");
@@ -107,22 +73,23 @@ const UserPic = (props) => {
           `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`,
           data
         );
-        const payload = {
-          value: {
-            link: resp.data.url,
-            network: null,
-            contractAddress: null,
-            tokenId: null,
-            mintAddress: null,
-          },
-          type: "profileImage",
-        };
-        setProfileImage(payload.value);
-        await dispatch(changeInfo({ payload: payload }));
+        listImages.push({
+          url: resp.data.url,
+          name: resp.data.original_filename
+        });
+        setLoadedImages([ ...loadedImages, ...listImages ]);
       } catch (err) {
         console.log("error : ", err);
       }
-    }
+    });
+  };
+
+  const onSelectImage = async (image) => {
+    const payload = {
+      value: image,
+      type: "profileImage",
+    };
+    dispatch(changeInfo({ payload: payload }));
   };
 
   // const deleteImage = async (e) => {
@@ -136,7 +103,7 @@ const UserPic = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between pt-8 pl-8 pr-8 lg:p-10 lg:pb-0 lg:pr-12 rounded-t">
+      <div className="flex items-start justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Choose profile picture
         </h3>
@@ -146,7 +113,7 @@ const UserPic = (props) => {
           onClick={null}
         />
       </div>
-      <div className="relative p-8 lg:p-10 flex-auto">
+      <div className="relative p-5 lg:p-5 flex-auto">
         <div className="mb-10">
           <Dropzone
             onDrop={(acceptedFiles) => {
@@ -188,17 +155,19 @@ const UserPic = (props) => {
         </div>
         <div className="overflow-scroll">
           <div className="grid grid-cols-2 xl:grid-cols-2 mt-5 max-h-[35vh]">
-            {loadedFiles.map((image, index) => (
+            {loadedImages.map((image, index) => (
               <div className="p-2" key={index}>
                 <AvatarPanel
-                  imageUrl={image.fileBlob}
-                  title={image.fileName}
-                  onClick={() => {
-                    setIsNftSelected(false);
-                    setAvatar(image.fileBlob);
-                    setSelectedAvatar(image.fileBlob);
-                  }}
-                  selected={image.fileBlob == selectedAvatar}
+                  imageUrl={image.url}
+                  title={image.name}
+                  onClick={() => onSelectImage({
+                    link: image.url,
+                    network: null,
+                    contractAddress: null,
+                    tokenId: null,
+                    mintAddress: null,
+                  })}
+                  // selected={image.url == selectedAvatar}
                 />
               </div>
             ))}
@@ -229,28 +198,24 @@ const UserPic = (props) => {
                       collectionName={collectionName}
                       type={type}
                       key={index}
-                      selected={(() => {
-                        if (!selectedNft || !selectedNft.imageNetwork)
-                          return false;
-                        if (selectedNft.imageNetwork === "Ethereum") {
-                          return (
-                            selectedNft.tokenId == tokenId &&
-                            selectedNft.contractAddress == contractAddress
-                          );
-                        }
-                        return selectedNft.mintAddress == mintAddress;
-                      })()}
-                      onClick={() => {
-                        setIsNftSelected(true);
-                        setAvatar(image);
-                        setSelectedNft({
-                          link: image,
-                          network: type,
-                          contractAddress,
-                          tokenId,
-                          mintAddress,
-                        });
-                      }}
+                      // selected={(() => {
+                      //   if (!selectedNft || !selectedNft.imageNetwork)
+                      //     return false;
+                      //   if (selectedNft.imageNetwork === "Ethereum") {
+                      //     return (
+                      //       selectedNft.tokenId == tokenId &&
+                      //       selectedNft.contractAddress == contractAddress
+                      //     );
+                      //   }
+                      //   return selectedNft.mintAddress == mintAddress;
+                      // })()}
+                      onClick={() => onSelectImage({
+                        link: image,
+                        network: type,
+                        contractAddress,
+                        tokenId,
+                        mintAddress,
+                      })}
                     />
                   </div>
                 )
@@ -259,7 +224,7 @@ const UserPic = (props) => {
           )}
         </div>
       </div>
-      <div className="w-full p-8 lg:p-10 flex-auto flex items-end px-8 py-8 lg:px-10 lg:py-8">
+      <div className="w-full p-5 lg:p-5 flex-auto flex items-end px-5 py-5 lg:px-5 lg:py-5">
         <div className="inline-block w-[20%] pr-2">
           <BackButton onClick={() => goStep(2)} styles="rounded-[15px]" />
         </div>
@@ -268,8 +233,8 @@ const UserPic = (props) => {
             caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => onComplete()}
-            disabled={nftLoading || avatar === null ? true : false}
+            onClick={() => goStep(4)}
+            disabled={nftLoading ? true : false}
             styles="rounded-[15px]"
           />
         </div>

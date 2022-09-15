@@ -6,7 +6,6 @@ import * as THREE from 'three'
 import React, { useState, useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { FontLoader, GLTF, TextGeometry } from 'three-stdlib'
-import HelvetikerFont from 'three/examples/fonts/helvetiker_regular.typeface.json';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -30,14 +29,13 @@ type GLTFResult = GLTF & {
     Text008: THREE.Mesh
     Text009: THREE.Mesh
     Twitter_Logo: THREE.Mesh
-    Facebook_Logo: THREE.Mesh
-    instagram_base001: THREE.Mesh
-    instagram_base001_1: THREE.Mesh
     group_A: THREE.Mesh
     group_B: THREE.Mesh
     group_C: THREE.Mesh
     Text003: THREE.Mesh
     Text010: THREE.Mesh
+    github_log: THREE.Mesh
+    discord_logo: THREE.Mesh
   }
   materials: {
     charcoal: THREE.MeshStandardMaterial
@@ -53,12 +51,11 @@ type GLTFResult = GLTF & {
     ['Material.003']: THREE.MeshStandardMaterial
     green: THREE.MeshStandardMaterial
     ['Material.001']: THREE.MeshStandardMaterial
-    ['SVGMat.004']: THREE.MeshStandardMaterial
-    MI_instagram_base: THREE.MeshStandardMaterial
-    MI_White_instagram: THREE.MeshStandardMaterial
     ['group A']: THREE.MeshStandardMaterial
     ['group B']: THREE.MeshStandardMaterial
     ['group C']: THREE.MeshStandardMaterial
+    github: THREE.MeshStandardMaterial
+    discord: THREE.MeshStandardMaterial
   }
 }
 
@@ -66,95 +63,114 @@ type ActionName = 'All Animations'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export function Model(props) {
-  const { domain, title } = props;
+  const { domain, title, profileImage, daos, passportStyle } = props;
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('/model.glb') as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
   const [modelNodes, setModelNodes] = useState<any>();
   const [modelMaterials, setModelMaterials] = useState<any>();
+  
   const [logoMeterial, setLogoMaterial] = useState<THREE.MeshStandardMaterial>();
   const [QRMeterial, setQRMaterial] = useState<THREE.MeshStandardMaterial>();
   const [avatarMeterial, setAvatarMaterial] = useState<THREE.MeshStandardMaterial>();
+  const [lineColor, setLineColor] = useState();
+  const [backgroundColor, setBackgroundColor] = useState();
+  const [titleTextMesh, setTitleTextMesh] = useState<any>();
+  const [domainTextMesh, setDomainTextMesh] = useState<any>();
+  const [daoTextMeshes, setDaoTextMeshes] = useState([]);
+  const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
 
   useEffect(() => {
-    setModelNodes(nodes)
-    setModelMaterials(materials)
+    setModelNodes(nodes);
+    setModelMaterials(materials);
 
-    var logoLoader =  new THREE.TextureLoader().load("/textures/logo.png");
-    const logoMeterial = new THREE.MeshStandardMaterial()
-    logoMeterial.map = logoLoader
-    setLogoMaterial(logoMeterial)
-    
-    var QRLoader =  new THREE.TextureLoader().load("/textures/qr.jpg");
-    const QRMeterial = new THREE.MeshStandardMaterial()
-    QRMeterial.map = QRLoader
-    setQRMaterial(QRMeterial)
-  
-    var avatarLoader =  new THREE.TextureLoader().load("/textures/img.jpg");
-    const avatarMeterial = new THREE.MeshStandardMaterial()
-    avatarMeterial.map = avatarLoader
-    setAvatarMaterial(avatarMeterial)
+    const QRMaterial = renderImageMaterial("/textures/qr.jpg");
+    const avatarMaterial = renderImageMaterial("/textures/img.jpg");
+    setQRMaterial(QRMaterial);
+    setAvatarMaterial(avatarMaterial);
 
   }, [])
 
   useEffect(() => {
-    if (modelNodes) {
-      // console.log("modelnodes", modelNodes)
-      const loader = new FontLoader();
-      loader.load('/fonts/optimer_bold.typeface.json', function (font) {
-      let tempDomain = domain === null ? "" : domain
-      const geometry = new TextGeometry(tempDomain, {
-          font: font,
-          size: 0.8,
-          height: 0.1,
-          curveSegments: 0.1,
-        });
-        const mat = new THREE.MeshStandardMaterial({color: "grey"})
-        mat.needsUpdate = true
-        setModelNodes({
-          ...modelNodes,
-          Text005: {
-            ...modelNodes.Text005,
-            geometry: geometry,
-            material: mat
-          }
-        })
-      });
+    if (profileImage) {
+      const avatarMaterial = renderImageMaterial(profileImage);
+      setAvatarMaterial(avatarMaterial);
     }
-  }, [domain])
+  }, [profileImage]);
 
   useEffect(() => {
-    if (modelNodes) {
-      // console.log("modelnodes", modelNodes)
-      const loader = new FontLoader();
-      loader.load('/fonts/optimer_regular.typeface.json', function (font) {
-      let tempTitle = title === null ? "" : title
-      const geometry = new TextGeometry(tempTitle, {
-          font: font,
-          size: 0.8,
-          height: 0.1,
-          curveSegments: 0.1,
-        });
-        const mat = new THREE.MeshStandardMaterial({color: "grey"})
-        mat.needsUpdate = true
-        setModelNodes({
-          ...modelNodes,
-          Text004: {
-            ...modelNodes.Text004,
-            geometry: geometry,
-            material: mat
-          }
-        })
+    const logoMaterial = renderImageMaterial(`/logos/logo-${passportStyle.logo}.png`);
+    setLogoMaterial(logoMaterial);
+    setLineColor(passportStyle.logo)
+  }, [passportStyle.logo]);
+
+  useEffect(() => {
+    setBackgroundColor(passportStyle.background)
+  }, [passportStyle.background]);
+
+  useEffect(() => {
+    renderTextMesh(domain, (geometry, material) => {
+      setDomainTextMesh({
+        geometry,
+        material
+      })
+    });
+  }, [domain]);
+
+  useEffect(() => {
+    renderTextMesh(title, (geometry, material) => {
+      setTitleTextMesh({
+        geometry,
+        material
+      })
+    });
+  }, [title]);
+
+  useEffect(() => {
+    daos.map((dao, index) => {
+      renderTextMesh(dao.name, (geometry, material) => {
+        let tempMeshes = daoTextMeshes;
+        tempMeshes[index] = { geometry: geometry, material: material };
+        tempMeshes = tempMeshes.slice(0, index+1);
+        setDaoTextMeshes(tempMeshes);
       });
-    }
-  }, [title])
+      const daoImageMaterial = renderImageMaterial(dao.profileImage.link);
+      let tempMaterials = daoImageMaterials;
+      tempMaterials[index] = daoImageMaterial;
+      tempMaterials = tempMaterials.slice(0, index+1);
+      setDaoImageMaterials(tempMaterials);
+    });
+  }, [daos]);
+
+  const renderImageMaterial = (url) => {
+    var loader =  new THREE.TextureLoader().load(url);
+    const material = new THREE.MeshStandardMaterial({ transparent: true });
+    material.map = loader;
+    return material;
+  }
+
+  const renderTextMesh = (text, next) => {
+    const loader = new FontLoader();
+    loader.load('/fonts/optimer_regular.typeface.json', function (font) {
+      let content = text === null ? "" : text;
+      const geometry = new TextGeometry(content, {
+        font: font,
+        size: 0.8,
+        height: 0.1,
+        curveSegments: 0.1,
+      });
+      const material = new THREE.MeshStandardMaterial({ color: passportStyle.text });
+      material.needsUpdate = true;
+      next(geometry, material);
+    });
+  }
 
   return (
     <>
       {modelNodes && (
         <group ref={group} dispose={null}>
-          <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} />
-          <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} />
+          <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={backgroundColor} />
+          <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={lineColor} />
           <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
           
           {/* profile avatar image */}
@@ -166,11 +182,11 @@ export function Model(props) {
           {/* QR code image */}
           <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
 
-          {/* domain text */}
-          <mesh geometry={modelNodes.Text005.geometry} material={modelNodes.Text005.material} position={[-2.5, -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} />
+          {/* domain text  default: -2.5 */}
+          {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-2.5, -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} material-color={passportStyle.text} />)}
 
           {/* title texts */}
-          <mesh geometry={modelNodes.Text004.geometry} material={modelNodes.Text004.material} position={[-2.16, -1.45, 0.12]} rotation={[0, 0, 0]} scale={0.2} />
+          {titleTextMesh && (<mesh geometry={titleTextMesh.geometry} material={titleTextMesh.material} position={[-2.16, -1.45, 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} />)}
           {/* <mesh geometry={nodes.Text003.geometry} material={nodes.Text003.material} position={[-2.16, -1.65, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} />
           <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
@@ -183,11 +199,8 @@ export function Model(props) {
 
           {/* social links */}
           <mesh geometry={nodes.Twitter_Logo.geometry} material={materials['Material.001']} position={[-4.63, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={2.42} />
-          <mesh geometry={nodes.Facebook_Logo.geometry} material={materials['SVGMat.004']} position={[-4.63, 1.66, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={3.23} />
-          <group position={[-4.63, 1.27, 0.12]} scale={3.01}>
-            <mesh geometry={nodes.instagram_base001.geometry} material={materials.MI_instagram_base} />
-            <mesh geometry={nodes.instagram_base001_1.geometry} material={materials.MI_White_instagram} />
-          </group>
+          <mesh geometry={nodes.discord_logo.geometry} material={materials.discord} position={[-4.63, 1.66, 0.12]} />
+          <mesh geometry={nodes.github_log.geometry} material={materials.github} position={[-4.63, 1.27, 0.12]} />
 
           {/* social texts */}
           <mesh geometry={nodes.Text.geometry} material={materials.green} position={[-4.42, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
@@ -195,14 +208,17 @@ export function Model(props) {
           <mesh geometry={nodes.Text002.geometry} material={materials.green} position={[-4.42, 1.27, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
 
           {/* daos images */}
-          <mesh geometry={nodes.group_A.geometry} material={materials['group A']} position={[-4.72, -1.29, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} />
+          {/* <mesh geometry={nodes.group_A.geometry} material={materials['group A']} position={[-4.72, -1.29, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} />
           <mesh geometry={nodes.group_B.geometry} material={materials['group B']} position={[-4.72, -1.69, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} />
-          <mesh geometry={nodes.group_C.geometry} material={materials['group C']} position={[-4.72, -2.09, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} />
+          <mesh geometry={nodes.group_C.geometry} material={materials['group C']} position={[-4.72, -2.09, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={[0.16, 0.09, 0.16]} /> */}
+          {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (
+            <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.72, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
+          )) : null}
 
           {/* daos texts */}
-          <mesh geometry={nodes.Text007.geometry} material={materials.blue} position={[-4.42, -1.33, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />          
-          <mesh geometry={nodes.Text008.geometry} material={materials.green} position={[-4.42, -1.77, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
-          <mesh geometry={nodes.Text009.geometry} material={materials.green} position={[-4.42, -2.16, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
+          {daos.length && daoTextMeshes.length ? daoTextMeshes.map((mesh, index) => (
+            <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.42, -1.4-(0.42*index), 0.12]} rotation={[0, 0, 0]} scale={0.23} key={index} material-color={passportStyle.text} />
+          )) : null}
         </group>
       )}
     </>

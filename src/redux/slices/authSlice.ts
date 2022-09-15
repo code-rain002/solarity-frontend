@@ -25,7 +25,12 @@ const initialState = {
       github: { username: null, connected: false }
     },
     daos: [],
-    profileImage: {}
+    profileImage: {},
+    passportStyle: {
+      logo: 'green',
+      background: '',
+      text: 'green'
+    }
   },
   step: 1,
 };
@@ -156,7 +161,6 @@ export const goStep = createAsyncThunk(
       stepNum: number
     };
   }) => {
-    console.log("step", payload)
     return payload;
   }
 );

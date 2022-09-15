@@ -32,7 +32,6 @@ const DomainInput = (props) => {
   }
 
   useEffect(() => {
-    console.log(isError)
     if (isError) {
       setClassFocus('top-[-15%] !text-[12px] text-rose-500');
       setClassBorder('border-rose-500');
