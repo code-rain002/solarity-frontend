@@ -26,7 +26,7 @@ const ProgressBar = (props) => {
 
   return (
     <div className="p-5">
-      <div className="text-white text-[24px]">
+      <div className="text-white text-[24px] mb-5">
         Create Passport
       </div>
       {step <= 4 ? passportSteps.map((item, index) => (
@@ -55,7 +55,7 @@ const ProgressBar = (props) => {
           ></div>
         </div>
       )) : null}
-      <div className="text-white text-[24px]">
+      <div className="text-white text-[24px] mb-5">
         Create Room
       </div>
       {step > 4 ? roomSteps.map((item, index) => (
