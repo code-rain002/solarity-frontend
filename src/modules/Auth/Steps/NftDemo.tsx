@@ -55,6 +55,8 @@ const NftDemo = (props) => {
         <pointLight position={[0, 30, 100]} />
         <pointLight position={[0, 30, -100]} />
         <ambientLight intensity={0.1} />
+        <pointLight position={[-0.83, 1.77, 0.54]} color={userInfo.passportStyle.lineColor} intensity={0.01} rotation={[0, 0, Math.PI / 2]} />
+        <ambientLight intensity={0.5} />
         <Suspense fallback={null}>
           <Model 
             domain={userInfo.domain}

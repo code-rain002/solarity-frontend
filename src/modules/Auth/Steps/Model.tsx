@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
     badge004: THREE.Mesh
     badge005: THREE.Mesh
     nft: THREE.Mesh
-    Plane002: THREE.Mesh
+    Plane001: THREE.Mesh
     QR: THREE.Mesh
     Text: THREE.Mesh
     Text001: THREE.Mesh
@@ -70,7 +70,7 @@ export function Model(props) {
   const [modelNodes, setModelNodes] = useState<any>();
   const [modelMaterials, setModelMaterials] = useState<any>();
   
-  const [logoMeterial, setLogoMaterial] = useState<THREE.MeshStandardMaterial>();
+  // const [logoMeterial, setLogoMaterial] = useState<THREE.MeshStandardMaterial>();
   const [QRMeterial, setQRMaterial] = useState<THREE.MeshStandardMaterial>();
   const [avatarMeterial, setAvatarMaterial] = useState<THREE.MeshStandardMaterial>();
   const [lineColor, setLineColor] = useState();
@@ -79,17 +79,18 @@ export function Model(props) {
   const [domainTextMesh, setDomainTextMesh] = useState<any>();
   const [daoTextMeshes, setDaoTextMeshes] = useState([]);
   const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
+  const [badgeImageMaterial, setBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
 
   useEffect(() => {
     setModelNodes(nodes);
     setModelMaterials(materials);
 
     const QRMaterial = renderImageMaterial("/textures/qr.jpg");
-    const avatarMaterial = renderImageMaterial("/textures/img.jpg");
-    const logoMaterial = renderImageMaterial(`/logos/logo-green.png`);
     setQRMaterial(QRMaterial);
+    const avatarMaterial = renderImageMaterial("/textures/img.jpg");
     setAvatarMaterial(avatarMaterial);
-    setLogoMaterial(logoMaterial);
+    const badgeImageMaterial = renderImageMaterial("/textures/badge 002.jpg");
+    setBadgeImageMaterial(badgeImageMaterial);
   }, [])
 
   useEffect(() => {
@@ -165,59 +166,54 @@ export function Model(props) {
   }
 
   return (
-    <>
-      {modelNodes && (
-        <group ref={group} dispose={null}>
-          <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={backgroundColor} />
-          <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={lineColor} />
-          <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
-          
-          {/* profile avatar image */}
-          <mesh geometry={nodes.nft.geometry} material={avatarMeterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, 0.9]} />
+    <group ref={group} dispose={null}>
+      <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={backgroundColor} />
+      <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={lineColor} />
+      <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
+      
+      {/* profile avatar image */}
+      <mesh geometry={nodes.nft.geometry} material={avatarMeterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />
 
-          {/* logo image */}
-          <mesh geometry={nodes.Plane002.geometry} material={logoMeterial} position={[-0.83, 1.77, 0.14]} rotation={[Math.PI / 2, 0, 0]} scale={0.88} />
+      {/* logo image */}
+      <mesh geometry={nodes.Plane001.geometry} material={materials['logo red yellow']} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={lineColor} />
 
-          {/* QR code image */}
-          <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
+      {/* QR code image */}
+      <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
 
-          {/* domain text  default: -2.5 */}
-          {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-2.5, -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} material-color={passportStyle.text} />)}
+      {/* domain text  default: -2.5 */}
+      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-2.5, -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} material-color={passportStyle.text} />)}
 
-          {/* title texts */}
-          {titleTextMesh && (<mesh geometry={titleTextMesh.geometry} material={titleTextMesh.material} position={[-2.16, -1.45, 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} />)}
-          {/* <mesh geometry={nodes.Text003.geometry} material={nodes.Text003.material} position={[-2.16, -1.65, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} />
-          <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
+      {/* title texts */}
+      {titleTextMesh && (<mesh geometry={titleTextMesh.geometry} material={titleTextMesh.material} position={[-2.16, -1.45, 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} />)}
+      {/* <mesh geometry={nodes.Text003.geometry} material={nodes.Text003.material} position={[-2.16, -1.65, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} />
+      <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
-          {/* badge images */}
-          <mesh geometry={nodes.badge001.geometry} material={materials['badge.001']} position={[-2.08, -2.55, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.16} />
-          <mesh geometry={nodes.badge002.geometry} material={materials['badge.002']} position={[-1.48, -2.55, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.16} />
-          <mesh geometry={nodes.badge003.geometry} material={materials['badge.003']} position={[-0.88, -2.55, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.16} />
-          <mesh geometry={nodes.badge004.geometry} material={materials['badge.004']} position={[-0.28, -2.55, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.16} />
-          <mesh geometry={nodes.badge005.geometry} material={materials['badge.005']} position={[0.32, -2.55, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.16} />
+      {/* badge images */}
+      
+      {[0, 1, 2, 3, 4].map((badge, index) => (
+        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={badgeImageMaterial} position={[0.324-(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} />
+      ))}
 
-          {/* social links */}
-          <mesh geometry={nodes.Twitter_Logo.geometry} material={materials['Material.001']} position={[-4.63, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={2.42} />
-          <mesh geometry={nodes.discord_logo.geometry} material={materials.discord} position={[-4.63, 1.66, 0.12]} />
-          <mesh geometry={nodes.github_log.geometry} material={materials.github} position={[-4.63, 1.27, 0.12]} />
+      {/* social links */}
+      <mesh geometry={nodes.Twitter_Logo.geometry} material={materials['Material.001']} position={[-4.63, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={2.42} />
+      <mesh geometry={nodes.discord_logo.geometry} material={materials.discord} position={[-4.63, 1.66, 0.12]} />
+      <mesh geometry={nodes.github_log.geometry} material={materials.github} position={[-4.63, 1.27, 0.12]} />
 
-          {/* social texts */}
-          {/* <mesh geometry={nodes.Text.geometry} material={materials.green} position={[-4.42, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
-          <mesh geometry={nodes.Text001.geometry} material={materials.green} position={[-4.42, 1.66, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
-          <mesh geometry={nodes.Text002.geometry} material={materials.green} position={[-4.42, 1.27, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} /> */}
+      {/* social texts */}
+      {/* <mesh geometry={nodes.Text.geometry} material={materials.green} position={[-4.42, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
+      <mesh geometry={nodes.Text001.geometry} material={materials.green} position={[-4.42, 1.66, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
+      <mesh geometry={nodes.Text002.geometry} material={materials.green} position={[-4.42, 1.27, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} /> */}
 
-          {/* daos images */}
-          {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (
-            <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.72, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
-          )) : null}
+      {/* daos images */}
+      {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (
+        <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.72, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
+      )) : null}
 
-          {/* daos texts */}
-          {daos.length && daoTextMeshes.length ? daoTextMeshes.map((mesh, index) => (
-            <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.42, -1.4-(0.42*index), 0.12]} rotation={[0, 0, 0]} scale={0.23} key={index} material-color={passportStyle.text} />
-          )) : null}
-        </group>
-      )}
-    </>
+      {/* daos texts */}
+      {daos.length && daoTextMeshes.length ? daoTextMeshes.map((mesh, index) => (
+        <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.42, -1.4-(0.42*index), 0.12]} rotation={[0, 0, 0]} scale={0.23} key={index} material-color={passportStyle.text} />
+      )) : null}
+    </group>
   )
 }
 
