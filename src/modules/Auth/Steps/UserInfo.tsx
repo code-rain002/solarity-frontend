@@ -98,9 +98,9 @@ const UserInfo = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between pt-8 pl-5 pr-5 lg:px-5 lg:pt-8 lg:pb-0 rounded-t">
+      <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:px-5 lg:pt-8 lg:pb-0 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
-          Creating a passport
+          General
         </h3>
         <AddressButton
           caption={miniPublicKey ? miniPublicKey : ""}
@@ -122,13 +122,13 @@ const UserInfo = (props) => {
             <div className="text-[16px] text-rose-600">{error}</div>
           ) : null}
         </div>
-        <div className="mt-6">
+        <div className="mt-3">
           <SharedInput
             changeValue={changeInfoValue}
-            caption="Input your title"
+            caption="Input your bio"
           />
         </div>
-        <div className="grid grid-cols-1 custom-2xl:grid-cols-3 gap-5 my-5">
+        <div className="grid grid-cols-1 custom-2xl:grid-cols-3 gap-3 my-5">
           <div className="custom-2xl:text-left">
             <TwitterLink />
           </div>
@@ -145,7 +145,7 @@ const UserInfo = (props) => {
           </div>
         </div>
         <div className="grid grid-cols-1 mt-[20px] lg:mt-[30px]">
-          <div className="my-2">
+          <div className="">
             <WalletButton
               caption="Connect ETH wallet"
               icon={EthereumImg}
@@ -154,7 +154,7 @@ const UserInfo = (props) => {
               description="optional"
             />
           </div>
-          <div className="my-2 hidden lg:block">
+          <div className="mt-3 hidden lg:block">
             <WalletButton
               caption="Connect Polygon wallet"
               icon={PolygonImg}

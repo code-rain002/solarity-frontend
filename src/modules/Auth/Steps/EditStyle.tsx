@@ -46,7 +46,6 @@ const EditStyle = (props) => {
   const onSetColor = (value, target) => {
     let tempStyle = {}
     Object.assign(tempStyle, userInfo.passportStyle)
-
     const payload = {
       value: {
         ...tempStyle,
@@ -54,7 +53,6 @@ const EditStyle = (props) => {
       },
       type: 'passportStyle'
     }
-
     dispatch(changeInfo({ payload: payload }));
   }
 
@@ -89,7 +87,7 @@ const EditStyle = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pb-0 lg:pt-8 rounded-t">
+      <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pb-0 lg:pt-8 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Edit Style
         </h3>
@@ -101,17 +99,21 @@ const EditStyle = (props) => {
       </div>
       {/*body*/}
       <div className="relative p-5 lg:p-5 flex-auto">
-        <div className="mb-7 flex flex-row justify-between items-center">
-          <span className="text-white">Line Color: </span>
-          <HexColorPicker color={"#FFFFFF"} onChange={(value) => onSetColor(value, 'line')} />
+        <div className="mb-3 flex flex-row justify-between items-center">
+          <span className="text-white">Logo Color: </span>
+          <HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'logo')} />
         </div>
-        <div className="my-7 flex flex-row justify-between items-center">
+        <div className="mb-3 flex flex-row justify-between items-center">
           <span className="text-white">Background Color: </span>
-          <HexColorPicker color={"#000000"} onChange={(value) => onSetColor(value, 'background')} />
+          <HexColorPicker className="!w-[150px] !h-[150px]" color={"#333333"} onChange={(value) => onSetColor(value, 'background')} />
         </div>
-        <div className="mt-7 flex flex-row justify-between items-center">
+        <div className="mb-3 flex flex-row justify-between items-center">
+          <span className="text-white">Line Color: </span>
+          <HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'line')} />
+        </div>
+        <div className="flex flex-row justify-between items-center">
           <span className="text-white">Text Color: </span>
-          <HexColorPicker color={"#FFFFFF"} onChange={(value) => onSetColor(value, 'text')} />
+          <HexColorPicker className="!w-[150px] !h-[150px]" color={"#FFFFFF"} onChange={(value) => onSetColor(value, 'text')} />
         </div>
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">

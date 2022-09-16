@@ -140,7 +140,7 @@ const UserDaos = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
+      <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           DAOs you&apos;re already in
         </h3>

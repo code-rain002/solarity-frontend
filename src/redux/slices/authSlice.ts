@@ -27,9 +27,10 @@ const initialState = {
     daos: [],
     profileImage: {},
     passportStyle: {
-      line: '#FFFFFF',
-      background: '#000000',
-      text: '#FFFFFF'
+      logo: '#29b080',
+      line: '#29b080',
+      background: '#333333',
+      text: '#FFFFFF',
     }
   },
   step: 1,

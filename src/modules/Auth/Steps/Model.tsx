@@ -67,13 +67,9 @@ export function Model(props) {
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('/model.glb') as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
-  const [modelNodes, setModelNodes] = useState<any>();
-  const [modelMaterials, setModelMaterials] = useState<any>();
   
-  // const [logoMeterial, setLogoMaterial] = useState<THREE.MeshStandardMaterial>();
   const [QRMeterial, setQRMaterial] = useState<THREE.MeshStandardMaterial>();
   const [avatarMeterial, setAvatarMaterial] = useState<THREE.MeshStandardMaterial>();
-  const [lineColor, setLineColor] = useState();
   const [backgroundColor, setBackgroundColor] = useState();
   const [titleTextMesh, setTitleTextMesh] = useState<any>();
   const [domainTextMesh, setDomainTextMesh] = useState<any>();
@@ -82,9 +78,6 @@ export function Model(props) {
   const [badgeImageMaterial, setBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
 
   useEffect(() => {
-    setModelNodes(nodes);
-    setModelMaterials(materials);
-
     const QRMaterial = renderImageMaterial("/textures/qr.jpg");
     setQRMaterial(QRMaterial);
     const avatarMaterial = renderImageMaterial("/textures/img.jpg");
@@ -99,10 +92,6 @@ export function Model(props) {
       setAvatarMaterial(avatarMaterial);
     }
   }, [profileImage]);
-
-  useEffect(() => {
-    setLineColor(passportStyle.line)
-  }, [passportStyle.line]);
 
   useEffect(() => {
     setBackgroundColor(passportStyle.background)
@@ -168,14 +157,14 @@ export function Model(props) {
   return (
     <group ref={group} dispose={null}>
       <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={backgroundColor} />
-      <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={lineColor} />
+      <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={passportStyle.line} />
       <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
       
       {/* profile avatar image */}
       {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMeterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
 
       {/* logo image */}
-      <mesh geometry={nodes.Plane001.geometry} material={materials['logo red yellow']} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={lineColor} />
+      <mesh geometry={nodes.Plane001.geometry} material={materials['logo red yellow']} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={passportStyle.logo} />
 
       {/* QR code image */}
       <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
