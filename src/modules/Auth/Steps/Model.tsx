@@ -172,7 +172,7 @@ export function Model(props) {
       <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
       
       {/* profile avatar image */}
-      <mesh geometry={nodes.nft.geometry} material={avatarMeterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />
+      {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMeterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
 
       {/* logo image */}
       <mesh geometry={nodes.Plane001.geometry} material={materials['logo red yellow']} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={lineColor} />
@@ -189,7 +189,6 @@ export function Model(props) {
       <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
       {/* badge images */}
-      
       {[0, 1, 2, 3, 4].map((badge, index) => (
         <mesh geometry={nodes[`badge00${index+1}`].geometry} material={badgeImageMaterial} position={[0.324-(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} />
       ))}
