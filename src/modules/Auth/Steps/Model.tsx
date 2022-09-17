@@ -63,7 +63,7 @@ type ActionName = 'All Animations'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export function Model(props) {
-  const { domain, title, profileImage, daos, passportStyle } = props;
+  const { domain, title, profileImage, daos, passportStyle, badges } = props;
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('/model.glb') as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
@@ -75,7 +75,8 @@ export function Model(props) {
   const [domainTextMesh, setDomainTextMesh] = useState<any>();
   const [daoTextMeshes, setDaoTextMeshes] = useState([]);
   const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
-  const [badgeImageMaterial, setBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
+  const [defaultBadgeImageMaterial, setDefaultBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
+  const [badgeImageMaterials, setBadgeImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
 
   useEffect(() => {
     const QRMaterial = renderImageMaterial("/textures/qr.jpg");
@@ -83,7 +84,7 @@ export function Model(props) {
     const avatarMaterial = renderImageMaterial("/textures/img.jpg");
     setAvatarMaterial(avatarMaterial);
     const badgeImageMaterial = renderImageMaterial("/textures/badge 002.jpg");
-    setBadgeImageMaterial(badgeImageMaterial);
+    setDefaultBadgeImageMaterial(badgeImageMaterial);
   }, [])
 
   useEffect(() => {
@@ -131,8 +132,22 @@ export function Model(props) {
     });
   }, [daos]);
 
+  useEffect(() => {
+    let tempBadgeMaterials = [];
+    badges.map((badge, index) => {
+      console.log(badge);
+      const material = renderImageMaterial(badge.icon);
+      tempBadgeMaterials[index] = material;
+    });
+    for (let i = 0; i < 5 - badges.length; i++) {
+      tempBadgeMaterials.push(defaultBadgeImageMaterial);
+    }
+    setBadgeImageMaterials(tempBadgeMaterials);
+  }, [badges]);
+
   const renderImageMaterial = (url) => {
     var loader =  new THREE.TextureLoader().load(url);
+    loader.encoding = THREE.sRGBEncoding;
     const material = new THREE.MeshStandardMaterial({ transparent: true });
     material.map = loader;
     return material;
@@ -178,9 +193,13 @@ export function Model(props) {
       <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
       {/* badge images */}
-      {[0, 1, 2, 3, 4].map((badge, index) => (
-        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={badgeImageMaterial} position={[0.324-(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} />
+      {badgeImageMaterials.map((material, index) => (
+        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} />
       ))}
+      {/* {
+        [0...(5-badges.length)].map((item, index) => (
+          <mesh geometry={nodes[`badge00${index+1}`].geometry} material={defaultBadgeImageMaterial} position={[-2.076+(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} />
+      ))} */}
 
       {/* social links */}
       <mesh geometry={nodes.Twitter_Logo.geometry} material={materials['Material.001']} position={[-4.63, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={2.42} />

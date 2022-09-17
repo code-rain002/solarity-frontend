@@ -157,7 +157,7 @@ const UserDaos = (props) => {
             Daos Loading...
           </div>
         ) : daos.length ? (
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 max-h-[570px] overflow-scroll gap-y-3">
+          <div className="grid xs:grid-cols-2 sm:grid-cols-2 max-h-[570px] overflow-scroll gap-y-3">
             {daos.map((dao, index) => (
               <div className="p-2" key={index}>
                 <DaoPanel

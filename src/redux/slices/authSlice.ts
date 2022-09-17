@@ -31,7 +31,8 @@ const initialState = {
       line: '#29b080',
       background: '#333333',
       text: '#FFFFFF',
-    }
+    },
+    badges: []
   },
   step: 1,
 };

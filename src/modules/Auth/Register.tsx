@@ -26,13 +26,11 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../redux/slices/commonSlice";
-import { EditStyle, UserDaos, UserInfo, UserPic } from "./Steps";
+import { EditStyle, UserBadges, UserDaos, UserInfo, UserPic, NftDemo, UserRoom } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import ProgressBar from "./ProgressBar";
-import NftDemo from "./Steps/NftDemo";
 import Circle from "./Circle";
-import UserRoom from "./Steps/UserRoom";
 
 const WALLETS = [
   {
@@ -87,10 +85,10 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center gap-[25px] mt-[50px] items-center">
-      <div className="w-[90%] xl:w-[55%] md:w-[60%]">
+    <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[50px] items-center">
+      <div className="w-[90%] md:w-[65%] lg:w-[50%] xl:w-[60%] custom-2xl:w-[55%] m-auto">
         <div className="relative w-auto mx-auto">
-          <div className="rounded-[30px] min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
+          <div className="rounded-[30px] min-h-[800px] lg:min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
             <div className="hidden xl:w-[40%] xl:block h-full">
               <div className="py-6">
                 <Logo />
@@ -103,12 +101,13 @@ export const RegisterPage = () => {
               {step === 2 && <UserDaos goStep={onGoStep} />}
               {step === 3 && <UserPic goStep={onGoStep} />}
               {step === 4 && <EditStyle goStep={onGoStep} />}
-              {step === 5 && <UserRoom goStep={onGoStep} />}
+              {step === 5 && <UserBadges goStep={onGoStep} />}
+              {step === 6 && <UserRoom goStep={onGoStep} />}
             </div>
           </div>
         </div>
       </div>
-      <div className=" w-[50%] xl:w-[45%] hidden lg:block">
+      <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[40%] custom-2xl:w-[45%] lg:block m-auto">
         <NftDemo setAvatar={setAvatar} avatar={avatar} goStep={onGoStep} />
       </div>
     </div>

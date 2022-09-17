@@ -13,20 +13,12 @@ import { OrbitControls } from "@react-three/drei";
 import * as THREE from 'three'
 
 const NftDemo = (props) => {
-  const { setAvatar, avatar, goStep } = props;
   const dispatch = useDispatch();
   const router = useRouter();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
-
-  // bug code
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
-  const miniPublicKey = minifyAddress(publicKey, 3);
-  const provider = (window as any).phantom.solana;
 
   // const initBox = () => {
   //   const scene = new THREE.Scene()
@@ -51,10 +43,9 @@ const NftDemo = (props) => {
 
   return (
     <>
-      <Canvas style={{width: '650px', height: '650px'}} camera={{ fov: 35, position: [0, 0, 20]}}>
+      <Canvas className="!w-[500px] !h-[500px] md:!w-[600px] md:!h-[600px] custom-2xl:!w-[700px] custom-2xl:!h-[700px] m-auto" camera={{ fov: 35, position: [0, 0, 20]}}>
         <pointLight position={[0, 40, 100]} />
         <pointLight position={[0, 40, -100]} />
-        {/* <ambientLight intensity={0.1} /> */}
         <pointLight position={[-0.83, 1.77, 0.54]} color={userInfo.passportStyle.lineColor} intensity={0.01} rotation={[0, 0, Math.PI / 2]} />
         <ambientLight intensity={0.5} />
         <Suspense fallback={null}>
@@ -64,6 +55,7 @@ const NftDemo = (props) => {
             profileImage={userInfo.profileImage.link}
             passportStyle={userInfo.passportStyle}
             daos={userInfo.daos}
+            badges={userInfo.badges}
           />
           <OrbitControls />
         </Suspense>

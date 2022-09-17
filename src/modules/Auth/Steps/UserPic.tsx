@@ -156,7 +156,7 @@ const UserPic = (props) => {
         <div className="overflow-scroll">
           <div className="grid grid-cols-2 xl:grid-cols-2 mt-5 max-h-[35vh]">
             {loadedImages.map((image, index) => (
-              <div className="p-2" key={index}>
+              <div className="p-2 flex flex-row justify-center" key={index}>
                 <AvatarPanel
                   imageUrl={image.url}
                   title={image.name}

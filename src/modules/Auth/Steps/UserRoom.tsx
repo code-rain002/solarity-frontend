@@ -20,7 +20,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { minifyAddress } from "utils";
 
 const UserRoom = (props) => {
-  const { setAvatar, avatar, goStep } = props;
+  const { goStep } = props;
   const dispatch = useDispatch();
   const router = useRouter();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
@@ -52,7 +52,7 @@ const UserRoom = (props) => {
 
   return (
     <>
-      <div className="flex items-start justify-between py-8 px-10 lg:p-10 lg:pb-4 lg:pr-12 rounded-t">
+      <div className="flex items-center justify-between py-5 px-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Buy your own room
         </h3>
@@ -62,7 +62,7 @@ const UserRoom = (props) => {
           onClick={null}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 h-[600px] overflow-scroll pl-10 pr-7 mr-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 h-[600px] overflow-scroll pl-5 pr-5 mr-3">
         {rooms.map((room, index) => (
           <div
             className="flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary"
@@ -101,9 +101,9 @@ const UserRoom = (props) => {
           </div>
         ))}
       </div>
-      <div className="w-full px-10 py-10 lg:px-10 lg:py-8 flex-auto flex items-end">
+      <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
-          <BackButton onClick={() => goStep(4)} styles="rounded-[15px]" />
+          <BackButton onClick={() => goStep(5)} styles="rounded-[15px]" />
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton

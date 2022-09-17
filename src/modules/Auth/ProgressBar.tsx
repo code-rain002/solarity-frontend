@@ -7,7 +7,8 @@ const passportSteps = [
   "General Information",
   "Claim Daos",
   "Profile Picture",
-  "Edit Style & Mint",
+  "Edit Style",
+  "Select Badges & Mint"
 ];
 
 const roomSteps = [
@@ -29,7 +30,7 @@ const ProgressBar = (props) => {
       <div className="text-white text-[24px] mb-5">
         Create Passport
       </div>
-      {step <= 4 ? passportSteps.map((item, index) => (
+      {step <= 5 ? passportSteps.map((item, index) => (
         <div className="flex flex-row justify-start items-center mb-[25px] relative" key={index}>
           {step >= index + 1 && (
             <div className="text-white text-[20px] bg-primary rounded-full h-[40px] w-[40px] flex justify-center items-center">
@@ -58,28 +59,28 @@ const ProgressBar = (props) => {
       <div className="text-white text-[24px] mb-5">
         Create Room
       </div>
-      {step > 4 ? roomSteps.map((item, index) => (
+      {step > 5 ? roomSteps.map((item, index) => (
         <div className="flex flex-row justify-start items-center mb-[25px] relative" key={index}>
-          {(step-4) >= index + 1 && (
+          {(step-5) >= index + 1 && (
             <div className="text-white text-[20px] bg-primary rounded-full h-[40px] w-[40px] flex justify-center items-center">
-              {(step-4) == index + 1 ? index + 1 : <CheckIcon />}
+              {(step-5) == index + 1 ? index + 1 : <CheckIcon />}
             </div>
           )}
-          {(step-4) < index + 1 && (
+          {(step-5) < index + 1 && (
             <div className="text-[#333] text-[20px] bg-transparent rounded-full h-[40px] w-[40px] bg-[#999] flex justify-center items-center">
               {index + 1}
             </div>
           )}
           <span
             className={`${
-              (step-4) > index ? "text-white" : "text-[#333]"
+              (step-5) > index ? "text-white" : "text-[#333]"
             } text-[20px] ml-5`}
           >
             {item}
           </span>
           <div
             className={`absolute ${
-              (step-4) > index + 1 ? "h-[25px]" : "h-0"
+              (step-5) > index + 1 ? "h-[25px]" : "h-0"
             } w-[2px] bg-primary top-[40px] left-[19px]`}
           ></div>
         </div>

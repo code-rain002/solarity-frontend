@@ -37,8 +37,6 @@ const EditStyle = (props) => {
   const miniPublicKey = minifyAddress(publicKey, 3);
   const provider = (window as any).phantom.solana;
 
-  const [passportStyle, setPassportStyle] = useState();
-
   useEffect(() => {
     
   }, []);
@@ -122,10 +120,10 @@ const EditStyle = (props) => {
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
-            caption="Mint"
+            caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => register()}
+            onClick={() => goStep(5)}
             disabled={loading ? true : false}
             styles="rounded-[15px]"
           />
