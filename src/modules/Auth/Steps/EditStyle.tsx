@@ -122,28 +122,28 @@ const EditStyle = (props) => {
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
             <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.logo}` }}></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[48px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'logo')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[49px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'logo')} /></div>
         </div>
         <div className="mb-5 flex flex-row justify-between items-center relative">
           <span className="text-white">Background Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
             <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.background}` }}></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[48px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'background')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'background')} /></div>
         </div>
         <div className="mb-5 flex flex-row justify-between items-center relative">
           <span className="text-white">Line Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
             <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.line}` }}></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[48px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'line')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'line')} /></div>
         </div>
         <div className="flex flex-row justify-between items-center relative">
           <span className="text-white">Text Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
             <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.text}` }}></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[48px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'text')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-62px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'text')} /></div>
         </div>
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">

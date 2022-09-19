@@ -43,7 +43,7 @@ const NftDemo = (props) => {
 
   return (
     <>
-      <Canvas className="!w-[500px] !h-[500px] md:!w-[600px] md:!h-[600px] custom-2xl:!w-[700px] custom-2xl:!h-[700px] m-auto" camera={{ fov: 35, position: [0, 0, 20]}}>
+      <Canvas className="!w-[450px] !h-[450px] sm:!w-[600px] sm:!h-[600px] lg:!w-[100vw] lg:!h-[100vh] lg:!absolute lg:!top-0 lg:!right-0 m-auto lg:pl-[300px] xl:pl-[525px]" camera={{ fov: 40, position: [0, 0, 20]}}>
         <pointLight position={[0, 40, 100]} />
         <pointLight position={[0, 40, -100]} />
         <pointLight position={[-0.83, 1.77, 0.54]} color={userInfo.passportStyle.lineColor} intensity={0.01} rotation={[0, 0, Math.PI / 2]} />
