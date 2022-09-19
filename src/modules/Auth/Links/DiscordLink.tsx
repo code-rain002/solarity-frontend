@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Image from 'next/image'
 import { Provider, RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { linkAccounts, unlinkAccounts } from "redux/slices/profileSlice";
+import { linkAccounts, unlinkAccounts } from "redux/slices/authSlice";
 
 const discordLinkGenerator = (currentUrl: string) => {
 	const baseUrl = "https://discord.com/api/oauth2/authorize";
@@ -87,7 +87,7 @@ export const DiscordLink = () => {
 			{
 				discordConnected ?
 					<button
-						className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 w-[316px] h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center justify-center bg-[#1d1e20] justify-between !w-[100%] outline-1 bg-focusbackground !text-white`}
+						className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%] outline-1 bg-focusbackground !text-white`}
 						onClick={() => {
 							dispatch(
 								unlinkAccounts({
@@ -106,7 +106,7 @@ export const DiscordLink = () => {
 						<div className="pt-2 text-right"><Image src={DiscordImg} width={28} height={28} /></div>
 					</button>
 					:
-					<a className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 w-[316px] h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center justify-center bg-[#1d1e20] justify-between !w-[100%]`} href={discordConnectionLink}>
+					<a className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%]`} href={discordConnectionLink}>
 						<span className="text-[16px] w-[90%] text-left">{"Connect"}</span>
 						<div className="pt-2 text-right"><Image src={DiscordImg} width={28} height={28} /></div>
 					</a>

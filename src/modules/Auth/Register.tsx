@@ -77,13 +77,6 @@ export const RegisterPage = () => {
   const walletType = localStorage.getItem("type");
 
   useEffect(() => {
-    // if (publicKey) {
-    //   const payload = {
-    //     value: publicKey,
-    //     type: "solanaAddress",
-    //   };
-    //   dispatch(changeInfo({ payload: payload }));
-    // }
     apiCaller
       .post("/auth/checkStep")
       .then((response) => {

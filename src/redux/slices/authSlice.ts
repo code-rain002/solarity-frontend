@@ -4,7 +4,7 @@ import { setProfile } from "./profileSlice";
 import { startLoadingApp, stopLoadingApp } from "./commonSlice";
 import socket from "utils/socket-client";
 import { signMessage } from "utils/walletHelpers";
-import { showErrorToast } from "utils";
+import { extractError, showErrorToast, showSuccessToast } from "utils";
 
 export interface CounterState {
   roomName: string;
@@ -20,9 +20,9 @@ const initialState = {
     domain: null,
     title: null,
     links: {
-      discord: { username: null, connected: false },
-      twitter: { username: null, connected: false },
-      github: { username: null, connected: false },
+      discord: { username: null, connected: false, accessToken: null, refreshToken: null },
+      twitter: { username: null, connected: false, id: null, accessToken: null, refreshToken: null },
+      github: { username: null, connected: false, accessToken: null, refreshToken: null },
     },
     daos: [],
     profileImage: {},
@@ -207,6 +207,56 @@ export const jumpStep = createAsyncThunk(
   }
 );
 
+export const linkAccounts = createAsyncThunk(
+  "auth/linkAccounts",
+  async ({
+    data,
+    finalFunction,
+  }: {
+    data: Object;
+    finalFunction: () => void;
+  }) => {
+    let returnValue = null;
+    try {
+      const {
+        data: { type, link },
+      } = await apiCaller.post("/auth/linkAccounts", data);
+      returnValue = { type: type, link: link };
+      showSuccessToast("Account successfully linked");
+    } catch (err) {
+      showErrorToast(extractError(err));
+      returnValue = false;
+    }
+    finalFunction();
+    return returnValue;
+  }
+);
+
+export const unlinkAccounts = createAsyncThunk(
+  "auth/unlinkAccounts",
+  async ({
+    data,
+    finalFunction,
+  }: {
+    data: Object;
+    finalFunction: () => void;
+  }) => {
+    let returnValue = null;
+    try {
+      const {
+        data: { profile },
+      } = await apiCaller.post("/auth/unlinkAccounts", data);
+      returnValue = profile;
+      showSuccessToast("Account successfully unlinked");
+    } catch (err) {
+      showErrorToast(extractError(err));
+      returnValue = false;
+    }
+    finalFunction();
+    return returnValue;
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -220,6 +270,9 @@ export const authSlice = createSlice({
     setStep(state, action: PayloadAction<any>) {
       state.step = action.payload.stepNum;
     },
+    setLinks(state, action: PayloadAction<any>) {
+      state.userInfo.links[action.payload.type] = action.payload.link;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
@@ -255,9 +308,19 @@ export const authSlice = createSlice({
         state.userInfo = action.payload;
       }
     });
+    builder.addCase(linkAccounts.fulfilled, (state, action) => {
+      if (action.payload) {
+        authSlice.caseReducers.setLinks(state, action);
+      }
+    });
+    builder.addCase(unlinkAccounts.fulfilled, (state, action) => {
+      if (action.payload) {
+        authSlice.caseReducers.setLinks(state, action);
+      }
+    });
   },
 });
 
-export const { setUserInfo, setStep } = authSlice.actions;
+export const { setUserInfo, setStep, setLinks } = authSlice.actions;
 
 export default authSlice.reducer;
