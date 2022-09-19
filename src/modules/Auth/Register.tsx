@@ -26,11 +26,20 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../redux/slices/commonSlice";
-import { EditStyle, UserBadges, UserDaos, UserInfo, UserPic, NftDemo, UserRoom } from "./Steps";
+import {
+  EditStyle,
+  UserBadges,
+  UserDaos,
+  UserInfo,
+  UserPic,
+  NftDemo,
+  UserRoom,
+} from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
-import { changeInfo, goStep } from "redux/slices/authSlice";
+import { changeInfo, goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
 import ProgressBar from "./ProgressBar";
 import Circle from "./Circle";
+import { apiCaller } from "utils/fetcher";
 
 const WALLETS = [
   {
@@ -68,23 +77,63 @@ export const RegisterPage = () => {
   const walletType = localStorage.getItem("type");
 
   useEffect(() => {
-    if (publicKey) {
-      const payload = {
-        value: publicKey,
-        type: "solanaAddress",
-      };
-      dispatch(changeInfo({ payload: payload }));
-    }
+    // if (publicKey) {
+    //   const payload = {
+    //     value: publicKey,
+    //     type: "solanaAddress",
+    //   };
+    //   dispatch(changeInfo({ payload: payload }));
+    // }
+    apiCaller
+      .post("/auth/checkStep")
+      .then((response) => {
+        if (response.data.user) {
+        const user = response.data.user;
+          let tempUserInfo = userInfo;
+          switch (user.registerStep) {
+            case 6:
+              tempUserInfo = {
+                ...tempUserInfo,
+                passportStyle: user.passportStyle
+              }
+            case 5:
+              tempUserInfo = {
+                ...tempUserInfo,
+                badges: user.badges
+              }
+            case 4:
+              tempUserInfo = {
+                ...tempUserInfo,
+                profileImage: user.profileImage
+              }
+            case 3:
+              tempUserInfo = {
+                ...tempUserInfo,
+                daos: user.daos
+              }
+            case 2:
+              tempUserInfo = {
+                ...tempUserInfo,
+                domain: user.username,
+                title: user.bio
+              }
+            case 1:
+              tempUserInfo = {
+                ...tempUserInfo,
+                solanaAddress: user.solanaAddress
+              }
+              break;
+          }
+          dispatch(updateUserInfo({
+            payload: tempUserInfo,
+            callback: () => dispatch(jumpStep({ stepNum: user.registerStep }))
+          }))
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
-
-  // const onGoStep = (stepNum, data, flag) => {
-  //   const payload = {
-  //     stepNum,
-  //     data,
-  //     flag
-  //   };
-  //   dispatch(goStep({ payload: payload }));
-  // };
 
   return (
     <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[50px] items-center">

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, Suspense } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { minifyAddress } from "utils";
-import { Model } from "./Model";
+import { Model } from "../Model";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from 'three'

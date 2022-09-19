@@ -164,6 +164,20 @@ export const changeInfo = createAsyncThunk(
   }
 );
 
+export const updateUserInfo = createAsyncThunk(
+  "auth/updateUserInfo",
+  async ({
+    payload,
+    callback,
+  }: {
+    payload: any;
+    callback?: any;
+  }) => {
+    if (callback) callback();
+    return payload;
+  }
+);
+
 export const goStep = createAsyncThunk(
   "auth/goStep",
   async ({ stepNum, data, onFinally }: {
@@ -178,6 +192,17 @@ export const goStep = createAsyncThunk(
       data,
     });
     if (onFinally) onFinally();
+    return stepNum;
+  }
+);
+
+export const jumpStep = createAsyncThunk(
+  "auth/jumpStep",
+  async ({ stepNum, callback }: {
+    stepNum: number;
+    callback?: any;
+  }) => {
+    if (callback) callback();
     return stepNum;
   }
 );
@@ -218,6 +243,16 @@ export const authSlice = createSlice({
     builder.addCase(goStep.fulfilled, (state, action) => {
       if (action.payload) {
         state.step = action.payload;
+      }
+    });
+    builder.addCase(jumpStep.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.step = action.payload;
+      }
+    });
+    builder.addCase(updateUserInfo.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.userInfo = action.payload;
       }
     });
   },

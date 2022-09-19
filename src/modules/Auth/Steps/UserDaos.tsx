@@ -44,57 +44,58 @@ const UserDaos = (props) => {
       apiCaller
         .get(`daos/${userInfo.solanaAddress}/address?includeDao=true`)
         .then((response) => {
-          const daos = [
-            {
-              name: "New Dao1",
-              symbol: "ND",
-              description: "Welcome to new Dao",
-              profileImage: {
-                link: "/images/community/avatars/Picture (1).png",
-                address: "/images/community/avatars/Picture (1).png"
-              }
-            }, {
-              name: "New Dao2",
-              symbol: "ND",
-              description: "Welcome to new Dao",
-              profileImage: {
-                link: "/images/community/avatars/Picture (2).png",
-                address: "/images/community/avatars/Picture (2).png"
-              }
-            }, {
-              name: "New Dao3",
-              symbol: "ND",
-              description: "Welcome to new Dao",
-              profileImage: {
-                link: "/images/community/avatars/Picture (3).png",
-                address: "/images/community/avatars/Picture (3).png"
-              }
-            }, {
-              name: "New Dao4",
-              symbol: "ND",
-              description: "Welcome to new Dao",
-              profileImage: {
-                link: "/images/community/avatars/Picture (4).png",
-                address: "/images/community/avatars/Picture (4).png"
-              }
-            }, {
-              name: "New Dao5",
-              symbol: "ND",
-              description: "Welcome to new Dao",
-              profileImage: {
-                link: "/images/community/avatars/Picture (5).png",
-                address: "/images/community/avatars/Picture (5).png"
-              }
-            }, {
-              name: "New Dao6",
-              symbol: "ND",
-              description: "Welcome to new Dao",
-              profileImage: {
-                link: "/images/community/avatars/Picture (6).png",
-                address: "/images/community/avatars/Picture (6).png"
-              }
-            }, 
-          ]
+          const daos = response.data.daos;
+          // const daos = [
+          //   {
+          //     name: "New Dao1",
+          //     symbol: "ND",
+          //     description: "Welcome to new Dao",
+          //     profileImage: {
+          //       link: "/images/community/avatars/Picture (1).png",
+          //       address: "/images/community/avatars/Picture (1).png"
+          //     }
+          //   }, {
+          //     name: "New Dao2",
+          //     symbol: "ND",
+          //     description: "Welcome to new Dao",
+          //     profileImage: {
+          //       link: "/images/community/avatars/Picture (2).png",
+          //       address: "/images/community/avatars/Picture (2).png"
+          //     }
+          //   }, {
+          //     name: "New Dao3",
+          //     symbol: "ND",
+          //     description: "Welcome to new Dao",
+          //     profileImage: {
+          //       link: "/images/community/avatars/Picture (3).png",
+          //       address: "/images/community/avatars/Picture (3).png"
+          //     }
+          //   }, {
+          //     name: "New Dao4",
+          //     symbol: "ND",
+          //     description: "Welcome to new Dao",
+          //     profileImage: {
+          //       link: "/images/community/avatars/Picture (4).png",
+          //       address: "/images/community/avatars/Picture (4).png"
+          //     }
+          //   }, {
+          //     name: "New Dao5",
+          //     symbol: "ND",
+          //     description: "Welcome to new Dao",
+          //     profileImage: {
+          //       link: "/images/community/avatars/Picture (5).png",
+          //       address: "/images/community/avatars/Picture (5).png"
+          //     }
+          //   }, {
+          //     name: "New Dao6",
+          //     symbol: "ND",
+          //     description: "Welcome to new Dao",
+          //     profileImage: {
+          //       link: "/images/community/avatars/Picture (6).png",
+          //       address: "/images/community/avatars/Picture (6).png"
+          //     }
+          //   }, 
+          // ];
           
           setDaos(daos);
           dispatch(stopLoadingApp());

@@ -135,7 +135,6 @@ export function Model(props) {
   useEffect(() => {
     let tempBadgeMaterials = [];
     badges.map((badge, index) => {
-      console.log(badge);
       const material = renderImageMaterial(badge.icon);
       tempBadgeMaterials[index] = material;
     });
@@ -194,7 +193,7 @@ export function Model(props) {
 
       {/* badge images */}
       {badgeImageMaterials.map((material, index) => (
-        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} />
+        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} key={index} />
       ))}
       {/* {
         [0...(5-badges.length)].map((item, index) => (
