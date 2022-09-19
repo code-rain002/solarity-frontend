@@ -22,17 +22,17 @@ const initialState = {
     links: {
       discord: { username: null, connected: false },
       twitter: { username: null, connected: false },
-      github: { username: null, connected: false }
+      github: { username: null, connected: false },
     },
     daos: [],
     profileImage: {},
     passportStyle: {
-      logo: '#29b080',
-      line: '#29b080',
-      background: '#333333',
-      text: '#FFFFFF',
+      logo: "#29b080",
+      line: "#29b080",
+      background: "#333333",
+      text: "#FFFFFF",
     },
-    badges: []
+    badges: [],
   },
   step: 1,
 };
@@ -46,7 +46,10 @@ type loginProps = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ publicKey, walletType, provider }: loginProps, { dispatch }) => {
+  async (
+    { publicKey, walletType, provider, onFinally }: loginProps,
+    { dispatch }
+  ) => {
     let response = false;
     dispatch(startLoadingApp());
     try {
@@ -70,10 +73,11 @@ export const login = createAsyncThunk(
         walletType,
         requestNonce: false,
         signature,
-      })
+      });
+
       dispatch(setProfile(profile));
-      
       response = true;
+      onFinally();
     } catch (err) {}
     dispatch(stopLoadingApp());
     return response;
@@ -109,7 +113,13 @@ export const checkSession = createAsyncThunk(
 
 export const checkUser = createAsyncThunk(
   "auth/checkUser",
-  async ({ publicKey, walletType }: { publicKey: any; walletType: "solana" | "ethereum"; }, { dispatch }) => {
+  async (
+    {
+      publicKey,
+      walletType,
+    }: { publicKey: any; walletType: "solana" | "ethereum" },
+    { dispatch }
+  ) => {
     let response;
     dispatch(startLoadingApp());
     try {
@@ -123,14 +133,14 @@ export const checkUser = createAsyncThunk(
       if (exist) {
         const payload = {
           value: publicKey,
-          type: "solanaAddress"
-        }
-        dispatch(changeInfo({ payload: payload }))
+          type: "solanaAddress",
+        };
+        dispatch(changeInfo({ payload: payload }));
       }
 
       response = exist;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
     dispatch(stopLoadingApp());
     return response;
@@ -141,11 +151,11 @@ export const changeInfo = createAsyncThunk(
   "auth/changeUserInfo",
   async ({
     payload,
-    callback
+    callback,
   }: {
     payload: {
-      value: any,
-      type: String
+      value: any;
+      type: String;
     };
     callback?: () => void;
   }) => {
@@ -156,14 +166,19 @@ export const changeInfo = createAsyncThunk(
 
 export const goStep = createAsyncThunk(
   "auth/goStep",
-  async ({
-    payload,
-  }: {
-    payload: {
-      stepNum: number
-    };
+  async ({ stepNum, data, flag }: {
+    stepNum: number;
+    data: object;
+    flag: boolean;
   }) => {
-    return payload;
+    const {
+      data: {},
+    } = await apiCaller.post("/auth/setStep", {
+      stepNum,
+      data,
+      flag,
+    });
+    return stepNum;
   }
 );
 
@@ -174,11 +189,11 @@ export const authSlice = createSlice({
     setUserInfo(state, action: PayloadAction<any>) {
       state.userInfo = {
         ...state.userInfo,
-        [action.payload.type]: action.payload.value
-      }
+        [action.payload.type]: action.payload.value,
+      };
     },
     setStep(state, action: PayloadAction<any>) {
-      state.step = action.payload.stepNum
+      state.step = action.payload.stepNum;
     },
   },
   extraReducers: (builder) => {
@@ -202,7 +217,7 @@ export const authSlice = createSlice({
     });
     builder.addCase(goStep.fulfilled, (state, action) => {
       if (action.payload) {
-        state.step = action.payload.stepNum;
+        state.step = action.payload;
       }
     });
   },

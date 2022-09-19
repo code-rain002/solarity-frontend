@@ -77,9 +77,11 @@ export const RegisterPage = () => {
     }
   }, []);
 
-  const onGoStep = (stepNum) => {
+  const onGoStep = (stepNum, data, flag) => {
     const payload = {
       stepNum,
+      data,
+      flag
     };
     dispatch(goStep({ payload: payload }));
   };

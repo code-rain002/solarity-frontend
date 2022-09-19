@@ -22,7 +22,7 @@ import { minifyAddress, showErrorToast } from "utils";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import { changeInfo } from "../../../redux/slices/authSlice";
+import { changeInfo, goStep } from "../../../redux/slices/authSlice";
 import {
   startLoadingApp,
   stopLoadingApp,
@@ -40,7 +40,6 @@ const infoSchema = yup.object({
 const UserInfo = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { goStep } = props;
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
@@ -95,6 +94,19 @@ const UserInfo = (props) => {
     };
     dispatch(changeInfo({ payload: payload }));
   };
+
+  const onContinue = () => {
+    const data = {
+      username: userInfo.domain,
+      bio: userInfo.title
+    }
+    const payload = {
+      stepNum: 2,
+      data,
+      flag: true
+    }
+    dispatch(goStep(payload));
+  }
 
   return (
     <>
@@ -177,7 +189,7 @@ const UserInfo = (props) => {
             caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => goStep(2)}
+            onClick={() => onContinue()}
             disabled={error || error !== null ? true : false}
             styles="rounded-[15px]"
           />

@@ -20,34 +20,26 @@ export const ConnectWalletModal = () => {
 
   const onCheckUser = async (address, type, provider) => {
     const {
-      data: { exist },
+      data: { exist, user },
     } = await apiCaller.post("/auth/userExist", {
       publicKey: address,
       walletType: type,
     });
 
-    if (!exist) {
-      // const payload = {
-      //   value: address,
-      //   type: "solanaAddress"
-      // }
-      // dispatch(changeInfo({ payload: payload, callback: () => { router.push({ pathname: '/auth/register' }) } }))
-      router.push({ pathname: "/auth/register" });
+    if (exist && user.registerStep == 5) {
+      await dispatch(login({
+        publicKey: address,
+        walletType: type,
+        provider,
+        onFinally: () => router.push({ pathname: `/${user.username}/profile` })
+      }));
     } else {
-      await dispatch(
-        login({
-          publicKey: address,
-          walletType: type,
-          provider,
-          // onFinally: router.push({ pathname: `/123/profile` })
-        })
-      );
-      // let temp = userInfo.username.split('.')
-      // temp.pop()
-      // let realDomain = temp.toString()
-      router.push({ pathname: `/${userInfo.username}/profile` })
-
-      console.log("logged in");
+      await dispatch(login({
+        publicKey: address,
+        walletType: type,
+        provider,
+        onFinally: () => router.push({ pathname: 'auth/register' })
+      }));
     }
   };
 
@@ -77,6 +69,7 @@ export const ConnectWalletModal = () => {
           localStorage.setItem("publickey", address);
           localStorage.setItem("type", type);
           onCheckUser(address, type, provider);
+          // onLoginWallet(address, type, provider);
         }}
       />
     </>
