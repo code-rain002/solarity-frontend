@@ -18,12 +18,11 @@ import {
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
 import { apiCaller } from "utils/fetcher";
-import { changeInfo } from "redux/slices/authSlice";
+import { changeInfo, goStep } from "redux/slices/authSlice";
 
 const UserDaos = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { goStep } = props;
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
@@ -45,7 +44,6 @@ const UserDaos = (props) => {
       apiCaller
         .get(`daos/${userInfo.solanaAddress}/address?includeDao=true`)
         .then((response) => {
-          // const daos = response.data.daos;
           const daos = [
             {
               name: "New Dao1",
@@ -123,6 +121,28 @@ const UserDaos = (props) => {
     );
   }, [selectedDaos]);
 
+  const onContinue = () => {
+    const data = {
+      daos: userInfo.daos
+    }
+    const payload = {
+      stepNum: 3,
+      data,
+    }
+    dispatch(goStep(payload));
+  }
+
+  const onUndo = () => {
+    const payload = {
+      stepNum: 1,
+      data: {
+        username: null,
+        bio: null
+      },
+    }
+    dispatch(goStep(payload));
+  }
+
   const onSelectDao = (selected) => {
     let tempDaos;
     let index = selectedDaos.findIndex((dao, index) => dao.name === selected.name)
@@ -178,14 +198,14 @@ const UserDaos = (props) => {
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
-          <BackButton onClick={() => goStep(1)} styles="rounded-[15px]" />
+          <BackButton onClick={() => onUndo()} styles="rounded-[15px]" />
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
             caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => goStep(3)}
+            onClick={() => onContinue()}
             disabled={loading ? true : false}
             styles="rounded-[15px]"
           />

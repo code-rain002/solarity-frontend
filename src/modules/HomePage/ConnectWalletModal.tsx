@@ -26,7 +26,7 @@ export const ConnectWalletModal = () => {
       walletType: type,
     });
 
-    if (exist && user.registerStep == 5) {
+    if (exist && user.registerStep == 6) {
       await dispatch(login({
         publicKey: address,
         walletType: type,

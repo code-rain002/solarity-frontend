@@ -77,14 +77,14 @@ export const RegisterPage = () => {
     }
   }, []);
 
-  const onGoStep = (stepNum, data, flag) => {
-    const payload = {
-      stepNum,
-      data,
-      flag
-    };
-    dispatch(goStep({ payload: payload }));
-  };
+  // const onGoStep = (stepNum, data, flag) => {
+  //   const payload = {
+  //     stepNum,
+  //     data,
+  //     flag
+  //   };
+  //   dispatch(goStep({ payload: payload }));
+  // };
 
   return (
     <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[50px] items-center">
@@ -99,18 +99,18 @@ export const RegisterPage = () => {
               <ProgressBar />
             </div>
             <div className="w-[100%] xl:w-[60%] flex flex-col relative">
-              {step === 1 && <UserInfo goStep={onGoStep} />}
-              {step === 2 && <UserDaos goStep={onGoStep} />}
-              {step === 3 && <UserPic goStep={onGoStep} />}
-              {step === 4 && <EditStyle goStep={onGoStep} />}
-              {step === 5 && <UserBadges goStep={onGoStep} />}
-              {step === 6 && <UserRoom goStep={onGoStep} />}
+              {step === 1 && <UserInfo />}
+              {step === 2 && <UserDaos />}
+              {step === 3 && <UserPic />}
+              {step === 4 && <UserBadges />}
+              {step === 5 && <EditStyle />}
+              {step === 6 && <UserRoom />}
             </div>
           </div>
         </div>
       </div>
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[40%] custom-2xl:w-[45%] lg:block m-auto">
-        <NftDemo setAvatar={setAvatar} avatar={avatar} goStep={onGoStep} />
+        <NftDemo setAvatar={setAvatar} avatar={avatar} />
       </div>
     </div>
   );

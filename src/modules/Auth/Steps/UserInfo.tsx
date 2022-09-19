@@ -103,7 +103,18 @@ const UserInfo = (props) => {
     const payload = {
       stepNum: 2,
       data,
-      flag: true
+    }
+    dispatch(goStep(payload));
+  }
+
+  const onUndo = () => {
+    const payload = {
+      stepNum: 0,
+      data: {
+        username: '',
+        bio: ''
+      },
+      onFinally: () => router.push({ pathname: '/' })
     }
     dispatch(goStep(payload));
   }
@@ -180,7 +191,7 @@ const UserInfo = (props) => {
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
           <BackButton
-            onClick={() => router.push({ pathname: "/" })}
+            onClick={() => onUndo()}
             styles="rounded-[15px]"
           />
         </div>

@@ -17,7 +17,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { changeInfo } from "redux/slices/authSlice";
+import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
 
 const badges = [
@@ -37,7 +37,6 @@ const badges = [
 ]
 
 const UserBadges = (props) => {
-  const { goStep } = props;
   const dispatch = useDispatch();
   const router = useRouter();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
@@ -77,6 +76,27 @@ const UserBadges = (props) => {
     setSelectedBadges(tempBadges);
   }
 
+  const onContinue = () => {
+    const data = {
+      badges: userInfo.badges
+    }
+    const payload = {
+      stepNum: 5,
+      data,
+    }
+    dispatch(goStep(payload));
+  }
+
+  const onUndo = () => {
+    const payload = {
+      stepNum: 3,
+      data: {
+        profileImage: {}
+      },
+    }
+    dispatch(goStep(payload));
+  }
+
   return (
     <>
       <div className="flex items-center justify-between py-5 px-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
@@ -104,14 +124,14 @@ const UserBadges = (props) => {
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
-          <BackButton onClick={() => goStep(4)} styles="rounded-[15px]" />
+          <BackButton onClick={() => onUndo()} styles="rounded-[15px]" />
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
             caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => goStep(6)}
+            onClick={() => onContinue()}
             disabled={false}
             styles="rounded-[15px]"
           />

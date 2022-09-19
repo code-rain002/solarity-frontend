@@ -166,18 +166,18 @@ export const changeInfo = createAsyncThunk(
 
 export const goStep = createAsyncThunk(
   "auth/goStep",
-  async ({ stepNum, data, flag }: {
+  async ({ stepNum, data, onFinally }: {
     stepNum: number;
     data: object;
-    flag: boolean;
+    onFinally?: any;
   }) => {
     const {
       data: {},
     } = await apiCaller.post("/auth/setStep", {
       stepNum,
       data,
-      flag,
     });
+    if (onFinally) onFinally();
     return stepNum;
   }
 );

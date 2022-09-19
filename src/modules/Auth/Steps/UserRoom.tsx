@@ -17,10 +17,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
 
 const UserRoom = (props) => {
-  const { goStep } = props;
   const dispatch = useDispatch();
   const router = useRouter();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
@@ -49,6 +49,27 @@ const UserRoom = (props) => {
       setShowPurchaseModal(false);
     }
   };
+
+  const onContinue = () => {
+    const data = {
+      badges: userInfo.badges
+    }
+    const payload = {
+      stepNum: 5,
+      data,
+    }
+    dispatch(goStep(payload));
+  }
+
+  const onUndo = () => {
+    const payload = {
+      stepNum: 5,
+      data: {
+        passportStyle: {}
+      },
+    }
+    dispatch(goStep(payload));
+  }
 
   return (
     <>
@@ -103,7 +124,7 @@ const UserRoom = (props) => {
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
-          <BackButton onClick={() => goStep(5)} styles="rounded-[15px]" />
+          <BackButton onClick={() => onUndo()} styles="rounded-[15px]" />
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton

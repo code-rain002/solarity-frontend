@@ -19,12 +19,11 @@ import {
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
 import { apiCaller } from "utils/fetcher";
-import { changeInfo } from "redux/slices/authSlice";
+import { changeInfo, goStep } from "redux/slices/authSlice";
 
 const EditStyle = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { goStep } = props;
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
@@ -83,6 +82,27 @@ const EditStyle = (props) => {
     window.location.href = `${mintingUrl}`;
   };
 
+  const onContinue = () => {
+    const data = {
+      passportStyle: userInfo.passportStyle
+    }
+    const payload = {
+      stepNum: 6,
+      data,
+    }
+    dispatch(goStep(payload));
+  }
+
+  const onUndo = () => {
+    const payload = {
+      stepNum: 4,
+      data: {
+        badges: []
+      },
+    }
+    dispatch(goStep(payload));
+  }
+
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pb-0 lg:pt-8 rounded-t">
@@ -116,14 +136,14 @@ const EditStyle = (props) => {
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
-          <BackButton onClick={() => goStep(3)} styles="rounded-[15px]" />
+          <BackButton onClick={() => onUndo()} styles="rounded-[15px]" />
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
-            caption="Continue"
+            caption="Mint"
             icon=""
             bordered={false}
-            onClick={() => goStep(5)}
+            onClick={() => onContinue()}
             disabled={loading ? true : false}
             styles="rounded-[15px]"
           />

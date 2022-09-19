@@ -23,7 +23,7 @@ import {
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
 import { showErrorToast, showSuccessToast } from "utils";
-import { changeInfo } from "redux/slices/authSlice";
+import { changeInfo, goStep } from "redux/slices/authSlice";
 import { apiCaller } from "utils/fetcher";
 
 cloudinary.config({
@@ -35,7 +35,6 @@ cloudinary.config({
 const UserPic = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { goStep } = props;
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
@@ -54,6 +53,7 @@ const UserPic = (props) => {
 
   const [files, setFiles] = useState<File[]>(null);
   const [loadedImages, setLoadedImages] = useState<any[]>([]);
+
   useEffect(() => {
     fetchNFTs();
   }, []);
@@ -100,6 +100,27 @@ const UserPic = (props) => {
   //     .then(resp => console.log(resp))
   //     .catch(_err => console.log("Something went wrong, please try again later."));
   // }
+
+  const onContinue = () => {
+    const data = {
+      profileImage: userInfo.profileImage
+    }
+    const payload = {
+      stepNum: 4,
+      data,
+    }
+    dispatch(goStep(payload));
+  }
+
+  const onUndo = () => {
+    const payload = {
+      stepNum: 2,
+      data: {
+        daos: []
+      },
+    }
+    dispatch(goStep(payload));
+  }
 
   return (
     <>
@@ -162,10 +183,10 @@ const UserPic = (props) => {
                   title={image.name}
                   onClick={() => onSelectImage({
                     link: image.url,
-                    network: null,
-                    contractAddress: null,
-                    tokenId: null,
-                    mintAddress: null,
+                    network: '',
+                    contractAddress: '',
+                    tokenId: '',
+                    mintAddress: '',
                   })}
                   // selected={image.url == selectedAvatar}
                 />
@@ -226,14 +247,14 @@ const UserPic = (props) => {
       </div>
       <div className="w-full p-5 lg:p-5 flex-auto flex items-end px-5 py-5 lg:px-5 lg:py-5">
         <div className="inline-block w-[20%] pr-2">
-          <BackButton onClick={() => goStep(2)} styles="rounded-[15px]" />
+          <BackButton onClick={() => onUndo()} styles="rounded-[15px]" />
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
             caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => goStep(4)}
+            onClick={() => onContinue()}
             disabled={nftLoading ? true : false}
             styles="rounded-[15px]"
           />

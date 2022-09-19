@@ -7,8 +7,8 @@ const passportSteps = [
   "General Information",
   "Claim Daos",
   "Profile Picture",
-  "Edit Style",
-  "Select Badges & Mint"
+  "Select Badges",
+  "Edit Style & Mint"
 ];
 
 const roomSteps = [
