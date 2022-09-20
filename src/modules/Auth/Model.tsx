@@ -71,7 +71,7 @@ export function Model(props) {
   const [QRMeterial, setQRMaterial] = useState<THREE.MeshStandardMaterial>();
   const [avatarMeterial, setAvatarMaterial] = useState<THREE.MeshStandardMaterial>();
   const [backgroundColor, setBackgroundColor] = useState();
-  const [titleTextMesh, setTitleTextMesh] = useState<any>();
+  const [titleTextMeshes, setTitleTextMeshes] = useState<any[]>([]);
   const [domainTextMesh, setDomainTextMesh] = useState<any>();
   const [daoTextMeshes, setDaoTextMeshes] = useState([]);
   const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
@@ -99,21 +99,34 @@ export function Model(props) {
   }, [passportStyle.background]);
 
   useEffect(() => {
-    renderTextMesh(domain, (geometry, material) => {
+    renderTextMesh(domain, (geometry, material, size) => {
       setDomainTextMesh({
         geometry,
-        material
+        material,
+        size
       })
     });
   }, [domain]);
 
   useEffect(() => {
-    renderTextMesh(title, (geometry, material) => {
-      setTitleTextMesh({
-        geometry,
-        material
-      })
-    });
+    if (title && title.length > 100) {
+      alert('Max charactor count is 100');
+      return;
+    }
+    if (title) {
+      const titleArr = title.match(/(.{1,25})/g);
+      const len = titleArr.length;
+      titleArr.map((title, index) => {
+        let tempMeshes = [...titleTextMeshes];
+        renderTextMesh(title, (geometry, material) => {
+          tempMeshes[index] = { geometry: geometry, material: material };
+          tempMeshes = tempMeshes.slice(0, len);
+          setTitleTextMeshes(tempMeshes);
+        });
+      });
+    } else {
+      setTitleTextMeshes([]);
+    }
   }, [title]);
 
   useEffect(() => {
@@ -164,7 +177,14 @@ export function Model(props) {
       });
       const material = new THREE.MeshStandardMaterial({ color: passportStyle.text });
       material.needsUpdate = true;
-      next(geometry, material);
+      const vector = new THREE.Vector3()
+      const mesh = new THREE.Mesh(
+        geometry,
+        material
+      )
+      mesh.geometry.computeBoundingBox();
+      const size = mesh.geometry.boundingBox.getSize(vector);
+      next(geometry, material, size);
     });
   }
 
@@ -184,10 +204,12 @@ export function Model(props) {
       <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
 
       {/* domain text  default: -2.5 */}
-      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-2.5, -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} material-color={passportStyle.text} />)}
+      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-0.85-((domainTextMesh.size.x/5)), -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} material-color={passportStyle.text} />)}
 
       {/* title texts */}
-      {titleTextMesh && (<mesh geometry={titleTextMesh.geometry} material={titleTextMesh.material} position={[-2.16, -1.45, 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} />)}
+      {titleTextMeshes.map((mesh, index) => (
+        <mesh geometry={mesh.geometry} material={mesh.material} position={[-2.15, -1.45-(0.2*index), 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} key={index} />
+      ))}
       {/* <mesh geometry={nodes.Text003.geometry} material={nodes.Text003.material} position={[-2.16, -1.65, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} />
       <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
