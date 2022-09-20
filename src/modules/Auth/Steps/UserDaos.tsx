@@ -115,9 +115,6 @@ const UserDaos = (props) => {
     dispatch(
       changeInfo({
         payload: payload,
-        callback: () => {
-          dispatch(stopLoadingApp());
-        },
       })
     );
   }, [selectedDaos]);
