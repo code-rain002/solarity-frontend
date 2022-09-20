@@ -80,6 +80,7 @@ export const RegisterPage = () => {
     apiCaller
       .post("/auth/checkStep")
       .then((response) => {
+        console.log(response.data.user)
         if (response.data.user) {
         const user = response.data.user;
           let tempUserInfo = userInfo;
@@ -113,7 +114,8 @@ export const RegisterPage = () => {
             case 1:
               tempUserInfo = {
                 ...tempUserInfo,
-                solanaAddress: user.solanaAddress
+                solanaAddress: user.solanaAddress,
+                links: user.externalLinks
               }
               break;
           }

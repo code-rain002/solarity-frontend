@@ -63,7 +63,7 @@ type ActionName = 'All Animations'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export function Model(props) {
-  const { domain, title, profileImage, daos, passportStyle, badges } = props;
+  const { domain, title, profileImage, daos, passportStyle, badges, links } = props;
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('/model.glb') as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
@@ -73,6 +73,9 @@ export function Model(props) {
   const [backgroundColor, setBackgroundColor] = useState();
   const [titleTextMeshes, setTitleTextMeshes] = useState<any[]>([]);
   const [domainTextMesh, setDomainTextMesh] = useState<any>();
+  const [discordTextMesh, setDiscordTextMesh] = useState<any>();
+  const [twitterTextMesh, setTwitterTextMesh] = useState<any>();
+  const [githubTextMesh, setGithubTextMesh] = useState<any>();
   const [daoTextMeshes, setDaoTextMeshes] = useState([]);
   const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
   const [defaultBadgeImageMaterial, setDefaultBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
@@ -128,6 +131,39 @@ export function Model(props) {
       setTitleTextMeshes([]);
     }
   }, [title]);
+
+  useEffect(() => {
+    if (links.discord.username) {
+      renderTextMesh(links.discord.username, (geometry, material) => {
+        setDiscordTextMesh({
+          geometry,
+          material
+        });
+      });
+    }
+  }, [links.discord]);
+
+  useEffect(() => {
+    if (links.twitter.username) {
+      renderTextMesh(links.twitter.username, (geometry, material) => {
+        setTwitterTextMesh({
+          geometry,
+          material
+        });
+      });
+    }
+  }, [links.twitter]);
+
+  useEffect(() => {
+    if (links.github.username) {
+      renderTextMesh(links.github.username, (geometry, material) => {
+        setGithubTextMesh({
+          geometry,
+          material
+        });
+      });
+    }
+  }, [links.github]);
 
   useEffect(() => {
     daos.map((dao, index) => {
@@ -228,9 +264,15 @@ export function Model(props) {
       <mesh geometry={nodes.github_log.geometry} material={materials.github} position={[-4.63, 1.27, 0.12]} />
 
       {/* social texts */}
-      {/* <mesh geometry={nodes.Text.geometry} material={materials.green} position={[-4.42, 2.1, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
-      <mesh geometry={nodes.Text001.geometry} material={materials.green} position={[-4.42, 1.66, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} />
-      <mesh geometry={nodes.Text002.geometry} material={materials.green} position={[-4.42, 1.27, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.23} /> */}
+      {links.twitter.connected && twitterTextMesh && (
+        <mesh geometry={twitterTextMesh.geometry} material={twitterTextMesh.material} position={[-4.42, 2.1, 0.12]} rotation={[0, 0, 0]} scale={0.16} material-color={passportStyle.text} />
+      )}
+      {links.discord.connected && discordTextMesh && (
+        <mesh geometry={discordTextMesh.geometry} material={discordTextMesh.material} position={[-4.42, 1.65, 0.12]} rotation={[0, 0, 0]} scale={0.16} material-color={passportStyle.text} />
+      )}
+      {links.github.connected && githubTextMesh && (
+        <mesh geometry={githubTextMesh.geometry} material={githubTextMesh.material} position={[-4.42, 1.26, 0.12]} rotation={[0, 0, 0]} scale={0.16} material-color={passportStyle.text} />
+      )}
 
       {/* daos images */}
       {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (

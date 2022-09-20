@@ -56,6 +56,7 @@ const NftDemo = (props) => {
             passportStyle={userInfo.passportStyle}
             daos={userInfo.daos}
             badges={userInfo.badges}
+            links={userInfo.links}
           />
           <OrbitControls />
         </Suspense>

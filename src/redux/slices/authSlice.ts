@@ -22,7 +22,7 @@ const initialState = {
     links: {
       discord: { username: null, connected: false, accessToken: null, refreshToken: null },
       twitter: { username: null, connected: false, id: null, accessToken: null, refreshToken: null },
-      github: { username: null, connected: false, accessToken: null, refreshToken: null },
+      github: { username: null, verified: false, accessToken: null, refreshToken: null },
     },
     daos: [],
     profileImage: {},
@@ -244,9 +244,9 @@ export const unlinkAccounts = createAsyncThunk(
     let returnValue = null;
     try {
       const {
-        data: { profile },
+        data: { type },
       } = await apiCaller.post("/auth/unlinkAccounts", data);
-      returnValue = profile;
+      returnValue = { type: type, link: { username: null, connected: false, accessToken: null, refreshToken: null } };
       showSuccessToast("Account successfully unlinked");
     } catch (err) {
       showErrorToast(extractError(err));

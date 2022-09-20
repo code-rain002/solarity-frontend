@@ -16,7 +16,7 @@ import {
   PolygonImg,
 } from "components/Common/Images";
 import { DomainInput, SharedInput } from "components/Common/Forms";
-import { DiscordLink } from "../Links";
+import { DiscordLink, GithubLink } from "../Links";
 import { TwitterLink } from "../Links/TwitterLink";
 import { minifyAddress, showErrorToast } from "utils";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
@@ -159,12 +159,7 @@ const UserInfo = (props) => {
             <DiscordLink />
           </div>
           <div className="custom-2xl:text-right">
-            <WalletButton
-              caption="Connect"
-              icon={GithubImg}
-              onClick={null}
-              styles="!w-[100%]"
-            />
+            <GithubLink />
           </div>
         </div>
         <div className="grid grid-cols-1 mt-[20px] lg:mt-[30px]">
