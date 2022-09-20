@@ -20,7 +20,7 @@ const DaoPanel = (props: DaoPanelProps) => {
           height={"100%"}
         />
       </div>
-      <div className="absolute top-[calc(50%-25px)] left-[calc(50%-32px)] m-auto w-[64px]">
+      <div className="absolute top-[calc(50%-25px)] left-[calc(50%-32px)] m-auto w-[64px] h-[64px] rounded-[12px] overflow-hidden">
         <Image
           src={props.imageSrc}
           alt={props.title}

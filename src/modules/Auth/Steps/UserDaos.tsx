@@ -44,58 +44,58 @@ const UserDaos = (props) => {
       apiCaller
         .get(`daos/${userInfo.solanaAddress}/address?includeDao=true`)
         .then((response) => {
-          const daos = response.data.daos;
-          // const daos = [
-          //   {
-          //     name: "New Dao1",
-          //     symbol: "ND",
-          //     description: "Welcome to new Dao",
-          //     profileImage: {
-          //       link: "/images/community/avatars/Picture (1).png",
-          //       address: "/images/community/avatars/Picture (1).png"
-          //     }
-          //   }, {
-          //     name: "New Dao2",
-          //     symbol: "ND",
-          //     description: "Welcome to new Dao",
-          //     profileImage: {
-          //       link: "/images/community/avatars/Picture (2).png",
-          //       address: "/images/community/avatars/Picture (2).png"
-          //     }
-          //   }, {
-          //     name: "New Dao3",
-          //     symbol: "ND",
-          //     description: "Welcome to new Dao",
-          //     profileImage: {
-          //       link: "/images/community/avatars/Picture (3).png",
-          //       address: "/images/community/avatars/Picture (3).png"
-          //     }
-          //   }, {
-          //     name: "New Dao4",
-          //     symbol: "ND",
-          //     description: "Welcome to new Dao",
-          //     profileImage: {
-          //       link: "/images/community/avatars/Picture (4).png",
-          //       address: "/images/community/avatars/Picture (4).png"
-          //     }
-          //   }, {
-          //     name: "New Dao5",
-          //     symbol: "ND",
-          //     description: "Welcome to new Dao",
-          //     profileImage: {
-          //       link: "/images/community/avatars/Picture (5).png",
-          //       address: "/images/community/avatars/Picture (5).png"
-          //     }
-          //   }, {
-          //     name: "New Dao6",
-          //     symbol: "ND",
-          //     description: "Welcome to new Dao",
-          //     profileImage: {
-          //       link: "/images/community/avatars/Picture (6).png",
-          //       address: "/images/community/avatars/Picture (6).png"
-          //     }
-          //   }, 
-          // ];
+          // const daos = response.data.daos;
+          const daos = [
+            {
+              name: "DeGods",
+              symbol: "DeGods",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/daos/degods.png",
+                address: "/images/daos/degods.png"
+              }
+            }, {
+              name: "BAYC",
+              symbol: "BAYC",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/daos/bayc.jpeg",
+                address: "/images/daos/bayc.jpeg"
+              }
+            }, {
+              name: "SolGods",
+              symbol: "SolGods",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/daos/solgods.jpeg",
+                address: "/images/daos/solgods.jpeg"
+              }
+            }, {
+              name: "MoneyBoys",
+              symbol: "MoneyBoys",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/daos/moneyboys.jpeg",
+                address: "/images/daos/moneyboys.jpeg"
+              }
+            }, {
+              name: "Doodles",
+              symbol: "Doodles",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/daos/doodles.png",
+                address: "/images/daos/doodles.png"
+              }
+            }, {
+              name: "CryptoPunks",
+              symbol: "CryptoPunks",
+              description: "Welcome to new Dao",
+              profileImage: {
+                link: "/images/daos/cryptopunk.png",
+                address: "/images/daos/cryptopunk.png"
+              }
+            }, 
+          ];
           
           setDaos(daos);
           dispatch(stopLoadingApp());

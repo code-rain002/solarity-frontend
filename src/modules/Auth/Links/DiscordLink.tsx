@@ -14,7 +14,7 @@ const discordLinkGenerator = (currentUrl: string) => {
 		response_type: "code",
 		scope: "identify connections",
 	};
-
+	// https://discord.com/api/oauth2/authorize?client_id=1021619610652520471&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fregister%3Flink%3Ddiscord&response_type=code&scope=identify%20connections%20guilds%20guilds.members.read%20dm_channels.read
 	const urlParams = new URLSearchParams(params);
 	return baseUrl + "?" + urlParams.toString();
 };
@@ -29,12 +29,7 @@ export const DiscordLink = () => {
 	const { discordConnected, discordUsername } = useSelector(
 		(state: RootStateOrAny) => state.profile.data
 	);
-	// console.log(discordConnected)
-	const { profileData } = useSelector(
-		(state: RootStateOrAny) => ({
-			profileData: state.profile.data
-		})
-	);
+
 	const appUrl = (() => {
 		let url = new URL(window.location.origin + asPath);
 		let params = new URLSearchParams(url.search);
@@ -46,12 +41,9 @@ export const DiscordLink = () => {
 	})();
 
 	const discordConnectionLink = discordLinkGenerator(appUrl);
-	
-	useEffect(() => {
-		// setIsConnected(profileData.discordConnected)
-	}, [])
 
 	useEffect(() => {
+		console.log(appUrl)
 		if (link === "discord") {
 			dispatch(
 				linkAccounts({
@@ -106,7 +98,7 @@ export const DiscordLink = () => {
 						<div className="pt-2 text-right"><Image src={DiscordImg} width={28} height={28} /></div>
 					</button>
 					:
-					<a className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%]`} href={discordConnectionLink}>
+					<a className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%]`} href={discordConnectionLink} target="_blank">
 						<span className="text-[16px] w-[90%] text-left">{"Connect"}</span>
 						<div className="pt-2 text-right"><Image src={DiscordImg} width={28} height={28} /></div>
 					</a>
