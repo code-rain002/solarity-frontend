@@ -240,7 +240,7 @@ export function Model(props) {
       <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
 
       {/* domain text  default: -2.5 */}
-      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-0.85-((domainTextMesh.size.x/5)), -0.14, 0.07]} rotation={[0, 0, 0]} scale={0.4} material-color={passportStyle.text} />)}
+      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-0.85-((domainTextMesh.size.x/7)), -0.1, 0.07]} rotation={[0, 0, 0]} scale={0.3} material-color={passportStyle.text} />)}
 
       {/* title texts */}
       {titleTextMeshes.map((mesh, index) => (
@@ -276,12 +276,12 @@ export function Model(props) {
 
       {/* daos images */}
       {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (
-        <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.72, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
+        <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.62, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
       )) : null}
 
       {/* daos texts */}
       {daos.length && daoTextMeshes.length ? daoTextMeshes.map((mesh, index) => (
-        <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.42, -1.4-(0.42*index), 0.12]} rotation={[0, 0, 0]} scale={0.23} key={index} material-color={passportStyle.text} />
+        <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.38, -1.4-(0.42*index), 0.12]} rotation={[0, 0, 0]} scale={0.15} key={index} material-color={passportStyle.text} />
       )) : null}
     </group>
   )

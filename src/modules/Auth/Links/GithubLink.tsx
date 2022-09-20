@@ -13,7 +13,7 @@ const githubLinkGenerator = (currentUrl: string) => {
 		redirect_uri: currentUrl,
 		response_type: "code",
 		// state: "state",
-		scope: "repo repo:status repo_deployment public_repo repo:invite security_events",
+		scope: "repo user",
 	};
 	const urlParams = new URLSearchParams(params);
 	return baseUrl + "?" + urlParams.toString();
