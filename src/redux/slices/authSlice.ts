@@ -238,15 +238,15 @@ export const unlinkAccounts = createAsyncThunk(
     data,
     finalFunction,
   }: {
-    data: Object;
+    data: any;
     finalFunction: () => void;
   }) => {
     let returnValue = null;
     try {
-      const {
-        data: { type },
-      } = await apiCaller.post("/auth/unlinkAccounts", data);
-      returnValue = { type: type, link: { username: null, connected: false, accessToken: null, refreshToken: null } };
+      // const {
+      //   data: { type },
+      // } = await apiCaller.post("/auth/unlinkAccounts", data);
+      returnValue = { type: data.link, link: { username: null, connected: false, accessToken: null, refreshToken: null } };
       showSuccessToast("Account successfully unlinked");
     } catch (err) {
       showErrorToast(extractError(err));
