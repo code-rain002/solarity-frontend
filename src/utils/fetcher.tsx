@@ -20,8 +20,8 @@ export const fetcher = async (url: string): Promise<any> => {
 
 const urlBase =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3004/api"
-    : "https://solarity-server.herokuapp.com/api";
+    ? process.env.NEXT_PUBLIC_LOCAL_BACKEND_URL
+    : process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const apiCaller = axios.create({
   baseURL: urlBase,
