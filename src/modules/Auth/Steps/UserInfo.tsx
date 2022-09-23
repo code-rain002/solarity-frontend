@@ -56,10 +56,10 @@ const UserInfo = (props) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (domain === "") {
-      setError("Please input your domain name.");
-      return;
-    }
+    // if (!domain) {
+    //   setError("Please input your domain name.");
+    //   return;
+    // }
     if (domain !== null) {
       let formatted = domain.toLowerCase();
       formatted = formatted.replace(" ", "");
@@ -196,7 +196,7 @@ const UserInfo = (props) => {
             icon=""
             bordered={false}
             onClick={() => onContinue()}
-            disabled={error || error !== null ? true : false}
+            disabled={error || error !== null || !domain ? true : false}
             styles="rounded-[15px]"
           />
         </div>
