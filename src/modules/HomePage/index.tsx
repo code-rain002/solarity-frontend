@@ -1,30 +1,98 @@
-import React from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { BannerText } from "./BannerText";
 import { BannerImage } from "./BannerImage";
 import { BannerLeftImg, BannerRightImg } from "components/Common/Images";
-import { ConnectWallet } from "./ConnectWallet";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { ConnectWallet } from "./ConnectWallet";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { apiCaller } from "utils/fetcher";
+import { useDispatch } from "react-redux";
+import { login } from "redux/slices/authSlice";
+import { useRouter } from "next/router";
 
 export const HomePage = () => {
+  const wallet = useWallet();
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const connected = useMemo(() => {
+    return wallet.connected;
+  }, [wallet]);
+
+  useEffect(() => {
+    if (wallet.connected) {      
+      console.log(wallet.wallet.adapter.name);
+      let publicKey = wallet.publicKey.toBase58();
+      let type = 'solana';
+      let provider = (window as any).phantom.solana
+      loginUser(publicKey, type, provider);
+    }
+  }, [connected]);
+
+  const loginUser = async (address, type, provider) => {
+    const {
+      data: { exist, user },
+    } = await apiCaller.post("/auth/userExist", {
+      publicKey: address,
+      walletType: type,
+    });
+
+    if (exist && user.registerStep == 6) {
+      await dispatch(
+        login({
+          publicKey: address,
+          walletType: type,
+          provider,
+          onFinally: () =>
+            router.push({ pathname: `/${user.username}/profile` }),
+        })
+      );
+    } else {
+      await dispatch(
+        login({
+          publicKey: address,
+          walletType: type,
+          provider,
+          onFinally: () => router.push({ pathname: "auth/register" }),
+        })
+      );
+    }
+  }
+
   return (
     <>
       <div className="block sm:hidden mobile-gradient"></div>
       <div className="block sm:hidden mobile-gradient-2"></div>
       <div className="absolute block sm:hidden -ml-[37px] -mt-[50px] w-[50vw]">
-        <Image src={BannerLeftImg} alt="Solarity" layout="responsive" className="custom-animation-bounce banner-image"></Image>
+        <Image
+          src={BannerLeftImg}
+          alt="Solarity"
+          layout="responsive"
+          className="custom-animation-bounce banner-image"
+        ></Image>
       </div>
       <div className="absolute block sm:hidden right-0 -ml-[20px] -mt-[50px] w-[50vw]">
-        <Image src={BannerRightImg} alt="Solarity" layout="responsive" className="custom-animation-bounce banner-image"></Image>
+        <Image
+          src={BannerRightImg}
+          alt="Solarity"
+          layout="responsive"
+          className="custom-animation-bounce banner-image"
+        ></Image>
       </div>
-      <div className="absolute block sm:hidden"><BannerImage isMobile={false} /></div>
+      <div className="absolute block sm:hidden">
+        <BannerImage isMobile={false} />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 mt-[20px] items-baseline px-[10px] sm:pl-0">
         <div>
           <BannerText />
-          <ConnectWallet />
+          {/* <ConnectWallet /> */}
+          <WalletMultiButton />
         </div>
       </div>
-      <div className="hidden sm:block absolute top-0 right-0 -z-10"><BannerImage isMobile={true} /></div>
+      <div className="hidden sm:block absolute top-0 right-0 -z-10">
+        <BannerImage isMobile={true} />
+      </div>
     </>
   );
 };

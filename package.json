@@ -9,6 +9,7 @@
     "@heroicons/react": "^1.0.5",
     "@metamask/detect-provider": "^1.2.0",
     "@metaplex-foundation/js": "^0.15.0",
+    "@metaplex-foundation/mpl-token-metadata": "^2.3.0",
     "@nfteyez/sol-rayz": "^0.10.2",
     "@react-three/drei": "7.5.1",
     "@react-three/fiber": "7.0.6",

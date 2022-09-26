@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
-import { HexColorPicker } from 'react-colorful';
+import { HexColorPicker } from "react-colorful";
 
 import {
   AddressButton,
@@ -14,85 +14,84 @@ import {
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
 import { changeInfo, goStep } from "redux/slices/authSlice";
-import { bundlrStorage , guestIdentity, keypairIdentity, Metaplex, walletAdapterIdentity } from "@metaplex-foundation/js";
-import { Connection, clusterApiUrl, Keypair } from "@solana/web3.js";
-import { useWallet, WalletContext } from "@solana/wallet-adapter-react";
 import WalletAddress from "./WalletAddress";
+import { useMetaplex } from "utils/contexts/useMetaplex";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const EditStyle = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const wallet = useWallet();
-  const walletCon = useContext(WalletContext);
-  const connection = new Connection(clusterApiUrl("testnet"));
-  // const wallet = Keypair.generate();
-  // console.log('connection: ', connection.getAccountInfo(wallet.publicKey));
-  // console.log('wallet: ', publicKey.toBase58());
-  // console.log('connected: ', connected);
-
-  const metaplex = Metaplex.make(connection)
-    .use(walletAdapterIdentity(wallet))
-    .use(bundlrStorage());
+  const { metaplex } = useMetaplex();
 
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
 
+  useEffect(() => {
+    console.log(wallet.connected);
+  }, []);
+
   const onSetColor = (value, target) => {
-    let tempStyle = {}
-    Object.assign(tempStyle, userInfo.passportStyle)
+    let tempStyle = {};
+    Object.assign(tempStyle, userInfo.passportStyle);
     const payload = {
       value: {
         ...tempStyle,
-        [target]: value
+        [target]: value,
       },
-      type: 'passportStyle'
-    }
+      type: "passportStyle",
+    };
     dispatch(changeInfo({ payload: payload }));
-  }
+  };
 
   const mint = async () => {
-    // const address = userInfo.solanaAddress;
-    // const mintingUrl =
-    //   process.env.NODE_ENV === "development"
-    //     ? process.env.NEXT_PUBLIC_LOCAL_MINTING_URL
-    //     : process.env.NEXT_PUBLIC_MINTING_URL;
-    // window.location.href = `${mintingUrl}`;
-    console.log('Hi');
-    const { nft } = await metaplex
-      .nfts()
-      .create({
-        uri: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
-        name: "My NFT",
-        sellerFeeBasisPoints: 500
-      })
-      .run();
+    console.log("here", metaplex.identity().publicKey.toBase58());
+    let nft = await metaplex.nfts().create({
+      uri: "/fallbackImage.jpg",
+      name: "New NFT",
+      sellerFeeBasisPoints: 500,
+    });
+    console.log(nft);
 
-    console.log('nft', nft)
+    // const { uri } = await metaplex
+    // .nfts()
+    // .uploadMetadata({
+    //     name: "My NFT",
+    //     description: "My description",
+    //     image: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
+    // })
+    // .run();
+    // console.log(uri) // https://arweave.net/789
+
+    // let myNfts = await metaplex
+    //   .nfts()
+    //   .findAllByOwner(metaplex.identity().publicKey);
+    // console.log("myNfts", myNfts);
   };
 
   const onContinue = () => {
     const data = {
-      passportStyle: userInfo.passportStyle
-    }
+      passportStyle: userInfo.passportStyle,
+    };
     const payload = {
       stepNum: 5,
       data,
-      next: mint()
-    }
+      next: mint(),
+    };
     dispatch(goStep(payload));
-  }
+  };
 
   const onUndo = () => {
     const payload = {
       stepNum: 4,
       data: {
-        badges: []
+        badges: [],
       },
-    }
+    };
     dispatch(goStep(payload));
-  }
+  };
 
   return (
     <>
@@ -107,30 +106,68 @@ const EditStyle = (props) => {
         <div className="mb-5 flex flex-row justify-between items-center relative">
           <span className="text-white">Logo Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
-            <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.logo}` }}></div>
+            <div
+              className="w-[80px] h-[40px] rounded-[10px]"
+              style={{ backgroundColor: `${userInfo.passportStyle.logo}` }}
+            ></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'logo')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10">
+            <HexColorPicker
+              className="!w-[150px] !h-[150px]"
+              color={"#29b080"}
+              onChange={(value) => onSetColor(value, "logo")}
+            />
+          </div>
         </div>
         <div className="mb-5 flex flex-row justify-between items-center relative">
           <span className="text-white">Background Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
-            <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.background}` }}></div>
+            <div
+              className="w-[80px] h-[40px] rounded-[10px]"
+              style={{
+                backgroundColor: `${userInfo.passportStyle.background}`,
+              }}
+            ></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#333333"} onChange={(value) => onSetColor(value, 'background')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10">
+            <HexColorPicker
+              className="!w-[150px] !h-[150px]"
+              color={"#333333"}
+              onChange={(value) => onSetColor(value, "background")}
+            />
+          </div>
         </div>
         <div className="mb-5 flex flex-row justify-between items-center relative">
           <span className="text-white">Line Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
-            <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.line}` }}></div>
+            <div
+              className="w-[80px] h-[40px] rounded-[10px]"
+              style={{ backgroundColor: `${userInfo.passportStyle.line}` }}
+            ></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#29b080"} onChange={(value) => onSetColor(value, 'line')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10">
+            <HexColorPicker
+              className="!w-[150px] !h-[150px]"
+              color={"#29b080"}
+              onChange={(value) => onSetColor(value, "line")}
+            />
+          </div>
         </div>
         <div className="flex flex-row justify-between items-center relative">
           <span className="text-white">Text Color: </span>
           <div className="border-[1px] border-white rounded-[12px] p-[2px] cursor-pointer peer">
-            <div className="w-[80px] h-[40px] rounded-[10px]" style={{ backgroundColor: `${userInfo.passportStyle.text}` }}></div>
+            <div
+              className="w-[80px] h-[40px] rounded-[10px]"
+              style={{ backgroundColor: `${userInfo.passportStyle.text}` }}
+            ></div>
           </div>
-          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10"><HexColorPicker className="!w-[150px] !h-[150px]" color={"#ffffff"} onChange={(value) => onSetColor(value, 'text')} /></div>
+          <div className="hidden peer-hover:block absolute hover:block right-[-64px] bottom-[47px] z-10">
+            <HexColorPicker
+              className="!w-[150px] !h-[150px]"
+              color={"#ffffff"}
+              onChange={(value) => onSetColor(value, "text")}
+            />
+          </div>
         </div>
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">

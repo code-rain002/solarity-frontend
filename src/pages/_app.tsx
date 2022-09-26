@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { ToastContainer } from "react-toastify";
-import { ConnectionProvider, useWallet, WalletProvider } from "@solana/wallet-adapter-react";
+import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { clusterApiUrl } from "@solana/web3.js";
 import {
@@ -17,6 +17,7 @@ import {
   WalletModalProvider,
   WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
+import { MetaplexProvider } from "providers/MetaplexProvider";
 // For redux
 import {
   Provider,
@@ -36,7 +37,7 @@ import "styles/custom.css";
 import "animate.css/animate.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "react-toastify/dist/ReactToastify.css";
-import { MetaplexProvider } from "providers/MetaplexProvider";
+import 'styles/wallet.css';
 
 const endpoint = "https://ssc-dao.genesysgo.net";
 
@@ -101,16 +102,13 @@ function MyApp({ children }) {
   }, [logged, profileData.visible]);
 
   useEffect(() => {
-    // if (wallet) {
-    //   wallet.adapter.connect();
-    // }
     dispatch(checkSession());
   }, []);
 
   return (
     <div>
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets}>
+        <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
             <MetaplexProvider>
               {children}
