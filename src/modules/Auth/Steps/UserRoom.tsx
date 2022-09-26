@@ -19,6 +19,7 @@ import React, { useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
+import WalletAddress from "./WalletAddress";
 
 const UserRoom = (props) => {
   const dispatch = useDispatch();
@@ -27,14 +28,6 @@ const UserRoom = (props) => {
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
-
-  // bug code
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
-  const miniPublicKey = minifyAddress(publicKey, 3);
-  const provider = (window as any).phantom.solana;
-
   const [selectedRoom, setSelectedRoom] = useState<any>();
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
@@ -77,11 +70,7 @@ const UserRoom = (props) => {
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Buy your own room
         </h3>
-        <AddressButton
-          caption={miniPublicKey ? miniPublicKey : ""}
-          icon={AddressImg}
-          onClick={null}
-        />
+        <WalletAddress />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 h-[600px] overflow-scroll pl-5 pr-5 mr-3">
         {rooms.map((room, index) => (

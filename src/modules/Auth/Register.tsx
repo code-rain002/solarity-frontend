@@ -73,14 +73,10 @@ export const RegisterPage = () => {
 
   const [avatar, setAvatar] = useState<Object>(null);
 
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
   useEffect(() => {
     apiCaller
       .post("/auth/checkStep")
       .then((response) => {
-        console.log(response.data.user)
         if (response.data.user) {
         const user = response.data.user;
           let tempUserInfo = userInfo;

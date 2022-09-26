@@ -180,10 +180,10 @@ export const updateUserInfo = createAsyncThunk(
 
 export const goStep = createAsyncThunk(
   "auth/goStep",
-  async ({ stepNum, data, onFinally }: {
+  async ({ stepNum, data, next }: {
     stepNum: number;
     data: object;
-    onFinally?: any;
+    next?: any;
   }) => {
     const {
       data: {},
@@ -191,7 +191,7 @@ export const goStep = createAsyncThunk(
       stepNum,
       data,
     });
-    if (onFinally) onFinally();
+    if (next) next();
     return stepNum;
   }
 );
