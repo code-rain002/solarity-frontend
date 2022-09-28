@@ -26,6 +26,7 @@ const withTM = require("next-transpile-modules")([
   // "@solana/wallet-adapter-tokenpocket",
   // "@solana/wallet-adapter-torus",
   "three",
+  "@react-three/drei"
 ]);
 
 const plugins = [
