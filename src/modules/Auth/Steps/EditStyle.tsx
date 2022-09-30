@@ -47,26 +47,30 @@ const EditStyle = (props) => {
   };
 
   const mint = async () => {
-    // let { nft } = await metaplex.nfts().create({
-    //   uri: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
-    //   name: "New NFT",
-    //   sellerFeeBasisPoints: 500,
-    // }).run();
-    // console.log(nft);
-    // const { uri } = await metaplex
-    // .nfts()
-    // .uploadMetadata({
-    //     name: "My NFT",
-    //     description: "My description",
-    //     image: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
-    // })
-    // .run();
-    // console.log(uri) // https://arweave.net/789
+    try {
+      let { nft } = await metaplex.nfts().create({
+        uri: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
+        name: "New NFT",
+        // sellerFeeBasisPoints: 500,
+      });
+      console.log(nft);
+      // const { uri } = await metaplex
+      // .nfts()
+      // .uploadMetadata({
+      //     name: "My NFT",
+      //     description: "My description",
+      //     image: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
+      // })
+      // .run();
+      // console.log(uri) // https://arweave.net/789
 
-    let myNfts = await metaplex
-      .nfts()
-      .findAllByOwner(metaplex.identity().publicKey);
-    console.log("myNfts", myNfts);
+      // let myNfts = await metaplex
+      //   .nfts()
+      //   .findAllByOwner(metaplex.identity().publicKey);
+      // console.log("myNfts", myNfts);
+    } catch (err) {
+      console.log('err: ', err)
+    }
   };
 
   const onContinue = () => {
