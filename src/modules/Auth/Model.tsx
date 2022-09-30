@@ -62,7 +62,7 @@ type GLTFResult = GLTF & {
 type ActionName = 'All Animations'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
-export function Model(props) {
+export default function Model(props) {
   const { domain, title, profileImage, daos, passportStyle, badges, links } = props;
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('/model.glb') as GLTFResult
@@ -287,4 +287,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/model.glb')
+// useGLTF.preload('/model.glb')

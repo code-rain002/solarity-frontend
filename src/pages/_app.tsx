@@ -12,6 +12,7 @@ import {
   SlopeWalletAdapter,
   SolflareWalletAdapter,
   TorusWalletAdapter,
+  BackpackWalletAdapter
 } from '@solana/wallet-adapter-wallets';
 import {
   WalletModalProvider,
@@ -63,6 +64,7 @@ function MyApp({ children }) {
       // new SlopeWalletAdapter(),
       new SolflareWalletAdapter({ network }),
       // new TorusWalletAdapter(),
+      new BackpackWalletAdapter()
     ],
     [network]
   );

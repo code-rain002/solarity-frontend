@@ -8,7 +8,7 @@ import { ConnectWallet } from "./ConnectWallet";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { apiCaller } from "utils/fetcher";
 import { useDispatch } from "react-redux";
-import { login } from "redux/slices/authSlice";
+import { goStep, login } from "redux/slices/authSlice";
 import { useRouter } from "next/router";
 
 export const HomePage = () => {
@@ -22,7 +22,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     if (wallet.connected) {      
-      console.log(wallet.wallet.adapter.name);
       let publicKey = wallet.publicKey.toBase58();
       let type = 'solana';
       let provider = (window as any).phantom.solana
@@ -31,6 +30,9 @@ export const HomePage = () => {
   }, [connected]);
 
   const loginUser = async (address, type, provider) => {
+    localStorage.setItem('publickey', address);
+    localStorage.setItem('type', type);
+
     const {
       data: { exist, user },
     } = await apiCaller.post("/auth/userExist", {
@@ -44,21 +46,26 @@ export const HomePage = () => {
           publicKey: address,
           walletType: type,
           provider,
-          onFinally: () =>
+          next: () =>
             router.push({ pathname: `/${user.username}/profile` }),
         })
       );
     } else {
+      const payload = {
+        stepNum: 1,
+        data: {},
+        next: () => router.push({ pathname: '/auth/register' })
+      };
       await dispatch(
         login({
           publicKey: address,
           walletType: type,
           provider,
-          onFinally: () => router.push({ pathname: "auth/register" }),
+          next: () => dispatch(goStep(payload)),
         })
       );
     }
-  }
+  };
 
   return (
     <>

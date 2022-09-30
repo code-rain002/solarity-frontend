@@ -104,10 +104,10 @@ const UserInfo = (props) => {
     const payload = {
       stepNum: 0,
       data: {
-        username: '',
-        bio: ''
+        username: null,
+        bio: null
       },
-      onFinally: () => router.push({ pathname: '/' })
+      next: () => router.push({ pathname: '/' })
     }
     dispatch(goStep(payload));
   }

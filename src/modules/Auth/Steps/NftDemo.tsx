@@ -4,20 +4,22 @@ import Logo from "components/Common/Logo";
 import { UserAvatar } from "components/Common/Panels";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef, Suspense } from "react";
+import React, { useEffect, useRef, Suspense, lazy } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { minifyAddress } from "utils";
-import { Model } from "../Model";
+import Model from "../Model";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import * as THREE from 'three'
+import * as THREE from 'three';
+
+const ModelComponent = lazy(
+  () => import("../Model")
+)
 
 const NftDemo = (props) => {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
-    step: state.auth.step,
   }));
   
   return (
@@ -27,8 +29,8 @@ const NftDemo = (props) => {
         <pointLight position={[0, 40, -100]} />
         <pointLight position={[-0.83, 1.77, 0.54]} color={userInfo.passportStyle.lineColor} intensity={0.01} rotation={[0, 0, Math.PI / 2]} />
         <ambientLight intensity={0.5} />
-        <Suspense fallback={null}>
-          <Model 
+        {/* <Suspense fallback={null}> */}
+          {/* <ModelComponent 
             domain={userInfo.domain}
             title={userInfo.title}
             profileImage={userInfo.profileImage.link}
@@ -36,9 +38,9 @@ const NftDemo = (props) => {
             daos={userInfo.daos}
             badges={userInfo.badges}
             links={userInfo.links}
-          />
+          /> */}
           <OrbitControls />
-        </Suspense>
+        {/* </Suspense> */}
       </Canvas>
     </>
   );

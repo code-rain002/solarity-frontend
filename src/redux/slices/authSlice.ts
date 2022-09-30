@@ -41,13 +41,13 @@ type loginProps = {
   publicKey: any;
   walletType: "solana" | "ethereum";
   provider: any;
-  onFinally?: any;
+  next?: any;
 };
 
 export const login = createAsyncThunk(
   "auth/login",
   async (
-    { publicKey, walletType, provider, onFinally }: loginProps,
+    { publicKey, walletType, provider, next }: loginProps,
     { dispatch }
   ) => {
     let response = false;
@@ -77,9 +77,11 @@ export const login = createAsyncThunk(
 
       dispatch(setProfile(profile));
       response = true;
-      onFinally();
-    } catch (err) {}
-    dispatch(stopLoadingApp());
+      if (next) next();
+      dispatch(stopLoadingApp());
+    } catch (err) {
+      dispatch(stopLoadingApp());
+    }
     return response;
   }
 );

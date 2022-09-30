@@ -1,94 +1,13 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Button, WalletButton } from "components/Common/Buttons";
-import WalletSelector from "modules/WalletSelector";
-import { useRouter } from "next/router";
-import { changeInfo, login } from "redux/slices/authSlice";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { apiCaller } from "utils/fetcher";
-import { signMessage } from "utils/walletHelpers";
+import { Button } from "components/Common/Buttons";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { Adapter, WalletName } from "@solana/wallet-adapter-base";
 import { minifyAddress } from "utils";
 import Image from "next/image";
 
-const WALLETS = [
-  {
-    label: "Phantom",
-    id: "phantom",
-    type: "solana",
-    image: "/images/wallets/phantom.png",
-  },
-  {
-    label: "Solflare",
-    id: "solflare",
-    type: "solana",
-    image: "/images/wallets/solflare.png",
-  },
-  {
-    label: "Metamask",
-    id: "metamask",
-    type: "ethereum",
-    image: "/images/wallets/metamask.png",
-  },
-];
-
 export const ConnectWallet = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const { wallets, select, connect } = useWallet();
+  const { wallets } = useWallet();
   const [showModal, setShowModal] = useState(false);
-  const { userInfo } = useSelector((state: RootStateOrAny) => ({
-    userInfo: state.profile.data,
-  }));
-
-  const onCheckUser = async (address, type, provider) => {
-    localStorage.setItem('publickey', address);
-    localStorage.setItem('type', type);
-
-    const {
-      data: { exist, user },
-    } = await apiCaller.post("/auth/userExist", {
-      publicKey: address,
-      walletType: type,
-    });
-
-    if (exist && user.registerStep == 6) {
-      await dispatch(
-        login({
-          publicKey: address,
-          walletType: type,
-          provider,
-          onFinally: () =>
-            router.push({ pathname: `/${user.username}/profile` }),
-        })
-      );
-    } else {
-      await dispatch(
-        login({
-          publicKey: address,
-          walletType: type,
-          provider,
-          onFinally: () => router.push({ pathname: "auth/register" }),
-        })
-      );
-    }
-  };
-
-  const onHandleClick = useCallback(
-    async (walletName: WalletName, adapter: Adapter) => {
-      await select(walletName);
-      await adapter.connect();
-      onCheckUser(
-        adapter.publicKey.toBase58(),
-        "solana",
-        (window as any).phantom.solana
-      );
-    },
-    [select]
-  );
-
   return (
     <>
       <div className="text-center sm:text-left relative z-50">
@@ -143,7 +62,6 @@ export const ConnectWallet = () => {
                             ? "outline-1 bg-focusbackground !text-white"
                             : ""
                         }`}
-                        onClick={() => onHandleClick(wallet.adapter.name, wallet.adapter)}
                       >
                         {!wallet.adapter.connected ? (
                           <>
