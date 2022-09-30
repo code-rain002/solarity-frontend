@@ -51,17 +51,11 @@ export const HomePage = () => {
         })
       );
     } else {
-      const payload = {
-        stepNum: 1,
-        data: {},
-        next: () => router.push({ pathname: '/auth/register' })
-      };
       await dispatch(
         login({
           publicKey: address,
           walletType: type,
           provider,
-          next: () => dispatch(goStep(payload)),
         })
       );
     }

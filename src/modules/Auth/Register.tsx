@@ -41,27 +41,6 @@ import ProgressBar from "./ProgressBar";
 import Circle from "./Circle";
 import { apiCaller } from "utils/fetcher";
 
-const WALLETS = [
-  {
-    label: "Phantom",
-    id: "phantom",
-    type: "solana",
-    image: PhantomImg,
-  },
-  {
-    label: "Solflare",
-    id: "solflare",
-    type: "solana",
-    image: SolflareImg,
-  },
-  {
-    label: "Metamask",
-    id: "metamask",
-    type: "ethereum",
-    image: MetamaskImg,
-  },
-];
-
 export const RegisterPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
