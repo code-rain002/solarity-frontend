@@ -27,20 +27,20 @@ const NftDemo = (props) => {
       <Canvas className="!w-[450px] !h-[450px] sm:!w-[600px] sm:!h-[600px] lg:!w-[80vw] lg:!h-[70vh] lg:top-[15vh] xl:!w-[85vw] xl:!h-[80vh] xl:!top-[10vh] custom-2xl:!w-[100vw] custom-2xl:!h-[100vh] lg:!absolute lg:!right-0 m-auto lg:pl-[170px] xl:pl-[270px] custom-2xl:pl-[500px] custom-2xl:!top-0 overflow-visible" camera={{ fov: 40, position: [0, 0, 20]}}>
         <pointLight position={[0, 40, 100]} />
         <pointLight position={[0, 40, -100]} />
-        <pointLight position={[-0.83, 1.77, 0.54]} color={userInfo.passportStyle.lineColor} intensity={0.01} rotation={[0, 0, Math.PI / 2]} />
+        <pointLight position={[-0.83, 1.77, 0.54]} color={userInfo.passportStyle.logo} intensity={0.01} rotation={[0, 0, Math.PI / 2]} />
         <ambientLight intensity={0.5} />
-        {/* <Suspense fallback={null}> */}
-          {/* <ModelComponent 
+        <Suspense fallback={null}>
+          <Model
             domain={userInfo.domain}
             title={userInfo.title}
-            profileImage={userInfo.profileImage.link}
+            profileImage={userInfo.profileImage ? userInfo.profileImage.link : '' }
             passportStyle={userInfo.passportStyle}
             daos={userInfo.daos}
             badges={userInfo.badges}
             links={userInfo.links}
-          /> */}
+          />
           <OrbitControls />
-        {/* </Suspense> */}
+        </Suspense>
       </Canvas>
     </>
   );
