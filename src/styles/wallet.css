@@ -12,7 +12,7 @@
     font-weight: 500;
     height: 48px;
     line-height: 48px;
-    padding: 35px 35px;
+    padding: 28px 30px;
     border-radius: 22px;
     letter-spacing: 1px;
 }
@@ -25,9 +25,9 @@
     outline-color: white;
 }
 
-.wallet-adapter-button:not([disabled]):hover {
-    background-color: #2dc690;
-}
+/* .wallet-adapter-button:not([disabled]):hover {
+    background-color: #162724;
+} */
 
 .wallet-adapter-button[disabled] {
     background: #404144;
@@ -228,8 +228,7 @@
 }
 
 .wallet-adapter-modal-list {
-    margin: 0 0 12px 0;
-    padding: 0;
+    padding: 0px 30px;
     width: 100%;
     list-style: none;
 }
@@ -296,4 +295,26 @@
     border: none;
     border-radius: 8px;
     color: #fff;
+}
+
+.wallet-adapter-button {
+    color: #ccc;
+}
+
+.wallet-adapter-modal-list li {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #1d1e20;
+    overflow: hidden;
+    border: 1px #29b080;
+}
+
+.wallet-adapter-modal-list li:hover {
+    /* border: 1px #29b080; */
+    background-color: #162724;
+    outline: 1px solid #29b080;
+}
+
+.wallet-adapter-modal-list li:last-child {
+    margin-bottom: 0px;
 }

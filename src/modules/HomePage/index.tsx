@@ -56,6 +56,8 @@ export const HomePage = () => {
           publicKey: address,
           walletType: type,
           provider,
+          next: () =>
+            router.push({ pathname: `/auth/register` }),
         })
       );
     }
