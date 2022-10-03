@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
 import HeaderMenuItem from '../Common/Layout/HeaderMenuItem'
 import { HeaderMenuTitles } from 'data/HeaderMenu'
@@ -27,16 +27,22 @@ const Header = (props: HeaderProps) => {
     const [isIframe, setIsIframe] = useState(false);
     const [selectedGame, setSelectedGame] = useState(null);
 
-    const innerWidth = (window as any).innerWidth
-    const innerHeight = (window as any).innerHeight
+    const [status, setStatus] = useState<any>();
 
-    const defaultStatus = {
-        width: innerHeight * 85 / 100 * 16 / 9,
-        height: innerHeight * 85 / 100,
-        x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
-        y: innerHeight * (100 - 85) / 100 / 2
-    };
-    const [status, setStatus] = useState(defaultStatus);
+    useEffect(() => {
+        const innerWidth = (window as any).innerWidth
+        const innerHeight = (window as any).innerHeight
+
+        const defaultStatus = {
+            width: innerHeight * 85 / 100 * 16 / 9,
+            height: innerHeight * 85 / 100,
+            x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
+            y: innerHeight * (100 - 85) / 100 / 2
+        };
+        
+        setStatus(defaultStatus);
+    }, []);
+
     const enabledResizing = {
         bottom: false,
         bottomLeft: true,
@@ -64,6 +70,16 @@ const Header = (props: HeaderProps) => {
     }
 
     const onClose = () => {
+        const innerWidth = (window as any).innerWidth
+        const innerHeight = (window as any).innerHeight
+
+        const defaultStatus = {
+            width: innerHeight * 85 / 100 * 16 / 9,
+            height: innerHeight * 85 / 100,
+            x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
+            y: innerHeight * (100 - 85) / 100 / 2
+        };
+        
         setGameLibraryToggle(false);
         setIsIframe(false);
         setStatus(defaultStatus)
