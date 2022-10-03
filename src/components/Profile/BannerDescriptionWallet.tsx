@@ -47,8 +47,8 @@ const BannerDescriptionWallet = ({sidebarToggler}) => {
                 </div>
               </div>
               
-              {WalletBalanceData.map(i => {
-                return <WalletBalanceIcon kind={i.kind} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} />
+              {WalletBalanceData.map((i, j) => {
+                return <WalletBalanceIcon kind={i.kind} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} key={j} />
               })}
               
               

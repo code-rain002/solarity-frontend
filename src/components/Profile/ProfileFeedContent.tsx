@@ -23,11 +23,11 @@ const ProfileFeedContent = ({sidebarToggler}) => {
     const {height, width} = useWindowDimensions()
     var max = width > 1850 ? 6 : width > 1480 ? 5 : width > 1280 ? 4 : width > 640 ? 6 : 5
     var j = 0
-    const top_daos_avatars = Top_Daos.avatars.map(function(i){
+    const top_daos_avatars = Top_Daos.avatars.map(function(i, j){
         if(j === max) return
         
         j++
-        return <CommonDAOavatar key={i.name} img_url={i.url} />
+        return <CommonDAOavatar img_url={i.url} key={j} />
     })
     
     return (
@@ -39,7 +39,7 @@ const ProfileFeedContent = ({sidebarToggler}) => {
                         <div className={`profile-feed-category flex flex-row relative my-[31px] lg:w-fit ${sidebarToggler ? "sm:w-[59vw]" : "md:w-fit sm:w-[80vw]" }  xs:w-[87vw]
                                         overflow-x-scroll`}>
                             {[0,1,2,3].map(i => (
-                                <FeedCategoryButton isActive={activeIndex === i} caption={FeedCategoryCaptions[i]} onClick={() => setActiveIndex(i)} />
+                                <FeedCategoryButton isActive={activeIndex === i} caption={FeedCategoryCaptions[i]} onClick={() => setActiveIndex(i)} key={i} />
                             ))}
                         </div>
                         <div className="absolute right-[-3px] text-white top-[10px] sm:hidden xs:block">
@@ -52,10 +52,10 @@ const ProfileFeedContent = ({sidebarToggler}) => {
                     </div>
                     <div className="flex flex-col">
                         {
-                        FeedData.map( i => (
+                        FeedData.map( (i, j) => (
                                 <ProfileFeed badgeUrl={i.badgeUrl} avatarUrl={i.avatarUrl} domainName={i.domainName} date={i.date} content={i.content}
                                     imageUrl={i.imageUrl ? i.imageUrl : null} retweets={i.retweets ? i.retweets : null }
-                                    twWithQuotes={i.twWithQuotes ? i.twWithQuotes : null} likes={i.likes ? i.likes : null} />
+                                    twWithQuotes={i.twWithQuotes ? i.twWithQuotes : null} likes={i.likes ? i.likes : null} key={j} />
                                 )
                             )
                         }
@@ -80,7 +80,7 @@ const ProfileFeedContent = ({sidebarToggler}) => {
                     {
                         [1, 2, 3, 4].map((i) => {
                             return (
-                                <DAORoleButton description="Developer" caption="Big Star" onClick={() => (alert("THE ROLE OF THIS DAO."))} icon={`/images/DAO_avatars/top_daos/top_daos(${i}).png`}/>
+                                <DAORoleButton description="Developer" caption="Big Star" onClick={() => (alert("THE ROLE OF THIS DAO."))} icon={`/images/DAO_avatars/top_daos/top_daos(${i}).png`} key={i} />
                             )
                         })
                     }
