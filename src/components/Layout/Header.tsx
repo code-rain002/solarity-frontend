@@ -27,8 +27,8 @@ const Header = (props: HeaderProps) => {
     const [isIframe, setIsIframe] = useState(false);
     const [selectedGame, setSelectedGame] = useState(null);
 
-    const innerWidth = window.innerWidth
-    const innerHeight = window.innerHeight
+    const innerWidth = (window as any).innerWidth
+    const innerHeight = (window as any).innerHeight
 
     const defaultStatus = {
         width: innerHeight * 85 / 100 * 16 / 9,

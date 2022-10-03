@@ -76,9 +76,9 @@ const EditStyle = (props) => {
       passportStyle: userInfo.passportStyle,
     };
     const payload = {
-      stepNum: 5,
+      stepNum: 6,
       data,
-      next: mint(),
+      // next: mint(),
     };
     dispatch(goStep(payload));
   };
