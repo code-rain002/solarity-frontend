@@ -35,6 +35,7 @@ import {
   NftDemo,
   UserRoom,
   RoomIframe,
+  EditRoom,
 } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
 import { changeInfo, goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
@@ -125,6 +126,7 @@ export const RegisterPage = () => {
               {step === 4 && <UserBadges />}
               {step === 5 && <EditStyle />}
               {step === 6 && <UserRoom />}
+              {step === 7 && <EditRoom />}
             </div>
           </div>
         </div>

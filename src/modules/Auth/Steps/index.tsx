@@ -6,3 +6,4 @@ export { default as EditStyle } from './EditStyle';
 export { default as UserRoom } from './UserRoom';
 export { default as UserBadges } from './UserBadges';
 export { default as RoomIframe } from './RoomIframe';
+export { default as EditRoom } from './EditRoom';
