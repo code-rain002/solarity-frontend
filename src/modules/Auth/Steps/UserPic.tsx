@@ -124,7 +124,7 @@ const UserPic = (props) => {
         <WalletAddress />
       </div>
       <div className="relative p-5 lg:p-5 flex-auto">
-        <div className="mb-10">
+        <div className="mb-5">
           <Dropzone
             onDrop={(acceptedFiles) => {
               onImageLoad(acceptedFiles);
@@ -163,8 +163,8 @@ const UserPic = (props) => {
             )}
           </Dropzone>
         </div>
-        <div className="overflow-scroll">
-          <div className="grid grid-cols-2 xl:grid-cols-2 mt-5 max-h-[35vh]">
+        <div className="overflow-scroll max-h-[500px]">
+          <div className="grid grid-cols-2 xl:grid-cols-2">
             {loadedImages.map((image, index) => (
               <div className="p-2 flex flex-row justify-center" key={index}>
                 <AvatarPanel
@@ -187,7 +187,7 @@ const UserPic = (props) => {
               Loading NFTs...
             </h3>
           ) : (
-            <div className="grid grid-cols-2 xl:grid-cols-3 mt-5 max-h-[35vh]">
+            <div className="grid grid-cols-2 xl:grid-cols-2">
               {nfts.map(
                 (
                   {
@@ -208,17 +208,6 @@ const UserPic = (props) => {
                       collectionName={collectionName}
                       type={type}
                       key={index}
-                      // selected={(() => {
-                      //   if (!selectedNft || !selectedNft.imageNetwork)
-                      //     return false;
-                      //   if (selectedNft.imageNetwork === "Ethereum") {
-                      //     return (
-                      //       selectedNft.tokenId == tokenId &&
-                      //       selectedNft.contractAddress == contractAddress
-                      //     );
-                      //   }
-                      //   return selectedNft.mintAddress == mintAddress;
-                      // })()}
                       onClick={() => onSelectImage({
                         link: image,
                         network: type,
