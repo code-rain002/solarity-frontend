@@ -223,3 +223,30 @@ export const roomsetting_nfts: RoomSettingNFTItemProps[] = [
     },
 
 ]
+
+export const demoRooms = [
+    {
+        no: 0,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/0.jpg",
+        collectionName : "Solana Money Boys",
+        roomName : "Money Boys",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
+    },
+    {
+        no: 1,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/1.png",
+        collectionName : "SolGods",
+        roomName : "SolGods",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
+    },
+    {
+        no: 2,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/2.jpg",
+        collectionName : "Solarity",
+        roomName : "Solarity Gallery",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
+    },
+]

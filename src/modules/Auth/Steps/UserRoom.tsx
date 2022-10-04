@@ -12,8 +12,8 @@ import {
 import { toast } from "react-toastify";
 import Logo from "components/Common/Logo";
 import { UserAvatar } from "components/Common/Panels";
-import { CloseIcon } from "components/icons";
-import { rooms } from "data/Marketplace";
+import { CloseIcon, SolanaIcon } from "components/icons";
+import { demoRooms } from "data/Marketplace";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -25,6 +25,8 @@ import { LAMPORTS_PER_SOL, PublicKey, Transaction } from "@solana/web3.js";
 import { createTransferInstruction, getOrCreateAssociatedTokenAccount } from "utils/token";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { selectRoom } from "redux/slices/marketplaceSlice";
+import { EthereumIcon } from "components/icons/EthereumIcon";
 
 const UserRoom = (props) => {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const UserRoom = (props) => {
   const [error, setError] = useState<Boolean>(false);
   const [loadingButton, setLoadingButton] = useState<Boolean>(false);
   const [loading, setLoading] = useState<Boolean>(false);
-  const [selectedRoom, setSelectedRoom] = useState<any>();
+  const [selectedRoom, setSelectedRoom] = useState<any>(demoRooms[0]);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
   const buyRoom = async () => {
@@ -128,7 +130,9 @@ const UserRoom = (props) => {
   const onSelectRoom = (room) => {
     console.log(room);
     setSelectedRoom(room);
-    setShowPurchaseModal(true);
+    // setShowPurchaseModal(true);
+
+    dispatch(selectRoom({ roomData: room }))
   };
 
   const closePurchaseModal = (e) => {
@@ -167,9 +171,9 @@ const UserRoom = (props) => {
         <WalletAddress />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 max-h-[600px] overflow-scroll pl-5 pr-5 mr-3 grid-rows-none">
-        {rooms.map((room, index) => (
+        {demoRooms.map((room, index) => (
           <div
-            className="flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary"
+            className={`flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[5px] relative cursor-pointer hover:border-primary ${selectedRoom == room ? 'border-primary' : ''}`}
             onClick={() => onSelectRoom(room)}
             key={index}
           >
@@ -189,18 +193,18 @@ const UserRoom = (props) => {
                 </div>
               </div>
               <div className="flex items-center">
-                {room.valueIcon}
-                <div className="text-[18px] text-white">{room.price}</div>
+                <EthereumIcon />
+                <div className="text-[14px] text-white">{room.price}</div>
               </div>
             </div>
 
-            <div className="absolute flex items-center justify-center top-[20px] left-[20px] m-auto w-auto gap-[12px]">
+            <div className="absolute flex items-center justify-center top-[10px] left-[10px] m-auto w-auto gap-[12px]">
               <span className="md:flex xs:hidden items-center justify-center h-[25px] w-[25px] text-[12px] text-[#f3f3f3] bg-[rgba(12,12,14,0.5)] rounded-[15px] border-[1.5px] border[rgba(0,0,0,0)] hover:border-primary cursor-pointer">
-                {room.walletIcon}
+                <SolanaIcon />
               </span>
-              <span className="flex items-center justify-center h-[25px] text-[12px] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px] border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer">
+              {/* <span className="flex items-center justify-center h-[25px] text-[12px] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px] border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer">
                 {room.collectionName}
-              </span>
+              </span> */}
             </div>
           </div>
         ))}

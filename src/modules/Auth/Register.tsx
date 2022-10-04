@@ -34,6 +34,7 @@ import {
   UserPic,
   NftDemo,
   UserRoom,
+  RoomIframe,
 } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
 import { changeInfo, goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
@@ -129,7 +130,8 @@ export const RegisterPage = () => {
         </div>
       </div>
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
-        <NftDemo setAvatar={setAvatar} avatar={avatar} />
+        {step <= 5 && <NftDemo />}
+        {step > 5 && <RoomIframe />}
       </div>
     </div>
   );
