@@ -20,8 +20,8 @@ function FeedContent() {
             <div className="relative w-fit">
                 <div className={`feed-category flex flex-row relative my-[31px] lg:w-fit   xs:w-[87vw]
                                         overflow-x-scroll`}>
-                    {[0, 1, 2, 3].map(i => (
-                        <FeedCategoryButton isActive={activeIndex === i} caption={FeedCategoryCaptions[i]} onClick={() => setActiveIndex(i)} />
+                    {[0, 1, 2, 3].map((i, j) => (
+                        <FeedCategoryButton isActive={activeIndex === i} caption={FeedCategoryCaptions[i]} onClick={() => setActiveIndex(i)} key={j} />
                     ))}
                 </div>
                 <div className="absolute right-[-3px] text-white top-[10px] sm:hidden xs:block">
@@ -34,10 +34,10 @@ function FeedContent() {
             </div>
             <div className="flex flex-col">
                 {
-                    FeedData.map(i => (
+                    FeedData.map((i, j) => (
                         <ProfileFeed badgeUrl={i.badgeUrl} avatarUrl={i.avatarUrl} domainName={i.domainName} date={i.date} content={i.content}
                             imageUrl={i.imageUrl ? i.imageUrl : null} retweets={i.retweets ? i.retweets : null}
-                            twWithQuotes={i.twWithQuotes ? i.twWithQuotes : null} likes={i.likes ? i.likes : null} />
+                            twWithQuotes={i.twWithQuotes ? i.twWithQuotes : null} likes={i.likes ? i.likes : null} key={j} />
                     )
                     )
                 }

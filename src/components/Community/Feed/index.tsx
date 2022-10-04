@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { communities } from '../../../data/Community'
+// import Communities from '../Communities';
 import Header from './Header';
 import Main from './Main';
 
 export interface FeedProps {
-  id: string;
+  id: any;
   isPreview: boolean;
   visitRoom: any;
   setIsMarketplace: any;
