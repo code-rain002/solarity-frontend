@@ -40,7 +40,7 @@ export const HomePage = () => {
       walletType: type,
     });
 
-    if (exist && user.registerStep == 6) {
+    if (exist && user.registerStep == 10) {
       await dispatch(
         login({
           publicKey: address,

@@ -42,7 +42,7 @@ export const GithubLink = () => {
     let params = new URLSearchParams(url.search);
     params.delete("state");
     params.delete("code");
-    params.set("link", "twitter");
+    params.set("link", "github");
     let appUrl = url.origin + url.pathname + "?" + params.toString();
     setAppUrl(appUrl);
   }, []);
@@ -88,6 +88,7 @@ export const GithubLink = () => {
         <a
           className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%]`}
           href={githubLinkGenerator(appUrl)}
+          target="_blank"
         >
           <span className="text-[16px] w-[90%] text-left">{"Connect"}</span>
           <div className="pt-2 text-right">

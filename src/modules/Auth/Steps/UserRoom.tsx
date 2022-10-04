@@ -9,6 +9,7 @@ import {
   MetamaskImg,
   PhantomImg,
 } from "components/Common/Images";
+import { toast } from "react-toastify";
 import Logo from "components/Common/Logo";
 import { UserAvatar } from "components/Common/Panels";
 import { CloseIcon } from "components/icons";
@@ -20,16 +21,109 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
 import WalletAddress from "./WalletAddress";
+import { LAMPORTS_PER_SOL, PublicKey, Transaction } from "@solana/web3.js";
+import { createTransferInstruction, getOrCreateAssociatedTokenAccount } from "utils/token";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 
 const UserRoom = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { connection } = useConnection();
+  const wallet = useWallet();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
+  const [error, setError] = useState<Boolean>(false);
+  const [loadingButton, setLoadingButton] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const [selectedRoom, setSelectedRoom] = useState<any>();
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+
+  const buyRoom = async () => {
+    const { publicKey, signTransaction } = wallet;
+
+    // spl-token payment for buying room.
+    try {
+      if (!process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS || !process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS) {
+        return console.error('website solana wallet address or solarity_token_address is not set in environment.');
+      }
+      const toPublicKey = new PublicKey(process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS)
+      const mint = new PublicKey(process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS)
+
+      const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
+        connection,
+        publicKey,
+        mint,
+        publicKey,
+        signTransaction
+      );
+
+      const toTokenAccount = await getOrCreateAssociatedTokenAccount(
+        connection,
+        publicKey,
+        mint,
+        toPublicKey,
+        signTransaction
+      );
+
+      const transaction1 = new Transaction().add(
+        createTransferInstruction(
+          fromTokenAccount.address, // source
+          toTokenAccount.address, // dest
+          publicKey,
+          selectedRoom.price * LAMPORTS_PER_SOL,
+          [],
+          TOKEN_PROGRAM_ID
+        )
+      )
+      const blockHash = await connection.getRecentBlockhash()
+      transaction1.feePayer = await publicKey
+      transaction1.recentBlockhash = await blockHash.blockhash
+      const signed = await signTransaction(transaction1)
+      setLoadingButton(true);
+      // dispatch(
+      //   placeBid({
+      //     data: {
+      //       selectedAsset,
+      //       selectedIndex,
+      //       signed,
+      //       connection,
+      //     },
+      //     successFunction: () => {
+      //       toast.success(
+      //         "You got a room successfully. You can create a room and also decorate a room with own nfts in the profile",
+      //         {
+      //           position: "top-right",
+      //           autoClose: 5000,
+      //           hideProgressBar: false,
+      //           closeOnClick: true,
+      //           pauseOnHover: true,
+      //           draggable: true,
+      //           progress: undefined,
+      //         }
+      //       );
+      //       setError(false);
+      //       setLoadingButton(false);
+      //     },
+      //     errorFunction: (err) => {
+      //       setError(true);
+      //       if (!!err) {
+      //         setErrorMessage(err);
+      //       }
+      //       setLoadingButton(false);
+      //     },
+      //     finalFunction: () => {
+      //       setLoading(false);
+      //       setLoadingButton(false);
+      //     },
+      //   })
+      // );
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
 
   const onSelectRoom = (room) => {
     console.log(room);
@@ -72,7 +166,7 @@ const UserRoom = (props) => {
         </h3>
         <WalletAddress />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 h-[600px] overflow-scroll pl-5 pr-5 mr-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 max-h-[600px] overflow-scroll pl-5 pr-5 mr-3 grid-rows-none">
         {rooms.map((room, index) => (
           <div
             className="flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary"
@@ -128,9 +222,8 @@ const UserRoom = (props) => {
       </div>
       {selectedRoom && (
         <div
-          className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] bg-[rgba(12,12,14,0.7)] z-[1004] ${
-            showPurchaseModal === true ? "fixed" : "hidden"
-          } `}
+          className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] bg-[rgba(12,12,14,0.7)] z-[1004] ${showPurchaseModal === true ? "fixed" : "hidden"
+            } `}
           id="purchase_modal"
           onClick={(e) => closePurchaseModal(e)}
         >
@@ -159,8 +252,8 @@ const UserRoom = (props) => {
                 </div>
                 <div className='text-white text-[16px] font-[500] font-["outfit"]'>
                   {selectedRoom.roomName.length > 20
-                  ? selectedRoom.roomName.slice(0, 20) + "..."
-                  : selectedRoom.roomName}
+                    ? selectedRoom.roomName.slice(0, 20) + "..."
+                    : selectedRoom.roomName}
                 </div>
               </div>
             </div>
@@ -185,15 +278,15 @@ const UserRoom = (props) => {
               </div>
             </div>
             <div className="flex flex-row gap-5">
-              <button
+              {/* <button
                 // onClick={goToRoomSetting}
                 className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary"
               >
                 <span>{"Buy for " + selectedRoom.price + " SOL"}</span>
-              </button>
+              </button> */}
               <button
-                // onClick={goToRoomSetting}
                 className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary"
+                onClick={buyRoom}
               >
                 <span>{"Buy for " + selectedRoom.price + " VERSE"}</span>
               </button>

@@ -18,7 +18,7 @@ const MainScr = (props: MainScrTyp) => {
   const [usersBoxActive, setUsersBoxActive] = useState(false);
 
   const isAndroid = checkBrowser();
-
+console.log('isAndroid', isAndroid)
   return (
     <div
       className={` ${

@@ -3,12 +3,14 @@ import React from 'react'
 
 
 export interface RoomItemProps {
+  no: number;
   collectionName: string;
   imgUrl: string;
   walletIcon: any;
   valueIcon: any;
   roomName: string;
   price: number;
+  description: string;
 }
 
 function Item(props: RoomItemProps) {
