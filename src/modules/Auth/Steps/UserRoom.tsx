@@ -3,129 +3,24 @@ import {
   BackButton,
   PrimaryButton,
 } from "components/Common/Buttons";
-import {
-  AddressImg,
-  AvatarImg,
-  MetamaskImg,
-  PhantomImg,
-} from "components/Common/Images";
-import { toast } from "react-toastify";
-import Logo from "components/Common/Logo";
-import { UserAvatar } from "components/Common/Panels";
 import { CloseIcon, SolanaIcon } from "components/icons";
 import { demoRooms } from "data/Marketplace";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { goStep } from "redux/slices/authSlice";
-import { minifyAddress } from "utils";
 import WalletAddress from "./WalletAddress";
-import { LAMPORTS_PER_SOL, PublicKey, Transaction } from "@solana/web3.js";
-import { createTransferInstruction, getOrCreateAssociatedTokenAccount } from "utils/token";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { selectRoom } from "redux/slices/marketplaceSlice";
 import { EthereumIcon } from "components/icons/EthereumIcon";
 
 const UserRoom = (props) => {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { connection } = useConnection();
-  const wallet = useWallet();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
-  const [error, setError] = useState<Boolean>(false);
-  const [loadingButton, setLoadingButton] = useState<Boolean>(false);
-  const [loading, setLoading] = useState<Boolean>(false);
   const [selectedRoom, setSelectedRoom] = useState<any>(demoRooms[0]);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-
-  const buyRoom = async () => {
-    const { publicKey, signTransaction } = wallet;
-
-    // spl-token payment for buying room.
-    try {
-      if (!process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS || !process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS) {
-        return console.error('website solana wallet address or solarity_token_address is not set in environment.');
-      }
-      const toPublicKey = new PublicKey(process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS)
-      const mint = new PublicKey(process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS)
-
-      const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
-        connection,
-        publicKey,
-        mint,
-        publicKey,
-        signTransaction
-      );
-
-      const toTokenAccount = await getOrCreateAssociatedTokenAccount(
-        connection,
-        publicKey,
-        mint,
-        toPublicKey,
-        signTransaction
-      );
-
-      const transaction1 = new Transaction().add(
-        createTransferInstruction(
-          fromTokenAccount.address, // source
-          toTokenAccount.address, // dest
-          publicKey,
-          selectedRoom.price * LAMPORTS_PER_SOL,
-          [],
-          TOKEN_PROGRAM_ID
-        )
-      )
-      const blockHash = await connection.getRecentBlockhash()
-      transaction1.feePayer = await publicKey
-      transaction1.recentBlockhash = await blockHash.blockhash
-      const signed = await signTransaction(transaction1)
-      setLoadingButton(true);
-      // dispatch(
-      //   placeBid({
-      //     data: {
-      //       selectedAsset,
-      //       selectedIndex,
-      //       signed,
-      //       connection,
-      //     },
-      //     successFunction: () => {
-      //       toast.success(
-      //         "You got a room successfully. You can create a room and also decorate a room with own nfts in the profile",
-      //         {
-      //           position: "top-right",
-      //           autoClose: 5000,
-      //           hideProgressBar: false,
-      //           closeOnClick: true,
-      //           pauseOnHover: true,
-      //           draggable: true,
-      //           progress: undefined,
-      //         }
-      //       );
-      //       setError(false);
-      //       setLoadingButton(false);
-      //     },
-      //     errorFunction: (err) => {
-      //       setError(true);
-      //       if (!!err) {
-      //         setErrorMessage(err);
-      //       }
-      //       setLoadingButton(false);
-      //     },
-      //     finalFunction: () => {
-      //       setLoading(false);
-      //       setLoadingButton(false);
-      //     },
-      //   })
-      // );
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  };
 
   const onSelectRoom = (room) => {
     console.log(room);
@@ -142,11 +37,9 @@ const UserRoom = (props) => {
   };
 
   const onContinue = () => {
-    const data = {
-      badges: userInfo.badges
-    }
+    const data = {}
     const payload = {
-      stepNum: 5,
+      stepNum: 7,
       data,
     }
     dispatch(goStep(payload));
@@ -215,10 +108,10 @@ const UserRoom = (props) => {
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
-            caption="Skip"
+            caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => alert("Successfully Registered")}
+            onClick={() => onContinue()}
             disabled={false}
             styles="rounded-[15px]"
           />
@@ -290,7 +183,7 @@ const UserRoom = (props) => {
               </button> */}
               <button
                 className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary"
-                onClick={buyRoom}
+                onClick={() => {}}
               >
                 <span>{"Buy for " + selectedRoom.price + " VERSE"}</span>
               </button>
