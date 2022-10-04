@@ -14,8 +14,8 @@ const EmojiList = (props: EmojiListType) => {
                         right-[-50px] w-[240px] bg-[#131314] p-[12px] border-[1.5px] border-[#3f3f43] rounded-[12px]
                         select-none `}
     >
-      {EmojiListItemData.map((i) => {
-        return <EmojiListItem item={i} />;
+      {EmojiListItemData.map((i, j) => {
+        return <EmojiListItem item={i} key={j} />;
       })}
     </div>
   );

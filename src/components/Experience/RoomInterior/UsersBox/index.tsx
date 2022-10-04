@@ -71,12 +71,13 @@ const UsersBox = (props: UsersBoxType) => {
       </div>
 
       <div className="flex flex-col gap-[16px] px-[26px] pt-[12px] overflow-y-scroll overflow-x-visible md:mb-[0px] xs:mb-[80px] ">
-        {UsersBoxData.map((i) => (
+        {UsersBoxData.map((i, j) => (
           <UsersBoxItem
             imgUrl={i.imgUrl}
             uName={i.uName}
             uState={i.uState}
             mute={i.mute}
+            key={j}
           />
         ))}
       </div>
