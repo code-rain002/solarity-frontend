@@ -65,7 +65,6 @@ export const extractError = (
 };
 
 export const checkBrowser = () => {
-<<<<<<< HEAD
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 }
 
@@ -75,9 +74,4 @@ export const setValue = (str) => {
     str = "";
   }
   return str;
-=======
-  if (typeof window !== 'undefined') {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-  }
->>>>>>> f75706c668e13150b449e490bbff6e70f6f898ff
 }

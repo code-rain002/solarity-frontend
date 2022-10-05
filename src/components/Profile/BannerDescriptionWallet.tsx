@@ -43,27 +43,7 @@ const BannerDescriptionWallet = ({ sidebarToggler }) => {
           </div>
           <div className="absolute top-[-15px]
                                 lg:block md:hidden sm:hidden xs:hidden">
-<<<<<<< HEAD
             <TotalBalanceIcon />
-=======
-                  <TotalBalanceIcon />
-                </div>
-              </div>
-              
-              {WalletBalanceData.map((i, j) => {
-                return <WalletBalanceIcon kind={i.kind} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} key={j} />
-              })}
-              
-              
-            </div>
-            <div className="absolute right-[-3px] text-white top-[33px] lg:hidden md:block">
-              <button onClick={rightScroll} className="bg-gradient-to-l from-[rgba(19,19,20,1)] via-[rgba(19,19,20,0.8)] to-[rgba(19,19,20,0)] pl-[35px] xs:h-[63px] sm:h-[73px]"><RightArrow /></button>
-            </div>
-
-            <div className="absolute left-[-3px] text-white top-[33px] lg:hidden md:block">
-              <button onClick={leftScroll} className="bg-gradient-to-r from-[rgba(19,19,20,1)] via-[rgba(19,19,20,0.8)] to-[rgba(19,19,20,0)] pr-[35px] xs:h-[63px] sm:h-[73px]"><LeftArrow /></button>
-            </div>
->>>>>>> f75706c668e13150b449e490bbff6e70f6f898ff
           </div>
         </div>
 
