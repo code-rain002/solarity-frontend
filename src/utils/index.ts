@@ -60,10 +60,18 @@ export const extractError = (
   let message = "Something went wrong on the server";
   try {
     message = err.response.data.message;
-  } catch {}
+  } catch { }
   return message;
 };
 
 export const checkBrowser = () => {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+}
+
+// Set empty string if param is undefined
+export const setValue = (str) => {
+  if (str == undefined || str == null) {
+    str = "";
+  }
+  return str;
 }

@@ -12,7 +12,7 @@ import {
   useDispatch,
   useSelector,
 } from "react-redux";
-import store from "redux/store";
+import store from "../redux/store";
 
 import { checkSession } from "redux/slices/authSlice";
 import { startLoadingApp, stopLoadingApp } from 'redux/slices/commonSlice';
