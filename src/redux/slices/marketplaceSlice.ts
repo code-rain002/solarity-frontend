@@ -6,10 +6,12 @@ import { apiCaller, getErrorMessage } from "utils/fetcher";
 
 export interface MarketplaceState {
   selectedRoom: any;
+  selectedNft: any;
 }
 
 const initialState: MarketplaceState = {
-  selectedRoom: demoRooms[0]
+  selectedRoom: demoRooms[0],
+  selectedNft: {}
 };
 
 export const selectRoom = createAsyncThunk(
@@ -26,6 +28,20 @@ export const selectRoom = createAsyncThunk(
   }
 );
 
+export const selectNft = createAsyncThunk(
+  "auth/selectNft",
+  async ({
+    nftData,
+    next,
+  }: {
+    nftData: any;
+    next?: () => void;
+  }) => {
+    if (next) next()
+    return nftData;
+  }
+);
+
 export const marketplaceSlice = createSlice({
   name: "marketplace",
   initialState,
@@ -39,6 +55,11 @@ export const marketplaceSlice = createSlice({
     builder.addCase(selectRoom.fulfilled, (state, action) => {
       if (action.payload) {
         marketplaceSlice.caseReducers.setRoom(state, action);
+      }
+    });
+    builder.addCase(selectNft.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.selectedNft = action.payload;
       }
     });
   }

@@ -36,6 +36,7 @@ import {
   UserRoom,
   RoomIframe,
   EditRoom,
+  RoomDemo,
 } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
 import { changeInfo, goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
@@ -133,7 +134,8 @@ export const RegisterPage = () => {
       </div>
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
         {step <= 5 && <NftDemo />}
-        {step > 5 && <RoomIframe />}
+        {step == 6 && <RoomIframe />}
+        {step == 7 && <RoomDemo />}
       </div>
     </div>
   );
