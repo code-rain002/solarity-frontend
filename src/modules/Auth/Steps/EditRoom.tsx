@@ -15,6 +15,9 @@ import { changeInfo, goStep } from "redux/slices/authSlice";
 import WalletAddress from "./WalletAddress";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { getNfts } from "hooks";
+import { NftPanel } from "components/Common/Panels";
+import { selectNft } from "redux/slices/marketplaceSlice";
 
 const EditRoom = (props) => {
   const dispatch = useDispatch();
@@ -23,6 +26,15 @@ const EditRoom = (props) => {
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
+  const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(userInfo.domain, userInfo.solanaAddress, true);
+
+  useEffect(() => {
+    fetchNFTs();
+  }, []);
+
+  const onSelectNft = (nft) => {
+    dispatch(selectNft({ nftData: nft }));
+  }
 
   const onContinue = () => {
     const data = {};
@@ -51,7 +63,26 @@ const EditRoom = (props) => {
       </div>
       {/*body*/}
       <div className="relative p-5 lg:p-5 flex-auto">
-
+        {nftLoading ? (
+          <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
+            Loading NFTs...
+          </h3>
+        ) : (
+          <div className="grid grid-cols-2 xl:grid-cols-2">
+            {nfts.map((nft, index) => (
+              <div className="p-2" key={index}>
+                <NftPanel
+                  image={nft.image}
+                  name={nft.name}
+                  collectionName={nft.collectionName}
+                  type={nft.type}
+                  key={index}
+                  onClick={() => onSelectNft(nft)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
         <div className="inline-block w-[20%] pr-2">
