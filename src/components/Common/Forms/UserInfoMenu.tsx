@@ -37,7 +37,7 @@ const UserInfoMenu = (props) => {
             )
           }
           {
-            !profileData.profileImage && !profileData.profileImage.link && (
+            !profileData.profileImage || !profileData.profileImage.link && (
               <DummyAvatarSmall />
             )
           }
