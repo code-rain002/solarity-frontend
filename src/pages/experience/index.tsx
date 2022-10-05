@@ -12,15 +12,25 @@ const ProfileIndex = () => {
     const [activeRoomId, setActiveRoomId] = useState(0)
 
     return (
-        <Layout 
-            sidebarToggler={sidebarToggler} 
-            banner={<ExperienceBanner  activeRoomId={activeRoomId} sidebarToggler={sidebarToggler} activeRoom={activeRoom}
-                    setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])} />}
+        <Layout
+            sidebarToggler={sidebarToggler}
+            banner={<ExperienceBanner
+                activeRoomId={activeRoomId}
+                sidebarToggler={sidebarToggler}
+                activeRoom={activeRoom}
+                setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
+            />}
             onClick={() => setSidebarToggler(!sidebarToggler)}
         >
-            <Experience sidebarToggler={sidebarToggler} activeRoom={activeRoom} roomSelect={(arg) => setActiveRoom(arg)} 
-                        setActiveRoomId={(i) => setActiveRoomId(i)}
-                        activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])} />
+            <Experience
+                sidebarToggler={sidebarToggler}
+                activeRoom={activeRoom}
+                roomSelect={(arg) => setActiveRoom(arg)}
+                setActiveRoomId={(i) => setActiveRoomId(i)}
+                activeRoomId={activeRoomId}
+                roomSettingDlgToggle={roomSettingDlgToggle}
+                setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])}
+            />
             <RoomSettingDlg activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([false, "join"])} />
         </Layout>
     )

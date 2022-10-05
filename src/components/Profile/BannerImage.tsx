@@ -4,7 +4,7 @@ import NoRoomBannerImage from "components/Profile/NoRoomBannerImage"
 
 
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { RootStateOrAny, useSelector } from "react-redux"
 import useWindowDimensions from "utils/layout"
 import VisitorNoRoomBannerImage from "./VisitorNoRoomBannerImage"
@@ -18,6 +18,9 @@ const BannerImage = ({ uName }) => {
     const { profileData } = useSelector((state: RootStateOrAny) => ({
         profileData: state.profile.data,
     }));
+    useEffect(() => {
+        console.log(width);
+    }, [])
 
     return (
         <div className="w-full relative">

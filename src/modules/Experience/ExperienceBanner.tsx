@@ -18,6 +18,7 @@ const ExperienceBanner = (props: ExperienceBannerType) => {
         layout="responsive"
         width={1708}
         height={600}
+        alt="Experience Banner Image"
       />
       <RoomInfoDlg
         setRoomDlgToggle={props.setRoomSettingDlgToggle}

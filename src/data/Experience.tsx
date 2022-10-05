@@ -1114,6 +1114,17 @@ export const PsuedoAvatarItemData: PsuedoAvatarItemDataType[] = [
   },
 ];
 
+export const models: any[] = [
+  {
+    imageUrl: "/images/marketplace/gallery/SolGods.jpg",
+    modelUrl: "/resource/models/helmet/helmet.gltf",
+    name: 'SolGods',
+    position: "0 -4 -10",
+    rotation: "-10 0 0",
+    scale: "30 30 30",
+  }
+]
+
 export const ChattingBoxData: ChattingBoxDataType[] = [
   {
     imgUrl: "/images/experience/room_user_avatars/room_user_avatar_1.webp",
