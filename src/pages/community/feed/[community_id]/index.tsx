@@ -10,10 +10,12 @@ import Image from 'next/image'
 import BackButton from "components/Marketplace/RoomSettings/BackButton"
 import ConfirmationDlg from 'components/Marketplace/ConfirmationDlg'
 import RoomDlg from 'components/Marketplace/Rooms/RoomDlg'
+import { useParams } from 'react-router-dom'
 
 function CommunityFeed() {
   const [sidebarToggler, setSidebarToggler] = useState(false)
-  const { asPath } = useRouter();
+  const router = useRouter();
+  const { community_id } = router.query;
 
   const [isMarketplace, setIsMarketplace] = useState(false)
   const [previewImg, setPreviewImg] = useState(rooms[0].imgUrl)
@@ -52,7 +54,6 @@ function CommunityFeed() {
     setConfirmationDlgToggle(true);
   }
 
-  const id = asPath.replace("/community/feed/", "");
   return (
     <>
       {
@@ -63,7 +64,9 @@ function CommunityFeed() {
           </div> : <></>}
           onClick={() => setSidebarToggler(!sidebarToggler)}
         >
-          <Feed activeIndex={activeIndex} setActiveIndex={setActiveIndex} id={id || '0'} isPreview={!isMarketplace} visitRoom={VisitRoom} setIsMarketplace={setIsMarketplace} />
+          {community_id && (
+            <Feed activeIndex={activeIndex} setActiveIndex={setActiveIndex} id={community_id} isPreview={!isMarketplace} visitRoom={VisitRoom} setIsMarketplace={setIsMarketplace} />
+          )}
           <ConfirmationDlg id={roomId} roomName={previewSubtitle} collectionName={previewTitle} price={previewPrice}
             dlgToggle={confirmationDlgToggle} setDlgToggle={ConfirmationDlgToggle} imgUrl={previewImg} numberOfFrames={52} connectingOtherUsers={true} anotherInfo={"Room Info"} />
           <RoomDlg title={previewTitle} subtitle={previewSubtitle} description={'The user immediately has a preview of the first room in the list.'} price={previewPrice} activeRoom={previewImg} buy={Buy} dlgToggle={previewDlgToggle} setDlgToggle={PreviewDlgToggle} isDlg={true} expandRoom={expandRoom} isExpand={isExpand} />
@@ -89,10 +92,10 @@ function CommunityFeed() {
                   <path
                     d="M10.0334 13.28L5.68676 8.9333C5.17342 8.41997 5.17342 7.57997 5.68676 7.06664L10.0334 2.71997"
                     stroke="white"
-                    stroke-width="1.5"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </div>

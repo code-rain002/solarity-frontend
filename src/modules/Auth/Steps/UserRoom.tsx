@@ -3,45 +3,31 @@ import {
   BackButton,
   PrimaryButton,
 } from "components/Common/Buttons";
-import {
-  AddressImg,
-  AvatarImg,
-  MetamaskImg,
-  PhantomImg,
-} from "components/Common/Images";
-import Logo from "components/Common/Logo";
-import { UserAvatar } from "components/Common/Panels";
-import { CloseIcon } from "components/icons";
-import { rooms } from "data/Marketplace";
+import { CloseIcon, SolanaIcon } from "components/icons";
+import { demoRooms } from "data/Marketplace";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { goStep } from "redux/slices/authSlice";
-import { minifyAddress } from "utils";
+import WalletAddress from "./WalletAddress";
+import { selectRoom } from "redux/slices/marketplaceSlice";
+import { EthereumIcon } from "components/icons/EthereumIcon";
 
 const UserRoom = (props) => {
   const dispatch = useDispatch();
-  const router = useRouter();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
-
-  // bug code
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
-  const miniPublicKey = minifyAddress(publicKey, 3);
-  const provider = (window as any).phantom.solana;
-
-  const [selectedRoom, setSelectedRoom] = useState<any>();
+  const [selectedRoom, setSelectedRoom] = useState<any>(demoRooms[0]);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
   const onSelectRoom = (room) => {
     console.log(room);
     setSelectedRoom(room);
-    setShowPurchaseModal(true);
+    // setShowPurchaseModal(true);
+
+    dispatch(selectRoom({ roomData: room }))
   };
 
   const closePurchaseModal = (e) => {
@@ -51,11 +37,9 @@ const UserRoom = (props) => {
   };
 
   const onContinue = () => {
-    const data = {
-      badges: userInfo.badges
-    }
+    const data = {}
     const payload = {
-      stepNum: 5,
+      stepNum: 7,
       data,
     }
     dispatch(goStep(payload));
@@ -77,16 +61,12 @@ const UserRoom = (props) => {
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Buy your own room
         </h3>
-        <AddressButton
-          caption={miniPublicKey ? miniPublicKey : ""}
-          icon={AddressImg}
-          onClick={null}
-        />
+        <WalletAddress />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 h-[600px] overflow-scroll pl-5 pr-5 mr-3">
-        {rooms.map((room, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 max-h-[600px] overflow-scroll pl-5 pr-5 mr-3 grid-rows-none">
+        {demoRooms.map((room, index) => (
           <div
-            className="flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary"
+            className={`flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[5px] relative cursor-pointer hover:border-primary ${selectedRoom == room ? 'border-primary' : ''}`}
             onClick={() => onSelectRoom(room)}
             key={index}
           >
@@ -106,18 +86,18 @@ const UserRoom = (props) => {
                 </div>
               </div>
               <div className="flex items-center">
-                {room.valueIcon}
-                <div className="text-[18px] text-white">{room.price}</div>
+                <EthereumIcon />
+                <div className="text-[14px] text-white">{room.price}</div>
               </div>
             </div>
 
-            <div className="absolute flex items-center justify-center top-[20px] left-[20px] m-auto w-auto gap-[12px]">
+            <div className="absolute flex items-center justify-center top-[10px] left-[10px] m-auto w-auto gap-[12px]">
               <span className="md:flex xs:hidden items-center justify-center h-[25px] w-[25px] text-[12px] text-[#f3f3f3] bg-[rgba(12,12,14,0.5)] rounded-[15px] border-[1.5px] border[rgba(0,0,0,0)] hover:border-primary cursor-pointer">
-                {room.walletIcon}
+                <SolanaIcon />
               </span>
-              <span className="flex items-center justify-center h-[25px] text-[12px] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px] border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer">
+              {/* <span className="flex items-center justify-center h-[25px] text-[12px] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px] border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer">
                 {room.collectionName}
-              </span>
+              </span> */}
             </div>
           </div>
         ))}
@@ -128,10 +108,10 @@ const UserRoom = (props) => {
         </div>
         <div className="inline-block w-[80%] pl-2">
           <PrimaryButton
-            caption="Skip"
+            caption="Continue"
             icon=""
             bordered={false}
-            onClick={() => alert("Successfully Registered")}
+            onClick={() => onContinue()}
             disabled={false}
             styles="rounded-[15px]"
           />
@@ -139,9 +119,8 @@ const UserRoom = (props) => {
       </div>
       {selectedRoom && (
         <div
-          className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] bg-[rgba(12,12,14,0.7)] z-[1004] ${
-            showPurchaseModal === true ? "fixed" : "hidden"
-          } `}
+          className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] bg-[rgba(12,12,14,0.7)] z-[1004] ${showPurchaseModal === true ? "fixed" : "hidden"
+            } `}
           id="purchase_modal"
           onClick={(e) => closePurchaseModal(e)}
         >
@@ -170,8 +149,8 @@ const UserRoom = (props) => {
                 </div>
                 <div className='text-white text-[16px] font-[500] font-["outfit"]'>
                   {selectedRoom.roomName.length > 20
-                  ? selectedRoom.roomName.slice(0, 20) + "..."
-                  : selectedRoom.roomName}
+                    ? selectedRoom.roomName.slice(0, 20) + "..."
+                    : selectedRoom.roomName}
                 </div>
               </div>
             </div>
@@ -196,15 +175,15 @@ const UserRoom = (props) => {
               </div>
             </div>
             <div className="flex flex-row gap-5">
-              <button
+              {/* <button
                 // onClick={goToRoomSetting}
                 className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary"
               >
                 <span>{"Buy for " + selectedRoom.price + " SOL"}</span>
-              </button>
+              </button> */}
               <button
-                // onClick={goToRoomSetting}
                 className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary"
+                onClick={() => {}}
               >
                 <span>{"Buy for " + selectedRoom.price + " VERSE"}</span>
               </button>

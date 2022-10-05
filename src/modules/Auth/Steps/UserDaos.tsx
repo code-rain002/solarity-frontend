@@ -19,6 +19,7 @@ import {
 } from "../../../redux/slices/commonSlice";
 import { apiCaller } from "utils/fetcher";
 import { changeInfo, goStep } from "redux/slices/authSlice";
+import WalletAddress from "./WalletAddress";
 
 const UserDaos = (props) => {
   const dispatch = useDispatch();
@@ -27,13 +28,6 @@ const UserDaos = (props) => {
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
-
-  // bug code
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
-  const miniPublicKey = minifyAddress(publicKey, 3);
-  const provider = (window as any).phantom.solana;
 
   const [daos, setDaos] = useState([]);
   const [selectedDaos, setSelectedDaos] = useState([]);
@@ -162,11 +156,7 @@ const UserDaos = (props) => {
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           DAOs you&apos;re already in
         </h3>
-        <AddressButton
-          caption={miniPublicKey ? miniPublicKey : ""}
-          icon={AddressImg}
-          onClick={null}
-        />
+        <WalletAddress />
       </div>
       {/*body*/}
       <div className="relative p-5 lg:p-5 flex-auto">

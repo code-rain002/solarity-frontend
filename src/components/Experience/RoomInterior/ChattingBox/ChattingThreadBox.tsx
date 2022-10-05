@@ -46,7 +46,7 @@ const appendMyNewChattingThread = (msgs, setMsgs, props) => {
 
 const initChatbox = (props) => {
   const tempMsgs = [];
-  ChattingBoxData.map((i) => {
+  ChattingBoxData.map((i, j) => {
     tempMsgs.push(
       <ChattingThread
         imgUrl={i.imgUrl}
@@ -59,6 +59,7 @@ const initChatbox = (props) => {
         replyToWhom={i.replyToWhom}
         fileUrls={i.fileUrls}
         fileNames={["__FOR__INITIAL__DATA__"]}
+        key={j}
       />
     );
   });

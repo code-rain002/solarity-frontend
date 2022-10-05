@@ -25,7 +25,7 @@ const BackButton = () => {
           d="M10.0334 13.28L5.68676 8.9333C5.17342 8.41997 5.17342 7.57997 5.68676 7.06664L10.0334 2.71997"
           stroke="white"
           strokeWidth="1.5"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
           strokeLinecap="round"
           strokeLinejoin="round"
         />

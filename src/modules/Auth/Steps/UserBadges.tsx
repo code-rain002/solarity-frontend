@@ -19,6 +19,7 @@ import React, { useState, useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
+import WalletAddress from "./WalletAddress";
 
 const badges = [
   { icon: '/images/badges/polygon.png', name: 'Polygon', active: false },
@@ -43,13 +44,6 @@ const UserBadges = (props) => {
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
-
-  // bug code
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
-  const miniPublicKey = minifyAddress(publicKey, 3);
-  const provider = (window as any).phantom.solana;
 
   const [selectedBadges, setSelectedBadges] = useState([]);
 
@@ -103,11 +97,7 @@ const UserBadges = (props) => {
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           Choose your badges
         </h3>
-        <AddressButton
-          caption={miniPublicKey ? miniPublicKey : ""}
-          icon={AddressImg}
-          onClick={null}
-        />
+        <WalletAddress />
       </div>
       <div className="h-[600px] overflow-scroll px-5">
         {badges.length && badges.map((badge, index) => {

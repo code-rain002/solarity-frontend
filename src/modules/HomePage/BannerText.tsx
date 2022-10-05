@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import { ButtonLabel } from "components/Common/Buttons";
 
-import { ConnectWalletModal } from "./ConnectWalletModal";
 import { BannericonImg1, BannericonImg2, BannericonImg3 } from "components/Common/Images";
 
 export const BannerText = () => {
@@ -37,7 +36,6 @@ export const BannerText = () => {
             </div>
           </div>
         </AnimationOnScroll>
-        <ConnectWalletModal />
     </>
   );
 };

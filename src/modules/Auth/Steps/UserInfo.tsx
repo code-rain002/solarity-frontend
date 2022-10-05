@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import * as yup from "yup";
 
 import {
-  AddressButton,
   WalletButton,
   PrimaryButton,
   BackButton,
@@ -27,6 +26,7 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
+import WalletAddress from "./WalletAddress";
 
 const infoSchema = yup.object({
   domain: yup
@@ -45,13 +45,6 @@ const UserInfo = (props) => {
     loading: state.common.appLoading,
   }));
   const { domain, title } = userInfo;
-
-  // bug code
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
-  const miniPublicKey = minifyAddress(publicKey, 3);
-  const provider = (window as any).phantom.solana;
 
   const [error, setError] = useState(null);
 
@@ -111,10 +104,10 @@ const UserInfo = (props) => {
     const payload = {
       stepNum: 0,
       data: {
-        username: '',
-        bio: ''
+        username: null,
+        bio: null
       },
-      onFinally: () => router.push({ pathname: '/' })
+      next: () => router.push({ pathname: '/' })
     }
     dispatch(goStep(payload));
   }
@@ -125,11 +118,7 @@ const UserInfo = (props) => {
         <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
           General
         </h3>
-        <AddressButton
-          caption={miniPublicKey ? miniPublicKey : ""}
-          icon={AddressImg}
-          onClick={null}
-        />
+        <WalletAddress />
       </div>
       {/*body*/}
       {/* {discordUsername ? discordUsername : 'dasd'} */}

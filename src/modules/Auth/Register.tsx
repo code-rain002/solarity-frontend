@@ -34,33 +34,14 @@ import {
   UserPic,
   NftDemo,
   UserRoom,
+  RoomIframe,
+  EditRoom,
 } from "./Steps";
 import { UserAvatar } from "components/Common/Panels";
 import { changeInfo, goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
 import ProgressBar from "./ProgressBar";
 import Circle from "./Circle";
 import { apiCaller } from "utils/fetcher";
-
-const WALLETS = [
-  {
-    label: "Phantom",
-    id: "phantom",
-    type: "solana",
-    image: PhantomImg,
-  },
-  {
-    label: "Solflare",
-    id: "solflare",
-    type: "solana",
-    image: SolflareImg,
-  },
-  {
-    label: "Metamask",
-    id: "metamask",
-    type: "ethereum",
-    image: MetamaskImg,
-  },
-];
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -73,14 +54,10 @@ export const RegisterPage = () => {
 
   const [avatar, setAvatar] = useState<Object>(null);
 
-  const publicKey = localStorage.getItem("publickey");
-  const walletType = localStorage.getItem("type");
-
   useEffect(() => {
     apiCaller
       .post("/auth/checkStep")
       .then((response) => {
-        console.log(response.data.user)
         if (response.data.user) {
         const user = response.data.user;
           let tempUserInfo = userInfo;
@@ -149,12 +126,14 @@ export const RegisterPage = () => {
               {step === 4 && <UserBadges />}
               {step === 5 && <EditStyle />}
               {step === 6 && <UserRoom />}
+              {step === 7 && <EditRoom />}
             </div>
           </div>
         </div>
       </div>
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
-        <NftDemo setAvatar={setAvatar} avatar={avatar} />
+        {step <= 5 && <NftDemo />}
+        {step > 5 && <RoomIframe />}
       </div>
     </div>
   );

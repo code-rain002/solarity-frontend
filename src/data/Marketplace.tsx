@@ -178,68 +178,34 @@ export const collectionsData: FilterItemProps[] = [
 
 export const rooms: RoomItemProps[] = [
     {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_1.jpg",
-        valueIcon: <EthereumIcon />,
-        walletIcon : <SolanaIcon />,
-        collectionName : "CollectionName",
-        roomName : "The Vincent Van Dough Gallery",
-    },
-    {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_2.jpg",
-        valueIcon: <EthereumIcon />,
-        walletIcon : <SolanaIcon />,
-        collectionName : "CollectionName",
-        roomName : "Teufzer",
-    },
-    {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_3.jpg",
-        valueIcon: <EthereumIcon />,
-        walletIcon : <SolanaIcon />,
-        collectionName : "CollectionName",
-        roomName : "RESSURECTION enriched with death",
-    },
-    {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_4.jpg",
+        no: 0,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/0.jpg",
         valueIcon: <EthereumIcon />,
         walletIcon : <SolanaIcon />,
         collectionName : "Solana Money Boys",
-        roomName : "Meta trap house",
+        roomName : "Money Boys",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
     },
     {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_5.jpg",
+        no: 1,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/1.png",
         valueIcon: <EthereumIcon />,
         walletIcon : <SolanaIcon />,
-        collectionName : "CollectionName",
-        roomName : "This room is really fantastic",
+        collectionName : "SolGods",
+        roomName : "SolGods",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
     },
     {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_6.jpg",
+        no: 2,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/2.jpg",
         valueIcon: <EthereumIcon />,
         walletIcon : <SolanaIcon />,
-        collectionName : "what do you want?",
-        roomName : "Dummy text goes here",
-    },
-    {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_7.jpg",
-        valueIcon: <EthereumIcon />,
-        walletIcon : <SolanaIcon />,
-        collectionName : "Quiet room",
-        roomName : "Leave me alone",
-    },
-    {
-        price : 5,
-        imgUrl : "/images/experience/room_images/room_8.jpg",
-        valueIcon: <EthereumIcon />,
-        walletIcon : <SolanaIcon />,
-        collectionName : "So Crowd",
-        roomName : "The Vincent Van Dough Gallery",
+        collectionName : "Solarity",
+        roomName : "Solarity Gallery",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
     },
 ]
 
@@ -256,4 +222,31 @@ export const roomsetting_nfts: RoomSettingNFTItemProps[] = [
         imgUrl: '/images/marketplace/roomsetting-nfts/nft2.png'
     },
 
+]
+
+export const demoRooms = [
+    {
+        no: 0,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/0.jpg",
+        collectionName : "Solana Money Boys",
+        roomName : "Money Boys",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
+    },
+    {
+        no: 1,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/1.png",
+        collectionName : "SolGods",
+        roomName : "SolGods",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
+    },
+    {
+        no: 2,
+        price : 1,
+        imgUrl : "/images/marketplace/rooms/2.jpg",
+        collectionName : "Solarity",
+        roomName : "Solarity Gallery",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
+    },
 ]

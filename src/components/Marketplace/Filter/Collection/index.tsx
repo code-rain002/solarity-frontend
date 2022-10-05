@@ -28,7 +28,7 @@ function Collection(props: CollectionProps) {
             <div className={`filter flex gap-6 h-30 w-[100%] relative cursor-pointer overflow-y-hidden overflow-x-hidden scroll-smooth md:flex-nowrap xs:flex-wrap`}>
                 {
                     props.collections.map((item, index) => (
-                        <div onClick={() => props.click(index)} >
+                        <div onClick={() => props.click(index)} key={index}>
                             <FilterItem key={index} name={item.name} active={item.active} />
                         </div>
                     ))

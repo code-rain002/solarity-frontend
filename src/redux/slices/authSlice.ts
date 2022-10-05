@@ -1,3 +1,4 @@
+import { getErrorMessage } from './../../utils/fetcher';
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { apiCaller } from "utils/fetcher";
 import { setProfile } from "./profileSlice";
@@ -33,6 +34,7 @@ const initialState = {
       text: "#FFFFFF",
     },
     badges: [],
+    rooms: []
   },
   step: 1,
 };
@@ -41,13 +43,13 @@ type loginProps = {
   publicKey: any;
   walletType: "solana" | "ethereum";
   provider: any;
-  onFinally?: any;
+  next?: any;
 };
 
 export const login = createAsyncThunk(
   "auth/login",
   async (
-    { publicKey, walletType, provider, onFinally }: loginProps,
+    { publicKey, walletType, provider, next }: loginProps,
     { dispatch }
   ) => {
     let response = false;
@@ -77,9 +79,11 @@ export const login = createAsyncThunk(
 
       dispatch(setProfile(profile));
       response = true;
-      onFinally();
-    } catch (err) {}
-    dispatch(stopLoadingApp());
+      if (next) next();
+      dispatch(stopLoadingApp());
+    } catch (err) {
+      dispatch(stopLoadingApp());
+    }
     return response;
   }
 );
@@ -180,10 +184,10 @@ export const updateUserInfo = createAsyncThunk(
 
 export const goStep = createAsyncThunk(
   "auth/goStep",
-  async ({ stepNum, data, onFinally }: {
+  async ({ stepNum, data, next }: {
     stepNum: number;
     data: object;
-    onFinally?: any;
+    next?: any;
   }) => {
     const {
       data: {},
@@ -191,7 +195,7 @@ export const goStep = createAsyncThunk(
       stepNum,
       data,
     });
-    if (onFinally) onFinally();
+    if (next) next();
     return stepNum;
   }
 );
@@ -257,6 +261,61 @@ export const unlinkAccounts = createAsyncThunk(
   }
 );
 
+export const placeBid = createAsyncThunk(
+  "profile/placeBid",
+  async ({
+    data,
+    successFunction,
+    errorFunction,
+    finalFunction,
+  }: {
+    data: any;
+    successFunction?: () => void;
+    errorFunction?: (error: string) => void;
+    finalFunction?: () => void;
+  }) => {
+    let returnValue = null;
+    try {
+      const { roomInfo, signed, connection } = data;
+
+      const {
+        data: { state },
+      } = await apiCaller.post("/profile/checkRoom", {
+        roomNo: roomInfo.no,
+      });
+
+      if (state == true) {
+        // uncomment below
+        errorFunction("This room is already available.");
+        return;
+      }
+      try {
+        await connection.sendRawTransaction(signed.serialize());
+      } catch (error: any) {
+        errorFunction(error.message);
+        return;
+      }
+
+      const {
+        data: { profile },
+      } = await apiCaller.post("/profile/buyRoom", {
+        title: roomInfo.roomName,
+        // subTitle: roomInfo.subTitle,
+        imageUrl: roomInfo.imgUrl,
+        currentBid: roomInfo.price,
+        roomNo: roomInfo.no,
+      });
+      successFunction();
+      returnValue = { type: 'rooms', value: profile.rooms };
+    } catch (err) {
+      errorFunction(getErrorMessage(err));
+      returnValue = {};
+    }
+    finalFunction();
+    return returnValue;
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -289,6 +348,11 @@ export const authSlice = createSlice({
       }
     });
     builder.addCase(changeInfo.fulfilled, (state, action) => {
+      if (action.payload) {
+        authSlice.caseReducers.setUserInfo(state, action);
+      }
+    });
+    builder.addCase(placeBid.fulfilled, (state, action) => {
       if (action.payload) {
         authSlice.caseReducers.setUserInfo(state, action);
       }
