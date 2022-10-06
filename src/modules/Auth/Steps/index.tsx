@@ -14,4 +14,4 @@ export { default as EditRoom } from './EditRoom';
 // Demo Components
 export { default as NftDemo } from './NftDemo';
 export { default as RoomIframe } from './RoomIframe';
-export { default as RoomDemo } from './RoomDemo';
+// export { default as RoomDemo } from './RoomDemo';

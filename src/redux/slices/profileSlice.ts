@@ -425,6 +425,23 @@ export const getUserDaos = createAsyncThunk(
   }
 );
 
+export const goStep = createAsyncThunk(
+  "auth/goStep",
+  async ({ stepNum, next }: {
+    stepNum: number;
+    next?: any;
+  }) => {
+    // const {
+    //   data: {},
+    // } = await apiCaller.post("/auth/setStep", {
+    //   stepNum,
+    //   data,
+    // });
+    if (next) next();
+    return stepNum;
+  }
+);
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
@@ -521,6 +538,11 @@ export const profileSlice = createSlice({
     builder.addCase(getUserDaos.fulfilled, (state, action) => {
       if (action.payload) {
         profileSlice.caseReducers.setProfile(state, action);
+      }
+    });
+    builder.addCase(goStep.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.step = action.payload;
       }
     });
   },

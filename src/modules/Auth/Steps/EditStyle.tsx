@@ -78,7 +78,7 @@ const EditStyle = (props) => {
     const payload = {
       stepNum: 6,
       data,
-      // next: mint(),
+      next: router.push({ pathname: '/auth/room' }),
     };
     dispatch(goStep(payload));
   };

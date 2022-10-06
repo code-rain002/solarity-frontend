@@ -1,31 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
-
 import Logo from "components/Common/Logo";
-
-import {
-  AddressImg,
-  AvatarImg,
-  DaoBGImg,
-  DaoImg1,
-  DaoImg2,
-  GalleryImg,
-} from "components/Common/Images";
-import {
-  MetamaskImg,
-  PhantomImg,
-  SlopeImg,
-  SolflareImg,
-  SolletExImg,
-  SolletImg,
-  TorusImg,
-} from "components/Common/Images";
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
-import {
-  startLoadingApp,
-  stopLoadingApp,
-} from "../../redux/slices/commonSlice";
 import {
   EditStyle,
   UserBadges,
@@ -33,13 +9,8 @@ import {
   UserInfo,
   UserPic,
   NftDemo,
-  UserRoom,
-  RoomIframe,
-  EditRoom,
-  RoomDemo,
 } from "./Steps";
-import { UserAvatar } from "components/Common/Panels";
-import { changeInfo, goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
+import { jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
 import ProgressBar from "./ProgressBar";
 import Circle from "./Circle";
 import { apiCaller } from "utils/fetcher";
@@ -47,20 +18,18 @@ import { apiCaller } from "utils/fetcher";
 export const RegisterPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { steps } = router.query;
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
-
-  const [avatar, setAvatar] = useState<Object>(null);
 
   useEffect(() => {
     apiCaller
       .post("/auth/checkStep")
       .then((response) => {
         if (response.data.user) {
-        const user = response.data.user;
+          const user = response.data.user;
+          // console.log(user)
           let tempUserInfo = userInfo;
           switch (user.registerStep) {
             case 6:
@@ -126,16 +95,12 @@ export const RegisterPage = () => {
               {step === 3 && <UserPic />}
               {step === 4 && <UserBadges />}
               {step === 5 && <EditStyle />}
-              {step === 6 && <UserRoom />}
-              {step === 7 && <EditRoom />}
             </div>
           </div>
         </div>
       </div>
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
-        {step <= 5 && <NftDemo />}
-        {step == 6 && <RoomIframe />}
-        {step == 7 && <RoomDemo />}
+        <NftDemo />
       </div>
     </div>
   );

@@ -23,8 +23,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/Experience/ExploreRoom"  ],
+    "**/*.tsx",
+    "**/*.js"  ],
   "exclude": [
     "node_modules"
   ]

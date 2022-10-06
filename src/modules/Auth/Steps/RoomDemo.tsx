@@ -1,18 +1,77 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
+import { FC, useEffect, useState } from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { FirstRoom, SecondRoom, LockedRoom } from "../Rooms";
+import { updateNftCard } from "redux/slices/profileSlice";
 
-const RoomDemo = (props) => {
+const RoomDemo = () => {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
-    userInfo: state.auth.userInfo,
-    loading: state.common.appLoading,
-  }));
+  const [roomUpdateView, setRoomUpdateView] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { rooms } = useSelector(
+    (state: RootStateOrAny) => state.profile.data
+  );
+  const { selectedNft } = useSelector(
+    (state: RootStateOrAny) => state.marketplace
+  );
+  const activeRoom = rooms.find((room: any) => room.active);
+  
+  const [chooseFlag, setChooseFlag] = useState<string | Boolean>(false);
+  const [picNo, setPicNo] = useState<string>("0");
+  const [room_id, setRoom_id] = useState("");
+  const [imageUrl, setImageUrl] = useState<string>();
+
+  // const { roomNo: activeRoomNo } = rooms.find(({ active }: any) => active);
+  // const [nfts, nftLoading, nftError] = getNfts(username, solanaAddress);
+  // let editRoomData;
+  // let roomView;
+
+  var chooseNft = () => {
+    dispatch(
+      updateNftCard({
+        data: {
+          roomId: room_id,
+          picNo: picNo,
+          mintAddress: selectedNft.mintAddress,
+          link: selectedNft.link,
+        },
+        successFunction: () => {},
+        errorFunction: () => {},
+        finalFunction: () => {},
+      })
+    );
+    setChooseFlag(true);
+  };
 
   return (
-    <div className="rounded-[20px] border-[1px] border-primary bg-[#1a1a1c] p-3">
-      
+    <div className="flex h-[100vh] w-[100vw]">
+      {activeRoom && activeRoom.roomNo === 0 && (
+        <FirstRoom
+          chooseFlag={chooseFlag}
+          setChooseFlag={setChooseFlag}
+          picNo={picNo}
+          setPicNo={setPicNo}
+          setRoom_id={setRoom_id}
+          imageUrl={imageUrl}
+        />
+      )}
+      {activeRoom && activeRoom.roomNo === 1 && (
+        <SecondRoom
+          chooseFlag={chooseFlag}
+          setChooseFlag={setChooseFlag}
+          picNo={picNo}
+          setPicNo={setPicNo}
+          setRoom_id={setRoom_id}
+          imageUrl={imageUrl}
+        />
+      )}
+      {activeRoom && activeRoom.roomNo !== 0 && activeRoom.roomNo !== 1 && (
+        <div
+          className="w-full h-[240px] rounded-2xl relative"
+          style={{ background: "rgba(255, 255, 255, 0.2)" }}
+        >
+          <LockedRoom />
+        </div>
+      )}
     </div>
   );
 };

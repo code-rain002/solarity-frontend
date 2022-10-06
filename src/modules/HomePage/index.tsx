@@ -40,27 +40,23 @@ export const HomePage = () => {
       walletType: type,
     });
 
+    let url;
     if (exist && user.registerStep == 10) {
-      await dispatch(
-        login({
-          publicKey: address,
-          walletType: type,
-          provider,
-          next: () =>
-            router.push({ pathname: `/${user.username}/profile` }),
-        })
-      );
+      url = `/${user.username}/profile`;
+    } else if (user.registerStep <= 5) {
+      url = '/auth/register';
     } else {
-      await dispatch(
-        login({
-          publicKey: address,
-          walletType: type,
-          provider,
-          next: () =>
-            router.push({ pathname: `/auth/register` }),
-        })
-      );
+      url = '/auth/room'
     }
+    await dispatch(
+      login({
+        publicKey: address,
+        walletType: type,
+        provider,
+        next: () =>
+          router.push({ pathname: url }),
+      })
+    );
   };
 
   return (
