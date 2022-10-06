@@ -5,7 +5,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useWindowDimensions from "utils/layout";
+import AvatarPanel from "./AvatarPanel";
 import PsuedoAvatarItem from "./PsuedoAvatarItem";
+import { models } from "data/Experience";
 
 type RoomSettingDlgType = {
   roomSettingDlgToggle: any;
@@ -21,6 +23,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
   const router = useRouter();
   const [uName, setUName] = useState("");
   const { height, width } = useWindowDimensions();
+  const [modelIndex, setModelIndex] = useState(0);
 
   let j = -1;
 
@@ -150,8 +153,14 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
         </div>
         {/* from here, avatar ---------------------------------------------------------------- */}
         <div
-          className=" flex flex-row h-[36%] w-full rounded-[15px] bg-[#181818] justify-center items-center relative overflow-hidden "
+          className=" flex h-[200px] w-full rounded-[15px] bg-[#181818] justify-center items-center overflow-hidden "
         >
+          <AvatarPanel
+            modelPath={models[modelIndex].modelUrl}
+            position={models[modelIndex].position}
+            rotation={models[modelIndex].rotation}
+            scale={models[modelIndex].scale}
+          />
         </div>
         {/* begin of avatar list------------------------------------------------------------------------------------------------ */}
         <div className="relative h-[29%]">
