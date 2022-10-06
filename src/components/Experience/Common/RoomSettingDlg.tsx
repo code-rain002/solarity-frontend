@@ -8,6 +8,7 @@ import useWindowDimensions from "utils/layout";
 import AvatarPanel from "./AvatarPanel";
 import PsuedoAvatarItem from "./PsuedoAvatarItem";
 import { models } from "data/Experience";
+import Input from "components/Common/Forms/Input";
 
 type RoomSettingDlgType = {
   roomSettingDlgToggle: any;
@@ -32,10 +33,10 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
       ? alert(
         props.roomSettingDlgToggle[1] === "join" ||
           props.roomSettingDlgToggle[1] === "setting_member"
-          ? "Your nickname, please."
+          ? "Input your nickname please."
           : props.roomSettingDlgToggle[1] === "create" ||
             props.roomSettingDlgToggle[1] === "setting"
-            ? "Room title, please"
+            ? "Input room title please."
             : ""
       )
       : router.push("/experience/" + props.activeRoomId);
@@ -43,13 +44,13 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
 
   const closeDlg = (e) => {
     if (e.target.id == "room_setting_dlg") {
-      props.setRoomSettingDlgToggle();
+      props.setRoomSettingDlgToggle([false, "join"]);
     }
   };
 
   return (
     <div
-      className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] md:bg-[rgba(12,12,14,0.7)] xs:bg-globalBgColor z-[1002] ${props.roomSettingDlgToggle[0] === true ? "fixed" : "hidden"} `}
+      className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] md:bg-[rgba(12,12,14,0.7)] xs:bg-globalBgColor z-[1002] fixed`}
       id="room_setting_dlg"
       onClick={(e) => closeDlg(e)}
     >
@@ -59,7 +60,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
       >
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
-          onClick={props.setRoomSettingDlgToggle}
+          onClick={() => props.setRoomSettingDlgToggle([false, "join"])}
         >
           <svg
             width="14"
@@ -129,7 +130,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
           )}
         </div>
 
-        <div className="relative w-full min-h-[52px] flex border-[1.2px] border-primary rounded-[15px]">
+        {/* <div className="relative w-full min-h-[52px] flex border-[1.2px] border-primary rounded-[15px]">
           <div className="absolute top-[-12px] left-[10px] bg-globalBgColor font-400 text-primary text-[12px] px-[5px]">
             {props.roomSettingDlgToggle[1] === "join"
               ? "Your nickname"
@@ -144,16 +145,17 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
           <div className="flex w-[100%] justify-center items-center">
             <input
               type="text"
-              className="w-full bg-transparent font-400 text-[#f3f3f3] text-[16px] px-[16px]
+              className="w-full bg-transparent font-200 text-[#f3f3f3] text-[16px] px-[16px]
                                                     border-r-[1.5px] border-r-[#272829] box-border"
               value={uName}
               onChange={(e) => setUName(e.target.value)}
             />
           </div>
-        </div>
+        </div> */}
+        <Input value={uName} setValue={setUName} caption="Room name" disabled={false} />
         {/* from here, avatar ---------------------------------------------------------------- */}
         <div
-          className=" flex h-[200px] w-full rounded-[15px] bg-[#181818] justify-center items-center overflow-hidden "
+          className=" flex h-[200px] w-full rounded-[15px] bg-[#181818]"
         >
           <AvatarPanel
             modelPath={models[modelIndex].modelUrl}
@@ -203,7 +205,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
               toLoadingScr();
             }}
             disabled={false}
-            styles="pt-[12px] pb-[16px] h-fit rounded-[15px]"
+            styles="pt-[12px] pb-[12px] h-fit rounded-[15px]"
           />
         </div>
       </div>

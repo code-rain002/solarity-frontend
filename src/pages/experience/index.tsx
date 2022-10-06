@@ -31,7 +31,11 @@ const ProfileIndex = () => {
                 roomSettingDlgToggle={roomSettingDlgToggle}
                 setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])}
             />
-            <RoomSettingDlg activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([false, "join"])} />
+            {
+                roomSettingDlgToggle[0] && (
+                    <RoomSettingDlg activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={setRoomSettingDlgToggle} />
+                )
+            }
         </Layout>
     )
 }

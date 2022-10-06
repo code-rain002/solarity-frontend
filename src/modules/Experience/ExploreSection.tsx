@@ -16,7 +16,7 @@ const ExploreSection = () => {
       var tmpRooms = [...rooms];
       tmpRooms.sort((a: any, b: any) => {
         return a.roomNo - b.roomNo;
-      }); console.log(rooms);
+      });
       setSortedRooms(tmpRooms);
     }
   }, [rooms])
