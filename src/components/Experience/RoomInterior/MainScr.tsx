@@ -18,17 +18,14 @@ const MainScr = (props: MainScrTyp) => {
   const [usersBoxActive, setUsersBoxActive] = useState(false);
 
   const isAndroid = checkBrowser();
-console.log('isAndroid', isAndroid)
   return (
     <div
-      className={` ${
-        props.percentage == 100 ? "flex" : "hidden"
-      } h-full w-full `}
+      className={` ${props.percentage == 100 ? "flex" : "hidden"
+        } h-full w-full `}
     >
       <Image
-        src={`/images/experience/room_images/room_${
-          parseInt(props.roomId) + 1
-        }.jpg`}
+        src={`/images/experience/room_images/room_${parseInt(props.roomId) + 1
+          }.jpg`}
         layout="fill"
       />
       <BackButton />

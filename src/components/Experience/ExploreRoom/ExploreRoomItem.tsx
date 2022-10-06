@@ -1,17 +1,30 @@
 import Image from "next/image";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setSelectedRoomIndex } from "redux/slices/chatSlice";
 
 type ExploreRoomItemType = {
   walletIcon: any;
-  collectionName: string;
   roomName: string;
+  type: Boolean;
+  roomNo: Number;
   imgUrl: string;
 };
 
 const ExploreRoomItem = (props: ExploreRoomItemType) => {
+  const dispatch = useDispatch();
+  const { selectedRoomIndex } = useSelector((state: RootStateOrAny) => ({
+    selectedRoomIndex: state.chat.selectedRoomIndex,
+  }))
+
+  const selectRoom = (roomNo) => {
+    dispatch(setSelectedRoomIndex(roomNo));
+  }
+
   return (
     <div
-      className=" flex flex-col w-[100%] h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
-                        relative cursor-pointer hover:border-primary custom-2xl:col-span-4 xl:col-span-6 lg:col-span-12 xs:col-span-6"
+      className={`flex flex-col w-[100%] h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
+                        relative cursor-pointer hover:border-primary custom-2xl:col-span-4 xl:col-span-6 lg:col-span-12 xs:col-span-6 ${selectedRoomIndex == props.roomNo ? 'border-primary' : ''}`}
+      onClick={() => selectRoom(props.roomNo)}
     >
       <div className=" rounded-[15px] overflow-hidden">
         <Image
@@ -22,7 +35,7 @@ const ExploreRoomItem = (props: ExploreRoomItemType) => {
           alt="room_image"
         />
       </div>
-      <div className=" mt-[20px] font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3] ml-[12px]  mb-[12px] truncate">
+      <div className=" mt-[20px] font-['Outfit'] font-[200] text-[16px] text-[#f3f3f3] ml-[12px]  mb-[12px] truncate">
         {props.roomName}
       </div>
 
@@ -34,10 +47,10 @@ const ExploreRoomItem = (props: ExploreRoomItemType) => {
           {props.walletIcon}
         </span>
         <span
-          className="flex items-center justify-center h-[25px] text-[12px] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px]
+          className="flex items-center justify-center h-[25px] text-[12px] font-[200] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px]
                                 border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer"
         >
-          {props.collectionName}
+          {props.type ? (<span className="text-primary">Private room</span>) : "Public room"}
         </span>
       </div>
     </div>

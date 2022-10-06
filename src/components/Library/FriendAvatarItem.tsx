@@ -13,7 +13,6 @@ const FriendAvatarItem = (props: FriendAvatarItemType) => {
 
   const onClickAvatar = (selectedItem) => {
     let newArr;
-    console.log(selectedAvatars)
     let index = selectedAvatars.findIndex((item, index) => item.name === selectedItem.name)
     if (index >= 0) {
       newArr = selectedAvatars.filter((item, index) => item.name !== selectedItem.name);
@@ -28,11 +27,10 @@ const FriendAvatarItem = (props: FriendAvatarItemType) => {
     <div
       className={` relative border-[1.2px] rounded-[15px] p-[8px] cursor-pointer
                         flex flex-row justify-center hover:border-primary select-none
-                        ${
-                          selected
-                            ? "border-primary"
-                            : "border-[#272829]"
-                        } `}
+                        ${selected
+          ? "border-primary"
+          : "border-[#272829]"
+        } `}
       onClick={() => onClickAvatar(friendData)}
     >
       <div className=" flex flex-row w-full h-full rounded-[10px] bg-[#181818] justify-center items-center p-[24px] ">
@@ -54,9 +52,8 @@ const FriendAvatarItem = (props: FriendAvatarItemType) => {
       </div>
 
       <div
-        className={` top-[18px] left-[18px] ${
-          selected ? "absolute" : "hidden"
-        } `}
+        className={` top-[18px] left-[18px] ${selected ? "absolute" : "hidden"
+          } `}
       >
         <svg
           width="24"

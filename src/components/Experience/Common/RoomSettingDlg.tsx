@@ -5,7 +5,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useWindowDimensions from "utils/layout";
+import AvatarPanel from "./AvatarPanel";
 import PsuedoAvatarItem from "./PsuedoAvatarItem";
+import { models } from "data/Experience";
+import Input from "components/Common/Forms/Input";
 
 type RoomSettingDlgType = {
   roomSettingDlgToggle: any;
@@ -21,39 +24,33 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
   const router = useRouter();
   const [uName, setUName] = useState("");
   const { height, width } = useWindowDimensions();
-  console.log(height);
+  const [modelIndex, setModelIndex] = useState(0);
 
   let j = -1;
 
   const toLoadingScr = () => {
     uName === ""
       ? alert(
-          props.roomSettingDlgToggle[1] === "join" ||
-            props.roomSettingDlgToggle[1] === "setting_member"
-            ? "Your nickname, please."
-            : props.roomSettingDlgToggle[1] === "create" ||
-              props.roomSettingDlgToggle[1] === "setting"
-            ? "Room title, please"
+        props.roomSettingDlgToggle[1] === "join" ||
+          props.roomSettingDlgToggle[1] === "setting_member"
+          ? "Input your nickname please."
+          : props.roomSettingDlgToggle[1] === "create" ||
+            props.roomSettingDlgToggle[1] === "setting"
+            ? "Input room title please."
             : ""
-        )
+      )
       : router.push("/experience/" + props.activeRoomId);
   };
 
   const closeDlg = (e) => {
     if (e.target.id == "room_setting_dlg") {
-      props.setRoomSettingDlgToggle();
+      props.setRoomSettingDlgToggle([false, "join"]);
     }
   };
 
   return (
     <div
-      className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px]
-                        backdrop-blur-[20px] md:bg-[rgba(12,12,14,0.7)] xs:bg-globalBgColor
-                        z-[1002] ${
-                          props.roomSettingDlgToggle[0] === true
-                            ? "fixed"
-                            : "hidden"
-                        } `}
+      className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] md:bg-[rgba(12,12,14,0.7)] xs:bg-globalBgColor z-[1002] fixed`}
       id="room_setting_dlg"
       onClick={(e) => closeDlg(e)}
     >
@@ -63,7 +60,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
       >
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
-          onClick={props.setRoomSettingDlgToggle}
+          onClick={() => props.setRoomSettingDlgToggle([false, "join"])}
         >
           <svg
             width="14"
@@ -86,10 +83,10 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
             {props.roomSettingDlgToggle[1] === "join"
               ? "Enter the room"
               : props.roomSettingDlgToggle[1] === "create"
-              ? "Setup your room"
-              : props.roomSettingDlgToggle[1] === "setting"
-              ? "Room Settings"
-              : ""}
+                ? "Setup your room"
+                : props.roomSettingDlgToggle[1] === "setting"
+                  ? "Room Settings"
+                  : ""}
           </div>
           {props.roomSettingDlgToggle[1] === "join" ? (
             <div
@@ -133,70 +130,46 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
           )}
         </div>
 
-        <div className="relative w-full min-h-[52px] flex border-[1.2px] border-primary rounded-[15px]">
+        {/* <div className="relative w-full min-h-[52px] flex border-[1.2px] border-primary rounded-[15px]">
           <div className="absolute top-[-12px] left-[10px] bg-globalBgColor font-400 text-primary text-[12px] px-[5px]">
             {props.roomSettingDlgToggle[1] === "join"
               ? "Your nickname"
               : props.roomSettingDlgToggle[1] === "create" ||
                 props.roomSettingDlgToggle[1] === "setting"
-              ? "Room title"
-              : props.roomSettingDlgToggle[1] === "setting_member"
-              ? "Your name"
-              : ""}
+                ? "Room title"
+                : props.roomSettingDlgToggle[1] === "setting_member"
+                  ? "Your name"
+                  : ""}
           </div>
 
           <div className="flex w-[100%] justify-center items-center">
             <input
               type="text"
-              className="w-full bg-transparent font-400 text-[#f3f3f3] text-[16px] px-[16px]
+              className="w-full bg-transparent font-200 text-[#f3f3f3] text-[16px] px-[16px]
                                                     border-r-[1.5px] border-r-[#272829] box-border"
               value={uName}
               onChange={(e) => setUName(e.target.value)}
             />
           </div>
-        </div>
+        </div> */}
+        <Input value={uName} setValue={setUName} caption={props.roomSettingDlgToggle[1] === "join"
+          ? "Your nickname"
+          : props.roomSettingDlgToggle[1] === "create" ||
+            props.roomSettingDlgToggle[1] === "setting"
+            ? "Room title"
+            : props.roomSettingDlgToggle[1] === "setting_member"
+              ? "Your name"
+              : ""} disabled={false} />
         {/* from here, avatar ---------------------------------------------------------------- */}
         <div
-          className=" flex flex-row h-[36%] w-full rounded-[15px] bg-[#181818] justify-center items-center relative
-                                overflow-hidden "
+          className=" flex h-[200px] w-full rounded-[15px] bg-[#181818]"
         >
-          <div
-            className={` block md:w-[50%] xs:w-[${
-              height > 800 ? "50" : "30"
-            }%] md:h-[80.5%] xs:h-[65.5%] `}
-          >
-            <Image
-              src={activeAvatarImg}
-              layout="responsive"
-              width={15}
-              height={15}
-            />
-          </div>
-
-          <div className=" absolute md:right-[-60px] xs:right-[-40px] md:w-[105px] md:h-[105px] xs:w-[80px] xs:h-[50px] z-[199] ">
-            <div className=" block ">
-              <Image
-                src="/images/experience/psuedo_avatars/pseudoAvatar (1).png"
-                layout="responsive"
-                width={1500}
-                height={1500}
-              />
-            </div>
-          </div>
-
-          <div className=" absolute md:left-[-60px] xs:left-[-40px] md:w-[105px] md:h-[105px] xs:w-[80px] xs:h-[50px] z-[199] ">
-            <div className=" block ">
-              <Image
-                src="/images/experience/psuedo_avatars/pseudoAvatar (2).png"
-                layout="responsive"
-                width={1500}
-                height={1500}
-              />
-            </div>
-          </div>
-
-          <div className=" absolute h-full w-[90px] right-[-5px] bg-gradient-to-l from-[#181818] to-transparent z-[200]"></div>
-          <div className=" absolute h-full w-[90px] left-[-5px] bg-gradient-to-r from-[#181818] to-transparent z-[200]"></div>
+          <AvatarPanel
+            modelPath={models[modelIndex].modelUrl}
+            position={models[modelIndex].position}
+            rotation={models[modelIndex].rotation}
+            scale={models[modelIndex].scale}
+          />
         </div>
         {/* begin of avatar list------------------------------------------------------------------------------------------------ */}
         <div className="relative h-[29%]">
@@ -228,18 +201,18 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
               props.roomSettingDlgToggle[1] === "create"
                 ? "Create your room"
                 : props.roomSettingDlgToggle[1] === "join"
-                ? "Join the room"
-                : props.roomSettingDlgToggle[1] === "setting" ||
-                  props.roomSettingDlgToggle[1] === "setting_member"
-                ? "Save changes"
-                : ""
+                  ? "Join the room"
+                  : props.roomSettingDlgToggle[1] === "setting" ||
+                    props.roomSettingDlgToggle[1] === "setting_member"
+                    ? "Save changes"
+                    : ""
             }
             bordered={false}
             onClick={() => {
               toLoadingScr();
             }}
             disabled={false}
-            styles="pt-[12px] pb-[16px] h-fit rounded-[15px]"
+            styles="pt-[12px] pb-[12px] h-fit rounded-[15px]"
           />
         </div>
       </div>

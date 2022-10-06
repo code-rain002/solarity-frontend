@@ -1084,35 +1084,46 @@ export const PsuedoAvatarItemData: PsuedoAvatarItemDataType[] = [
     imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
     title: "Jimma",
   },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
-    title: "Muhamad",
-  },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
-    title: "Chen Wang",
-  },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
-    title: "Satoshi",
-  },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
-    title: "Jimma",
-  },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
-    title: "Muhamad",
-  },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
-    title: "Chen Wang",
-  },
-  {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
-    title: "Satoshi",
-  },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+  //   title: "Muhamad",
+  // },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+  //   title: "Chen Wang",
+  // },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+  //   title: "Satoshi",
+  // },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
+  //   title: "Jimma",
+  // },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",
+  //   title: "Muhamad",
+  // },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (3).png",
+  //   title: "Chen Wang",
+  // },
+  // {
+  //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (4).png",
+  //   title: "Satoshi",
+  // },
 ];
+
+export const models: any[] = [
+  {
+    imageUrl: "/images/marketplace/gallery/SolGods.jpg",
+    modelUrl: "/models/helmet/helmet.gltf",
+    name: 'SolGods',
+    position: "0 -4 -10",
+    rotation: "-10 0 0",
+    scale: "30 30 30",
+  }
+]
 
 export const ChattingBoxData: ChattingBoxDataType[] = [
   {
