@@ -152,7 +152,14 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
             />
           </div>
         </div> */}
-        <Input value={uName} setValue={setUName} caption="Room name" disabled={false} />
+        <Input value={uName} setValue={setUName} caption={props.roomSettingDlgToggle[1] === "join"
+          ? "Your nickname"
+          : props.roomSettingDlgToggle[1] === "create" ||
+            props.roomSettingDlgToggle[1] === "setting"
+            ? "Room title"
+            : props.roomSettingDlgToggle[1] === "setting_member"
+              ? "Your name"
+              : ""} disabled={false} />
         {/* from here, avatar ---------------------------------------------------------------- */}
         <div
           className=" flex h-[200px] w-full rounded-[15px] bg-[#181818]"
