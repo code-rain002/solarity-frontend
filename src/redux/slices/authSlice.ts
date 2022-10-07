@@ -109,7 +109,7 @@ export const checkSession = createAsyncThunk(
       const { data } = await apiCaller.get("/auth/check");
       dispatch(setProfile(data.profile));
       response = true;
-    } catch {}
+    } catch { }
     dispatch(stopLoadingApp());
     return response;
   }
@@ -190,7 +190,7 @@ export const goStep = createAsyncThunk(
     next?: any;
   }) => {
     const {
-      data: {},
+      data: { },
     } = await apiCaller.post("/auth/setStep", {
       stepNum,
       data,

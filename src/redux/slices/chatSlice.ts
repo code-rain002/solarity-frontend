@@ -5,12 +5,13 @@ export interface CounterState {
   roomName: string;
   userName: string;
   modelIndex: string;
-  socket: any[];
+  socket: Object;
   peers: any[];
   rooms: any[];
   msgs: any[];
   selectedIndex: number;
   selectedRoomIndex: number;
+  selectedRoom: Object;
 }
 
 const initialState: CounterState = {
@@ -22,7 +23,8 @@ const initialState: CounterState = {
   rooms: [],
   msgs: [],
   selectedIndex: -1,
-  selectedRoomIndex: -1
+  selectedRoomIndex: -1,
+  selectedRoom: {}
 };
 
 export const chatSlice = createSlice({
@@ -38,8 +40,10 @@ export const chatSlice = createSlice({
       localStorage.setItem('userName', action.payload.userName);
       localStorage.setItem('name', action.payload.userName);
       localStorage.setItem('modelIndex', action.payload.modelIndex);
-      if (!!window.socket)
+      if (!!window.socket) {
+        console.log(action.payload);
         window.socket.emit(ACTIONS.JOIN, { roomId: -1, user: { name: state.userName, title: action.payload.title, type: action.payload.type, roomNo: action.payload.roomNo, roomName: state.roomName, modelIndex: state.modelIndex } });
+      }
     },
     setRoom: (state, action: PayloadAction<any>) => {
       state.roomName = action.payload.roomName;
@@ -88,10 +92,13 @@ export const chatSlice = createSlice({
     },
     setSelectedRoomIndex(state, action: PayloadAction<any>) {
       state.selectedRoomIndex = action.payload;
-    }
+    },
+    setSelectedRoom(state, action: PayloadAction<any>) {
+      state.selectedRoom = action.payload;
+    },
   },
 });
 
-export const { createRoom, setName, setSelectedRoomIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { createRoom, setName, setSelectedRoomIndex, setSelectedRoom, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;

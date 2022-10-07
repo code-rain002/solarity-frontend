@@ -9,6 +9,8 @@ import AvatarPanel from "./AvatarPanel";
 import PsuedoAvatarItem from "./PsuedoAvatarItem";
 import { models } from "data/Experience";
 import Input from "components/Common/Forms/Input";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { createRoom } from "../../../redux/slices/chatSlice";
 
 type RoomSettingDlgType = {
   roomSettingDlgToggle: any;
@@ -17,13 +19,18 @@ type RoomSettingDlgType = {
 };
 
 const RoomSettingDlg = (props: RoomSettingDlgType) => {
+  const dispatch = useDispatch();
+  const { selectedRoom, profileData } = useSelector((state: RootStateOrAny) => ({
+    selectedRoom: state.chat.selectedRoom,
+    profileData: state.profile.data
+  }));
+
   const [activeAvatar, setActiveAvatar] = useState(0);
   const [activeAvatarImg, setActiveAvatarImg] = useState(
     PsuedoAvatarItemData[0].imgUrl
   );
   const router = useRouter();
   const [uName, setUName] = useState("");
-  const { height, width } = useWindowDimensions();
   const [modelIndex, setModelIndex] = useState(0);
 
   let j = -1;
@@ -41,6 +48,24 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
       )
       : router.push("/experience/" + props.activeRoomId);
   };
+
+  const createRoomFunc = () => {
+    if (uName == "") {
+      alert('The name of room is required.');
+      return;
+    }
+
+    dispatch(createRoom({
+      title: selectedRoom.roomName,
+      type: selectedRoom.type,
+      roomNo: selectedRoom.roomNo,
+      roomName: uName,
+      userName: profileData.username,
+      slideUrls: [],
+      modelIndex: modelIndex,
+      avatarUrl: profileData.profileImageLink || ""
+    }))
+  }
 
   const closeDlg = (e) => {
     if (e.target.id == "room_setting_dlg") {
@@ -208,9 +233,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
                     : ""
             }
             bordered={false}
-            onClick={() => {
-              toLoadingScr();
-            }}
+            onClick={createRoomFunc}
             disabled={false}
             styles="pt-[12px] pb-[12px] h-fit rounded-[15px]"
           />
