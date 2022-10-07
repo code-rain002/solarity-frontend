@@ -7,15 +7,20 @@ import TopRightMenu from "./TopRightMenu";
 import UsersBox from "./UsersBox";
 import SettingBox from "./RoomSettingBox";
 import { checkBrowser } from "utils";
+import { useRouter } from "next/router";
 
 type MainScrTyp = {
-  roomId: string;
   percentage: number;
+  setPercetage: Function;
 };
 
 const MainScr = (props: MainScrTyp) => {
+  const router = useRouter();
+
   const [leftSideActive, setLeftSideActive] = useState("");
   const [usersBoxActive, setUsersBoxActive] = useState(false);
+
+  const { rid, roomType, no } = router.query;
 
   const isAndroid = checkBrowser();
   return (
@@ -24,7 +29,7 @@ const MainScr = (props: MainScrTyp) => {
         } h-full w-full `}
     >
       <Image
-        src={`/images/experience/room_images/room_${parseInt(props.roomId) + 1
+        src={`/images/experience/room_images/room_${parseInt(rid.toString()) + 1
           }.jpg`}
         layout="fill"
       />

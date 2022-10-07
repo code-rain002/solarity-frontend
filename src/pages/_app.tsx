@@ -39,6 +39,7 @@ import "animate.css/animate.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import 'styles/wallet.css';
+import AppLoader from "components/Layout/AppLoader";
 
 const endpoint = "https://ssc-dao.genesysgo.net";
 
@@ -68,7 +69,7 @@ function MyApp({ children }) {
     ],
     [network]
   );
-  
+
   const { logged, profileData, checkingSession } = useSelector(
     (state: RootStateOrAny) => ({
       profileData: state.profile.data,
@@ -78,13 +79,13 @@ function MyApp({ children }) {
   );
 
   const handleChange = (event) => {
-    switch(event.target.value){
+    switch (event.target.value) {
       case "devnet":
         setNetwork(WalletAdapterNetwork.Devnet);
         break;
       case "mainnet":
         setNetwork(WalletAdapterNetwork.Mainnet);
-      break;
+        break;
       case "testnet":
         setNetwork(WalletAdapterNetwork.Testnet);
         break;
@@ -95,6 +96,10 @@ function MyApp({ children }) {
   };
 
   useEffect(() => {
+    dispatch(checkSession());
+  }, []);
+
+  useEffect(() => {
     const currentRoute = router.pathname;
     if (currentRoute === "/profile" && !logged && !checkingSession) {
       router.push("/");
@@ -103,9 +108,6 @@ function MyApp({ children }) {
     dispatch(stopLoadingApp());
   }, [logged, profileData.visible]);
 
-  useEffect(() => {
-    dispatch(checkSession());
-  }, []);
 
   return (
     <div>
@@ -133,6 +135,7 @@ function ReduxWrapped({ Component, pageProps }) {
         ></meta>
       </Head>
       <MyApp>
+        <AppLoader />
         <ToastContainer
           style={{ position: "fixed", zIndex: "100000000" }}
           position="top-right"
