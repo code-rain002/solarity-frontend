@@ -1,3 +1,4 @@
+// import { update_loading_screen } from './loading_screen'
 import { update_loadingScreen } from './loadingScreen'
 
 //a link cmponent to make aframe elements linkable in another page

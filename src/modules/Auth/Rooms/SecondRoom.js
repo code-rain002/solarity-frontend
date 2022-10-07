@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { RootStateOrAny, useSelector } from "react-redux";
-import { build_loadingScreen } from "modules/ChatModule/loadingScreen";
-import {chooseControls, passControls} from 'modules/ChatModule/utils'
-import styles from 'modules/ChatModule/chat.module.css';
-import LockedRoom from "components/Banner/LockedRoom";
+// import { build_loading_screen } from "./Components/loading_screen";
+import { build_loadingScreen } from "./Components/loadingScreen";
+import { chooseControls, passControls } from './Components/utils';
+import styles from './Components/chat.module.css';
+import LockedRoom from "./LockedRoom";
 
 export default function SecondEditRoom({
   picNo,
@@ -51,7 +52,7 @@ export default function SecondEditRoom({
   useEffect(() => {
     require("aframe/dist/aframe-master.js");
     require('aframe-liquid-portal-shader');
-    require('modules/ChatModule/components');
+    require('./Components/components');
     if(!!AFRAME.components["cursor-listen"])
       delete AFRAME.components["cursor-listen"];
     AFRAME.registerComponent("cursor-listen", {
