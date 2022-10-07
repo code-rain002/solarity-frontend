@@ -8,25 +8,23 @@ import { demoRooms } from "data/Marketplace";
 import Image from "next/image";
 import React, { useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { goStep } from "redux/slices/authSlice";
 import WalletAddress from "./WalletAddress";
 import { selectRoom } from "redux/slices/marketplaceSlice";
 import { EthereumIcon } from "components/icons/EthereumIcon";
+import { goStep } from "redux/slices/profileSlice";
 
 const UserRoom = (props) => {
   const dispatch = useDispatch();
-  const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
-    userInfo: state.auth.userInfo,
-    step: state.auth.step,
+  const { profile, step } = useSelector((state: RootStateOrAny) => ({
+    profile: state.profile.data,
+    step: state.profile.step,
   }));
   const [selectedRoom, setSelectedRoom] = useState<any>(demoRooms[0]);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
   const onSelectRoom = (room) => {
-    console.log(room);
     setSelectedRoom(room);
     // setShowPurchaseModal(true);
-
     dispatch(selectRoom({ roomData: room }))
   };
 
@@ -39,18 +37,7 @@ const UserRoom = (props) => {
   const onContinue = () => {
     const data = {}
     const payload = {
-      stepNum: 7,
-      data,
-    }
-    dispatch(goStep(payload));
-  }
-
-  const onUndo = () => {
-    const payload = {
-      stepNum: 5,
-      data: {
-        passportStyle: {}
-      },
+      stepNum: 2,
     }
     dispatch(goStep(payload));
   }
@@ -99,14 +86,40 @@ const UserRoom = (props) => {
                 {room.collectionName}
               </span> */}
             </div>
-          </div>
+            {profile.rooms && (
+              <div className={`top-[18px] right-[18px] ${profile.rooms.findIndex(item => item.roomNo == room.no && item.active) >= 0 ? "absolute" : "hidden" }`}>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                    stroke="#29B080"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M7.75 12.0019L10.58 14.8319L16.25 9.17188"
+                    stroke="#29B080"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              )}
+            </div>
         ))}
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">
-        <div className="inline-block w-[20%] pr-2">
+        {/* <div className="inline-block w-[20%] pr-2">
           <BackButton onClick={() => onUndo()} styles="rounded-[15px]" />
-        </div>
-        <div className="inline-block w-[80%] pl-2">
+        </div> */}
+        <div className="inline-block w-[100%] pl-2">
           <PrimaryButton
             caption="Continue"
             icon=""
@@ -183,7 +196,7 @@ const UserRoom = (props) => {
               </button> */}
               <button
                 className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary"
-                onClick={() => {}}
+                onClick={() => { }}
               >
                 <span>{"Buy for " + selectedRoom.price + " VERSE"}</span>
               </button>

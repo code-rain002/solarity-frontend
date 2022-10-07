@@ -27,9 +27,9 @@ const ProgressBar = (props) => {
 
   return (
     <div className="p-5">
-      <div className="text-white text-[24px] mb-5">
+      {/* <div className="text-white text-[24px] mb-5">
         Create Passport
-      </div>
+      </div> */}
       {step <= 5 ? passportSteps.map((item, index) => (
         <div className="flex flex-row justify-start items-center mb-[25px] relative" key={index}>
           {step >= index + 1 && (
@@ -56,7 +56,7 @@ const ProgressBar = (props) => {
           ></div>
         </div>
       )) : null}
-      <div className="text-white text-[24px] mb-5">
+      {/* <div className="text-white text-[24px] mb-5">
         Create Room
       </div>
       {step > 5 ? roomSteps.map((item, index) => (
@@ -84,7 +84,7 @@ const ProgressBar = (props) => {
             } w-[2px] bg-primary top-[40px] left-[19px]`}
           ></div>
         </div>
-      )) : null}
+      )) : null} */}
     </div>
   );
 };

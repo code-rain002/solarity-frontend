@@ -28,15 +28,6 @@ import {
 } from "../../../redux/slices/commonSlice";
 import WalletAddress from "./WalletAddress";
 
-const infoSchema = yup.object({
-  domain: yup
-    .string()
-    .min(3, "Please enter your domain name more than 3 characters.")
-    .max(30, "Please enter your domain name less than 30 characters.")
-    .required("This field is required."),
-  title: yup.string().nullable(),
-});
-
 const UserInfo = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();

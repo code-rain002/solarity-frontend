@@ -3105,7 +3105,24 @@ aes-js@3.0.0:
   resolved "https://registry.yarnpkg.com/aes-js/-/aes-js-3.0.0.tgz#e21df10ad6c2053295bcbb8dab40b09dbea87e4d"
   integrity sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==
 
-aframe@^1.3.0:
+aframe-blink-controls@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/aframe-blink-controls/-/aframe-blink-controls-0.3.0.tgz#c2445e0ccbb9eea5bf2187e631cf63b234a73485"
+  integrity sha512-UYwz+eNRANxTMyBTrFNLq72SRsPpF9M3OhkCq0fL/BdXZaya2pKAen2ZODi3UBp1ciWG2GPVrTXhkXHtTH7yIw==
+
+aframe-extras@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/aframe-extras/-/aframe-extras-6.1.1.tgz#6f158b6c4da12e77d00fd0b97dfe1c72245327df"
+  integrity sha512-w3o3sKfQG+cwe1ZoKUxvMLehh0D/MlvFZeg2XuyIto+Nrs/kGLPcb/fsI5DXM4jociZ3wVQfqcA1BVF+0Nq45A==
+  dependencies:
+    three-pathfinding "^0.7.0"
+
+aframe-liquid-portal-shader@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/aframe-liquid-portal-shader/-/aframe-liquid-portal-shader-1.0.1.tgz#f9f1c48c80c6a933d6afd9efa19c5bd362400ac4"
+  integrity sha512-vFG4uMpQjDpwizfwGYwhRlYl1cMUvfVUI791xaD1us0aEOmH1RidJkoHR/lHZpedhCb3WA2akht0hQJvzgh8+Q==
+
+aframe@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/aframe/-/aframe-1.3.0.tgz#bafd544d6eca6542a38e56a13ae8b86d325cce8a"
   integrity sha512-f6OQaDf49SzdSxVskJPvPWldOwHpYMsGttmQHhU6FRiASsnyULKG1nqZom9pDuS3fFYEzQVqRMakQ2AhXeLkFg==
@@ -7703,6 +7720,11 @@ three-mesh-bvh@^0.5.4:
   version "0.5.16"
   resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.16.tgz#ed8518355fb70d7da6a5537558ba43f76a56b067"
   integrity sha512-kN3QGKJNiQQcuiOsjVIkjtPnV3PJa+0Orih2E52afa+kQfs3zfoYt6Kxn6b6RNiAfaQ+7ckwPK0mTVFVl2F2LA==
+
+three-pathfinding@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/three-pathfinding/-/three-pathfinding-0.7.0.tgz#bf64ec409bee6e7d8e19be96c7b40ebd7ef6f10d"
+  integrity sha512-UwWvzgio1UFe81n5jKHNzB4B+AG3wfZ54OKp7bTb1MHuC3cy6RTtr0dbbiPQQoqxzr+DRArR2DUwQSEknw5+nw==
 
 three-stdlib@^2.15.0, three-stdlib@^2.8.2:
   version "2.17.0"
