@@ -114,10 +114,12 @@ const MainScr = (props: MainScrTyp) => {
     const loadInterval = setInterval(() => {
       if (localStorage.getItem("modelLoaded") == "true") {
         clearInterval(loadInterval);
+        setLoadingFlag(true);
       }
     }, 300);
     setTimeout(() => {
       clearInterval(loadInterval);
+      setLoadingFlag(true);
     }, 100000);
   }, []);
 
@@ -257,7 +259,7 @@ const MainScr = (props: MainScrTyp) => {
 
   return (
     <div
-      className={` ${props.percentage == 100 ? "flex" : "hidden"
+      className={` ${loadingFlag ? "flex" : "hidden"
         } h-full w-full `}
     >
       {parseInt(roomType ? roomType.toString() : "-1") > 2 ? (

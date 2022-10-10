@@ -17,7 +17,7 @@ const GalleryChat = ({ modelURL, name }) => {
             <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
             <a-asset-item id="navmesh-gltf" src="/models/gallery/navmesh.gltf"></a-asset-item>
             <img id="hub-img" src="/images/experience/hub.png" alt="hub"/>
-            <img id="sky-img" src="/assets/images/bluesky.jpg" alt="sky"/>
+            <img id="sky-img" src="/images/experience/hub/bluesky.jpg" alt="sky"/>
             <template 
                 id="avatar-template"
                 dangerouslySetInnerHTML={{

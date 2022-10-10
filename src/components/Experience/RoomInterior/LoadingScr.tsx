@@ -13,6 +13,7 @@ const LoadingScr = (props: LoadingScrType) => {
 
   return (
     <div
+      id="loadingScreen"
       className={`fixed top-0 left-0 right-0 bottom-0 ${props.percentage == 100 ? "hidden" : "block"} `}
     >
       <div className="relative h-full w-full">
