@@ -9,7 +9,6 @@ const apiCaller = axios.create({
   },
 });
 
-
 //twitter
 var twitterArray;
 const TWITTER_TO_DISPLAY = 4;
