@@ -40,13 +40,13 @@ const OwnSecond = ({ roomInfo, modelURL, name }) => {
     debug: true;">
       <a-assets timeout="10000">
 
-        <a-asset-item id="room2-gltf" src="/assets/models/own_second/SolGod ancient temple.glb"></a-asset-item>
-        <a-asset-item id="navmesh-gltf" src="/assets/models/own_second/navmesh.gltf"></a-asset-item>
+        <a-asset-item id="room2-gltf" src="/models/own_second/SolGod ancient temple.glb"></a-asset-item>
+        <a-asset-item id="navmesh-gltf" src="/models/own_second/navmesh.gltf"></a-asset-item>
         <a-asset-item id="raccoon-obj" src={modelURL}></a-asset-item>
-        <a-asset-item id="uv" src={"/resource/models/helmet/helmet visor.gltf"}></a-asset-item>
+        <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
 
-        <img id="hub-img" src="/assets/images/hub.png"/>
-        <img id="sky-img" src="/assets/images/sky.jpg"/>
+        <img id="hub-img" src="/images/experience/hub.png"/>
+        <img id="sky-img" src="/images/experience/sky.jpg"/>
 
         <template 
             id="avatar-template"

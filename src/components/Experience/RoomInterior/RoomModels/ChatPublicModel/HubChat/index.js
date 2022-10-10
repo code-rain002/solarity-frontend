@@ -14,27 +14,27 @@ const HubChat = ({ modelURL, name }) => {
         debug: true;"
     >
       <a-assets timeout="100000">
-        <a-asset-item id="holo" src="/assets/models/hub/Hologram_sphere.glb"></a-asset-item>
-        <a-asset-item id="chair1" src="/assets/models/hub/chair.glb"></a-asset-item>
-        <a-asset-item id="table1" src="/assets/models/hub/table.glb"></a-asset-item>
-        <a-asset-item id="structure" src="/assets/models/hub/The hub optimized no chairs.glb"></a-asset-item>
+        <a-asset-item id="holo" src="/models/hub/Hologram_sphere.glb"></a-asset-item>
+        <a-asset-item id="chair1" src="/models/hub/chair.glb"></a-asset-item>
+        <a-asset-item id="table1" src="/models/hub/table.glb"></a-asset-item>
+        <a-asset-item id="structure" src="/models/hub/The hub optimized no chairs.glb"></a-asset-item>
 
-        <a-asset-item id="navmesh-gltf" src="/assets/models/hub/navmesh4.gltf"></a-asset-item>
+        <a-asset-item id="navmesh-gltf" src="/models/hub/navmesh4.gltf"></a-asset-item>
 
         <a-asset-item id="raccoon-obj" src={modelURL}></a-asset-item>
-        <a-asset-item id="uv" src={"/resource/models/helmet/helmet visor.gltf"}></a-asset-item>
+        <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
 
-        <img id="try-img" src="/assets/images/japan.png" />
-        <img id="tweet-img" src="/assets/images/tweet.jpg" />
-        <img id="sky-img" src="/assets/images/sky.jpg" />
+        <img id="try-img" src="/images/experience/hub/japan.png" />
+        <img id="tweet-img" src="/images/experience/hub/tweet.jpg" />
+        <img id="sky-img" src="/images/experience/sky.jpg" />
 
-        <img id="gallery-img" src="/assets/images/gallery.png" />
-        <img id="room-img" src="/assets/images/room.png" />
+        <img id="gallery-img" src="/images/experience/hub/gallery.png" />
+        <img id="room-img" src="/images/experience/hub/room.png" />
 
-        <img id="gif-img1" src="/assets/images/gif_img1.jpeg" />
-        <img id="gif-img2" src="/assets/images/gif_img2.jpeg" />
-        <img id="gif-img3" src="/assets/images/gif_img3.jpeg" />
-        <img id="gif-img4" src="/assets/images/gif_img4.jpeg" />
+        <img id="gif-img1" src="/images/experience/hub/gif_img1.jpeg" />
+        <img id="gif-img2" src="/images/experience/hub/gif_img2.jpeg" />
+        <img id="gif-img3" src="/images/experience/hub/gif_img3.jpeg" />
+        <img id="gif-img4" src="/images/experience/hub/gif_img4.jpeg" />
 
         <template
           id="avatar-template"
@@ -204,18 +204,18 @@ const HubChat = ({ modelURL, name }) => {
       <a-plane position="-13.21 2.75 4.33" width="1.5" height="1.75" rotation="0 133.25 0"
         material="shader: standard;" color="#111122">
         <a-image width="1.5" height="1.75" position="0 0 0.01"
-          src="/assets/images/ffc2b2a0-614a-4359-b164-68c5b9f4396d.jpg"></a-image>
+          src="/images/experience/hub/ffc2b2a0-614a-4359-b164-68c5b9f4396d.jpg"></a-image>
       </a-plane>
       {/* tiny screen left */}
       <a-plane position="-13.22 2.75 -4.3" width="1.5" height="1.75" rotation="0 46.75 0"
         material="shader: standard;" color="#111122">
-        <a-image width="1.5" height="1.75" position="0 0 0.01" src="/assets/images/media_FKNOb38VgAkOruy.jpg">
+        <a-image width="1.5" height="1.75" position="0 0 0.01" src="/images/experience/hub/media_FKNOb38VgAkOruy.jpg">
         </a-image>
       </a-plane>
       {/* tiny screen center */}
       <a-plane position="-14.445 2.75 0" width="1.5" height="1.75" rotation="0 90 0" material="shader: standard;"
         color="#111122">
-        <a-image width="1.5" height="1.75" position="0 0 0.01" src="/assets/images/download.png"></a-image>
+        <a-image width="1.5" height="1.75" position="0 0 0.01" src="/images/experience/hub/download.png"></a-image>
       </a-plane>
       {/* portals */}
       <a-image width="1.3" height="1.9" class="clickable nocollision"

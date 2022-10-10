@@ -202,7 +202,7 @@ export function startHub() {
       .catch((err) => {
         nft = {
           floorPrice: "no data",
-          image: "/assets/images/nft_placeholder.jpeg",
+          image: "/images/experience/hub/nft_placeholder.jpeg",
         };
       });
 

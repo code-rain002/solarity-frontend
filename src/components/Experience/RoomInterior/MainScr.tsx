@@ -41,8 +41,8 @@ const MainScr = (props: MainScrTyp) => {
   const [mounted, setMounted] = useState(false);
   const [loadingFlag, setLoadingFlag] = useState(false);
   const [intervalId, setIntervalId] = useState<any>("");
+  const [isMobile, setIsMobile] = useState(false);
 
-  const isMobile = checkBrowser();
   const { rid, roomType, no } = router.query;
   const { userName, rooms, profileData, msgs, modelIndex } = useSelector((state: RootStateOrAny) => ({
     userName: state.chat.userName,
@@ -52,14 +52,18 @@ const MainScr = (props: MainScrTyp) => {
     modelIndex: state.chat.modelIndex,
   }));
   const { clients, provideRef, handleMute } = useWebRTC(rid, {
-    name: userName ? userName : localStorage.getItem('userName'),
+    name: userName ? userName : typeof window !== "undefined" ? localStorage.getItem('userName') : "",
     avatarUrl: profileData ? profileData.profileImageLink : "",
   })
 
   useEffect(() => {
-    if (open) getUsers();
+    getUsers();
     setRoomIndex(rooms.findIndex((s) => s.roomId == rid));
-  }, [open, rooms]);
+  }, [rooms]);
+
+  useEffect(() => {
+    setIsMobile(checkBrowser())
+  }, [])
 
   useEffect(() => {
     const getRoomInfo = async () => {
@@ -256,7 +260,7 @@ const MainScr = (props: MainScrTyp) => {
       className={` ${props.percentage == 100 ? "flex" : "hidden"
         } h-full w-full `}
     >
-      {parseInt(roomType.toString()) > 2 ? (
+      {parseInt(roomType ? roomType.toString() : "-1") > 2 ? (
         <ChatPrivateModel
           modelNo={no}
           roomInfo={roomInfo}

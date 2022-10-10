@@ -13,12 +13,12 @@ const OwnThird = ({ roomInfo, modelURL, name }) => {
       debug: true;">
         <a-assets timeout="100000">
 
-        <a-asset-item id="room3-gltf" src="/assets/models/own_third/room.glb"></a-asset-item>
-          <a-asset-item id="navmesh-gltf" src="/assets/models/own_third/navmesh.glb"></a-asset-item>
+        <a-asset-item id="room3-gltf" src="/models/own_third/room.glb"></a-asset-item>
+          <a-asset-item id="navmesh-gltf" src="/models/own_third/navmesh.glb"></a-asset-item>
           <a-asset-item id="raccoon-obj" src={modelURL}></a-asset-item>
-          <a-asset-item id="uv" src={"/resource/models/helmet/helmet visor.gltf"}></a-asset-item>
+          <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
 
-          <img id="hub-img" src="/assets/images/hub.png"/>
+          <img id="hub-img" src="/images/experience/hub.png"/>
           <img id="sky-img" src="/assets/images/bluesky.jpg"/>
 
           <template 

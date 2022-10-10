@@ -49,7 +49,7 @@ const PlazaChat = ({ modelURL, name, creator, slideUrls }) => {
         <a-asset-item id="navmesh-gltf" src="/models/plaza/collision mobile.glb"></a-asset-item>
 
         <a-asset-item id="raccoon-obj" src={modelURL}></a-asset-item>
-        <a-asset-item id="uv" src={"/resource/models/helmet/helmet visor.gltf"}></a-asset-item>
+        <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
 
         <img id="sky-img" src="/images/bluesky.jpg" />
         

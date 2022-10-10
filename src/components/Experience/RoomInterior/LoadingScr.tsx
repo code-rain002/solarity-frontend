@@ -16,7 +16,7 @@ const LoadingScr = (props: LoadingScrType) => {
       className={`fixed top-0 left-0 right-0 bottom-0 ${props.percentage == 100 ? "hidden" : "block"} `}
     >
       <div className="relative h-full w-full">
-        <Image src={`/images/experience/room_images/room_${parseInt(rid.toString()) + 1}.jpg`} layout="fill" />
+        <Image src={`/images/experience/room_images/room_${parseInt(rid ? rid.toString() : "0") + 1}.jpg`} layout="fill" />
 
         <div className={`relative h-full w-full bg-[rgba(12,12,14,0.7)] backdrop-blur-lg pt-[calc(50vh-104px)] sm:pt-[calc(50vh-165px)] z-10`}>
           <div className="w-[210px] h-[210px] sm:w-[330px] sm:h-[330px] m-auto">

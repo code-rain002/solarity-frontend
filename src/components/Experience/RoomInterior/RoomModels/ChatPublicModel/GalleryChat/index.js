@@ -12,11 +12,11 @@ const GalleryChat = ({ modelURL, name }) => {
       room: blocks;
       debug: true;">
             <a-assets timeout="100000">
-            <a-asset-item id="gallery-gltf" src="/assets/models/gallery/Gallery room.glb"></a-asset-item>
+            <a-asset-item id="gallery-gltf" src="/models/gallery/Gallery room.glb"></a-asset-item>
             <a-asset-item id="raccoon-obj" src={modelURL}></a-asset-item>
-            <a-asset-item id="uv" src={"/resource/models/helmet/helmet visor.gltf"}></a-asset-item>
-            <a-asset-item id="navmesh-gltf" src="/assets/models/gallery/navmesh.gltf"></a-asset-item>
-            <img id="hub-img" src="/assets/images/hub.png" alt="hub"/>
+            <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
+            <a-asset-item id="navmesh-gltf" src="/models/gallery/navmesh.gltf"></a-asset-item>
+            <img id="hub-img" src="/images/experience/hub.png" alt="hub"/>
             <img id="sky-img" src="/assets/images/bluesky.jpg" alt="sky"/>
             <template 
                 id="avatar-template"
