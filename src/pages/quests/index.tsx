@@ -4,18 +4,18 @@ import Quests from "modules/Quests"
 import Layout from "components/Layout"
 import QuestsBanner from "modules/Quests/QuestsBanner"
 
-const ProfileIndex = () => {
+const QuestPage = () => {
     const [sidebarToggler, setSidebarToggler] = useState(false)
-    
+
     return (
-        <Layout 
-            sidebarToggler={sidebarToggler} 
-            banner={<QuestsBanner sidebarToggler={sidebarToggler}/>}
-            onClick={() => setSidebarToggler(!sidebarToggler)} 
+        <Layout
+            sidebarToggler={sidebarToggler}
+            banner={<QuestsBanner sidebarToggler={sidebarToggler} />}
+            onClick={() => setSidebarToggler(!sidebarToggler)}
         >
             <Quests sidebarToggler={sidebarToggler} />
         </Layout>
     )
 }
 
-export default ProfileIndex
+export default QuestPage
