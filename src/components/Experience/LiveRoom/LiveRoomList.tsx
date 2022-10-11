@@ -27,10 +27,10 @@ const LiveRoomList = (props: LiveRoomListType) => {
   }, [liveRoomSectionHeight]);
   let k = -1;
   return (
-    <div className=" flex flex-col items-left gap-[24px] mt-[35px] ">
+    <div className=" flex flex-col items-left gap-[24px] mt-[25px] ">
       <LiveRoomListTitle number="25" />
       <div
-        className={`md:h-[690px] xs:h-[440px] pr-[10px] md:overflow-y-scroll xs:overflow-y-hidden overflow-x-visible flex flex-col items-left md:gap-[24px] xs:gap-[16px] `}
+        className={`md:h-[690px] xs:h-[440px] pr-[10px] md:overflow-y-scroll xs:overflow-y-hidden overflow-x-visible flex flex-col items-left md:gap-[16px] xs:gap-[12px] `}
         id="lrl"
       >
         {LiveRoomListData.map((i, index) => {

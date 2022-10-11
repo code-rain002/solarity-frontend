@@ -4,10 +4,12 @@ import Experience from "modules/Experience"
 import Layout from "components/Layout"
 import ExperienceBanner from "modules/Experience/ExperienceBanner"
 import RoomSettingDlg from "components/Experience/Common/RoomSettingDlg"
-import { useDispatch } from "react-redux"
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
 import { addMsg, addPeer, removePeer, setMsg, setName, setRooms } from "redux/slices/chatSlice"
 import ACTIONS from "config/actions"
 import { useRouter } from "next/router"
+import CreateRoomButton from "components/Experience/LiveRoom/CreateRoomButton"
+import LiveRoomSection from "modules/Experience/LiveRoomSection"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -17,6 +19,10 @@ const ProfileIndex = () => {
     const [activeRoom, setActiveRoom] = useState("room_1")
     const [roomSettingDlgToggle, setRoomSettingDlgToggle] = useState([false, "join"])
     const [activeRoomId, setActiveRoomId] = useState(0)
+
+    const { selectedRoomIndex } = useSelector((state: RootStateOrAny) => ({
+        selectedRoomIndex: state.chat.selectedRoomIndex,
+    }));
 
     useEffect(() => {
         // When a user click f5 key, it helps to forget a user's name.
@@ -73,15 +79,42 @@ const ProfileIndex = () => {
         }
     }
 
+    const createRoomModal = () => {
+        if (selectedRoomIndex != -1) {
+            setRoomSettingDlgToggle([true, "create"]);
+        } else {
+            alert('Please select a room to create')
+        }
+    }
+
     return (
         <Layout
             sidebarToggler={sidebarToggler}
-            banner={<ExperienceBanner
-                activeRoomId={activeRoomId}
-                sidebarToggler={sidebarToggler}
-                activeRoom={activeRoom}
-                setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
-            />}
+            banner={
+                <div className="grid grid-cols-5 gap-14">
+                    <div className=" col-span-1">
+                        {/* <CreateRoomButton onClick={createRoomModal} /> */}
+                        <div className=" flex flex-col ">
+                            <LiveRoomSection
+                                activeRoom={activeRoom}
+                                roomSelect={() => { }}
+                                setActiveRoomId={setActiveRoomId}
+                                activeRoomId={activeRoomId}
+                                roomSettingDlgToggle={roomSettingDlgToggle}
+                                setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
+                            />
+                        </div>
+                    </div>
+                    <div className=" col-span-4">
+                        <ExperienceBanner
+                            activeRoomId={activeRoomId}
+                            sidebarToggler={sidebarToggler}
+                            activeRoom={activeRoom}
+                            setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
+                        />
+                    </div>
+                </div>
+            }
             onClick={() => setSidebarToggler(!sidebarToggler)}
         >
             <Experience
