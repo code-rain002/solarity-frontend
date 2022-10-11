@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { HexColorPicker } from "react-colorful";
-
 import {
   PrimaryButton,
   BackButton,
@@ -11,13 +9,13 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
-import { changeInfo, goStep } from "redux/slices/authSlice";
 import WalletAddress from "./WalletAddress";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { getNfts } from "hooks";
 import { NftPanel } from "components/Common/Panels";
 import { selectNft } from "redux/slices/marketplaceSlice";
+import { goStep } from "redux/slices/profileSlice";
 
 const EditRoom = (props) => {
   const dispatch = useDispatch();
@@ -26,6 +24,9 @@ const EditRoom = (props) => {
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
+  const { selectedNft } = useSelector(
+    (state: RootStateOrAny) => state.marketplace
+  );
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(userInfo.domain, userInfo.solanaAddress, true);
 
   useEffect(() => {
@@ -40,15 +41,13 @@ const EditRoom = (props) => {
     const data = {};
     const payload = {
       stepNum: 8,
-      data,
     };
     dispatch(goStep(payload));
   };
 
   const onUndo = () => {
     const payload = {
-      stepNum: 6,
-      data: {},
+      stepNum: 1,
     };
     dispatch(goStep(payload));
   };
@@ -78,6 +77,7 @@ const EditRoom = (props) => {
                   type={nft.type}
                   key={index}
                   onClick={() => onSelectNft(nft)}
+                  selected={nft == selectedNft}
                 />
               </div>
             ))}

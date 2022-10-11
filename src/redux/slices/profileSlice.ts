@@ -412,7 +412,6 @@ export const getUserDaos = createAsyncThunk(
         data: { data },
       } = await apiCaller.get("/profile/profileDaos");
       successFunction()
-      console.log(data);
       returnValue = data;
       showSuccessToast("User Daos successfully taken");
     } catch (err) {
@@ -426,7 +425,7 @@ export const getUserDaos = createAsyncThunk(
 );
 
 export const goStep = createAsyncThunk(
-  "auth/goStep",
+  "profile/goStep",
   async ({ stepNum, next }: {
     stepNum: number;
     next?: any;
@@ -439,6 +438,31 @@ export const goStep = createAsyncThunk(
     // });
     if (next) next();
     return stepNum;
+  }
+);
+
+export const changeActiveRoom = createAsyncThunk(
+  "profile/changeActiveRoom",
+  async ({
+    roomNo,
+    next,
+  }: {
+    roomNo: number;
+    next?: () => void;
+  }) => {
+    let returnValue = null;
+    try {
+      const {
+        data: { profile },
+      } = await apiCaller.post("/profile/setActiveRoom", { roomNo: roomNo});
+      returnValue = profile;
+      showSuccessToast("This room successfully active");
+    } catch (err) {
+      showErrorToast(extractError(err));
+      returnValue = false;
+    }
+    if (next) next();
+    return returnValue;
   }
 );
 
@@ -472,12 +496,6 @@ export const profileSlice = createSlice({
       state.activeRoomId = action.payload.activeRoomId;
       state.activeRoomNo = action.payload.activeRoomNo;
     },
-    // setProfileDaos(state, action: PayloadAction<any>) {
-    //   const {
-    //     payload
-    //   } = action;
-    //   state.data.daos = payload
-    // }
   },
   extraReducers: (builder) => {
     builder.addCase(setup.fulfilled, (state, action) => {
@@ -536,6 +554,11 @@ export const profileSlice = createSlice({
       }
     });
     builder.addCase(getUserDaos.fulfilled, (state, action) => {
+      if (action.payload) {
+        profileSlice.caseReducers.setProfile(state, action);
+      }
+    });
+    builder.addCase(changeActiveRoom.fulfilled, (state, action) => {
       if (action.payload) {
         profileSlice.caseReducers.setProfile(state, action);
       }

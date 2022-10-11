@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { RootStateOrAny, useSelector } from "react-redux";
-import { build_loadingScreen } from "./Components/loading_screen";
-import {chooseControls, passControls} from './Components/utils';
+// import { build_loading_screen } from "./Components/loading_screen";
+import { build_loadingScreen } from "./Components/loadingScreen";
+import { chooseControls, passControls } from './Components/utils';
 import LockedRoom from "./LockedRoom";
 
 export default function FirstEditRoom({
@@ -150,26 +151,25 @@ export default function FirstEditRoom({
     if (mounted) {
       return (
         <>
-          <div id="loadingScreen" className="fixed top-0 left-0 right-0 bottom-0">
-              <div className='relative h-full w-full'>
-                <img src={'/images/placeholder/marketplace/rooms/0.jpg'} width="100%" height="100%" className='absolute top-0 right-0 bottom-0 left-0 z-0'/>
-                <div className="relative h-full w-full bg-[rgba(12,12,14,0.7)] backdrop-blur-lg pt-[calc(50vh-104px)] sm:pt-[calc(50vh-165px)] z-10">
-                  <div className="w-[210px] h-[210px] sm:w-[330px] sm:h-[330px] m-auto">
-                    <div className="text-white items-center flex h-full">
-                      <div className="text-center m-auto h-full w-full">
-                        <div className="progress relative h-full w-full">
-                          <svg className="circle-loading-bar hidden sm:block w-full h-full">
-                            <circle cx="165" cy="165" r="160"></circle>
-                            <circle cx="165" cy="165" r="160" style={{"--percent": 0}}></circle>
-                          </svg>
-                          <svg className="circle-loading-bar block sm:hidden w-full h-full">
-                            <circle cx="104" cy="104" r="100"></circle>
-                            <circle cx="104" cy="104" r="100" style={{"--percent": 0}}></circle>
-                          </svg>
-                          <div className="absolute left-[65px] top-[60px] sm:top-[90px] sm:left-[105px]">
-                            <h2 className="loading-status text-[40px] sm:text-[70px] font-bold font-['Outfit'] mb-2 sm:mb-5">0</h2>
-                            <span className="text-xs sm:text-lg">loading models</span>
-                          </div>
+          {/* <div id="loadingScreen" className="h-full w-full">
+            <div className='relative h-full w-full'>
+              <img src={'/images/marketplace/rooms/0.jpg'} width="100%" height="100%" className='absolute top-0 right-0 bottom-0 left-0 z-0'/>
+              <div className="relative h-full w-full bg-[rgba(12,12,14,0.7)] backdrop-blur-lg z-10">
+                <div className="w-[210px] h-[210px] sm:w-[330px] sm:h-[330px] m-auto">
+                  <div className="text-white items-center flex h-full">
+                    <div className="text-center m-auto h-full w-full">
+                      <div className="progress relative h-full w-full">
+                        <svg className="circle-loading-bar hidden sm:block w-full h-full">
+                          <circle cx="165" cy="165" r="160"></circle>
+                          <circle cx="165" cy="165" r="160" style={{"--percent": 0}}></circle>
+                        </svg>
+                        <svg className="circle-loading-bar block sm:hidden w-full h-full">
+                          <circle cx="104" cy="104" r="100"></circle>
+                          <circle cx="104" cy="104" r="100" style={{"--percent": 0}}></circle>
+                        </svg>
+                        <div className="absolute left-[65px] top-[60px] sm:top-[90px] sm:left-[105px]">
+                          <h2 className="loading-status text-[40px] sm:text-[70px] font-bold font-['Outfit'] mb-2 sm:mb-5">0</h2>
+                          <span className="text-xs sm:text-lg">loading models</span>
                         </div>
                       </div>
                     </div>
@@ -177,6 +177,7 @@ export default function FirstEditRoom({
                 </div>
               </div>
             </div>
+          </div> */}
           <a-scene 
               embedded
               renderer="antialias: true;
@@ -190,21 +191,21 @@ export default function FirstEditRoom({
               loading-screen="enabled:false" 
             >
             <a-assets timeout="100000">
-                <a-asset-item id="room-gltf" src="/models/own/Normal room optimized.glb"></a-asset-item>
-                <a-asset-item id="arcade-gltf" src="/models/own/Arcade console.glb"></a-asset-item>
-                <a-asset-item id="atm-gltf" src="/models/own/ATM.glb"></a-asset-item>
-                <a-asset-item id="chair-gltf" src="/models/own/Chair.glb"></a-asset-item>
+                <a-asset-item id="room-gltf" src="/models/rooms/own/Normal room optimized.glb"></a-asset-item>
+                <a-asset-item id="arcade-gltf" src="/models/rooms/own/Arcade console.glb"></a-asset-item>
+                <a-asset-item id="atm-gltf" src="/models/rooms/own/ATM.glb"></a-asset-item>
+                <a-asset-item id="chair-gltf" src="/models/rooms/own/Chair.glb"></a-asset-item>
 
-                <a-asset-item id="vr-gltf" src="/models/own/VR.glb"></a-asset-item>
-                <a-asset-item id="navmesh-gltf" src="/models/own/navmesh.gltf"></a-asset-item>
+                <a-asset-item id="vr-gltf" src="/models/rooms/own/VR.glb"></a-asset-item>
+                <a-asset-item id="navmesh-gltf" src="/models/rooms/own/navmesh.gltf"></a-asset-item>
 
-                <img id="hub-img" src="/images/experience/hub.png" />
-                <img id="sky-img" src="/images/experience/sky.jpg"/>
+                <img id="hub-img" src="/models/images/hub.png" />
+                <img id="sky-img" src="/models/images/sky.jpg"/>
 
-                <img id="gif-img1" src="/assets/images/gif_img1.jpeg"/>
-                <img id="gif-img2" src="/assets/images/gif_img2.jpeg"/>
-                <img id="gif-img3" src="/assets/images/gif_img3.jpeg"/>
-                <img id="gif-img4" src="/assets/images/gif_img4.jpeg"/>
+                <img id="gif-img1" src="/models/images/gif_img1.jpeg"/>
+                <img id="gif-img2" src="/models/images/gif_img2.jpeg"/>
+                <img id="gif-img3" src="/models/images/gif_img3.jpeg"/>
+                <img id="gif-img4" src="/models/images/gif_img4.jpeg"/>
 
             </a-assets>
 

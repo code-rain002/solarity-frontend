@@ -11,7 +11,7 @@ const LockedRoom = () => {
       <div className="absolute flex bottom-5 p-[5px] right-10 rounded-full cursor-pointer" style={{background: "rgba(255, 255, 255, 0.15)",
         backdropFilter: "blur(30px)"}}>
           <div className="w-7 h-7 bg-white rounded-full">
-            <img src="/assets/images/lock.png" className="m-auto pt-[5px]" alt="locked" width={13} height={17} />
+            <img src="/models/images/lock.png" className="m-auto pt-[5px]" alt="locked" width={13} height={17} />
           </div>
           <span className="ml-2 text-sm mr-4 pt-[5px]">Unlock</span>
       </div>
