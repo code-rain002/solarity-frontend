@@ -41,11 +41,11 @@ export const HomePage = () => {
     });
 
     let url;
-    if (exist && user.registerStep == 10) {
-      url = `/${user.username}/profile`;
+    if (!exist) {
+      url = '/auth/register';
     } else if (user.registerStep <= 5) {
       url = '/auth/register';
-    } else {
+    } else if (user.registerStep > 5) {
       url = '/auth/room'
     }
     await dispatch(

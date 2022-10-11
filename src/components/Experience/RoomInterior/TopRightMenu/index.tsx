@@ -12,7 +12,7 @@ type TopRightMenuType = {
   leftSideActive: string;
   usersBoxActive: boolean;
   setUsersBoxActive: any;
-  isAndroid: boolean;
+  isMobile: boolean;
 };
 
 const TopRightMenu = (props: TopRightMenuType) => {
@@ -34,7 +34,7 @@ const TopRightMenu = (props: TopRightMenuType) => {
       <UsersIcon
         setLeftSideActive={props.setLeftSideActive}
         leftSideActive={props.leftSideActive}
-        isAndroid={props.isAndroid}
+        isMobile={props.isMobile}
         usersBoxActive={props.usersBoxActive}
         setUsersBoxActive={props.setUsersBoxActive}
       />

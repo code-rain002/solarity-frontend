@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const withPlugins = require("next-compose-plugins");
+const webpack = require("webpack");
 
 /** eslint-disable @typescript-eslint/no-var-requires */
 const withTM = require("next-transpile-modules")([
@@ -51,11 +52,19 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false;
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "react/jsx-dev-runtime": "react/jsx-dev-runtime.js",
+        "react/jsx-runtime": "react/jsx-runtime.js"
+      }
       // FIX this
       // Disable minimize to make it work with Candy Machine template
       // minimization brakes Public Key names
       config.optimization.minimize = false;
     }
+    config.plugins.push(new webpack.IgnorePlugin({
+      resourceRegExp: /^electron$/
+    }));
     return config;
   },
 };

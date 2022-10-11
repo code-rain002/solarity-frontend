@@ -4,7 +4,7 @@ import ACTIONS from "config/actions";
 export interface CounterState {
   roomName: string;
   userName: string;
-  modelIndex: string;
+  modelIndex: Number;
   socket: Object;
   peers: any[];
   rooms: any[];
@@ -17,7 +17,7 @@ export interface CounterState {
 const initialState: CounterState = {
   roomName: '',
   userName: '',
-  modelIndex: '',
+  modelIndex: 0,
   socket: {},
   peers: [],
   rooms: [],

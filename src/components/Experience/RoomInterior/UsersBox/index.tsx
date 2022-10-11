@@ -8,7 +8,7 @@ type UsersBoxType = {
   leftSideActive: string;
   usersBoxActive: boolean;
   setUsersBoxActive: any;
-  isAndroid: boolean;
+  isMobile: boolean;
 };
 
 const UsersBox = (props: UsersBoxType) => {
@@ -18,15 +18,14 @@ const UsersBox = (props: UsersBoxType) => {
                         md:bottom-[32px] md:left-[32px] md:w-[426px] md:top-[108px] md:rounded-[24px]
                         xs:bottom-[78px] xs:left-[0px] xs:w-full xs:top-[0px] xs:rounded-[0px]
                         border-[#1d1f1f] border-[1px] bg-[#131314]
-                        ${
-                          props.isAndroid
-                            ? props.leftSideActive === "users"
-                              ? "flex flex-col"
-                              : "hidden"
-                            : props.usersBoxActive
-                            ? "flex flex-col"
-                            : "hidden"
-                        } pt-[6px] pb-[0px] px-[6px] overflow-hidden 
+                        ${props.isMobile
+          ? props.leftSideActive === "users"
+            ? "flex flex-col"
+            : "hidden"
+          : props.usersBoxActive
+            ? "flex flex-col"
+            : "hidden"
+        } pt-[6px] pb-[0px] px-[6px] overflow-hidden 
                         cursor-default `}
     >
       <div className=" flex flex-row items-center justify-between w-full h-[30px] pt-[32px] px-[32px] pb-[32px] ">
@@ -46,7 +45,7 @@ const UsersBox = (props: UsersBoxType) => {
           <div
             className=" md:flex xs:hidden cursor-pointer "
             onClick={() =>
-              props.isAndroid
+              props.isMobile
                 ? props.leftSideActive === "users"
                   ? props.setLeftSideActive("")
                   : ""
@@ -58,7 +57,7 @@ const UsersBox = (props: UsersBoxType) => {
           <div
             className=" md:hidden xs:flex cursor-pointer "
             onClick={() =>
-              props.isAndroid
+              props.isMobile
                 ? props.leftSideActive === "users"
                   ? props.setLeftSideActive("")
                   : ""
