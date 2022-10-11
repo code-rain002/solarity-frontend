@@ -425,7 +425,7 @@ export const getUserDaos = createAsyncThunk(
 );
 
 export const goStep = createAsyncThunk(
-  "auth/goStep",
+  "profile/goStep",
   async ({ stepNum, next }: {
     stepNum: number;
     next?: any;

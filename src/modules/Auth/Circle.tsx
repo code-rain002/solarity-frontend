@@ -30,7 +30,7 @@ const Circle = (props) => {
         <div className="w-[210px] h-[210px] m-auto">
           <div className="text-white items-center flex h-full">
             <div className="text-center m-auto h-full w-full">
-              <div className="progress relative h-full w-full register">
+              <div className="register-progress relative h-full w-full register">
                 <svg className="circle-loading-bar hidden sm:block w-full h-full">
                   <circle cx="105" cy="105" r="100"></circle>
                   <circle

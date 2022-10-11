@@ -106,7 +106,7 @@ function MyApp({ children }) {
       return;
     }
     dispatch(stopLoadingApp());
-  }, [logged, profileData.visible]);
+  }, [logged]);
 
 
   return (

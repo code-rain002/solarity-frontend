@@ -27,10 +27,6 @@ const EditStyle = (props) => {
     loading: state.common.appLoading,
   }));
 
-  useEffect(() => {
-    console.log(wallet.connected);
-  }, []);
-
   const onSetColor = (value, target) => {
     let tempStyle = {};
     Object.assign(tempStyle, userInfo.passportStyle);
