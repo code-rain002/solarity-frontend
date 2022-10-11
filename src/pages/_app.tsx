@@ -54,7 +54,7 @@ function MyApp({ children }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [network, setNetwork] = useState(WalletAdapterNetwork.Mainnet);
+  const [network, setNetwork] = useState(WalletAdapterNetwork.Testnet);
 
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 

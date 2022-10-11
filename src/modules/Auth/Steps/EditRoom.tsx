@@ -24,6 +24,9 @@ const EditRoom = (props) => {
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
+  const { selectedNft } = useSelector(
+    (state: RootStateOrAny) => state.marketplace
+  );
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(userInfo.domain, userInfo.solanaAddress, true);
 
   useEffect(() => {
@@ -74,6 +77,7 @@ const EditRoom = (props) => {
                   type={nft.type}
                   key={index}
                   onClick={() => onSelectNft(nft)}
+                  selected={nft == selectedNft}
                 />
               </div>
             ))}

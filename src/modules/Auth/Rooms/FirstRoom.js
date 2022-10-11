@@ -151,10 +151,10 @@ export default function FirstEditRoom({
     if (mounted) {
       return (
         <>
-          <div id="loadingScreen" className="h-full w-full">
+          {/* <div id="loadingScreen" className="h-full w-full">
             <div className='relative h-full w-full'>
               <img src={'/images/marketplace/rooms/0.jpg'} width="100%" height="100%" className='absolute top-0 right-0 bottom-0 left-0 z-0'/>
-              <div className="relative h-full w-full bg-[rgba(12,12,14,0.7)] backdrop-blur-lg pt-[calc(50vh-104px)] sm:pt-[calc(50vh-165px)] z-10">
+              <div className="relative h-full w-full bg-[rgba(12,12,14,0.7)] backdrop-blur-lg z-10">
                 <div className="w-[210px] h-[210px] sm:w-[330px] sm:h-[330px] m-auto">
                   <div className="text-white items-center flex h-full">
                     <div className="text-center m-auto h-full w-full">
@@ -177,7 +177,7 @@ export default function FirstEditRoom({
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <a-scene 
               embedded
               renderer="antialias: true;

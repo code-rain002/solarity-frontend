@@ -3,7 +3,8 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { FirstRoom, SecondRoom, LockedRoom } from "../Rooms";
 import { updateNftCard } from "redux/slices/profileSlice";
 
-const RoomDemo = () => {
+const RoomDemo = (props) => {
+  const { chooseFlag, setChooseFlag, picNo, setPicNo, setRoom_id, imageUrl } = props;
   const dispatch = useDispatch();
   const [roomUpdateView, setRoomUpdateView] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -15,32 +16,6 @@ const RoomDemo = () => {
   );
   const activeRoom = rooms.find((room: any) => room.active);
   console.log(activeRoom)
-  const [chooseFlag, setChooseFlag] = useState<string | Boolean>(false);
-  const [picNo, setPicNo] = useState<string>("0");
-  const [room_id, setRoom_id] = useState("");
-  const [imageUrl, setImageUrl] = useState<string>();
-
-  // const { roomNo: activeRoomNo } = rooms.find(({ active }: any) => active);
-  // const [nfts, nftLoading, nftError] = getNfts(username, solanaAddress);
-  // let editRoomData;
-  // let roomView;
-
-  var chooseNft = () => {
-    dispatch(
-      updateNftCard({
-        data: {
-          roomId: room_id,
-          picNo: picNo,
-          mintAddress: selectedNft.mintAddress,
-          link: selectedNft.link,
-        },
-        successFunction: () => {},
-        errorFunction: () => {},
-        finalFunction: () => {},
-      })
-    );
-    setChooseFlag(true);
-  };
 
   return (
     <div className="rounded-[20px] border-[1px] border-primary bg-[#1a1a1c] p-3 mt-5 lg:mt-0">

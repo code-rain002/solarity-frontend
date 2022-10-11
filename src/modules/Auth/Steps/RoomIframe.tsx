@@ -11,6 +11,7 @@ import { createTransferInstruction, getOrCreateAssociatedTokenAccount } from "ut
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { placeBid } from "redux/slices/authSlice";
+import { changeActiveRoom } from "redux/slices/profileSlice";
 
 // const BaseUrl = process.env.NODE_ENV === "development"
 // 	? process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL + "/"
@@ -117,7 +118,9 @@ const RoomIframe = (props) => {
   };
 
   const setActiveRoom = () => {
-
+    dispatch(changeActiveRoom({
+      roomNo: roomInfo.no
+    }))
   }
 
   return (
