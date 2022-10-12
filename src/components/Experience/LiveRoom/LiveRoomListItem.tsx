@@ -7,11 +7,8 @@ type LiveRoomListItemType = {
   walletIcon: any;
   collectionName: string;
   roomName: string;
-  roomSelect: any;
   lgImgUrl: string;
-  activeRoom: any;
   currentNumberOfMembers: number;
-  setActiveRoomId: any;
   roomId: number;
   setShowMobileJoinRoomDlg: any;
 };
@@ -39,11 +36,7 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
   const { height, width } = useWindowDimensions();
   return (
     <div
-      className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative
-                        cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl
-          ? "border-primary"
-          : "border-[#272829]"
-        } `}
+      className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl ? "border-primary" : "border-[#272829]"} `}
       onClick={() => {
         width < 768 ? showJoinRoomDlg(props) : onItemClick(props);
       }}
@@ -68,7 +61,6 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
           {props.roomName}
         </div>
       </div>
-
       <div
         className=" flex flex-row gap-[4px] py-[4px] pr-[8px] pl-[6px]  absolute h-[24px] left-[16px] top-[16px]
                             bg-[rgba(12,12,14,0.5)] backdrop-blur-[15px] rounded-[40px] items-center "

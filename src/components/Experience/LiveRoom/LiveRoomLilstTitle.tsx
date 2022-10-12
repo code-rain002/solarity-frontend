@@ -1,10 +1,20 @@
-import { GreyButton } from "components/Common/Buttons"
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { GreyButton } from "components/Common/Buttons";
+import { setModalVisibility } from 'redux/slices/chatSlice';
 
 type LiveRoomListTitleType = {
     number: any
 }
 
 const LiveRoomListTitle = (props: LiveRoomListTitleType) => {
+    const dispatch = useDispatch();
+
+    const createRoomModal = () => {
+        dispatch(setModalVisibility(true))
+    }
+
     return (
         <div className=" font-['Outfit'] font-normal text-[24px] text-[#f3f3f3] flex flex-row justify-between ">
             <div className="flex">
@@ -13,7 +23,7 @@ const LiveRoomListTitle = (props: LiveRoomListTitleType) => {
                     {props.number}
                 </div>
             </div>
-            <GreyButton caption="Create" onClick={() => { }} />
+            <GreyButton caption="Create" onClick={createRoomModal} />
         </div>
     )
 }

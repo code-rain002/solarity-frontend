@@ -9,7 +9,7 @@ import { addMsg, addPeer, removePeer, setMsg, setName, setRooms } from "redux/sl
 import ACTIONS from "config/actions"
 import { useRouter } from "next/router"
 import CreateRoomButton from "components/Experience/LiveRoom/CreateRoomButton"
-import LiveRoomSection from "modules/Experience/LiveRoomSection"
+import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -34,34 +34,34 @@ const ProfileIndex = () => {
 
     const initSocket = () => {
         // This part is main for socket.
-        if (!window.socket) {
+        if (!(window as any).socket) {
             setTimeout(() => {
                 initSocket();
             }, 100);
             return;
         }
 
-        if (!window.listen) {
-            window.socket.on(ACTIONS.ADD_PEER, (data: any) => {
+        if (!(window as any).listen) {
+            (window as any).socket.on(ACTIONS.ADD_PEER, (data: any) => {
                 dispatch(addPeer(data));
             });
-            window.socket.on(ACTIONS.SEND_MSG, (data: any) => {
+            (window as any).socket.on(ACTIONS.SEND_MSG, (data: any) => {
                 dispatch(addMsg(data));
             });
-            window.socket.on(ACTIONS.REMOVE_PEER, (data: any) => {
+            (window as any).socket.on(ACTIONS.REMOVE_PEER, (data: any) => {
                 dispatch(removePeer(data));
             });
 
-            window.socket.on(ACTIONS.ROOM_LIST, (data: any) => {
+            (window as any).socket.on(ACTIONS.ROOM_LIST, (data: any) => {
                 dispatch(setRooms(data.rooms));
             });
 
-            window.socket.on(ACTIONS.CREATE_ROOM, (data: any) => {
+            (window as any).socket.on(ACTIONS.CREATE_ROOM, (data: any) => {
                 dispatch(setMsg(data.msgs));
             });
 
-            window.socket.on(ACTIONS.ROOM_READY, (data: any) => {
-                window.socket.emit(ACTIONS.ROOM_LIST, {});
+            (window as any).socket.on(ACTIONS.ROOM_READY, (data: any) => {
+                (window as any).socket.emit(ACTIONS.ROOM_LIST, {});
                 if (data.type == false && data.roomNo == 0) {
                     router.push(`/experience/Room?rid=${data.roomId}&roomType=0&no=0`);
                 } else if (data.type == false && data.roomNo == 1) {
@@ -72,10 +72,10 @@ const ProfileIndex = () => {
                     router.push(`/experience/Room?rid=${data.roomId}&roomType=3&no=${data.roomNo + 1}`);
                 }
             });
-            window.socket.emit(ACTIONS.DUPLICATION_INVITATION, () => {
+            (window as any).socket.emit(ACTIONS.DUPLICATION_INVITATION, () => {
                 alert("This user is already invited.");
             });
-            window.listen = true;
+            (window as any).listen = true;
         }
     }
 
@@ -94,14 +94,7 @@ const ProfileIndex = () => {
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12">
                     <div className=" col-span-1">
                         <div className=" flex flex-col h-full ">
-                            <LiveRoomSection
-                                activeRoom={activeRoom}
-                                roomSelect={() => { }}
-                                setActiveRoomId={setActiveRoomId}
-                                activeRoomId={activeRoomId}
-                                roomSettingDlgToggle={roomSettingDlgToggle}
-                                setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
-                            />
+                            <LiveRoomList />
                         </div>
                     </div>
                     <div className=" md:col-span-2 lg:col-span-3 xl:col-span-4">

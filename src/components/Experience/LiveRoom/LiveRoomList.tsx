@@ -5,16 +5,7 @@ import LiveRoomListItem from "./LiveRoomListItem";
 import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
 
-type LiveRoomListType = {
-  roomSelect: any;
-  activeRoom: any;
-  setActiveRoomId: any;
-  activeRoomId: any;
-  roomSettingDlgToggle: boolean;
-  setRoomSettingDlgToggle: any;
-};
-
-const LiveRoomList = (props: LiveRoomListType) => {
+const LiveRoomList = () => {
   const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(540);
   const [maxLiveRoomSectionHeight, setMaxLiveRoomSectionHeight] = useState(
     LiveRoomListData.length * 88
@@ -42,11 +33,8 @@ const LiveRoomList = (props: LiveRoomListType) => {
               walletIcon={i.walletIcon}
               collectionName={i.collectionName}
               roomName={i.roomName}
-              roomSelect={props.roomSelect}
               lgImgUrl={i.lgImgUrl}
-              activeRoom={props.activeRoom}
               currentNumberOfMembers={i.currentNumberOfMembers}
-              setActiveRoomId={props.setActiveRoomId}
               roomId={k}
               setShowMobileJoinRoomDlg={setShowMobileJoinRoomDlg}
             />

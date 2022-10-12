@@ -1,25 +1,9 @@
 import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList";
 
-type LiveRoomSectionType = {
-  roomSelect: any;
-  activeRoom: any;
-  setActiveRoomId: any;
-  activeRoomId: any;
-  roomSettingDlgToggle: boolean;
-  setRoomSettingDlgToggle: any;
-};
-
-const LiveRoomSection = (props: LiveRoomSectionType) => {
+const LiveRoomSection = () => {
   return (
     <div className="h-full ">
-      <LiveRoomList
-        activeRoom={props.activeRoom}
-        roomSelect={props.roomSelect}
-        setActiveRoomId={props.setActiveRoomId}
-        activeRoomId={props.activeRoomId}
-        roomSettingDlgToggle={props.roomSettingDlgToggle}
-        setRoomSettingDlgToggle={props.setRoomSettingDlgToggle}
-      />
+      <LiveRoomList />
     </div>
   );
 };
