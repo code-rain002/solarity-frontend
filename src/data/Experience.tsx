@@ -8,7 +8,7 @@ import {
   UsersBoxDataType,
 } from "modal/experience";
 
-export const PublicRoomList: any = [
+export const PublicRoomList: any[] = [
   {
     type: false,
     roomNo: 2,
