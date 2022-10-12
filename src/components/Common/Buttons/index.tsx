@@ -6,4 +6,5 @@ export { default as PrimaryButton } from "./PrimaryButton";
 export { default as WalletButton } from "./WalletButton";
 export { default as CancelButton } from "./CancelButton";
 export { default as DAORoleButton } from "./DAORoleButton";
-export { default as NormalButton} from "./NormalButton"
+export { default as NormalButton } from "./NormalButton"
+export { default as GreyButton } from "./GreyButton"

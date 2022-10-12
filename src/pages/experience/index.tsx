@@ -93,7 +93,6 @@ const ProfileIndex = () => {
             banner={
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12">
                     <div className=" col-span-1">
-                        {/* <CreateRoomButton onClick={createRoomModal} /> */}
                         <div className=" flex flex-col h-full ">
                             <LiveRoomSection
                                 activeRoom={activeRoom}

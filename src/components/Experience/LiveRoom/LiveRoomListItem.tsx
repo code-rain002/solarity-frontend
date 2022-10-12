@@ -40,11 +40,10 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
   return (
     <div
       className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative
-                        cursor-pointer hover:border-[#29b080] ${
-                          props.activeRoom == props.lgImgUrl
-                            ? "border-primary"
-                            : "border-[#272829]"
-                        } `}
+                        cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl
+          ? "border-primary"
+          : "border-[#272829]"
+        } `}
       onClick={() => {
         width < 768 ? showJoinRoomDlg(props) : onItemClick(props);
       }}
@@ -58,14 +57,14 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
           height={75}
         />
       </div>
-      <div className=" flex flex-col ml-[16px] truncate overflow-hidden ">
+      <div className=" flex flex-col ml-[16px] py-2 truncate overflow-hidden ">
         <div className=" flex flex-row gap-[15px] ">
           {props.walletIcon}
           <div className=" font-['Outfit'] font-[400] text-[12px] text-[#929298] ">
             {props.collectionName}
           </div>
         </div>
-        <div className=" font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3] truncate overflow-hidden">
+        <div className=" font-['Outfit'] font-[200] text-[14px] text-[#f3f3f3] truncate overflow-hidden">
           {props.roomName}
         </div>
       </div>
