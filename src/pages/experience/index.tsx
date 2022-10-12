@@ -91,10 +91,10 @@ const ProfileIndex = () => {
         <Layout
             sidebarToggler={sidebarToggler}
             banner={
-                <div className="grid grid-cols-5 gap-14">
+                <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12">
                     <div className=" col-span-1">
                         {/* <CreateRoomButton onClick={createRoomModal} /> */}
-                        <div className=" flex flex-col ">
+                        <div className=" flex flex-col h-full ">
                             <LiveRoomSection
                                 activeRoom={activeRoom}
                                 roomSelect={() => { }}
@@ -105,7 +105,7 @@ const ProfileIndex = () => {
                             />
                         </div>
                     </div>
-                    <div className=" col-span-4">
+                    <div className=" md:col-span-2 lg:col-span-3 xl:col-span-4">
                         <ExperienceBanner
                             activeRoomId={activeRoomId}
                             sidebarToggler={sidebarToggler}

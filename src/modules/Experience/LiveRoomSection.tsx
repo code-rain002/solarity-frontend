@@ -11,7 +11,7 @@ type LiveRoomSectionType = {
 
 const LiveRoomSection = (props: LiveRoomSectionType) => {
   return (
-    <div className=" flex flex-col ">
+    <div className="h-full ">
       <LiveRoomList
         activeRoom={props.activeRoom}
         roomSelect={props.roomSelect}
