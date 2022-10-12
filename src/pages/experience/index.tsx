@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react"
 import Experience from "modules/Experience"
 import Layout from "components/Layout"
 import ExperienceBanner from "modules/Experience/ExperienceBanner"
-import RoomSettingDlg from "components/Experience/Common/RoomSettingDlg"
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
 import { addMsg, addPeer, removePeer, setMsg, setName, setRooms } from "redux/slices/chatSlice"
 import ACTIONS from "config/actions"
 import { useRouter } from "next/router"
-import CreateRoomButton from "components/Experience/LiveRoom/CreateRoomButton"
 import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
+import CreateRoomModal from "components/Experience/Common/CreateRoomModal"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -20,8 +19,9 @@ const ProfileIndex = () => {
     const [roomSettingDlgToggle, setRoomSettingDlgToggle] = useState([false, "join"])
     const [activeRoomId, setActiveRoomId] = useState(0)
 
-    const { selectedRoomIndex } = useSelector((state: RootStateOrAny) => ({
+    const { selectedRoomIndex, modalVisibility } = useSelector((state: RootStateOrAny) => ({
         selectedRoomIndex: state.chat.selectedRoomIndex,
+        modalVisibility: state.chat.modalVisibility,
     }));
 
     useEffect(() => {
@@ -118,11 +118,9 @@ const ProfileIndex = () => {
                 roomSettingDlgToggle={roomSettingDlgToggle}
                 setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])}
             />
-            {
-                roomSettingDlgToggle[0] && (
-                    <RoomSettingDlg activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={setRoomSettingDlgToggle} />
-                )
-            }
+            {modalVisibility && (
+                <CreateRoomModal />
+            )}
         </Layout>
     )
 }

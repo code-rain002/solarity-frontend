@@ -43,15 +43,17 @@ const CreateRoomModal = () => {
     }))
   }
 
-  const closeDlg = () => {
-    dispatch(setModalVisibility(false));
+  const closeDlg = (e) => {
+    if (e.target.id == "room_setting_dlg") {
+      dispatch(setModalVisibility(false));
+    }
   };
 
   return (
     <div
       className={` flex justify-center md:items-center xs:items-end top-[0px] left-[0px] right-[0px] bottom-[0px] backdrop-blur-[20px] md:bg-[rgba(12,12,14,0.7)] xs:bg-globalBgColor z-[1002] fixed`}
       id="room_setting_dlg"
-      onClick={closeDlg}
+      onClick={(e) => closeDlg(e)}
     >
       <div
         className=" fixed md:w-[40%] xs:w-full h-[87.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px] flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] overscroll-contain"
@@ -59,7 +61,7 @@ const CreateRoomModal = () => {
         {/* Modal Header */}
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
-          onClick={closeDlg}
+          onClick={() => dispatch(setModalVisibility(false))}
         >
           <CloseIcon />
         </div>

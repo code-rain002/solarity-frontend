@@ -5,7 +5,7 @@ import LiveRoomListItem from "./LiveRoomListItem";
 import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
 
-const LiveRoomList = () => {
+const LiveRoomList = (props: any) => {
   const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(540);
   const [maxLiveRoomSectionHeight, setMaxLiveRoomSectionHeight] = useState(
     LiveRoomListData.length * 88
