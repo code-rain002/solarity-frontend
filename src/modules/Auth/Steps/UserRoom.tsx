@@ -37,7 +37,7 @@ const UserRoom = (props) => {
   const onContinue = () => {
     const data = {}
     const payload = {
-      stepNum: 7,
+      stepNum: 2,
     }
     dispatch(goStep(payload));
   }

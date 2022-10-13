@@ -13,14 +13,11 @@ import {
 } from "../../../redux/slices/commonSlice";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import WalletAddress from "./WalletAddress";
-import { useMetaplex } from "utils/contexts/useMetaplex";
-import { useWallet } from "@solana/wallet-adapter-react";
 
 const EditStyle = (props) => {
+  const { onMint } = props;
   const dispatch = useDispatch();
   const router = useRouter();
-  const wallet = useWallet();
-  const { metaplex } = useMetaplex();
 
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
@@ -38,33 +35,6 @@ const EditStyle = (props) => {
       type: "passportStyle",
     };
     dispatch(changeInfo({ payload: payload }));
-  };
-
-  const mint = async () => {
-    try {
-      let { nft } = await metaplex.nfts().create({
-        uri: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
-        name: "New NFT",
-        // sellerFeeBasisPoints: 500,
-      });
-      console.log(nft);
-      // const { uri } = await metaplex
-      // .nfts()
-      // .uploadMetadata({
-      //     name: "My NFT",
-      //     description: "My description",
-      //     image: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
-      // })
-      // .run();
-      // console.log(uri) // https://arweave.net/789
-
-      // let myNfts = await metaplex
-      //   .nfts()
-      //   .findAllByOwner(metaplex.identity().publicKey);
-      // console.log("myNfts", myNfts);
-    } catch (err) {
-      console.log('err: ', err)
-    }
   };
 
   const onContinue = () => {
@@ -175,7 +145,7 @@ const EditStyle = (props) => {
             caption="Mint"
             icon=""
             bordered={false}
-            onClick={() => onContinue()}
+            onClick={() => onMint()}
             disabled={loading ? true : false}
             styles="rounded-[15px]"
           />
