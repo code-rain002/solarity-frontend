@@ -17,6 +17,7 @@ import { apiCaller } from "utils/fetcher";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { GLTFExporter } from "three-stdlib";
+import * as THREE from 'three'
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -86,17 +87,36 @@ export const RegisterPage = () => {
 
   const onMint = async () => {
     try {
-      console.log(modelRef.current);
-      console.log(canvasRef.current);
-      // const options = { 
-      //   binary: true,
-      //   embedImages: true
-      // }
-      // const exporter = new GLTFExporter();
-      // exporter.parse(modelRef.current, (result) => {
-      //   console.log(result)
-      //   saveArrayBuffer(result, 'model.glb')
-      // }, options);
+      // console.log(modelRef.current.parent);
+      // console.log(canvasRef.current);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+      const renderer = new THREE.WebGLRenderer();
+      // renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+      const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+      const cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+
+      camera.position.z = 5;
+      console.log(scene);
+      // renderer.render( scene, camera );
+      
+      const options = { 
+        trs: false,
+        onlyVisible: true,
+        binary: true,
+        maxTextureSize: 4096,
+      }
+
+      const exporter = new GLTFExporter();
+      exporter.parse(scene, (result) => {
+        console.log(result)
+        saveArrayBuffer(result, 'model.glb')
+      }, options);
+
       // const { uri, metadata } = await metaplex
       // .nfts()
       // .uploadMetadata({
@@ -127,11 +147,10 @@ export const RegisterPage = () => {
   };
 
   const saveArrayBuffer = (buffer, filename) => {
-    save(new Blob([buffer], { type: 'application/octet-stream' }), filename)
+    save(new Blob([buffer], { type: 'model/gltf-binary' }), filename)
   }
 
   const save = (blob, filename) => {
-    console.log(blob, filename)
     const link = document.createElement('a');
     link.style.display = 'none';
     document.body.appendChild(link);
@@ -139,6 +158,10 @@ export const RegisterPage = () => {
     link.href = URL.createObjectURL(blob);
     link.download = filename;
     link.click();
+  }
+
+  function saveString( text, filename ) {
+    save( new Blob( [ text ], { type: 'text/plain' } ), filename );
   }
 
   return (
