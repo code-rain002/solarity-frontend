@@ -4,7 +4,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setSelectedRoom } from 'redux/slices/chatSlice';
 
 type RoomListItemType = {
-  data: any;
+  data?: any;
   type: boolean;
   roomNo: number;
   walletIcon: Object;
@@ -18,7 +18,7 @@ const RoomListItem = (props: RoomListItemType) => {
 
   return (
     <div
-      className={`flex flex-col h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary ${selectedRoom && selectedRoom.roomNo == props.roomNo ? 'border-primary' : ''}`}
+      className={`flex flex-col h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary ${selectedRoom && selectedRoom.roomNo == props.roomNo && selectedRoom.type == props.type ? 'border-primary' : ''}`}
       onClick={() => dispatch(setSelectedRoom({
         type: props.type,
         roomNo: props.roomNo,
@@ -34,11 +34,11 @@ const RoomListItem = (props: RoomListItemType) => {
           alt="room_image"
         />
       </div>
-      <div className=" mt-[20px] font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3] ml-[12px]  mb-[12px] truncate">
+      <div className=" mt-[20px] font-['Outfit'] font-[200] text-[16px] text-[#f3f3f3] ml-[12px]  mb-[12px] truncate">
         {props.roomName}
       </div>
       <div
-        className={` top-[18px] left-[18px] ${selectedRoom && selectedRoom.roomNo == props.roomNo ? "absolute" : "hidden"
+        className={` top-[18px] left-[18px] ${selectedRoom && selectedRoom.roomNo == props.roomNo && selectedRoom.type == props.type ? "absolute" : "hidden"
           } `}
       >
         <svg

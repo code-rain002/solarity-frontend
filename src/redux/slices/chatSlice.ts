@@ -10,9 +10,11 @@ export interface CounterState {
   rooms: any[];
   msgs: any[];
   selectedIndex: number;
-  selectedRoom: Object;   // select a room to create
-  newRoomTitle: string;    // room name to create
+  selectedRoom: Object;   // Select a room to create
+  newRoomTitle: string;    // Room name to create
+  newModelIndex: number;    //New model index
   modalVisibility: boolean;
+  activeRoomTypeIndex: number;
 }
 
 const initialState: CounterState = {
@@ -26,7 +28,9 @@ const initialState: CounterState = {
   selectedIndex: -1,
   selectedRoom: {},
   newRoomTitle: "",
+  newModelIndex: 0,
   modalVisibility: false,
+  activeRoomTypeIndex: 0,
 };
 
 export const chatSlice = createSlice({
@@ -101,9 +105,15 @@ export const chatSlice = createSlice({
     setNewRoomTitle(state, action: PayloadAction<any>) {
       state.newRoomTitle = action.payload;
     },
+    setActiveRoomTypeIndex(state, action: PayloadAction<number>) {
+      state.activeRoomTypeIndex = action.payload;
+    },
+    setNewModelIndex(state, action: PayloadAction<number>) {
+      state.newModelIndex = action.payload;
+    }
   },
 });
 
-export const { setModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;

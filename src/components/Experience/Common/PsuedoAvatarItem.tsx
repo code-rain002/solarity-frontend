@@ -1,32 +1,35 @@
 import Image from "next/image";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setNewModelIndex } from "redux/slices/chatSlice";
 
 type PsuedoAvatarItemType = {
-  setActiveAvatar: any;
   itemId: number;
-  activeAvatar: number;
   imgUrl: string;
   title: string;
-  setActiveAvatarImg: any;
 };
 
 const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
+
+  const dispatch = useDispatch();
+  const { newModelIndex } = useSelector((state: RootStateOrAny) => ({
+    newModelIndex: state.chat.newModelIndex
+  }))
+
   return (
     // <div className={` relative border-[1.2px] rounded-[15px] w-[169px] h-[169px] p-[8px] cursor-pointer
     <div
       className={` relative border-[1.2px] rounded-[15px] p-[8px] cursor-pointer
-                        flex flex-row justify-center hover:border-primary select-none
-                        ${
-                          props.activeAvatar === props.itemId
-                            ? "border-primary"
-                            : "border-[#272829]"
-                        } `}
+                        hover:border-primary select-none h-fit
+                        ${newModelIndex === props.itemId
+          ? "border-primary"
+          : "border-[#272829]"
+        } `}
       onClick={() => {
-        props.setActiveAvatar(props.itemId);
-        props.setActiveAvatarImg(props.imgUrl);
+        dispatch(setNewModelIndex(props.itemId))
       }}
     >
-      <div className=" flex flex-row w-full h-full rounded-[10px] bg-[#181818] justify-center items-center p-[24px] ">
-        <div className=" block w-full h-full ">
+      <div className=" w-full rounded-[10px] bg-[#181818] items-center p-[24px] pb-2 ">
+        <div className="block w-full ">
           <Image
             src={props.imgUrl}
             layout="responsive"
@@ -36,7 +39,7 @@ const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
         </div>
       </div>
       <div
-        className=" absolute bottom-[18px] font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3]
+        className=" font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3]
                             w-[90%] flex flex-row justify-center
                             h-content bg-gradient-to-t from-[#181818] via-[#181818] to-transparent leading-[2rem] "
       >
@@ -44,9 +47,8 @@ const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
       </div>
 
       <div
-        className={` top-[18px] left-[18px] ${
-          props.activeAvatar === props.itemId ? "absolute" : "hidden"
-        } `}
+        className={` top-[18px] left-[18px] ${newModelIndex === props.itemId ? "absolute" : "hidden"
+          } `}
       >
         <svg
           width="24"

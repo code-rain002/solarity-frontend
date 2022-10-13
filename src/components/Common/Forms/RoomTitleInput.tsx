@@ -7,11 +7,9 @@ const dropdown_items = ["public", "private"]
 
 const RoomTitleInput = () => {
     const dispatch = useDispatch();
-    const { newRoomTitle } = useSelector(
-        (state: RootStateOrAny) => ({
-            newRoomTitle: state.chat.newRoomTitle,
-        })
-    );
+    const { newRoomTitle } = useSelector((state: RootStateOrAny) => ({
+        newRoomTitle: state.chat.newRoomTitle,
+    }));
     const onChageRoomTitle = (e) => {
         dispatch(setNewRoomTitle(e.target.value))
     }

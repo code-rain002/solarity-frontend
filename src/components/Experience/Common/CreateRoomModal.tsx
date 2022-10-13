@@ -47,7 +47,7 @@ const CreateRoomModal = () => {
       title: selectedRoom.roomName,
       type: selectedRoom.type,
       roomNo: selectedRoom.roomNo,
-      roomName: uName,
+      roomName: newRoomTitle,
       userName: profileData.username,
       slideUrls: [],
       modelIndex: modelIndex,
@@ -84,7 +84,7 @@ const CreateRoomModal = () => {
         </div>
 
         {/* Modal Content */}
-        <div className="flex items-start p-1 border-[1.2px] border-[#272829] rounded-[40px] w-fit gap-[4px]">
+        <div className="flex items-start p-2 border-[1.2px] border-[#272829] rounded-[40px] w-fit gap-[4px]">
           {["Select Room", "Select Avatar"].map((i, index) => {
             return <RoundedTabItem selectedStatus={step === index} title={i} onClick={() => setStep(index)} key={index} />
           })}
