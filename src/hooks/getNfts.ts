@@ -3,7 +3,6 @@ import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { apiCaller } from "../utils/fetcher";
-import placeholder from "../assets/images/placeholder/avatar.png";
 import { Promise } from "bluebird";
 import axios from "axios";
 
@@ -42,7 +41,7 @@ export const getNfts = (
       uri,
       mintAddress: mint,
       type: "Solana",
-      image: placeholder.src,
+      image: "/images/nft_placeholder.png",
       collectionName: "Loading...",
     }));
     setSolNfts(formattedNfts);

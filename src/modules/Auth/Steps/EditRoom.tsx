@@ -20,6 +20,7 @@ import { goStep } from "redux/slices/profileSlice";
 const EditRoom = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { metaplex } = useMetaplex();
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
