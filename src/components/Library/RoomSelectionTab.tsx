@@ -9,10 +9,11 @@ import RoomList from "./RoomList"
 const RoomSelectionTab = (props) => {
     const dispatch = useDispatch()
     const router = useRouter();
-    const { eventInfo, step } = useSelector(
+    const { eventInfo, step, selectedRoom } = useSelector(
         (state: RootStateOrAny) => ({
             eventInfo: state.event.eventInfo,
-            step: state.event.step
+            step: state.event.step,
+            selectedRoom: state.chat.selectedRoom
         })
     );
     const [activeRoom, setActiveRoom] = useState(null);
@@ -20,6 +21,7 @@ const RoomSelectionTab = (props) => {
     useEffect(() => {
         setActiveRoom(eventInfo.room)
     }, [])
+    console.log(selectedRoom);
 
     useEffect(() => {
         if (activeRoom) {

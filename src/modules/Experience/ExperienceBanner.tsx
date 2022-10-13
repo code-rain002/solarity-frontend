@@ -12,12 +12,10 @@ type ExperienceBannerType = {
 
 const ExperienceBanner = (props: ExperienceBannerType) => {
   return (
-    <div className="w-full relative rounded-[25px] overflow-hidden md:block xs:hidden">
+    <div className="w-full h-full relative rounded-[25px] overflow-hidden md:block xs:hidden">
       <Image
         src={`/images/experience/room_images/${props.activeRoom}.jpg`}
-        layout="responsive"
-        width={1322}
-        height={600}
+        layout="fill"
         alt="Experience Banner Image"
       />
       <RoomInfoDlg

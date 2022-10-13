@@ -1,24 +1,19 @@
+import React from "react"
 import RoomTypeDropdown from "components/Library/RoomTypeDropdown"
-import { useState } from "react"
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
-import { changeInfo } from "redux/slices/eventSlice"
+import { setNewRoomTitle } from "redux/slices/chatSlice"
 
 const dropdown_items = ["public", "private"]
 
 const RoomTitleInput = () => {
     const dispatch = useDispatch();
-    const { eventInfo, step } = useSelector(
+    const { newRoomTitle } = useSelector(
         (state: RootStateOrAny) => ({
-            eventInfo: state.event.eventInfo,
-            step: state.event.step
+            newRoomTitle: state.chat.newRoomTitle,
         })
     );
     const onChageRoomTitle = (e) => {
-        const payload = {
-            value: e.target.value,
-            type: "title"
-        }
-        dispatch(changeInfo({ payload: payload }))
+        dispatch(setNewRoomTitle(e.target.value))
     }
 
     return (
@@ -28,7 +23,7 @@ const RoomTitleInput = () => {
             </div>
 
             <div className="flex w-[70%] justify-center items-center">
-                <input type="text" className="w-full bg-transparent font-extralight text-[#f3f3f3] text-[16px] px-[16px] border-r-[1.5px] border-r-[#272829] box-border" value={eventInfo.title} onChange={(e) => onChageRoomTitle(e)} autoFocus={true} />
+                <input type="text" className="w-full bg-transparent font-extralight text-[#f3f3f3] text-[16px] px-[16px] border-r-[1.5px] border-r-[#272829] box-border" value={newRoomTitle} onChange={(e) => onChageRoomTitle(e)} autoFocus={true} />
             </div>
             <div className="flex w-[30%] justify-center items-center">
                 <RoomTypeDropdown

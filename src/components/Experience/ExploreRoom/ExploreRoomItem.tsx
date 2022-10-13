@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { setSelectedRoom, setSelectedRoomIndex } from "redux/slices/chatSlice";
+import { setSelectedRoom } from "redux/slices/chatSlice";
 
 type ExploreRoomItemType = {
   walletIcon: any;
@@ -17,7 +17,6 @@ const ExploreRoomItem = (props: ExploreRoomItemType) => {
   }))
 
   const selectRoom = (roomNo) => {
-    dispatch(setSelectedRoomIndex(roomNo));
     dispatch(setSelectedRoom({
       type: props.type,
       roomName: props.roomName,
