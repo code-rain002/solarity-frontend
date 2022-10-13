@@ -11,8 +11,25 @@ import {
 export const PublicRoomList: any[] = [
   {
     type: false,
+    roomNo: 0,
+    walletIcon: <SolanaIcon />,
+    roomName: "Hub Room",
+    imgUrl: "/images/rooms/hub.jpg"
+  },
+  {
+    type: false,
+    roomNo: 1,
+    walletIcon: <SolanaIcon />,
+    roomName: "Gallery Room",
+    imgUrl: "/images/rooms/gallery.png"
+  },
+  {
+    type: false,
     roomNo: 2,
-  }
+    walletIcon: <SolanaIcon />,
+    roomName: "Plaza Room",
+    imgUrl: "/images/rooms/plaza.jpg"
+  },
 ];
 
 export const RoomMemberAvatarSmallData: RoomMemberAvatarSmallDataType[][] = [

@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { PrimaryButton } from "components/Common/Buttons";
 import { UpArrow } from "components/icons";
 import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { createRoom, setModalVisibility } from "../../../redux/slices/chatSlice";
 import { CloseIcon } from "../../icons";
 import RoundedTabItem from "components/Profile/RoundedTabItem";
-import RoomSelectionTab from "components/Library/RoomSelectionTab";
-import FriendSelectionTab from "components/Library/FriendSelectionTab";
+import RoomSelectionContent from "./ModalContent/RoomSelectionContent";
+import AvatarSelectionContent from "./ModalContent/AvatarSelectionContent";
 
 const CreateRoomModal = () => {
   const dispatch = useDispatch();
-  const { selectedRoom, profileData } = useSelector((state: RootStateOrAny) => ({
+  const { selectedRoom, newRoomTitle, profileData } = useSelector((state: RootStateOrAny) => ({
     selectedRoom: state.chat.selectedRoom,
+    newRoomTitle: state.chat.newRoomTitle,
     profileData: state.profile.data
   }));
 
@@ -26,8 +26,20 @@ const CreateRoomModal = () => {
   let j = -1;
 
   const createRoomFunc = () => {
-    if (uName == "") {
-      alert('The name of room is required.');
+    if (step == 0) {
+      setStep(1);
+      return;
+    }
+
+    if (newRoomTitle == "") {
+      setStep(0);
+      alert('The title of room is required.');
+      return;
+    }
+
+    if (selectedRoom.roomNo == undefined) {
+      setStep(0);
+      alert('Select room first.');
       return;
     }
 
@@ -35,7 +47,7 @@ const CreateRoomModal = () => {
       title: selectedRoom.roomName,
       type: selectedRoom.type,
       roomNo: selectedRoom.roomNo,
-      roomName: uName,
+      roomName: newRoomTitle,
       userName: profileData.username,
       slideUrls: [],
       modelIndex: modelIndex,
@@ -72,17 +84,17 @@ const CreateRoomModal = () => {
         </div>
 
         {/* Modal Content */}
-        <div className="flex items-start p-1 border-[1.2px] border-[#272829] rounded-[40px] w-fit gap-[4px]">
-          {["Select Room", "Invite Friends"].map((i, index) => {
+        <div className="flex items-start p-2 border-[1.2px] border-[#272829] rounded-[40px] w-fit gap-[4px]">
+          {["Select Room", "Select Avatar"].map((i, index) => {
             return <RoundedTabItem selectedStatus={step === index} title={i} onClick={() => setStep(index)} key={index} />
           })}
         </div>
         {/* Tab Content */}
         {step === 0 && (
-          <RoomSelectionTab />
+          <RoomSelectionContent />
         )}
         {step === 1 && (
-          <FriendSelectionTab />
+          <AvatarSelectionContent />
         )}
 
         {/* Modal Footer */}

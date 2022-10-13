@@ -6,7 +6,7 @@ import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
 
 const LiveRoomList = (props: any) => {
-  const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(540);
+  const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(430);
   const [maxLiveRoomSectionHeight, setMaxLiveRoomSectionHeight] = useState(
     LiveRoomListData.length * 88
   );
@@ -18,10 +18,10 @@ const LiveRoomList = (props: any) => {
   }, [liveRoomSectionHeight]);
   let k = -1;
   return (
-    <div className=" items-left gap-[24px] mt-[35px] h-full ">
+    <div className=" items-left gap-[24px] mt-[25px] h-full ">
       <LiveRoomListTitle number="25" />
       <div
-        className={`h-[540px] md:h-[540px] xs:h-[540px] pr-[10px] md:overflow-y-scroll xs:overflow-y-hidden overflow-x-visible flex flex-col items-left md:gap-[16px] xs:gap-[12px] `}
+        className={`h-full pr-[10px] md:overflow-y-scroll xs:overflow-y-hidden overflow-x-visible flex flex-col items-left md:gap-[16px] xs:gap-[12px] `}
         id="lrl"
       >
         {LiveRoomListData.map((i, index) => {

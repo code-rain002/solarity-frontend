@@ -19,8 +19,8 @@ const ProfileIndex = () => {
     const [roomSettingDlgToggle, setRoomSettingDlgToggle] = useState([false, "join"])
     const [activeRoomId, setActiveRoomId] = useState(0)
 
-    const { selectedRoomIndex, modalVisibility } = useSelector((state: RootStateOrAny) => ({
-        selectedRoomIndex: state.chat.selectedRoomIndex,
+    const { selectedRoom, modalVisibility } = useSelector((state: RootStateOrAny) => ({
+        selectedRoom: state.chat.selectedRoom,
         modalVisibility: state.chat.modalVisibility,
     }));
 
@@ -80,7 +80,7 @@ const ProfileIndex = () => {
     }
 
     const createRoomModal = () => {
-        if (selectedRoomIndex != -1) {
+        if (selectedRoom && selectedRoom.roomNo != -1) {
             setRoomSettingDlgToggle([true, "create"]);
         } else {
             alert('Please select a room to create')
@@ -91,13 +91,13 @@ const ProfileIndex = () => {
         <Layout
             sidebarToggler={sidebarToggler}
             banner={
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12">
-                    <div className=" col-span-1">
+                <div className="grid md:flex-row-reverse lg:grid-cols-8 xl:grid-cols-9 2xl:grid-cols-5 gap-12">
+                    <div className="min-w-[265px] col-span-1 lg:col-span-3 xl:col-span-2 2xl:col-span-1">
                         <div className=" flex flex-col h-full ">
                             <LiveRoomList />
                         </div>
                     </div>
-                    <div className=" md:col-span-2 lg:col-span-3 xl:col-span-4">
+                    <div className=" lg:col-span-5 xl:col-span-7 2xl:col-span-4">
                         <ExperienceBanner
                             activeRoomId={activeRoomId}
                             sidebarToggler={sidebarToggler}

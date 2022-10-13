@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import { PrimaryButton } from "components/Common/Buttons";
 import { UpArrow } from "components/icons";
 import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import useWindowDimensions from "utils/layout";
 import AvatarPanel from "./AvatarPanel";
 import PsuedoAvatarItem from "./PsuedoAvatarItem";
