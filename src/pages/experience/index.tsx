@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react"
 import Experience from "modules/Experience"
 import Layout from "components/Layout"
 import ExperienceBanner from "modules/Experience/ExperienceBanner"
-import RoomSettingDlg from "components/Experience/Common/RoomSettingDlg"
-import { useDispatch } from "react-redux"
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
 import { addMsg, addPeer, removePeer, setMsg, setName, setRooms } from "redux/slices/chatSlice"
 import ACTIONS from "config/actions"
 import { useRouter } from "next/router"
+import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
+import CreateRoomModal from "components/Experience/Common/CreateRoomModal"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -17,6 +18,11 @@ const ProfileIndex = () => {
     const [activeRoom, setActiveRoom] = useState("room_1")
     const [roomSettingDlgToggle, setRoomSettingDlgToggle] = useState([false, "join"])
     const [activeRoomId, setActiveRoomId] = useState(0)
+
+    const { selectedRoomIndex, modalVisibility } = useSelector((state: RootStateOrAny) => ({
+        selectedRoomIndex: state.chat.selectedRoomIndex,
+        modalVisibility: state.chat.modalVisibility,
+    }));
 
     useEffect(() => {
         // When a user click f5 key, it helps to forget a user's name.
@@ -28,34 +34,34 @@ const ProfileIndex = () => {
 
     const initSocket = () => {
         // This part is main for socket.
-        if (!window.socket) {
+        if (!(window as any).socket) {
             setTimeout(() => {
                 initSocket();
             }, 100);
             return;
         }
 
-        if (!window.listen) {
-            window.socket.on(ACTIONS.ADD_PEER, (data: any) => {
+        if (!(window as any).listen) {
+            (window as any).socket.on(ACTIONS.ADD_PEER, (data: any) => {
                 dispatch(addPeer(data));
             });
-            window.socket.on(ACTIONS.SEND_MSG, (data: any) => {
+            (window as any).socket.on(ACTIONS.SEND_MSG, (data: any) => {
                 dispatch(addMsg(data));
             });
-            window.socket.on(ACTIONS.REMOVE_PEER, (data: any) => {
+            (window as any).socket.on(ACTIONS.REMOVE_PEER, (data: any) => {
                 dispatch(removePeer(data));
             });
 
-            window.socket.on(ACTIONS.ROOM_LIST, (data: any) => {
+            (window as any).socket.on(ACTIONS.ROOM_LIST, (data: any) => {
                 dispatch(setRooms(data.rooms));
             });
 
-            window.socket.on(ACTIONS.CREATE_ROOM, (data: any) => {
+            (window as any).socket.on(ACTIONS.CREATE_ROOM, (data: any) => {
                 dispatch(setMsg(data.msgs));
             });
 
-            window.socket.on(ACTIONS.ROOM_READY, (data: any) => {
-                window.socket.emit(ACTIONS.ROOM_LIST, {});
+            (window as any).socket.on(ACTIONS.ROOM_READY, (data: any) => {
+                (window as any).socket.emit(ACTIONS.ROOM_LIST, {});
                 if (data.type == false && data.roomNo == 0) {
                     router.push(`/experience/Room?rid=${data.roomId}&roomType=0&no=0`);
                 } else if (data.type == false && data.roomNo == 1) {
@@ -66,22 +72,41 @@ const ProfileIndex = () => {
                     router.push(`/experience/Room?rid=${data.roomId}&roomType=3&no=${data.roomNo + 1}`);
                 }
             });
-            window.socket.emit(ACTIONS.DUPLICATION_INVITATION, () => {
+            (window as any).socket.emit(ACTIONS.DUPLICATION_INVITATION, () => {
                 alert("This user is already invited.");
             });
-            window.listen = true;
+            (window as any).listen = true;
+        }
+    }
+
+    const createRoomModal = () => {
+        if (selectedRoomIndex != -1) {
+            setRoomSettingDlgToggle([true, "create"]);
+        } else {
+            alert('Please select a room to create')
         }
     }
 
     return (
         <Layout
             sidebarToggler={sidebarToggler}
-            banner={<ExperienceBanner
-                activeRoomId={activeRoomId}
-                sidebarToggler={sidebarToggler}
-                activeRoom={activeRoom}
-                setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
-            />}
+            banner={
+                <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12">
+                    <div className=" col-span-1">
+                        <div className=" flex flex-col h-full ">
+                            <LiveRoomList />
+                        </div>
+                    </div>
+                    <div className=" md:col-span-2 lg:col-span-3 xl:col-span-4">
+                        <ExperienceBanner
+                            activeRoomId={activeRoomId}
+                            sidebarToggler={sidebarToggler}
+                            activeRoom={activeRoom}
+                            setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
+                        />
+                    </div>
+                </div>
+            }
             onClick={() => setSidebarToggler(!sidebarToggler)}
         >
             <Experience
@@ -93,11 +118,9 @@ const ProfileIndex = () => {
                 roomSettingDlgToggle={roomSettingDlgToggle}
                 setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])}
             />
-            {
-                roomSettingDlgToggle[0] && (
-                    <RoomSettingDlg activeRoomId={activeRoomId} roomSettingDlgToggle={roomSettingDlgToggle} setRoomSettingDlgToggle={setRoomSettingDlgToggle} />
-                )
-            }
+            {modalVisibility && (
+                <CreateRoomModal />
+            )}
         </Layout>
     )
 }

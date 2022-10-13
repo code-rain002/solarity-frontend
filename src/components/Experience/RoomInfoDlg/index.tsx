@@ -21,11 +21,11 @@ const RoomInfoDlg = (props: RoomInfoDlgType) => {
     "The Gods are the legacy 6666 collection within “The Frecture”. A Brand Born in Blockchain";
   return (
     <div className="md:absolute xs:relative flex flex-col lg:right-8  md:right-4 xs:right-[0px] lg:bottom-8 xs:bottom-[0px] md:h-[226px] md:w-[394px] xs:h-[227px] xs:w-[311px] xs:bg-globalBgColor rounded-[20px] pt-[28px] px-[32px] pb-[32px] md:mb-[0px] xs:mb-[32px]">
-      <RoomInfoDlgTitle title={LiveRoomListData[props.activeRoomId].roomName} />
+      {/* <RoomInfoDlgTitle title={LiveRoomListData[props.activeRoomId].roomName} /> */}
       <RoomInfoDlgText text={text} />
       <div className="md:mt-[32px] xs:mt-[24px] flex md:flex-row xs:flex-col md:h-fit xs:h-full items-center justify-between">
         <div className="flex">
-          {RoomMemberAvatarSmallData[props.activeRoomId].map(function (i, index) {
+          {/* {RoomMemberAvatarSmallData[props.activeRoomId].map(function (i, index) {
             counter++;
             rest = counter - 5;
             return counter >= 6 ? (
@@ -35,7 +35,7 @@ const RoomInfoDlg = (props: RoomInfoDlgType) => {
             ) : (
               <UserAvatarSmall imageUrl={i.imgUrl} key={index} />
             );
-          })}
+          })} */}
           {rest < 1 ? "" : <MoreUsersAvatar rest={rest} />}
         </div>
         <JoinRoomButton setRoomDlgToggle={props.setRoomDlgToggle} />

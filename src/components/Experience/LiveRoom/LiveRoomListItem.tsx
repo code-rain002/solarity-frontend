@@ -7,11 +7,8 @@ type LiveRoomListItemType = {
   walletIcon: any;
   collectionName: string;
   roomName: string;
-  roomSelect: any;
   lgImgUrl: string;
-  activeRoom: any;
   currentNumberOfMembers: number;
-  setActiveRoomId: any;
   roomId: number;
   setShowMobileJoinRoomDlg: any;
 };
@@ -39,12 +36,7 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
   const { height, width } = useWindowDimensions();
   return (
     <div
-      className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative
-                        cursor-pointer hover:border-[#29b080] ${
-                          props.activeRoom == props.lgImgUrl
-                            ? "border-primary"
-                            : "border-[#272829]"
-                        } `}
+      className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl ? "border-primary" : "border-[#272829]"} `}
       onClick={() => {
         width < 768 ? showJoinRoomDlg(props) : onItemClick(props);
       }}
@@ -58,18 +50,17 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
           height={75}
         />
       </div>
-      <div className=" flex flex-col ml-[16px] truncate overflow-hidden ">
+      <div className=" flex flex-col ml-[16px] py-2 truncate overflow-hidden ">
         <div className=" flex flex-row gap-[15px] ">
           {props.walletIcon}
           <div className=" font-['Outfit'] font-[400] text-[12px] text-[#929298] ">
             {props.collectionName}
           </div>
         </div>
-        <div className=" font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3] truncate overflow-hidden">
+        <div className=" font-['Outfit'] font-[200] text-[14px] text-[#f3f3f3] truncate overflow-hidden">
           {props.roomName}
         </div>
       </div>
-
       <div
         className=" flex flex-row gap-[4px] py-[4px] pr-[8px] pl-[6px]  absolute h-[24px] left-[16px] top-[16px]
                             bg-[rgba(12,12,14,0.5)] backdrop-blur-[15px] rounded-[40px] items-center "

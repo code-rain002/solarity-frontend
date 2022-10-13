@@ -15,33 +15,9 @@ type ExperienceType = {
 };
 
 const Experience = (props: ExperienceType) => {
-
-  const { selectedRoomIndex } = useSelector((state: RootStateOrAny) => ({
-    selectedRoomIndex: state.chat.selectedRoomIndex,
-  }));
-
-  const createRoomModal = () => {
-    if (selectedRoomIndex != -1) {
-      props.setRoomSettingDlgToggle();
-    } else {
-      alert('Please select a room to create')
-    }
-  }
-
   return (
     <div className=" flex flex-col my-[39px] ">
-      <CreateRoomButton onClick={createRoomModal} />
-      <div className=" flex lg:flex-row xs:flex-col md:gap-[56px] xs:gap-[0px] ">
-        <LiveRoomSection
-          activeRoom={props.activeRoom}
-          roomSelect={props.roomSelect}
-          setActiveRoomId={props.setActiveRoomId}
-          activeRoomId={props.activeRoomId}
-          roomSettingDlgToggle={props.roomSettingDlgToggle}
-          setRoomSettingDlgToggle={props.setRoomSettingDlgToggle}
-        />
-        <ExploreSection />
-      </div>
+      <ExploreSection />
     </div>
   );
 };

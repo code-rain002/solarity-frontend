@@ -13,10 +13,10 @@ type MobileJoinRoomDlgType = {
 const MobileJoinRoomDlg = (props: MobileJoinRoomDlgType) => {
   return (
     <div
-      className={`${props.roomSettingDlgToggle[0] === false &&
-          props.showMobileJoinRoomDlg === true
-          ? "flex justify-center"
-          : "hidden"
+      className={`${props.roomSettingDlgToggle === false &&
+        props.showMobileJoinRoomDlg === true
+        ? "flex justify-center"
+        : "hidden"
         } fixed top-[0px] bottom-[0px] right-[0px] left-[0px] backdrop-blur-sm w-full h-full z-[2000] touch-none`}
     >
       <div

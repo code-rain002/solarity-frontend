@@ -16,7 +16,7 @@ const ExperienceBanner = (props: ExperienceBannerType) => {
       <Image
         src={`/images/experience/room_images/${props.activeRoom}.jpg`}
         layout="responsive"
-        width={1708}
+        width={1322}
         height={600}
         alt="Experience Banner Image"
       />

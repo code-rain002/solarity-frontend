@@ -8,6 +8,13 @@ import {
   UsersBoxDataType,
 } from "modal/experience";
 
+export const PublicRoomList: any[] = [
+  {
+    type: false,
+    roomNo: 2,
+  }
+];
+
 export const RoomMemberAvatarSmallData: RoomMemberAvatarSmallDataType[][] = [
   [
     { imgUrl: "" },

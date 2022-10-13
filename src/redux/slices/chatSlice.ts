@@ -12,6 +12,7 @@ export interface CounterState {
   selectedIndex: number;
   selectedRoomIndex: number;
   selectedRoom: Object;
+  modalVisibility: boolean;
 }
 
 const initialState: CounterState = {
@@ -24,7 +25,8 @@ const initialState: CounterState = {
   msgs: [],
   selectedIndex: -1,
   selectedRoomIndex: -1,
-  selectedRoom: {}
+  selectedRoom: {},
+  modalVisibility: false,
 };
 
 export const chatSlice = createSlice({
@@ -96,9 +98,12 @@ export const chatSlice = createSlice({
     setSelectedRoom(state, action: PayloadAction<any>) {
       state.selectedRoom = action.payload;
     },
+    setModalVisibility(state, action: PayloadAction<any>) {
+      state.modalVisibility = action.payload;
+    }
   },
 });
 
-export const { createRoom, setName, setSelectedRoomIndex, setSelectedRoom, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setModalVisibility, createRoom, setName, setSelectedRoomIndex, setSelectedRoom, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;

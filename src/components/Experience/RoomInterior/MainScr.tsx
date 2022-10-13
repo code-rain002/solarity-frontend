@@ -117,10 +117,6 @@ const MainScr = (props: MainScrTyp) => {
         setLoadingFlag(true);
       }
     }, 300);
-    setTimeout(() => {
-      clearInterval(loadInterval);
-      setLoadingFlag(true);
-    }, 100000);
   }, []);
 
   useEffect(() => {
