@@ -51,7 +51,8 @@ const CreateRoomModal = () => {
       userName: profileData.username,
       slideUrls: [],
       modelIndex: modelIndex,
-      avatarUrl: profileData.profileImageLink || ""
+      avatarUrl: profileData.profileImageLink || "",
+      imageUrl: selectedRoom.imageUrl,
     }))
   }
 

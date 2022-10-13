@@ -8,7 +8,7 @@ import PsuedoAvatarItem from "../PsuedoAvatarItem";
 const AvatarSelectionContent = () => {
 
   const { newModelIndex } = useSelector((state: RootStateOrAny) => ({
-    newModelIndex: state.chat.newModelIndex
+    newModelIndex: state.chat.newModelIndex,
   }))
 
   return (
@@ -23,7 +23,7 @@ const AvatarSelectionContent = () => {
           scale={models[newModelIndex].scale}
         />
       </div>
-      {/* begin of avatar list------------------------------------------------------------------------------------------------ */}
+      {/* begin of avatar list */}
       <div className="col-span-1 relative h-[400px] overflow-y-scroll overflow-x-visible overscroll-contain">
         <div
           className="grid xs:grid-cols-2 sm:grid-cols-1 gap-[16px] w-full h-[100%] pr-1 pb-[30px] "

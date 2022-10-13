@@ -1,6 +1,7 @@
+import React from "react";
+import Image from "next/image";
 import useWindowDimensions from "components/Common/useWindowDimensions";
 import { SolanaIcon } from "components/icons";
-import Image from "next/image";
 
 type LiveRoomListItemType = {
   imgUrl: string;

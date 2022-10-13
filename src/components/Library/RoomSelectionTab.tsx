@@ -21,7 +21,6 @@ const RoomSelectionTab = (props) => {
     useEffect(() => {
         setActiveRoom(eventInfo.room)
     }, [])
-    console.log(selectedRoom);
 
     useEffect(() => {
         if (activeRoom) {

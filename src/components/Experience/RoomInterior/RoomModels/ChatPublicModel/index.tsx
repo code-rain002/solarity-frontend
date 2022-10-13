@@ -5,10 +5,6 @@ import { useEffect } from "react";
 
 const ChatPublicModel = ({ roomType, modelURL, name, creator, slideUrls }) => {
 
-  useEffect(() => {
-    console.log({ roomType, modelURL, name, creator, slideUrls })
-  }, [roomType])
-
   return (
     <div>
       {roomType == 0 && (
