@@ -4,7 +4,7 @@ import { UpArrow } from "components/icons";
 import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { createRoom, setModalVisibility } from "../../../redux/slices/chatSlice";
+import { createRoom, setCreateModalVisibility } from "../../../redux/slices/chatSlice";
 import { CloseIcon } from "../../icons";
 import RoundedTabItem from "components/Profile/RoundedTabItem";
 import RoomSelectionContent from "./ModalContent/RoomSelectionContent";
@@ -58,7 +58,7 @@ const CreateRoomModal = () => {
 
   const closeDlg = (e) => {
     if (e.target.id == "room_setting_dlg") {
-      dispatch(setModalVisibility(false));
+      dispatch(setCreateModalVisibility(false));
     }
   };
 
@@ -74,7 +74,7 @@ const CreateRoomModal = () => {
         {/* Modal Header */}
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
-          onClick={() => dispatch(setModalVisibility(false))}
+          onClick={() => dispatch(setCreateModalVisibility(false))}
         >
           <CloseIcon />
         </div>

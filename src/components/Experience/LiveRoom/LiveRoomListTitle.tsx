@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { GreyButton } from "components/Common/Buttons";
-import { setModalVisibility } from 'redux/slices/chatSlice';
+import { setCreateModalVisibility } from 'redux/slices/chatSlice';
 
 type LiveRoomListTitleType = {
     number: any
@@ -12,7 +12,7 @@ const LiveRoomListTitle = (props: LiveRoomListTitleType) => {
     const dispatch = useDispatch();
 
     const createRoomModal = () => {
-        dispatch(setModalVisibility(true))
+        dispatch(setCreateModalVisibility(true))
     }
 
     return (

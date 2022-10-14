@@ -20,7 +20,6 @@ const LiveRoomList = (props: any) => {
     LiveRoomListData.length * 88
   );
   const [showMobileJoinRoomDlg, setShowMobileJoinRoomDlg] = useState(false);
-  useEffect(() => { console.log('rooms', rooms) }, [rooms])
 
   useEffect(() => {
     const ele = document.getElementById("lrl");

@@ -1,12 +1,12 @@
 import React from "react"
 
 type RoomInfoDlgTitleType = {
-    title : string
+    title: string
 }
 
-const RoomInfoDlgTitle = (props : RoomInfoDlgTitleType) => {
+const RoomInfoDlgTitle = (props: RoomInfoDlgTitleType) => {
     return (
-        <div className="font-['Outfit'] font-[500] text-[18px] text-[#f3f3f3] break-normal truncate ">
+        <div className="font-['Outfit'] font-[200] text-[20px] text-[#f3f3f3] break-normal truncate ">
             {props.title}
         </div>
     )
