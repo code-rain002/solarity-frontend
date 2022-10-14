@@ -10,7 +10,7 @@ import PsuedoAvatarItem from "./PsuedoAvatarItem";
 import { models } from "data/Experience";
 import Input from "components/Common/Forms/Input";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { createRoom } from "../../../redux/slices/chatSlice";
+import { createRoom, setJoinModalVisibility } from "../../../redux/slices/chatSlice";
 
 const JoinRoomModal = () => {
   const dispatch = useDispatch();
@@ -45,20 +45,13 @@ const JoinRoomModal = () => {
       return;
     }
 
-    dispatch(createRoom({
-      title: selectedRoom.roomName,
-      type: selectedRoom.type,
-      roomNo: selectedRoom.roomNo,
-      roomName: uName,
-      userName: profileData.username,
-      slideUrls: [],
-      modelIndex: modelIndex,
-      avatarUrl: profileData.profileImageLink || ""
-    }))
+
+
   }
 
   const closeDlg = (e) => {
     if (e.target.id == "room_setting_dlg") {
+      dispatch(setJoinModalVisibility(false));
     }
   };
 
@@ -67,6 +60,12 @@ const JoinRoomModal = () => {
       setSelectedLiveRoom(rooms[selectedIndex])
     }
   }, [rooms, selectedIndex])
+
+  useEffect(() => {
+    if (profileData.username) {
+      setUName(profileData.username)
+    }
+  }, [profileData])
 
   return (
     <div
@@ -80,7 +79,7 @@ const JoinRoomModal = () => {
       >
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
-          onClick={() => { }}
+          onClick={() => dispatch(setJoinModalVisibility(false))}
         >
           <svg
             width="14"
@@ -176,7 +175,7 @@ const JoinRoomModal = () => {
           />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

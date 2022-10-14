@@ -26,7 +26,7 @@ const Input = (props: InputType) => {
   return (
     <div className={`w-full relative flex items-center rounded-[18px] border-[1.5px] py-1 px-2 ${classBorder}`}>
       <span className={`absolute bg-[#141416] text-[18px] font-[200] px-2 tracking-[0.02rem] z-10 ${classFocus}`}>{props.caption}</span>
-      <input className="appearance-none font-[200] text-[18px] tracking-[0.02rem] bg-transparent z-50 w-full h-[48px] text-white/60 mr-3 py-1 px-2 leading-tight" onFocus={focusInput} onBlur={unFocusInput} onChange={(e) => { props.setValue(e.target.value) }} value={props.value} />
+      <input className="appearance-none font-[200] text-[18px] tracking-[0.02rem] bg-transparent z-50 w-full h-[48px] text-white/60 mr-3 py-1 px-2 leading-tight" onFocus={focusInput} onBlur={unFocusInput} onChange={(e) => { props.setValue(e.target.value) }} value={props.value} autoFocus={true} />
     </div>
   );
 }
