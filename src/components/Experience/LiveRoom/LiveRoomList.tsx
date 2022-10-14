@@ -45,7 +45,7 @@ const LiveRoomList = (props: any) => {
               roomName={room.roomName}
               lgImgUrl={room.imageUrl}
               currentNumberOfMembers={room.speakers.length}
-              roomId={k}
+              roomId={index}
               setShowMobileJoinRoomDlg={setShowMobileJoinRoomDlg}
             />
           );

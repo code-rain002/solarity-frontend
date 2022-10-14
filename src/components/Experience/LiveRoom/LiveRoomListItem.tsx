@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import useWindowDimensions from "components/Common/useWindowDimensions";
 import { SolanaIcon } from "components/icons";
+import { useDispatch } from "react-redux";
+import { setRoomIndex } from "../../../redux/slices/chatSlice";
 
 type LiveRoomListItemType = {
   imgUrl: string;
@@ -14,32 +16,24 @@ type LiveRoomListItemType = {
   setShowMobileJoinRoomDlg: any;
 };
 
-const onItemClick = (arg) => {
-  arg.roomSelect(arg.lgImgUrl);
-  arg.setActiveRoomId(arg.roomId);
-
-  const distance = document.documentElement.scrollTop;
-  const accelerationDistance = distance * 0.3;
-
-  const myInterval = setInterval(() => {
-    document.documentElement.scrollTop > 0
-      ? (document.documentElement.scrollTop -= 80)
-      : clearInterval(myInterval);
-  }, 10);
-};
-
-const showJoinRoomDlg = (arg) => {
-  arg.roomSelect(arg.lgImgUrl);
-  arg.setActiveRoomId(arg.roomId);
-  arg.setShowMobileJoinRoomDlg(true);
-};
 const LiveRoomListItem = (props: LiveRoomListItemType) => {
+  const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
+
+  const onItemClick = (index) => {
+    dispatch(setRoomIndex(index))
+  };
+
+  const showJoinRoomDlg = (index) => {
+    dispatch(setRoomIndex(index))
+    props.setShowMobileJoinRoomDlg(true);
+  };
+
   return (
     <div
       className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl ? "border-primary" : "border-[#272829]"} `}
       onClick={() => {
-        width < 768 ? showJoinRoomDlg(props) : onItemClick(props);
+        width < 768 ? showJoinRoomDlg(props.roomId) : onItemClick(props.roomId);
       }}
     >
       <div className=" min-w-[120px] rounded-[10px] overflow-hidden ">
