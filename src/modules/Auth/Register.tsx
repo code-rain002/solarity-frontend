@@ -16,8 +16,11 @@ import Circle from "./Circle";
 import { apiCaller } from "utils/fetcher";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useMetaplex } from "utils/contexts/useMetaplex";
-import { GLTFExporter } from "three-stdlib";
+import { GLTFExporter, OrbitControls } from "three-stdlib";
 import * as THREE from 'three'
+import { toMetaplexFile, toMetaplexFileFromBrowser, toMetaplexFileFromJson} from '@metaplex-foundation/js'
+import axios from "axios";
+// import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -29,7 +32,9 @@ export const RegisterPage = () => {
     step: state.auth.step,
   }));
   const modelRef = useRef();
-  const canvasRef = useRef()
+  const canvasRef = useRef();
+  const [modelFile, setModelFile] = useState<File>();
+  const [ipfsUrl, setIpfsUrl] = useState<string>();
 
   useEffect(() => {
     apiCaller
@@ -85,69 +90,102 @@ export const RegisterPage = () => {
       });
   }, []);
 
-  const onMint = async () => {
-    try {
-      // console.log(modelRef.current.parent);
-      // console.log(canvasRef.current);
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  const mintModel = async (url) => {
+    try {      
+      const metadataJson = {
+        name: userInfo.domain,
+        description: userInfo.title,
+        symbol: 'Passport',
+        seller_fee_basis_points: 0,
+        image: null,
+        animation_url: url,
+        external_url: "https://solarity-new-frontend.vercel.com",
+        properties: {
+          files: [
+            {
+              uri: null,
+              type: "image/png"
+            },
+            {
+              uri: url,
+              type: "vr/glb"
+            }
+          ],
+          category: '3D',
+          creators: [
+            {
+              address: userInfo.solanaAddress,
+              share: 100
+            }
+          ]
+        },
+        collection: {
+          name: "Passport 3D NFT",
+          family: "3D NFT"
+        },
+        attributes: []
+      };
 
-      const renderer = new THREE.WebGLRenderer();
-      // renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( renderer.domElement );
-      const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-      const cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
-
-      camera.position.z = 5;
-      console.log(scene);
-      // renderer.render( scene, camera );
-      
-      const options = { 
-        trs: false,
-        onlyVisible: true,
-        binary: true,
-        maxTextureSize: 4096,
+      if (userInfo.solanaAddress) {
+        metadataJson.attributes.push({
+          trait_type: 'SolanaAddress',
+          value: userInfo.solanaAddress
+        });
       }
 
-      const exporter = new GLTFExporter();
-      exporter.parse(scene, (result) => {
-        console.log(result)
-        saveArrayBuffer(result, 'model.glb')
-      }, options);
+      for (let key in userInfo.links) {
+        if (userInfo.links[key].connected) {
+          metadataJson.attributes.push({
+            trait_type: key,
+            value: userInfo.links[key].usename
+          });
+        }
+      }
 
-      // const { uri, metadata } = await metaplex
-      // .nfts()
-      // .uploadMetadata({
-      //     name: "My NFT",
-      //     description: "My description",
-      //     image: "http://res.cloudinary.com/dmzpebj2g/image/upload/v1664109071/assets/avatars/l43lcylxscgxuux3cbbz.jpg",
-      // })
-      // .run();
-      // console.log(uri) // https://arweave.net/789
-      // console.log('hi', metaplex)
-      // let { nft } = await metaplex.nfts().create({
-      //   uri: uri,
-      //   name: "New NFT",
-      //   sellerFeeBasisPoints: 500,
-      // })
-      // .run();
-      // console.log(nft);
+      userInfo.daos.map((dao, index) => {
+        metadataJson.attributes.push({
+          trait_type: `Dao${index+1}`,
+          value: dao.name
+        });
+      });
+
+      userInfo.badges.map((badge, index) => {
+        metadataJson.attributes.push({
+          trait_type: `Badge${index+1}`,
+          value: badge.name
+        });
+      });
+
+      console.log(metadataJson)
+
+      const { uri, metadata } = await metaplex
+        .nfts()
+        .uploadMetadata(metadataJson)
+        .run();
+
+      console.log(uri)
       
+      let { nft } = await metaplex.nfts().create({
+        uri: uri,
+        name: userInfo.domain,
+        sellerFeeBasisPoints: 0,
+        isCollection: false,
+        maxSupply: 0,
+      })
+      .run();
+      console.log(nft);
 
-      // let myNfts = await metaplex
-      //   .nfts()
-      //   .findAllByOwner({ owner: metaplex.identity().publicKey })
-      // .run();
-      // console.log("myNfts", myNfts);
     } catch (err) {
       console.log('err: ', err)
     }
   };
 
   const saveArrayBuffer = (buffer, filename) => {
-    save(new Blob([buffer], { type: 'model/gltf-binary' }), filename)
+    save(new Blob([buffer], { type: 'application/octet-stream' }), filename)
+  }
+
+  const saveString = (text, filename) => {
+    save(new Blob([text], { type: 'text/plain' }), filename);
   }
 
   const save = (blob, filename) => {
@@ -160,8 +198,45 @@ export const RegisterPage = () => {
     link.click();
   }
 
-  function saveString( text, filename ) {
-    save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+  const blobToFile = (theBlob, fileName) => {
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+  }
+
+  const uploadModel = async (buffer) => {
+    const blob = new Blob([buffer], { type: 'application/octet-stream' })
+    const file = blobToFile(blob, 'Model.glb')
+    const data = new FormData();
+    data.append('file', file);
+    const res = await fetch(`https://api.pinata.cloud/pinning/pinFileToIPFS`, {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+      },
+      method: 'POST',
+      body: data,
+    });
+
+    const json = await res.json();
+    const ipfsUrl = `https://solarity.mypinata.cloud/ipfs/${json.IpfsHash}?filename=Model.glb`;
+    console.log(ipfsUrl)
+    setIpfsUrl(ipfsUrl);
+
+    mintModel(ipfsUrl)
+  }
+
+  const exportModel = (e) => {
+    const options = {
+      binary: true,
+    }
+    const exporter = new GLTFExporter();
+
+    exporter.parse(modelRef.current, async (result: ArrayBuffer) => {
+      console.log(result)
+      // saveArrayBuffer(result, 'model.glb')
+      uploadModel(result)
+    }, options);
   }
 
   return (
@@ -181,13 +256,16 @@ export const RegisterPage = () => {
               {step === 2 && <UserDaos />}
               {step === 3 && <UserPic />}
               {step === 4 && <UserBadges />}
-              {step === 5 && <EditStyle onMint={onMint} />}
+              {step === 5 && <EditStyle onMint={exportModel} />}
+            <div>
+              {/* <input type={'file'} onChange={(e) => exportModel(e)} /> */}
+            </div>
             </div>
           </div>
         </div>
       </div>
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
-        <NftDemo modelRef={modelRef} canvasRef={canvasRef} />
+        <NftDemo modelRef={modelRef} />
       </div>
     </div>
   );

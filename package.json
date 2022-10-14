@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@babylonjs/core": "^5.28.0",
+    "@babylonjs/serializers": "^5.28.0",
     "@heroicons/react": "^1.0.5",
     "@metamask/detect-provider": "^1.2.0",
     "@metaplex-foundation/js": "0.16.0",
@@ -27,6 +29,8 @@
     "aframe-liquid-portal-shader": "^1.0.1",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
+    "babylonjs": "5.7.0",
+    "babylonjs-serializers": "5.7.0",
     "bluebird": "^3.7.2",
     "cloudinary": "^1.30.0",
     "font-awesome": "^4.7.0",

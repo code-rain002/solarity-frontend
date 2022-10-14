@@ -14,6 +14,16 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babylonjs/core@^5.28.0":
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-5.28.0.tgz#01e45398985c30929a07b8f01f53f3c9faf12dda"
+  integrity sha512-muHxtHlQmkd8bH5VrF7iDDF4R1qxtzf3jsHLd+IdIJbKjbB1HDCJwekPROLHUA/GbPpb0F3Q4QGk2oixm1R9uQ==
+
+"@babylonjs/serializers@^5.28.0":
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/@babylonjs/serializers/-/serializers-5.28.0.tgz#452ac830515a6ae337deb5e1f6ab098e06af1ed7"
+  integrity sha512-hGDFoh50dKmmbJjqRvBWfMgy3TigyVCwa8r3DJs5l3KHF98RtG060JQmdOQaavs0LOjxNMgXj4hDRS89550kZA==
+
 "@blocto/sdk@^0.2.21":
   version "0.2.22"
   resolved "https://registry.yarnpkg.com/@blocto/sdk/-/sdk-0.2.22.tgz#c7fe62809de0640a0a3f7a043c5bbceb8be17e38"
@@ -2536,6 +2546,29 @@ axios@^0.27.2:
   dependencies:
     follow-redirects "^1.14.9"
     form-data "^4.0.0"
+
+babylonjs-gltf2interface@^5.7.0:
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/babylonjs-gltf2interface/-/babylonjs-gltf2interface-5.28.0.tgz#dec0214901fa45f1df96812501af700e5f7193af"
+  integrity sha512-Mm0s5yaaCbbU6DJr/lXpa7ZV3FziT5wWlvC2Yyn6Rhl7xgZQQUub1NjDn+vt0wh4XjETDEEuHwOYpm1i5cID3w==
+
+babylonjs-serializers@5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/babylonjs-serializers/-/babylonjs-serializers-5.7.0.tgz#3bf4378459d6c011f9d32c02402d67c999abf86f"
+  integrity sha512-v+1TnvTmF6DWvB2YYtflFZ9riRR0UoL0pQAq9aUjA3UMNK9undRVA0djU0qnkBMaORgLh6R8Uz/A+2dQEhhylQ==
+  dependencies:
+    babylonjs "^5.7.0"
+    babylonjs-gltf2interface "^5.7.0"
+
+babylonjs@5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-5.7.0.tgz#61a0eb3b1264459956a3a8dca1886a394b1ad620"
+  integrity sha512-eVb6IafSFBk7rtRwDkBT1Uz6g0r0MFKYj+lZpYowadyhxrf+svbJHdQGtkf00VIQXEywpHhpvxnDEYlcfEAyyQ==
+
+babylonjs@^5.7.0:
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-5.28.0.tgz#9540a4b019254e1e53e2bc8de37a52c2da082056"
+  integrity sha512-SfcQsb2bXxFqQH/xeKZD6QVIb6u2R/YP+3vhje/ecivv1OyH7a2VfgWZTFXUzwH8Uew/W9BOUMu9WChuBunwkg==
 
 backo2@1.0.2:
   version "1.0.2"
