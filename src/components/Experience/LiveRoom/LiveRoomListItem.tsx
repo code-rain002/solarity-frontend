@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import useWindowDimensions from "components/Common/useWindowDimensions";
 import { SolanaIcon } from "components/icons";
-import { useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { setRoomIndex } from "../../../redux/slices/chatSlice";
 
 type LiveRoomListItemType = {
@@ -18,6 +18,9 @@ type LiveRoomListItemType = {
 
 const LiveRoomListItem = (props: LiveRoomListItemType) => {
   const dispatch = useDispatch();
+  const { selectedIndex } = useSelector((state: RootStateOrAny) => ({
+    selectedIndex: state.chat.selectedIndex,
+  }))
   const { height, width } = useWindowDimensions();
 
   const onItemClick = (index) => {
@@ -31,7 +34,7 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
 
   return (
     <div
-      className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative cursor-pointer hover:border-[#29b080] ${props.activeRoom == props.lgImgUrl ? "border-primary" : "border-[#272829]"} `}
+      className={` flex flex-row p-[8px] w-full md:h-[91px] xs:h-[72px] border-[1.2px] rounded-[15px] relative cursor-pointer hover:border-[#29b080] ${selectedIndex == props.roomId ? "border-primary" : "border-[#272829]"} `}
       onClick={() => {
         width < 768 ? showJoinRoomDlg(props.roomId) : onItemClick(props.roomId);
       }}

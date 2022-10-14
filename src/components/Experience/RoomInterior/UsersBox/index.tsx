@@ -1,5 +1,6 @@
 import { DownArrow, UpArrow } from "components/icons";
 import { UsersBoxData } from "data/Experience";
+import { useEffect, useState } from "react";
 import CopyInviteLinkBtn from "./CopyInviteLinkBtn";
 import UsersBoxItem from "./UsersBoxItem";
 
@@ -9,9 +10,27 @@ type UsersBoxType = {
   usersBoxActive: boolean;
   setUsersBoxActive: any;
   isMobile: boolean;
+  rooms: any[];
+  roomIndex: number;
+  volumes: any[];
 };
 
 const UsersBox = (props: UsersBoxType) => {
+  const [roomId, setRoomId] = useState("");
+  const [userNames, setUserNames] = useState<string[]>([]);
+  const [avatars, setAvatars] = useState<string[]>([])
+
+  useEffect(() => {
+    if (!!props.rooms[props.roomIndex]) {  //if current room is exist
+      // if invitation hash is
+      if (!!props.rooms[props.roomIndex].invitationHash) {
+        setRoomId(props.rooms[props.roomIndex].invitationHash)
+      }
+      setUserNames(props.rooms[props.roomIndex].speakers);
+      setAvatars(props.rooms[props.roomIndex].avatars);
+    }
+  }, [props.rooms[props.roomIndex]])
+
   return (
     <div
       className={` absolute
@@ -34,7 +53,8 @@ const UsersBox = (props: UsersBoxType) => {
             Users
           </div>
           <div className="font-['Outfit'] font-[500] text-[24px] text-[#474749] select-none ">
-            55
+            {console.log(userNames)}
+            {userNames.length}
           </div>
         </div>
 

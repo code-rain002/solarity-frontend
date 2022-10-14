@@ -11,6 +11,7 @@ import { models } from "data/Experience";
 import Input from "components/Common/Forms/Input";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { createRoom, setJoinModalVisibility } from "../../../redux/slices/chatSlice";
+import { setRoom } from "redux/slices/marketplaceSlice";
 
 const JoinRoomModal = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const JoinRoomModal = () => {
   }));
 
   const [selectedLiveRoom, setSelectedLiveRoom] = useState<any>({});
+  const [joinDisable, setJoinDisable] = useState(false);
 
   const [activeAvatar, setActiveAvatar] = useState(0);
   const [activeAvatarImg, setActiveAvatarImg] = useState(
@@ -39,14 +41,37 @@ const JoinRoomModal = () => {
       : router.push("/experience/");
   };
 
-  const createRoomFunc = () => {
+  const joinRoomFunc = () => {
     if (uName == "") {
       alert('The name of room is required.');
       return;
     }
+    setJoinDisable(true);
+    dispatch(
+      setRoom({
+        modelIndex,
+        roomName: selectedLiveRoom.roomName ? selectedLiveRoom.roomName : "",
+        userName: uName,
+      })
+    );
 
+    // Clear Join Room modal before you go to chat.
+    setTimeout(() => {
+      dispatch(setJoinModalVisibility(false));
+      setUName("");
+    }, 1000);
 
-
+    if (!!(window as any).socket) {
+      if (selectedLiveRoom.roomNo == 0) {
+        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=0&no=0`);
+      } else if (selectedLiveRoom.type == false && selectedLiveRoom.roomNo == 1) {
+        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=1&no=0`);
+      } else if (selectedLiveRoom.type == false && selectedLiveRoom.roomNo == 2) {
+        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=2&no=0`);
+      } else if (selectedLiveRoom.type == true) {
+        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=3&no=${selectedLiveRoom.roomNo + 1}`);
+      }
+    }
   }
 
   const closeDlg = (e) => {
@@ -165,12 +190,12 @@ const JoinRoomModal = () => {
           <div className=" absolute bottom-[-5px] right-[0px] h-[20px] w-full bg-gradient-to-t from-[#131314] to-transparent"></div>
         </div>
         {/* button------------------------------------------------------------------------------------------------ */}
-        <div className=" mt-[24px]  ">
+        <div className=" mt-[24px]">
           <PrimaryButton
             caption={"Join the room"}
             bordered={false}
-            onClick={createRoomFunc}
-            disabled={false}
+            onClick={joinRoomFunc}
+            disabled={joinDisable}
             styles="pt-[12px] pb-[12px] h-fit rounded-[15px]"
           />
         </div>

@@ -4,7 +4,7 @@ import { UpArrow } from "components/icons";
 import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { createRoom, setCreateModalVisibility } from "../../../redux/slices/chatSlice";
+import { createRoom, setCreateModalVisibility, setNewRoomTitle, setSelectedRoom } from "../../../redux/slices/chatSlice";
 import { CloseIcon } from "../../icons";
 import RoundedTabItem from "components/Profile/RoundedTabItem";
 import RoomSelectionContent from "./ModalContent/RoomSelectionContent";
@@ -18,8 +18,6 @@ const CreateRoomModal = () => {
     profileData: state.profile.data
   }));
 
-  const router = useRouter();
-  const [uName, setUName] = useState("");
   const [modelIndex, setModelIndex] = useState(0);
   const [step, setStep] = useState(0);
 
@@ -42,6 +40,13 @@ const CreateRoomModal = () => {
       alert('Select room first.');
       return;
     }
+
+    setTimeout(() => {
+      setStep(0);
+      dispatch(setCreateModalVisibility(false));
+      dispatch(setNewRoomTitle(''));
+      dispatch(setSelectedRoom({}));
+    }, 1000);
 
     dispatch(createRoom({
       title: selectedRoom.roomName,

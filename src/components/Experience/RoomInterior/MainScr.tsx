@@ -42,6 +42,7 @@ const MainScr = (props: MainScrTyp) => {
   const [loadingFlag, setLoadingFlag] = useState(false);
   const [intervalId, setIntervalId] = useState<any>("");
   const [isMobile, setIsMobile] = useState(false);
+  const [volumes, setVolumes] = useState({});
 
   const { rid, roomType, no } = router.query;
   const { userName, rooms, profileData, msgs, modelIndex } = useSelector((state: RootStateOrAny) => ({
@@ -250,9 +251,20 @@ const MainScr = (props: MainScrTyp) => {
     }
   };
 
-  const handelMuteBtnClick = () => {
+  const handleMuteBtnClick = () => {
     setMute((prev) => !prev);
   };
+
+  const toggleVolume = (speaker) => {
+    var temp = Object.assign({}, volumes);
+    temp[speaker] = volumes[speaker] != undefined ? !volumes[speaker] : true;
+    (window as any).volumes = temp;
+    setVolumes(temp);
+  };
+
+  useEffect(() => {
+    handleMute(!isMute, userName);
+  }, [isMute]);
 
   return (
     <div
@@ -286,6 +298,8 @@ const MainScr = (props: MainScrTyp) => {
       /> */}
       <BackButton />
       <TopRightMenu
+        isMute={isMute}
+        handleMuteBtnClick={handleMuteBtnClick}
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}
         usersBoxActive={usersBoxActive}
@@ -297,6 +311,9 @@ const MainScr = (props: MainScrTyp) => {
         leftSideActive={leftSideActive}
       />
       <UsersBox
+        rooms={rooms}
+        roomIndex={roomIndex}
+        volumes={volumes}
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}
         usersBoxActive={usersBoxActive}
