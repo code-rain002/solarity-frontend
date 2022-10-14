@@ -19,7 +19,7 @@ const OwnThird = ({ roomInfo, modelURL, name }) => {
           <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
 
           <img id="hub-img" src="/images/experience/hub.png"/>
-          <img id="sky-img" src="/assets/images/bluesky.jpg"/>
+          <img id="sky-img" src="/images/experience/hub/bluesky.jpg"/>
 
           <template 
               id="avatar-template"

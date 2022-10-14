@@ -73,6 +73,7 @@ const MainScr = (props: MainScrTyp) => {
         `/users/getRoomInfo/${rooms[roomIndex].name}/${rooms[roomIndex].roomNo}`
       );
       if (roomInfoData) {
+        console.log('roomInfoData', roomInfoData);
         setRoomInfo(roomInfoData);
       }
     }

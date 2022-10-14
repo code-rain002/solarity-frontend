@@ -9,6 +9,7 @@ import ACTIONS from "config/actions"
 import { useRouter } from "next/router"
 import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
 import CreateRoomModal from "components/Experience/Common/CreateRoomModal"
+import JoinRoomModal from "components/Experience/Common/JoinRoomModal"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -118,7 +119,7 @@ const ProfileIndex = () => {
                 <CreateRoomModal />
             )}
             {joinModalVisibility && (
-                <></>
+                <JoinRoomModal />
             )}
         </Layout>
     )

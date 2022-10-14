@@ -105,7 +105,7 @@ export const chatSlice = createSlice({
       state.createModalVisibility = action.payload;
     },
     setJoinModalVisibility(state, action: PayloadAction<any>) {
-      state.createModalVisibility = action.payload;
+      state.joinModalVisibility = action.payload;
     },
     setNewRoomTitle(state, action: PayloadAction<any>) {
       state.newRoomTitle = action.payload;

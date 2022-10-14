@@ -35,9 +35,11 @@ const ExperienceBanner = () => {
         layout="fill"
         alt="Experience Banner Image"
       />
-      <RoomInfoDlg
-        selectedLiveRoom={selectedLiveRoom}
-      />
+      {!!selectedLiveRoom.title && (
+        <RoomInfoDlg
+          selectedLiveRoom={selectedLiveRoom}
+        />
+      )}
     </div>
   );
 };
