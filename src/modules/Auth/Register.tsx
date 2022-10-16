@@ -18,7 +18,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { GLTFExporter, OrbitControls } from "three-stdlib";
 import * as THREE from 'three'
-import { toMetaplexFile, toMetaplexFileFromBrowser, toMetaplexFileFromJson} from '@metaplex-foundation/js'
+import { toMetaplexFile, toMetaplexFileFromBrowser, toMetaplexFileFromJson } from '@metaplex-foundation/js'
 import axios from "axios";
 // import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 
@@ -91,27 +91,23 @@ export const RegisterPage = () => {
   }, []);
 
   const mintModel = async (url) => {
-    try {      
+    try {
       const metadataJson = {
         name: userInfo.domain,
         description: userInfo.title,
         symbol: 'Passport',
         seller_fee_basis_points: 0,
-        image: null,
+        image: url,
         animation_url: url,
         external_url: "https://solarity-new-frontend.vercel.com",
         properties: {
           files: [
             {
-              uri: null,
-              type: "image/png"
-            },
-            {
               uri: url,
               type: "vr/glb"
             }
           ],
-          category: '3D',
+          category: 'vr',
           creators: [
             {
               address: userInfo.solanaAddress,
@@ -144,14 +140,14 @@ export const RegisterPage = () => {
 
       userInfo.daos.map((dao, index) => {
         metadataJson.attributes.push({
-          trait_type: `Dao${index+1}`,
+          trait_type: `Dao${index + 1}`,
           value: dao.name
         });
       });
 
       userInfo.badges.map((badge, index) => {
         metadataJson.attributes.push({
-          trait_type: `Badge${index+1}`,
+          trait_type: `Badge${index + 1}`,
           value: badge.name
         });
       });
@@ -164,7 +160,7 @@ export const RegisterPage = () => {
         .run();
 
       console.log(uri)
-      
+
       let { nft } = await metaplex.nfts().create({
         uri: uri,
         name: userInfo.domain,
@@ -232,7 +228,7 @@ export const RegisterPage = () => {
     }
     const exporter = new GLTFExporter();
 
-    exporter.parse(modelRef.current, async (result: ArrayBuffer) => {
+    exporter.parse(modelRef.current, (result: ArrayBuffer) => {
       console.log(result)
       // saveArrayBuffer(result, 'model.glb')
       uploadModel(result)
@@ -257,9 +253,6 @@ export const RegisterPage = () => {
               {step === 3 && <UserPic />}
               {step === 4 && <UserBadges />}
               {step === 5 && <EditStyle onMint={exportModel} />}
-            <div>
-              {/* <input type={'file'} onChange={(e) => exportModel(e)} /> */}
-            </div>
             </div>
           </div>
         </div>
