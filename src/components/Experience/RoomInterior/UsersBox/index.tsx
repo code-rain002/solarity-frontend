@@ -15,6 +15,7 @@ type UsersBoxType = {
   volumes: any;
   clients: any[];
   toggleVolume: Function;
+  provideRef: Function;
 };
 
 const UsersBox = (props: UsersBoxType) => {
@@ -92,18 +93,21 @@ const UsersBox = (props: UsersBoxType) => {
 
       <div className="flex flex-col gap-[16px] px-[26px] pt-[12px] overflow-y-scroll overflow-x-visible md:mb-[0px] xs:mb-[80px] ">
         {userNames.map((name, index) => {
-          const user = props.clients.find(s => s.name == name)
-          return (
-            <UsersBoxItem
-              imgUrl={avatars[index]}
-              uName={name}
-              uState={'idle'}
-              user={user}
-              toggleVolume={props.toggleVolume}
-              mute={props.volumes[index]}
-              key={index}
-            />
-          );
+          const user = props.clients.find(s => s.name == name);
+          if (user) {
+            return (
+              <UsersBoxItem
+                imgUrl={avatars[index]}
+                uName={name}
+                uState={'idle'}
+                user={user}
+                toggleVolume={props.toggleVolume}
+                provideRef={props.provideRef}
+                mute={props.volumes[user.name]}
+                key={index}
+              />
+            );
+          }
         })}
       </div>
       <div className="absolute md:bottom-[0px] xs:bottom-[77px] right-[0px] h-[30px] w-full bg-gradient-to-t from-[#131314] to-[rgba(19, 19, 20, 0)] "></div>

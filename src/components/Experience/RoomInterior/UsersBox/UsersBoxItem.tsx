@@ -11,6 +11,7 @@ type UsersBoxItemType = {
     mute: boolean,
     user: any;
     toggleVolume: Function;
+    provideRef: Function;
 }
 
 const UsersBoxItem = (props: UsersBoxItemType) => {
@@ -27,7 +28,12 @@ const UsersBoxItem = (props: UsersBoxItemType) => {
                 {props.uState}
             </div>
             {!!props.user && (
-                <div className="cursor-pointer mr-[8px] " onClick={() => props.toggleVolume(props.uName)}>
+                <div className="cursor-pointer mr-[8px] " onClick={() => props.toggleVolume(props.user.name)}>
+                    <audio
+                        volume="0"
+                        autoPlay
+                        ref={(instance) => (props.provideRef(instance, props.user.name))}
+                    />
                     {props.mute ? <VolumeMuteIcon /> : <VolumeIcon />}
                 </div>
             )}

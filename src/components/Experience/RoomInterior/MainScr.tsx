@@ -235,6 +235,7 @@ const MainScr = (props: MainScrTyp) => {
           var b = (myPosition as any).z - positions[audio].z;
           var distance = a * a + b * b;
           if (distance < 4 || !distance) distance = 4;
+          console.log(distance);
           if (
             !!(window as any).volumes &&
             !!(window as any).volumes[audio] &&
@@ -316,6 +317,7 @@ const MainScr = (props: MainScrTyp) => {
         volumes={volumes}
         clients={clients}
         toggleVolume={toggleVolume}
+        provideRef={provideRef}
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}
         usersBoxActive={usersBoxActive}
