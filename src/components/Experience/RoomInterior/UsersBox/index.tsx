@@ -12,7 +12,9 @@ type UsersBoxType = {
   isMobile: boolean;
   rooms: any[];
   roomIndex: number;
-  volumes: any[];
+  volumes: any;
+  clients: any[];
+  toggleVolume: Function;
 };
 
 const UsersBox = (props: UsersBoxType) => {
@@ -53,7 +55,6 @@ const UsersBox = (props: UsersBoxType) => {
             Users
           </div>
           <div className="font-['Outfit'] font-[500] text-[24px] text-[#474749] select-none ">
-            {console.log(userNames)}
             {userNames.length}
           </div>
         </div>
@@ -90,15 +91,20 @@ const UsersBox = (props: UsersBoxType) => {
       </div>
 
       <div className="flex flex-col gap-[16px] px-[26px] pt-[12px] overflow-y-scroll overflow-x-visible md:mb-[0px] xs:mb-[80px] ">
-        {UsersBoxData.map((i, j) => (
-          <UsersBoxItem
-            imgUrl={i.imgUrl}
-            uName={i.uName}
-            uState={i.uState}
-            mute={i.mute}
-            key={j}
-          />
-        ))}
+        {userNames.map((name, index) => {
+          const user = props.clients.find(s => s.name == name)
+          return (
+            <UsersBoxItem
+              imgUrl={avatars[index]}
+              uName={name}
+              uState={'idle'}
+              user={user}
+              toggleVolume={props.toggleVolume}
+              mute={props.volumes[index]}
+              key={index}
+            />
+          );
+        })}
       </div>
       <div className="absolute md:bottom-[0px] xs:bottom-[77px] right-[0px] h-[30px] w-full bg-gradient-to-t from-[#131314] to-[rgba(19, 19, 20, 0)] "></div>
 

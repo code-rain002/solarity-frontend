@@ -314,6 +314,8 @@ const MainScr = (props: MainScrTyp) => {
         rooms={rooms}
         roomIndex={roomIndex}
         volumes={volumes}
+        clients={clients}
+        toggleVolume={toggleVolume}
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}
         usersBoxActive={usersBoxActive}
