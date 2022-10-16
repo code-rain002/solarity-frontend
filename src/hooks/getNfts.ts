@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import { apiCaller } from "../utils/fetcher";
 import { Promise } from "bluebird";
 import axios from "axios";
+import { useConnection } from "@solana/wallet-adapter-react";
 
 export const getNfts = (
   username?: string,
   solanaAddress?: string,
   manual?: boolean
 ): [nfts: any[], loading: Boolean, error: Boolean, fetchNfts: () => void] => {
-  const [solNfts, setSolNfts] = <any[]>useState([]);
+  const { connection } = useConnection()
 
+  const [solNfts, setSolNfts] = <any[]>useState([]);
   const [ethNfts, setEthNfts] = <any[]>useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -31,19 +33,23 @@ export const getNfts = (
 
   const getSolanaNfts = async () => {
     if (!solanaAddress) return;
-    const connection = new Connection(clusterApiUrl("mainnet-beta"));
     const _nfts = await getParsedNftAccountsByOwner({
       publicAddress: solanaAddress,
       connection,
     });
-    const formattedNfts = _nfts.map(({ mint, data: { name, uri } }) => ({
-      name,
-      uri,
-      mintAddress: mint,
-      type: "Solana",
-      image: "/images/nft_placeholder.png",
-      collectionName: "Loading...",
-    }));
+    console.log(_nfts)
+    const formattedNfts = _nfts
+      .filter(({ data: { symbol } }) => {
+        return symbol !== "Passport"
+      })
+      .map(({ mint, data: { name, uri } }) => ({
+        name,
+        uri,
+        mintAddress: mint,
+        type: "Solana",
+        image: "/images/nft_placeholder.png",
+        collectionName: "Loading...",
+      }));
     setSolNfts(formattedNfts);
   };
 

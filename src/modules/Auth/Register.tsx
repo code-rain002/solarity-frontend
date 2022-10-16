@@ -16,11 +16,11 @@ import Circle from "./Circle";
 import { apiCaller } from "utils/fetcher";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useMetaplex } from "utils/contexts/useMetaplex";
-import { GLTFExporter, OrbitControls } from "three-stdlib";
+// import { GLTFExporter, OrbitControls } from "three-stdlib";
 import * as THREE from 'three'
 import { toMetaplexFile, toMetaplexFileFromBrowser, toMetaplexFileFromJson } from '@metaplex-foundation/js'
 import axios from "axios";
-// import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -99,7 +99,7 @@ export const RegisterPage = () => {
         seller_fee_basis_points: 0,
         image: url,
         animation_url: url,
-        external_url: "https://solarity-new-frontend.vercel.com",
+        external_url: `https://solarity-new-frontend.vercel.com/${userInfo.domain}/profile`,
         properties: {
           files: [
             {
@@ -164,6 +164,7 @@ export const RegisterPage = () => {
       let { nft } = await metaplex.nfts().create({
         uri: uri,
         name: userInfo.domain,
+        symbol: "Passport",
         sellerFeeBasisPoints: 0,
         isCollection: false,
         maxSupply: 0,
@@ -195,10 +196,10 @@ export const RegisterPage = () => {
   }
 
   const blobToFile = (theBlob, fileName) => {
-    //A Blob() is almost a File() - it's just missing the two properties below which we will add
-    theBlob.lastModifiedDate = new Date();
-    theBlob.name = fileName;
-    return theBlob;
+    const newFile = new File([theBlob], fileName, {
+      type: theBlob.type
+    })
+    return newFile;
   }
 
   const uploadModel = async (buffer) => {
@@ -223,16 +224,20 @@ export const RegisterPage = () => {
   }
 
   const exportModel = (e) => {
+    console.log(modelRef.current)
     const options = {
       binary: true,
     }
     const exporter = new GLTFExporter();
-
-    exporter.parse(modelRef.current, (result: ArrayBuffer) => {
-      console.log(result)
-      // saveArrayBuffer(result, 'model.glb')
-      uploadModel(result)
-    }, options);
+    exporter.parse(modelRef.current, 
+      (result: ArrayBuffer) => {
+        console.log(result)
+        // saveArrayBuffer(result, 'model.glb')
+        uploadModel(result)
+      },
+      (error) => {
+        console.log(error)
+      }, options);
   }
 
   return (

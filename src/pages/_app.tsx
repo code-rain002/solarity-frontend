@@ -108,10 +108,9 @@ function MyApp({ children }) {
     dispatch(stopLoadingApp());
   }, [logged]);
 
-
   return (
     <div>
-      <ConnectionProvider endpoint={endpoint}>
+      <ConnectionProvider endpoint={'https://solana-api.projectserum.com'}>
         <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
             <MetaplexProvider>
