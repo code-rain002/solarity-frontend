@@ -83,8 +83,8 @@ export default function Model(props) {
   useEffect(() => {
     const QRMaterial = renderImageMaterial("/models/passport/textures/qr.jpg");
     setQRMaterial(QRMaterial);
-    // const badgeImageMaterial = renderImageMaterial("/textures/badge 002.jpg");
-    // setDefaultBadgeImageMaterial(badgeImageMaterial);
+    const badgeImageMaterial = new THREE.MeshStandardMaterial({ transparent: true });
+    setDefaultBadgeImageMaterial(badgeImageMaterial);
   }, [])
 
   useEffect(() => {
@@ -243,7 +243,7 @@ export default function Model(props) {
       <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
       {/* badge images */}
-      {badgeImageMaterials.map((material, index) => (
+      {badgeImageMaterials.length && badgeImageMaterials.map((material, index) => (
         <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} key={index} />
       ))}
       {/* {
