@@ -110,7 +110,7 @@ function MyApp({ children }) {
 
   return (
     <div>
-      <ConnectionProvider endpoint={'https://solana-api.projectserum.com'}>
+      <ConnectionProvider endpoint={'https://tiniest-responsive-cloud.solana-mainnet.discover.quiknode.pro/2f87fef26a0de6ba748209443bb4b121de112b38/'}>
         <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
             <MetaplexProvider>

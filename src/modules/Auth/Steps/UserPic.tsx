@@ -47,6 +47,7 @@ const UserPic = (props) => {
   );
   const [files, setFiles] = useState<File[]>(null);
   const [loadedImages, setLoadedImages] = useState<any[]>([]);
+  const [selectStatus, setSelectStatus] = useState(false);
 
   useEffect(() => {
     fetchNFTs();
@@ -78,6 +79,7 @@ const UserPic = (props) => {
   };
 
   const onSelectImage = async (image) => {
+    setSelectStatus(true);
     const payload = {
       value: image,
       type: "profileImage",
@@ -233,7 +235,7 @@ const UserPic = (props) => {
             icon=""
             bordered={false}
             onClick={() => onContinue()}
-            disabled={nftLoading ? true : false}
+            disabled={nftLoading && selectStatus ? true : false}
             styles="rounded-[15px]"
           />
         </div>
