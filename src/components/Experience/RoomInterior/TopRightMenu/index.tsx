@@ -43,10 +43,10 @@ const TopRightMenu = (props: TopRightMenuType) => {
         setUsersBoxActive={props.setUsersBoxActive}
       />
 
-      <SettingIcon
+      {/* <SettingIcon
         setLeftSideActive={props.setLeftSideActive}
         leftSideActive={props.leftSideActive}
-      />
+      /> */}
 
       <div className=" h-full border-[0.5px] border-[#1d1f1f] "></div>
 
