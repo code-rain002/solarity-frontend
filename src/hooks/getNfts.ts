@@ -47,7 +47,7 @@ export const getNfts = (
         uri,
         mintAddress: mint,
         type: "Solana",
-        image: "/images/nft_placeholder.png",
+        image: uri,
         collectionName: "Loading...",
       }));
     setSolNfts(formattedNfts);

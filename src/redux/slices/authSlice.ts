@@ -262,7 +262,7 @@ export const unlinkAccounts = createAsyncThunk(
 );
 
 export const placeBid = createAsyncThunk(
-  "profile/placeBid",
+  "auth/placeBid",
   async ({
     data,
     successFunction,
