@@ -15,10 +15,10 @@ const Circle = (props) => {
   useEffect(() => {
     let temp = percent
     var timer = setInterval(() => {
-      if (temp == (step-1)*10) clearInterval(timer)
+      if (temp == (step-1)*20) clearInterval(timer)
       setPercent(temp)
-      if (temp < (step-1)*10) temp++;
-      if (temp > (step-1)*10) temp--;
+      if (temp < (step-1)*20) temp++;
+      if (temp > (step-1)*20) temp--;
     }, 10)
   }, [step]);
 
@@ -44,7 +44,7 @@ const Circle = (props) => {
                   <h2 className="loading-status text-[40px] sm:text-[54px] font-bold font-['Outfit']">
                     {percent}<span className="text-[32px]">%</span>
                   </h2>
-                  <span className="text-xs sm:text-lg">{(step-1)*10}/100</span>
+                  <span className="text-xs sm:text-lg">{(step-1)*20}/100</span>
                 </div>
               </div>
             </div>

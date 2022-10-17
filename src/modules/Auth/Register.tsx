@@ -10,31 +10,26 @@ import {
   UserPic,
   NftDemo,
 } from "./Steps";
-import { jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
+import { goStep, jumpStep, setStep, updateUserInfo } from "redux/slices/authSlice";
 import ProgressBar from "./ProgressBar";
 import Circle from "./Circle";
 import { apiCaller } from "utils/fetcher";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useMetaplex } from "utils/contexts/useMetaplex";
-// import { GLTFExporter, OrbitControls } from "three-stdlib";
-import * as THREE from 'three'
-import { toMetaplexFile, toMetaplexFileFromBrowser, toMetaplexFileFromJson } from '@metaplex-foundation/js'
-import axios from "axios";
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
+import SuccessModal from './SuccessModal';
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const wallet = useWallet();
   const { metaplex } = useMetaplex();
   const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
   }));
   const modelRef = useRef();
-  const canvasRef = useRef();
-  const [modelFile, setModelFile] = useState<File>();
   const [ipfsUrl, setIpfsUrl] = useState<string>();
+  const [mintProcess, setMintProcess] = useState<number>(0);
 
   useEffect(() => {
     apiCaller
@@ -46,6 +41,7 @@ export const RegisterPage = () => {
           let tempUserInfo = userInfo;
           switch (user.registerStep) {
             case 6:
+              router.push({ pathname: `/${user.username}/profile` })
               tempUserInfo = {
                 ...tempUserInfo,
                 passportStyle: user.passportStyle
@@ -92,6 +88,7 @@ export const RegisterPage = () => {
 
   const mintModel = async (url) => {
     try {
+      setMintProcess(3)
       const metadataJson = {
         name: userInfo.domain,
         description: userInfo.title,
@@ -160,40 +157,32 @@ export const RegisterPage = () => {
         .run();
 
       console.log(uri)
+      setMintProcess(4)
 
       let { nft } = await metaplex.nfts().create({
-        uri: uri,
-        name: userInfo.domain,
-        symbol: "Passport",
-        sellerFeeBasisPoints: 0,
-        isCollection: false,
-        maxSupply: 0,
-      })
-      .run();
+          uri: uri,
+          name: userInfo.domain,
+          symbol: "Passport",
+          sellerFeeBasisPoints: 0,
+          isCollection: false,
+          maxSupply: 0,
+          confirmOptions: {
+            maxRetries: 4,
+            confirm: 'confirmed'
+          }
+        })
+        .run();
       console.log(nft);
-
+      setMintProcess(5)
+      dispatch(goStep({
+        stepNum: 6,
+        data: {}
+      }))
     } catch (err) {
+      setMintProcess(0)
       console.log('err: ', err)
     }
   };
-
-  const saveArrayBuffer = (buffer, filename) => {
-    save(new Blob([buffer], { type: 'application/octet-stream' }), filename)
-  }
-
-  const saveString = (text, filename) => {
-    save(new Blob([text], { type: 'text/plain' }), filename);
-  }
-
-  const save = (blob, filename) => {
-    const link = document.createElement('a');
-    link.style.display = 'none';
-    document.body.appendChild(link);
-
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-  }
 
   const blobToFile = (theBlob, fileName) => {
     const newFile = new File([theBlob], fileName, {
@@ -203,6 +192,7 @@ export const RegisterPage = () => {
   }
 
   const uploadModel = async (buffer) => {
+    setMintProcess(2)
     const blob = new Blob([buffer], { type: 'application/octet-stream' })
     const file = blobToFile(blob, 'Model.glb')
     const data = new FormData();
@@ -224,12 +214,13 @@ export const RegisterPage = () => {
   }
 
   const exportModel = (e) => {
+    setMintProcess(1)
     console.log(modelRef.current)
     const options = {
       binary: true,
     }
     const exporter = new GLTFExporter();
-    exporter.parse(modelRef.current, 
+    exporter.parse(modelRef.current,
       (result: ArrayBuffer) => {
         console.log(result)
         // saveArrayBuffer(result, 'model.glb')
@@ -238,6 +229,24 @@ export const RegisterPage = () => {
       (error) => {
         console.log(error)
       }, options);
+  }
+
+  const saveArrayBuffer = (buffer, filename) => {
+    save(new Blob([buffer], { type: 'application/octet-stream' }), filename)
+  }
+
+  const saveString = (text, filename) => {
+    save(new Blob([text], { type: 'text/plain' }), filename);
+  }
+
+  const save = (blob, filename) => {
+    const link = document.createElement('a');
+    link.style.display = 'none';
+    document.body.appendChild(link);
+
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
   }
 
   return (
@@ -265,6 +274,17 @@ export const RegisterPage = () => {
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
         <NftDemo modelRef={modelRef} />
       </div>
+      {mintProcess === 5 && <SuccessModal />}
+      {mintProcess !== 0 && mintProcess !== 5 && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm z-20 flex  justify-center items-center">
+          <div className="text-white text-[24px]">
+            {mintProcess === 1 && 'Exporting 3D model...'}
+            {mintProcess === 2 && 'Uploading your 3D Passport...'}
+            {mintProcess === 3 && 'Uploading NFT metadata...'}
+            {mintProcess === 4 && 'Minting your Passport NFT...'}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
