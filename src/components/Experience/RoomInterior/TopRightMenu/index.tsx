@@ -9,6 +9,7 @@ import SpeakerIcon from "./SpeakerIcon";
 
 type TopRightMenuType = {
   setLeftSideActive: any;
+  entireToggleVolume: Function;
   leftSideActive: string;
   usersBoxActive: boolean;
   isMute: boolean;
@@ -50,7 +51,10 @@ const TopRightMenu = (props: TopRightMenuType) => {
 
       <SpeakerIcon
         speakerState={speakerState}
-        setSpeakerState={() => setSpeakerState(!speakerState)}
+        setSpeakerState={() => {
+          setSpeakerState(!speakerState);
+          props.entireToggleVolume(!speakerState);
+        }}
       />
 
       <MicroIcon

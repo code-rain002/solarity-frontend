@@ -8,6 +8,8 @@ import UploadButton from "./UploadButton";
 import ReplyPart from "./ReplyPart";
 import FileListPart from "./FileListPart";
 import TypingNotification from "./TypingNotification";
+import { useRouter } from "next/router";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 type InputType = {
   focusState: boolean;
@@ -19,6 +21,12 @@ type InputType = {
 };
 
 const Input = (props: InputType) => {
+  const router = useRouter();
+  const { profileData } = useSelector((state: RootStateOrAny) => ({
+    profileData: state.profile.data
+  }))
+  const { rid } = router.query;
+
   const [showEmoji, setShowEmoji] = useState(false);
   const [scrollBarDisp, setScrollBarDisp] = useState(false);
 
@@ -95,7 +103,7 @@ const Input = (props: InputType) => {
         fileNameArray.push(file.name);
       }
 
-      props.setNewMsgDataState({
+      sendMsg({
         ...props.newMsgDataState,
         files: {
           fileExists: true,
@@ -103,9 +111,9 @@ const Input = (props: InputType) => {
           fileNames: fileNameArray,
         },
         myMsg: e.target.value,
+        avatarUrl: profileData && profileData.profileImageLink ? profileData.profileImageLink : "",
       });
 
-      props.setNewMsgSendingState(true);
       setSelectedFile([]);
       e.target.value = "";
     } else if (e.key == "Tab") {
@@ -141,7 +149,7 @@ const Input = (props: InputType) => {
       fileNameArray.push(file.name);
     }
 
-    props.setNewMsgDataState({
+    sendMsg({
       ...props.newMsgDataState,
       files: {
         fileExists: true,
@@ -149,18 +157,24 @@ const Input = (props: InputType) => {
         fileNames: fileNameArray,
       },
       myMsg: chatting_input.value,
+      avatarUrl: profileData && profileData.profileImageLink ? profileData.profileImageLink : "",
     });
 
-    props.setNewMsgSendingState(true);
     setSelectedFile([]);
     chatting_input.value = "";
   };
 
+  const sendMsg = (msg) => {
+    (window as any).socket.emit("send-msg", {
+      roomId: rid,
+      data: msg,
+    });
+  }
+
   return (
     <div
-      className={` flex flex-col rounded-[15px] border-[1.2px] ${
-        props.focusState ? "border-primary" : "border-[#272829]"
-      } 
+      className={` flex flex-col rounded-[15px] border-[1.2px] ${props.focusState ? "border-primary" : "border-[#272829]"
+        } 
             mx-[26px]
             absolute bottom-[32px] w-[85%] bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
       id="chatting_input_container"
@@ -188,9 +202,8 @@ const Input = (props: InputType) => {
           <TextareaAutosize
             minRows={1}
             maxRows={10}
-            className={`${
-              scrollBarDisp ? "" : "tas"
-            } bg-[#131314] text-[#f3f3f3] border-transparent resize-none box-border
+            className={`${scrollBarDisp ? "" : "tas"
+              } bg-[#131314] text-[#f3f3f3] border-transparent resize-none box-border
                           mt-[-5px] h-[26px] w-[100%] overflow-visible font-['Outfit'] font-[400] text-[16px] `}
             id="chatting_input"
             placeholder="Write something"
