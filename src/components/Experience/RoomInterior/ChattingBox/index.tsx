@@ -20,6 +20,7 @@ const ChattingBox = (props: ChattingBoxType) => {
       hisMsg: "",
     },
     myMsg: "",
+    avatarUrl: "",
     files: {
       fileExists: false,
       fileNames: [],
@@ -30,11 +31,10 @@ const ChattingBox = (props: ChattingBoxType) => {
   return (
     <div
       className={` absolute md:bottom-[32px] xs:bottom-[78px] md:right-[32px] xs:right-[0px] w-[426px] md:top-[108px] xs:top-[0px] md:w-fit xs:w-full md:rounded-[24px] xs:rounded-[0px] border-[#1d1f1f] border-[1px] bg-[#131314]
-                        ${
-                          props.leftSideActive === "chatting"
-                            ? "flex flex-col"
-                            : "hidden"
-                        } p-[6px] `}
+        ${props.leftSideActive === "chatting"
+          ? "flex flex-col"
+          : "hidden"
+        } p-[6px] `}
       onDragOver={(e) => {
         e.preventDefault();
         setToggleDropZone("flex");
@@ -85,11 +85,10 @@ const ChattingBox = (props: ChattingBoxType) => {
       {/* Following is a tranparent layer for drag and drop operation - with this flickering issue can be avoid */}
       <div
         className={`absolute top-[-3px] bottom-[-3px] left-[-3px] right-[-3px] bg-transparent
-                            rounded-[24px] ${
-                              toggleDropZone === "none"
-                                ? "hidden"
-                                : "flex flex-col"
-                            }`}
+                            rounded-[24px] ${toggleDropZone === "none"
+            ? "hidden"
+            : "flex flex-col"
+          }`}
         id="chatting_box"
         onDragLeave={() => setToggleDropZone("none")}
         onDrop={() => setToggleDropZone("none")}

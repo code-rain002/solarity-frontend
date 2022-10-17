@@ -263,6 +263,21 @@ const MainScr = (props: MainScrTyp) => {
     setVolumes(temp);
   };
 
+  const entireToggleVolume = (volume) => {
+    if (rooms.length == 0 || !rooms[roomIndex]) {
+      return;
+    }
+    const speakers = rooms[roomIndex].speakers;
+    if (speakers) {
+      var temp = Object.assign({}, volumes);
+      speakers.forEach((speaker, index) => {
+        temp[speaker] = !volume;
+      });
+      (window as any).volumes = temp;
+      setVolumes(temp);
+    }
+  }
+
   useEffect(() => {
     handleMute(!isMute, userName);
   }, [isMute]);
@@ -300,6 +315,7 @@ const MainScr = (props: MainScrTyp) => {
       <BackButton />
       <TopRightMenu
         isMute={isMute}
+        entireToggleVolume={entireToggleVolume}
         handleMuteBtnClick={handleMuteBtnClick}
         setLeftSideActive={(any) => setLeftSideActive(any)}
         leftSideActive={leftSideActive}

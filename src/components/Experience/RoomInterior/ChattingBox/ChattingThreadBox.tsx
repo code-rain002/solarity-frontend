@@ -1,6 +1,7 @@
 import useWindowDimensions from "components/Common/useWindowDimensions";
 import { ChattingBoxData } from "data/Experience";
 import { useEffect, useState } from "react";
+import { RootStateOrAny, useSelector } from "react-redux";
 import { setMsg } from "redux/slices/chatSlice";
 import ChattingThread from "./ChattingThread";
 import TypingNotification from "./TypingNotification";
@@ -67,14 +68,10 @@ const initChatbox = (props) => {
 };
 
 const ChattingThreadBox = (props: ChattingThreadBoxType) => {
-  const [msgs, setMsgs] = useState(initChatbox(props));
-  const { height, width } = useWindowDimensions();
-
+  const { msgs } = useSelector((state: RootStateOrAny) => state.chat);
   useEffect(() => {
-    if (props.newMsgSendingState) {
-      appendMyNewChattingThread(msgs, setMsgs, props);
-    }
-  }, [props.newMsgSendingState]);
+    console.log('display msg', msgs);
+  }, [msgs])
   return (
     <div
       className={` flex custom-2xl:h-[76%] xs:h-[73%] gap-[24px] relative mb-[24px] `}
@@ -84,7 +81,21 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
         className="flex flex-col px-[26px] w-full h-full overflow-y-scroll overflow-x-visible gap-[24px] relative pb-[30px]"
         id="chatting_thread_box_1"
       >
-        {msgs.map((msg) => msg)}
+        {msgs.map((msg, index) => (
+          <ChattingThread
+            imgUrl={msg.avatarUrl}
+            uName={msg.user}
+            text={msg.msg.myMsg}
+            before={""}
+            setNewMsgDataState={props.setNewMsgDataState}
+            newMsgDataState={props.newMsgDataState}
+            hisMsg={msg.msg.reply.hisMsg}
+            replyToWhom={msg.msg.reply.replyToWhom}
+            fileUrls={msg.msg.files.fileUrls}
+            fileNames={["__FOR__INITIAL__DATA__"]}
+            key={index}
+          />
+        ))}
       </div>
       {/* <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} /> */}
     </div>
