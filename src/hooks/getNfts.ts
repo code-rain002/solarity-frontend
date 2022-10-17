@@ -37,7 +37,6 @@ export const getNfts = (
       publicAddress: solanaAddress,
       connection,
     });
-    console.log(_nfts)
     const formattedNfts = _nfts
       .filter(({ data: { symbol } }) => {
         return symbol !== "Passport"
