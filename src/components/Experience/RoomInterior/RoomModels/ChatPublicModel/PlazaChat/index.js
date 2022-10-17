@@ -51,7 +51,7 @@ const PlazaChat = ({ modelURL, name, creator, slideUrls }) => {
         <a-asset-item id="raccoon-obj" src={modelURL}></a-asset-item>
         <a-asset-item id="uv" src={"/models/helmet/helmet visor.gltf"}></a-asset-item>
 
-        <img id="sky-img" src="/images/bluesky.jpg" />
+        <img id="sky-img" src="/images/experience/hub/bluesky.jpg" />
         
         {!!slideUrls && slideUrls.map((slideUrl, index) => (
             <img key={index} id={"slide" + slideUrl.no} src={slideUrl.url} />

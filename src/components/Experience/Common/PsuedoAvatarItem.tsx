@@ -39,7 +39,7 @@ const PsuedoAvatarItem = (props: PsuedoAvatarItemType) => {
         </div>
       </div>
       <div
-        className=" font-['Outfit'] font-[500] text-[14px] text-[#f3f3f3]
+        className=" font-['Outfit'] font-[300] text-[14px] text-[#f3f3f3]
                             w-[90%] flex flex-row justify-center
                             h-content bg-gradient-to-t from-[#181818] via-[#181818] to-transparent leading-[2rem] "
       >

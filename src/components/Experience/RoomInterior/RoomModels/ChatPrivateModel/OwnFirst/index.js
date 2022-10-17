@@ -48,10 +48,10 @@ const OwnFirst = ({ roomInfo, modelURL, name }) => {
           <img id="hub-img" src="/images/experience/hub.png" />
           <img id="sky-img" src="/images/experience/sky.jpg"/>
 
-          <img id="gif-img1" src="/assets/images/gif_img1.jpeg"/>
-          <img id="gif-img2" src="/assets/images/gif_img2.jpeg"/>
-          <img id="gif-img3" src="/assets/images/gif_img3.jpeg"/>
-          <img id="gif-img4" src="/assets/images/gif_img4.jpeg"/>
+          <img id="gif-img1" src="/images/experience/hub/gif_img1.jpeg"/>
+          <img id="gif-img2" src="/images/experience/hub/gif_img2.jpeg"/>
+          <img id="gif-img3" src="/images/experience/hub/gif_img3.jpeg"/>
+          <img id="gif-img4" src="/images/experience/hub/gif_img4.jpeg"/>
 
           <template 
               id="avatar-template"

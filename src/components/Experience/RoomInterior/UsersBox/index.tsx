@@ -1,5 +1,6 @@
 import { DownArrow, UpArrow } from "components/icons";
 import { UsersBoxData } from "data/Experience";
+import { useEffect, useState } from "react";
 import CopyInviteLinkBtn from "./CopyInviteLinkBtn";
 import UsersBoxItem from "./UsersBoxItem";
 
@@ -9,9 +10,30 @@ type UsersBoxType = {
   usersBoxActive: boolean;
   setUsersBoxActive: any;
   isMobile: boolean;
+  rooms: any[];
+  roomIndex: number;
+  volumes: any;
+  clients: any[];
+  toggleVolume: Function;
+  provideRef: Function;
 };
 
 const UsersBox = (props: UsersBoxType) => {
+  const [roomId, setRoomId] = useState("");
+  const [userNames, setUserNames] = useState<string[]>([]);
+  const [avatars, setAvatars] = useState<string[]>([])
+
+  useEffect(() => {
+    if (!!props.rooms[props.roomIndex]) {  //if current room is exist
+      // if invitation hash is
+      if (!!props.rooms[props.roomIndex].invitationHash) {
+        setRoomId(props.rooms[props.roomIndex].invitationHash)
+      }
+      setUserNames(props.rooms[props.roomIndex].speakers);
+      setAvatars(props.rooms[props.roomIndex].avatars);
+    }
+  }, [props.rooms[props.roomIndex]])
+
   return (
     <div
       className={` absolute
@@ -34,7 +56,7 @@ const UsersBox = (props: UsersBoxType) => {
             Users
           </div>
           <div className="font-['Outfit'] font-[500] text-[24px] text-[#474749] select-none ">
-            55
+            {userNames.length}
           </div>
         </div>
 
@@ -70,15 +92,23 @@ const UsersBox = (props: UsersBoxType) => {
       </div>
 
       <div className="flex flex-col gap-[16px] px-[26px] pt-[12px] overflow-y-scroll overflow-x-visible md:mb-[0px] xs:mb-[80px] ">
-        {UsersBoxData.map((i, j) => (
-          <UsersBoxItem
-            imgUrl={i.imgUrl}
-            uName={i.uName}
-            uState={i.uState}
-            mute={i.mute}
-            key={j}
-          />
-        ))}
+        {userNames.map((name, index) => {
+          const user = props.clients.find(s => s.name == name);
+          if (user) {
+            return (
+              <UsersBoxItem
+                imgUrl={avatars[index]}
+                uName={name}
+                uState={'idle'}
+                user={user}
+                toggleVolume={props.toggleVolume}
+                provideRef={props.provideRef}
+                mute={props.volumes[user.name]}
+                key={index}
+              />
+            );
+          }
+        })}
       </div>
       <div className="absolute md:bottom-[0px] xs:bottom-[77px] right-[0px] h-[30px] w-full bg-gradient-to-t from-[#131314] to-[rgba(19, 19, 20, 0)] "></div>
 

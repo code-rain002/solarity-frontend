@@ -11,6 +11,8 @@ type TopRightMenuType = {
   setLeftSideActive: any;
   leftSideActive: string;
   usersBoxActive: boolean;
+  isMute: boolean;
+  handleMuteBtnClick: Function;
   setUsersBoxActive: any;
   isMobile: boolean;
 };
@@ -52,10 +54,9 @@ const TopRightMenu = (props: TopRightMenuType) => {
       />
 
       <MicroIcon
-        microState={microState}
-        setMicroState={() => setMicroState(!microState)}
+        microState={props.isMute}
+        setMicroState={() => props.handleMuteBtnClick()}
       />
-
       <BackIcon />
     </div>
   );

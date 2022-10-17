@@ -23,6 +23,7 @@ const RoomListItem = (props: RoomListItemType) => {
         type: props.type,
         roomNo: props.roomNo,
         roomName: props.roomName,
+        imageUrl: props.imgUrl,
       }))}
     >
       <div className=" rounded-[15px] overflow-hidden">

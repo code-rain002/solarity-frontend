@@ -4,7 +4,7 @@ import { UpArrow } from "components/icons";
 import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { createRoom, setModalVisibility } from "../../../redux/slices/chatSlice";
+import { createRoom, setCreateModalVisibility, setNewRoomTitle, setSelectedRoom } from "../../../redux/slices/chatSlice";
 import { CloseIcon } from "../../icons";
 import RoundedTabItem from "components/Profile/RoundedTabItem";
 import RoomSelectionContent from "./ModalContent/RoomSelectionContent";
@@ -18,8 +18,6 @@ const CreateRoomModal = () => {
     profileData: state.profile.data
   }));
 
-  const router = useRouter();
-  const [uName, setUName] = useState("");
   const [modelIndex, setModelIndex] = useState(0);
   const [step, setStep] = useState(0);
 
@@ -43,6 +41,13 @@ const CreateRoomModal = () => {
       return;
     }
 
+    setTimeout(() => {
+      setStep(0);
+      dispatch(setCreateModalVisibility(false));
+      dispatch(setNewRoomTitle(''));
+      dispatch(setSelectedRoom({}));
+    }, 1000);
+
     dispatch(createRoom({
       title: selectedRoom.roomName,
       type: selectedRoom.type,
@@ -51,13 +56,14 @@ const CreateRoomModal = () => {
       userName: profileData.username,
       slideUrls: [],
       modelIndex: modelIndex,
-      avatarUrl: profileData.profileImageLink || ""
+      avatarUrl: profileData.profileImageLink || "",
+      imageUrl: selectedRoom.imageUrl,
     }))
   }
 
   const closeDlg = (e) => {
     if (e.target.id == "room_setting_dlg") {
-      dispatch(setModalVisibility(false));
+      dispatch(setCreateModalVisibility(false));
     }
   };
 
@@ -73,7 +79,7 @@ const CreateRoomModal = () => {
         {/* Modal Header */}
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
-          onClick={() => dispatch(setModalVisibility(false))}
+          onClick={() => dispatch(setCreateModalVisibility(false))}
         >
           <CloseIcon />
         </div>

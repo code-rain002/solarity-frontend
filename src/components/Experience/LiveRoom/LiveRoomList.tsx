@@ -1,11 +1,20 @@
-import { LiveRoomListData } from "data/Experience";
-import { useEffect, useState } from "react";
-import LiveRoomListTitle from "./LiveRoomLilstTitle";
+import React, { useEffect, useState } from "react";
+import { RootStateOrAny, useSelector } from "react-redux";
+
+import LiveRoomListTitle from "./LiveRoomListTitle";
 import LiveRoomListItem from "./LiveRoomListItem";
 import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
+import { SolanaIcon } from "components/icons";
+
+import { LiveRoomListData } from "data/Experience";
 
 const LiveRoomList = (props: any) => {
+
+  const { rooms } = useSelector((state: RootStateOrAny) => ({
+    rooms: state.chat.rooms
+  }))
+
   const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(430);
   const [maxLiveRoomSectionHeight, setMaxLiveRoomSectionHeight] = useState(
     LiveRoomListData.length * 88
@@ -14,7 +23,7 @@ const LiveRoomList = (props: any) => {
 
   useEffect(() => {
     const ele = document.getElementById("lrl");
-    ele.style.height = liveRoomSectionHeight + "px";
+    (ele as any).style.height = liveRoomSectionHeight + "px";
   }, [liveRoomSectionHeight]);
   let k = -1;
   return (
@@ -24,18 +33,18 @@ const LiveRoomList = (props: any) => {
         className={`h-full pr-[10px] md:overflow-y-scroll xs:overflow-y-hidden overflow-x-visible flex flex-col items-left md:gap-[16px] xs:gap-[12px] `}
         id="lrl"
       >
-        {LiveRoomListData.map((i, index) => {
+        {rooms && rooms.map((room, index) => {
           k++;
           return (
             <LiveRoomListItem
               key={index}
-              imgUrl={i.imgUrl}
-              walletIcon={i.walletIcon}
-              collectionName={i.collectionName}
-              roomName={i.roomName}
-              lgImgUrl={i.lgImgUrl}
-              currentNumberOfMembers={i.currentNumberOfMembers}
-              roomId={k}
+              imgUrl={room.imageUrl}
+              walletIcon={<SolanaIcon />}
+              collectionName={room.title}
+              roomName={room.roomName}
+              lgImgUrl={room.imageUrl}
+              currentNumberOfMembers={room.speakers.length}
+              roomId={index}
               setShowMobileJoinRoomDlg={setShowMobileJoinRoomDlg}
             />
           );

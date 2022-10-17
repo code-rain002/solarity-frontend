@@ -9,6 +9,7 @@ import ACTIONS from "config/actions"
 import { useRouter } from "next/router"
 import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
 import CreateRoomModal from "components/Experience/Common/CreateRoomModal"
+import JoinRoomModal from "components/Experience/Common/JoinRoomModal"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -19,9 +20,10 @@ const ProfileIndex = () => {
     const [roomSettingDlgToggle, setRoomSettingDlgToggle] = useState([false, "join"])
     const [activeRoomId, setActiveRoomId] = useState(0)
 
-    const { selectedRoom, modalVisibility } = useSelector((state: RootStateOrAny) => ({
+    const { selectedRoom, createModalVisibility, joinModalVisibility } = useSelector((state: RootStateOrAny) => ({
         selectedRoom: state.chat.selectedRoom,
-        modalVisibility: state.chat.modalVisibility,
+        createModalVisibility: state.chat.createModalVisibility,
+        joinModalVisibility: state.chat.joinModalVisibility
     }));
 
     useEffect(() => {
@@ -98,12 +100,7 @@ const ProfileIndex = () => {
                         </div>
                     </div>
                     <div className=" lg:col-span-5 xl:col-span-7 2xl:col-span-4">
-                        <ExperienceBanner
-                            activeRoomId={activeRoomId}
-                            sidebarToggler={sidebarToggler}
-                            activeRoom={activeRoom}
-                            setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "join"])}
-                        />
+                        <ExperienceBanner />
                     </div>
                 </div>
             }
@@ -118,8 +115,11 @@ const ProfileIndex = () => {
                 roomSettingDlgToggle={roomSettingDlgToggle}
                 setRoomSettingDlgToggle={() => setRoomSettingDlgToggle([true, "create"])}
             />
-            {modalVisibility && (
+            {createModalVisibility && (
                 <CreateRoomModal />
+            )}
+            {joinModalVisibility && (
+                <JoinRoomModal />
             )}
         </Layout>
     )

@@ -5,19 +5,21 @@ import Image from "next/image"
 import { useState } from "react"
 
 type UsersBoxItemType = {
-    imgUrl : string,
-    uName : string,
-    uState : string,
-    mute : boolean,
+    imgUrl: string,
+    uName: string,
+    uState: string,
+    mute: boolean,
+    user: any;
+    toggleVolume: Function;
+    provideRef: Function;
 }
 
-const UsersBoxItem = (props : UsersBoxItemType) => {
-    const [muteState, setMuteState] = useState(props.mute)
+const UsersBoxItem = (props: UsersBoxItemType) => {
     return (
         <div className="flex flex-row items-center w-full h-[64px] bg-[#1d1d1e] rounded-[15px] p-[12px] justify-between
                         border-[1px] border-[rgba(0,0,0,0)] hover:border-primary">
             <div className="w-[40px] h-[40px]  rounded-[15px] overflow-hidden ">
-                <Image src={props.imgUrl} alt="avatar" layout="fixed" width={40} height={40} />
+                <Image src={props.imgUrl ? props.imgUrl : "/images/placeholder/avatars/avatar.png"} alt="avatar" layout="fixed" width={40} height={40} />
             </div>
             <div className="font-['Outfit'] font-[500] text-[16px] text-[#b3b3b7] w-[40%] truncate">
                 {props.uName}
@@ -25,9 +27,16 @@ const UsersBoxItem = (props : UsersBoxItemType) => {
             <div className="font-['Outfit'] font-[400] text-[14px] text-[#474749] w-[20%] ">
                 {props.uState}
             </div>
-            <div className="cursor-pointer mr-[8px] " onClick={() => setMuteState(!muteState)}>
-                {muteState ? <VolumeMuteIcon /> : <VolumeIcon />}
-            </div>
+            {!!props.user && (
+                <div className="cursor-pointer mr-[8px] " onClick={() => props.toggleVolume(props.user.name)}>
+                    <audio
+                        volume="0"
+                        autoPlay
+                        ref={(instance) => (props.provideRef(instance, props.user.name))}
+                    />
+                    {props.mute ? <VolumeMuteIcon /> : <VolumeIcon />}
+                </div>
+            )}
         </div>
     )
 }

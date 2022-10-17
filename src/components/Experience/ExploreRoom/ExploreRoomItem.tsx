@@ -27,7 +27,7 @@ const ExploreRoomItem = (props: ExploreRoomItemType) => {
   return (
     <div
       className={`flex flex-col w-[100%] h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
-                        relative cursor-pointer hover:border-primary custom-2xl:col-span-4 xl:col-span-6 lg:col-span-12 xs:col-span-6 ${(selectedRoom.roomNo == props.roomNo && selectedRoom.type == props.type) ? 'border-primary' : ''}`}
+                        relative cursor-pointer hover:border-primary custom-2xl:col-span-3 xl:col-span-6 lg:col-span-12 xs:col-span-6 ${(selectedRoom.roomNo == props.roomNo && selectedRoom.type == props.type) ? 'border-primary' : ''}`}
       onClick={() => selectRoom(props.roomNo)}
     >
       <div className=" rounded-[15px] overflow-hidden">
