@@ -181,7 +181,7 @@ const Input = (props: InputType) => {
       onDragStart={(e) => e.preventDefault()}
     >
       {/* <div className=" absolute top-[-51px] right-[0px] custom-2xl:h-[30px] xs:h-[50px] w-full bg-gradient-to-t from-[#131314] via-[#131314] to-transparent"></div> */}
-      <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} />
+      {/* <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} /> */}
       <ReplyPart
         newMsgDataState={props.newMsgDataState}
         setNewMsgDataState={props.setNewMsgDataState}

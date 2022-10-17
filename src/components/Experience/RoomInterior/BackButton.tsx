@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 
-const BackButton = () => {
-  const router = useRouter();
+type BackButtonType = {
+  onClick: Function;
+}
 
-  const return2ExperiencePage = (e) => {
-    e.preventDefault();
-    router.push("/experience");
-  };
+const BackButton = (props: BackButtonType) => {
+  const router = useRouter();
   return (
     <div
       className=" absolute w-[52px] h-[52px] rounded-[15px] box-border left-[32px] top-[32px] bg-[#131314]
                         border-[1.2px] border-[#272829] overflow-hidden
                         md:flex md:flex-row xs:hidden
                         justify-center items-center cursor-pointer "
-      onClick={(e) => return2ExperiencePage(e)}
+      onClick={() => props.onClick()}
     >
       <svg
         width="16"

@@ -22,6 +22,9 @@ import {
 import { startHub } from "utils/chat/hubUtils";
 import ChatPublicModel from "./RoomModels/ChatPublicModel";
 import ChatPrivateModel from "./RoomModels/ChatPrivateModel";
+import ACTIONS from "config/actions";
+import { setMsg, setPeers } from "redux/slices/chatSlice";
+import freeObjectFromMemory from "utils/clearObject";
 
 type MainScrTyp = {
   percentage: number;
@@ -278,6 +281,34 @@ const MainScr = (props: MainScrTyp) => {
     }
   }
 
+  const leaveRoom = () => {
+    clearInterval(intervalId);
+    var objectsToDelete = [];
+    var items = document.querySelectorAll(".model");
+    for (var iIndex = 0; iIndex < items.length; iIndex++) {
+      objectsToDelete.push(items[iIndex]);
+    }
+    var scene = document.querySelector("scene");
+    objectsToDelete.push(scene);
+    for (var i = 0; i < objectsToDelete.length; i++) {
+      if (!!objectsToDelete[i]) {
+        freeObjectFromMemory(objectsToDelete[i].object3D, objectsToDelete[i]);
+      }
+    }
+
+    (window as any).isReady1 = false;
+    (window as any).positions = {};
+    (window as any).myPosition = {};
+    (window as any).socket.emit(ACTIONS.LEAVE, {
+      roomId: rid,
+      user: { name: userName },
+    });
+    dispatch(setMsg([]));
+    dispatch(setPeers([]));
+    alert();
+    router.push("/experience");
+  }
+
   useEffect(() => {
     handleMute(!isMute, userName);
   }, [isMute]);
@@ -312,9 +343,10 @@ const MainScr = (props: MainScrTyp) => {
           }.jpg`}
         layout="fill"
       /> */}
-      <BackButton />
+      <BackButton onClick={leaveRoom} />
       <TopRightMenu
         isMute={isMute}
+        leaveRoom={leaveRoom}
         entireToggleVolume={entireToggleVolume}
         handleMuteBtnClick={handleMuteBtnClick}
         setLeftSideActive={(any) => setLeftSideActive(any)}

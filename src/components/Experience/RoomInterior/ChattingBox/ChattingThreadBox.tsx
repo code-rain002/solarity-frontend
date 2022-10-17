@@ -74,11 +74,11 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
   }, [msgs])
   return (
     <div
-      className={` flex custom-2xl:h-[76%] xs:h-[73%] gap-[24px] relative mb-[24px] `}
+      className={`flex custom-2xl:h-[76%] xs:h-[73%] gap-[24px] relative mb-[24px] `}
       id="chatting_thread_box"
     >
       <div
-        className="flex flex-col px-[26px] w-full h-full overflow-y-scroll overflow-x-visible gap-[24px] relative pb-[30px]"
+        className="flex flex-col px-[26px] w-full h-full overflow-y-scroll overflow-x-visible gap-[2px] relative pb-[30px]"
         id="chatting_thread_box_1"
       >
         {msgs.map((msg, index) => (

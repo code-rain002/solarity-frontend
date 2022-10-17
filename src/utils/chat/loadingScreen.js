@@ -29,7 +29,7 @@ export function update_loadingScreen() {
     modelsNumber = undefined;
     if (!!loadingScreenEl) loadingScreenEl.style.display = "none";
     if (sceneWrapperEl) sceneWrapperEl.style.opacity = 100;
-  }, 10000);
+  }, 30000);
 
   modelsLoaded++;
   if (loadingBars && loadingStatus) {

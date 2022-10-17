@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 import ImgFileType from "./ImgFileType";
 import OtherFileType from "./OtherFileType";
@@ -19,6 +20,9 @@ type ChattingThreadType = {
 };
 
 const ChattingThread = (props: ChattingThreadType) => {
+  const { profileData } = useSelector((state: RootStateOrAny) => ({
+    profileData: state.profile.data
+  }))
   const [showReplyBtn, setShowReplyBtn] = useState(false);
   const [replyHover, setReplyHover] = useState(false);
   const [msg, setMsg] = useState("");
@@ -48,10 +52,10 @@ const ChattingThread = (props: ChattingThreadType) => {
         tempMsg = tempMsg.replace(
           regExp,
           "<a href='" +
-            uniqueUrlArray[j] +
-            "' class='urlPart' target='__blank'>" +
-            uniqueUrlArray[j] +
-            "</a>"
+          uniqueUrlArray[j] +
+          "' class='urlPart' target='__blank'>" +
+          uniqueUrlArray[j] +
+          "</a>"
         );
       }
     }
@@ -94,10 +98,10 @@ const ChattingThread = (props: ChattingThreadType) => {
         tempHisMsg = tempHisMsg.replace(
           regExp,
           "<a href='" +
-            uniqueUrlHisArray[j] +
-            "' class='urlPart' target='__blank'>" +
-            uniqueUrlHisArray[j] +
-            "</a>"
+          uniqueUrlHisArray[j] +
+          "' class='urlPart' target='__blank'>" +
+          uniqueUrlHisArray[j] +
+          "</a>"
         );
       }
     }
@@ -124,20 +128,19 @@ const ChattingThread = (props: ChattingThreadType) => {
   let j = 0;
   return (
     <div
-      className=" flex flex-row gap-[16px] items-start justify-start"
+      className={`flex ${props.uName === profileData.username ? 'flex-row-reverse' : 'flex-row'} gap-[16px] items-start justify-start`}
       onDragStart={(e) => e.preventDefault()}
       onMouseEnter={() => setShowReplyBtn(true)}
       onMouseLeave={() => setShowReplyBtn(false)}
     >
-      <div className=" min-h-[40px] min-w-[40px] rounded-[15px] overflow-hidden relative ">
+      <div className={`min-h-[40px] min-w-[40px] rounded-[15px] overflow-hidden relative ${props.uName === profileData.username ? "hidden" : ""} `}>
         <Image src={props.imgUrl} layout="responsive" width={40} height={40} />
       </div>
-      <div className=" flex flex-col gap-[10px] justify-between items-start md:w-[278px] xs:max-w-[100%]">
-        <div className=" flex flex-row gap-[10px] justify-start items-center ">
+      <div className={`flex ${props.uName === profileData.username ? "flex-row-reverse" : "flex-col"} gap-[10px] justify-between items-start md:w-[278px] xs:max-w-[100%]`}>
+        <div className={`flex flex-row gap-[10px] justify-start items-center ${props.uName === profileData.username ? "hidden" : ""}`}>
           <div
-            className={` font-['Outfit'] text-[14px] ${
-              props.uName === "You" ? "text-[#f3f3f3]" : "text-[#929298]"
-            } `}
+            className={` font-['Outfit'] text-[14px] ${props.uName === profileData.username ? "text-[#f3f3f3]" : "text-[#929298]"
+              } `}
           >
             {props.uName}
           </div>
@@ -147,12 +150,11 @@ const ChattingThread = (props: ChattingThreadType) => {
         </div>
 
         <div
-          className={` flex flex-col md:max-w-[260px] xs:max-w-[100%] rounded-tl-[3px] rounded-tr-[15px] rounded-bl-[15px] rounded-br-[15px] break-all whitespace-pre-wrap
-                                pt-[14px] pb-[20px] px-[20px] ${
-                                  props.uName === "You"
-                                    ? "bg-[#3f3f43]"
-                                    : "bg-[#1d1d1e]"
-                                } font-[400] text-[16px] text-[#b3b3b7] leading-[150%] relative`}
+          className={` flex flex-col md:max-w-[240px] xs:max-w-[100%] ${props.uName === profileData.username ? "rounded-tl-[10px] rounded-tr-[3px]" : "rounded-tl-[3px] rounded-tr-[10px]"} rounded-bl-[10px] rounded-br-[10px] break-all whitespace-pre-wrap
+                                pt-[5px] pb-[3px] px-[15px] ${props.uName === profileData.username
+              ? "bg-[#3f3f43]"
+              : "bg-[#1d1d1e]"
+            } font-[400] text-[16px] text-[#b3b3b7] leading-[150%] relative`}
         >
           <div
             className={` font-['Outfit'] text-[14px] font-[400] text-[#b3b3b7] italic pb-[10px] border-b-[1px] border-b-[#b3b3b7]
@@ -167,9 +169,8 @@ const ChattingThread = (props: ChattingThreadType) => {
           </div>
           <div className="pt-[5px]">{ReactHtmlParser(msg)}</div>
           <div
-            className={`absolute ${
-              showReplyBtn ? "flex" : "hidden"
-            } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
+            className={`absolute ${showReplyBtn ? "flex" : "hidden"
+              } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
             onMouseEnter={() => setReplyHover(true)}
             onMouseLeave={() => setReplyHover(false)}
             onClick={() =>

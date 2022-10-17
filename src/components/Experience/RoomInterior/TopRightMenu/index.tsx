@@ -9,6 +9,7 @@ import SpeakerIcon from "./SpeakerIcon";
 
 type TopRightMenuType = {
   setLeftSideActive: any;
+  leaveRoom: Function;
   entireToggleVolume: Function;
   leftSideActive: string;
   usersBoxActive: boolean;
@@ -61,7 +62,7 @@ const TopRightMenu = (props: TopRightMenuType) => {
         microState={props.isMute}
         setMicroState={() => props.handleMuteBtnClick()}
       />
-      <BackIcon />
+      <BackIcon leaveRoom={props.leaveRoom} />
     </div>
   );
 };
