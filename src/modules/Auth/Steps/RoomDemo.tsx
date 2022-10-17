@@ -15,7 +15,6 @@ const RoomDemo = (props) => {
     (state: RootStateOrAny) => state.marketplace
   );
   const activeRoom = rooms.find((room: any) => room.active);
-  console.log(activeRoom)
 
   return (
     <div className="rounded-[20px] border-[1px] border-primary bg-[#1a1a1c] p-3 mt-5 lg:mt-0">

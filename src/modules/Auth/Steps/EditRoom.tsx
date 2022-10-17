@@ -16,8 +16,10 @@ import { getNfts } from "hooks";
 import { NftPanel } from "components/Common/Panels";
 import { selectNft } from "redux/slices/marketplaceSlice";
 import { goStep } from "redux/slices/profileSlice";
+import Image from "next/image";
 
 const EditRoom = (props) => {
+  const { setNFT } = props;
   const dispatch = useDispatch();
   const router = useRouter();
   const { metaplex } = useMetaplex();
@@ -25,9 +27,6 @@ const EditRoom = (props) => {
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
-  const { selectedNft } = useSelector(
-    (state: RootStateOrAny) => state.marketplace
-  );
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(userInfo.domain, userInfo.solanaAddress, true);
 
   useEffect(() => {
@@ -68,18 +67,15 @@ const EditRoom = (props) => {
             Loading NFTs...
           </h3>
         ) : (
-          <div className="grid grid-cols-2 xl:grid-cols-2">
+          <div className="grid grid-cols-2 xl:grid-cols-3">
             {nfts.map((nft, index) => (
-              <div className="p-2" key={index}>
-                <NftPanel
-                  image={nft.image}
-                  name={nft.name}
-                  collectionName={nft.collectionName}
-                  type={nft.type}
-                  key={index}
-                  onClick={() => onSelectNft(nft)}
-                  selected={nft == selectedNft}
-                />
+              <div className="p-2 flex justify-center items-center" key={index}>
+                <div onClick={() => setNFT(nft)} className={`relative h-[150px] w-[150px] rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer max-w-[150px] overflow-hidden`}>
+                  <img
+                    src={nft.image}
+                    alt={nft.name}
+                  />
+                </div>
               </div>
             ))}
           </div>

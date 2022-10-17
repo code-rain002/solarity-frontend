@@ -30,24 +30,44 @@ export const BuyRoomPage = () => {
   const [imageUrl, setImageUrl] = useState<string>();
 
   useEffect(() => {
-    if (selectedNft.link) {
+    if (selectedNft.image) {
       dispatch(
         updateNftCard({
           data: {
             roomId: room_id,
             picNo: picNo,
             mintAddress: selectedNft.mintAddress,
-            link: selectedNft.link,
+            link: selectedNft.image,
           },
-          successFunction: () => {},
-          errorFunction: () => {},
-          finalFunction: () => {},
+          successFunction: () => { },
+          errorFunction: () => { },
+          finalFunction: () => { },
         })
       );
       setChooseFlag(true);
     }
   }, [selectedNft]);
-  
+
+  const onSetNFT = (nft) => {
+    setImageUrl(nft.image)
+    if (picNo !== "0") {
+      dispatch(
+        updateNftCard({
+          data: {
+            roomId: room_id,
+            picNo: picNo,
+            mintAddress: nft.mintAddress,
+            link: nft.image,
+          },
+          successFunction: () => { },
+          errorFunction: () => { },
+          finalFunction: () => { },
+        })
+      );
+      setChooseFlag(true);
+    }
+  }
+
   return (
     <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[50px] items-center">
       <div className="w-[90%] md:w-[65%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] m-auto z-10">
@@ -55,7 +75,7 @@ export const BuyRoomPage = () => {
           <div className="rounded-[30px] min-h-[800px] lg:min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
             <div className="w-[100%] xl:w-[100%] flex flex-col relative">
               {step === 1 && <UserRoom />}
-              {step === 2 && <EditRoom setImageUrl={setImageUrl} />}
+              {step === 2 && <EditRoom setImageUrl={setImageUrl} setNFT={onSetNFT} />}
             </div>
           </div>
         </div>
@@ -63,7 +83,7 @@ export const BuyRoomPage = () => {
       <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[55%] custom-2xl:w-[55%] lg:block m-auto">
         {step == 1 && <RoomIframe />}
         {step == 2 && (
-          <RoomDemo 
+          <RoomDemo
             chooseFlag={chooseFlag}
             setChooseFlag={setChooseFlag}
             picNo={picNo}

@@ -46,7 +46,8 @@ export const HomePage = () => {
     } else if (user.registerStep <= 5) {
       url = '/auth/register';
     } else if (user.registerStep > 5) {
-      url = '/chang.verse/profile'
+      // url = '/chang.verse/profile'
+      url = '/auth/room'
     }
     await dispatch(
       login({
