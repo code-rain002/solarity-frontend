@@ -26,12 +26,7 @@ import ACTIONS from "config/actions";
 import { setMsg, setPeers } from "redux/slices/chatSlice";
 import freeObjectFromMemory from "utils/clearObject";
 
-type MainScrTyp = {
-  percentage: number;
-  setPercetage: Function;
-};
-
-const MainScr = (props: MainScrTyp) => {
+const MainScr = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
