@@ -77,7 +77,6 @@ const MainScr = (props: MainScrTyp) => {
         `/users/getRoomInfo/${rooms[roomIndex].name}/${rooms[roomIndex].roomNo}`
       );
       if (roomInfoData) {
-        console.log('roomInfoData', roomInfoData);
         setRoomInfo(roomInfoData);
       }
     }
@@ -231,6 +230,7 @@ const MainScr = (props: MainScrTyp) => {
       }
     }
     var audios = (window as any).audios;
+    console.log(audios, myPosition, positions);
     for (var audio in audios) {
       if (audio != userName) {
         if (!!positions[audio] && !!myPosition) {
@@ -238,7 +238,7 @@ const MainScr = (props: MainScrTyp) => {
           var b = (myPosition as any).z - positions[audio].z;
           var distance = a * a + b * b;
           if (distance < 4 || !distance) distance = 4;
-          console.log(distance);
+          console.log(audio, distance, (window as any).volumes, audios[audio])
           if (
             !!(window as any).volumes &&
             !!(window as any).volumes[audio] &&
@@ -305,7 +305,6 @@ const MainScr = (props: MainScrTyp) => {
     });
     dispatch(setMsg([]));
     dispatch(setPeers([]));
-    alert();
     router.push("/experience");
   }
 

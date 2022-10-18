@@ -46,7 +46,7 @@ const CreateRoomModal = () => {
       dispatch(setCreateModalVisibility(false));
       dispatch(setNewRoomTitle(''));
       dispatch(setSelectedRoom({}));
-    }, 1000);
+    }, 3000);
 
     dispatch(createRoom({
       title: selectedRoom.roomName,

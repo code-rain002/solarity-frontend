@@ -15,10 +15,9 @@ const ExperienceBanner = () => {
   const [selectedLiveRoom, setSelectedLiveRoom] = useState<any>({});
 
   useEffect(() => {
-    if (selectedIndex != -1) {
+    if (selectedIndex != -1 && rooms[selectedIndex]) {
       setSelectedLiveRoom(rooms[selectedIndex]);
     }
-    console.log(rooms);
   }, [rooms, selectedIndex])
 
   useEffect(() => {

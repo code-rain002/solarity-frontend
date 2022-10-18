@@ -69,9 +69,6 @@ const initChatbox = (props) => {
 
 const ChattingThreadBox = (props: ChattingThreadBoxType) => {
   const { msgs } = useSelector((state: RootStateOrAny) => state.chat);
-  useEffect(() => {
-    console.log('display msg', msgs);
-  }, [msgs])
   return (
     <div
       className={`flex custom-2xl:h-[76%] xs:h-[73%] gap-[24px] relative mb-[24px] `}
