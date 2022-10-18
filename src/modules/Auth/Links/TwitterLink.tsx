@@ -15,7 +15,7 @@ const twitterLinkGenerator = (currentUrl: string) => {
   const baseUrl = "https://twitter.com/i/oauth2/authorize";
   const params = {
     response_type: "code",
-    client_id: process.env.NEXT_PUBLIC_TWITTER_API_KEY,
+    client_id: process.env.NEXT_PUBLIC_TWITTER_CLIENT_ID,
     redirect_uri: currentUrl,
     scope: "tweet.read users.read offline.access",
     state: "state",
