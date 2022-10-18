@@ -9,7 +9,7 @@ import {
   useSelector,
 } from "react-redux";
 import Image from "next/image";
-import { linkAccounts, unlinkAccounts } from "redux/slices/profileSlice";
+import { linkAccounts, unlinkAccounts } from "redux/slices/authSlice";
 
 const twitterLinkGenerator = (currentUrl: string) => {
   const baseUrl = "https://twitter.com/i/oauth2/authorize";
