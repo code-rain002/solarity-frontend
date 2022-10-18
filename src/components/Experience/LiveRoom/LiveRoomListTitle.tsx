@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { GreyButton } from "components/Common/Buttons";
+import { SmallButton } from "components/Common/Buttons";
 import { setCreateModalVisibility } from 'redux/slices/chatSlice';
 
 type LiveRoomListTitleType = {
@@ -23,7 +23,7 @@ const LiveRoomListTitle = (props: LiveRoomListTitleType) => {
                     {props.number}
                 </div>
             </div>
-            <GreyButton caption="Create" onClick={createRoomModal} />
+            <SmallButton caption="Create" onClick={createRoomModal} />
         </div>
     )
 }

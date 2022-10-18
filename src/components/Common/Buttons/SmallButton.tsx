@@ -9,10 +9,10 @@ export interface ButtonProps {
   onClick: any;
 }
 
-const GreyButton = (props: ButtonProps) => {
+const SmallButton = (props: ButtonProps) => {
   return (
     <button
-      className={` font-light text-[16px] bg-[#1F1F20] border border-[#101012] text-[#B3B3B7] py-1.5 px-4 rounded-[12px] mb-[15px] text-center inline-flex items-center hover:bg-[#262630] ${props.styles}`}
+      className={`solarity-button font-light text-[16px] bg-primary text-white py-1.5 pt-2 px-4 rounded-[12px] mb-[15px] text-center inline-flex items-center ${props.styles}`}
       onClick={props.onClick}
     >
       {props.icon ? props.icon : ""}
@@ -21,4 +21,4 @@ const GreyButton = (props: ButtonProps) => {
   );
 };
 
-export default GreyButton;
+export default SmallButton;
