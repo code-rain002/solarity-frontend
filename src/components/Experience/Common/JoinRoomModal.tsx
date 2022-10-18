@@ -59,7 +59,7 @@ const JoinRoomModal = () => {
     setTimeout(() => {
       dispatch(setJoinModalVisibility(false));
       setUName("");
-    }, 1000);
+    }, 3000);
 
     if (!!(window as any).socket) {
       if (selectedLiveRoom.roomNo == 0) {

@@ -26,12 +26,7 @@ import ACTIONS from "config/actions";
 import { setMsg, setPeers } from "redux/slices/chatSlice";
 import freeObjectFromMemory from "utils/clearObject";
 
-type MainScrTyp = {
-  percentage: number;
-  setPercetage: Function;
-};
-
-const MainScr = (props: MainScrTyp) => {
+const MainScr = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -77,7 +72,6 @@ const MainScr = (props: MainScrTyp) => {
         `/users/getRoomInfo/${rooms[roomIndex].name}/${rooms[roomIndex].roomNo}`
       );
       if (roomInfoData) {
-        console.log('roomInfoData', roomInfoData);
         setRoomInfo(roomInfoData);
       }
     }
@@ -114,6 +108,7 @@ const MainScr = (props: MainScrTyp) => {
     //@ts-ignore
     THREE.Cache.enabled = false;
     setMounted(true);
+    alert();
     localStorage.setItem("modelLoaded", "false");
     require("multiuser-aframe");
     const loadInterval = setInterval(() => {
@@ -238,7 +233,6 @@ const MainScr = (props: MainScrTyp) => {
           var b = (myPosition as any).z - positions[audio].z;
           var distance = a * a + b * b;
           if (distance < 4 || !distance) distance = 4;
-          console.log(distance);
           if (
             !!(window as any).volumes &&
             !!(window as any).volumes[audio] &&
@@ -305,7 +299,6 @@ const MainScr = (props: MainScrTyp) => {
     });
     dispatch(setMsg([]));
     dispatch(setPeers([]));
-    alert();
     router.push("/experience");
   }
 

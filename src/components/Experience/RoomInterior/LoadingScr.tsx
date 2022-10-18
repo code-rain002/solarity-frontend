@@ -2,19 +2,14 @@
 import Image from "next/image"
 import { useRouter } from "next/router";
 
-type LoadingScrType = {
-  percentage: number,
-}
-
-
-const LoadingScr = (props: LoadingScrType) => {
+const LoadingScr = () => {
   const router = useRouter();
   const { rid } = router.query;
 
   return (
     <div
       id="loadingScreen"
-      className={`fixed top-0 left-0 right-0 bottom-0 ${props.percentage == 100 ? "hidden" : "block"} `}
+      className={`fixed top-0 left-0 right-0 bottom-0`}
     >
       <div className="relative h-full w-full">
         <Image src={`/images/experience/room_images/room_${parseInt(rid ? rid.toString() : "0") + 1}.jpg`} layout="fill" />
@@ -30,7 +25,7 @@ const LoadingScr = (props: LoadingScrType) => {
                       cx="165"
                       cy="165"
                       r="160"
-                      style={{ "--percent": props.percentage }}
+                      style={{ "--percent": 0 }}
                     ></circle>
                   </svg>
                   <svg className="circle-loading-bar block sm:hidden w-full h-full">
@@ -39,12 +34,12 @@ const LoadingScr = (props: LoadingScrType) => {
                       cx="104"
                       cy="104"
                       r="100"
-                      style={{ "--percent": props.percentage }}
+                      style={{ "--percent": 0 }}
                     ></circle>
                   </svg>
                   <div className="absolute left-[65px] top-[60px] sm:top-[90px] sm:left-[105px]">
                     <h2 className="loading-status text-[40px] sm:text-[70px] font-bold font-['Outfit'] mb-2 sm:mb-5">
-                      {props.percentage}
+                      {0}
                     </h2>
                     <span className="text-xs sm:text-lg">
                       loading models
