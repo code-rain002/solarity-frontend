@@ -34,6 +34,13 @@ const UsersBox = (props: UsersBoxType) => {
     }
   }, [props.rooms[props.roomIndex]])
 
+  const copyLink = () => {
+    const link = process.env.NODE_ENV === "development" ?
+      process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL + '/experience/invitation/' + roomId :
+      process.env.NEXT_PUBLIC_FRONTEND_URL + '/experience/invitation/' + roomId;
+    navigator.clipboard.writeText(link)
+  }
+
   return (
     <div
       className={` absolute
@@ -62,7 +69,7 @@ const UsersBox = (props: UsersBoxType) => {
 
         <div className=" flex flex-row items-center  gap-[24px] cursor-pointer ">
           <div className="md:block xs:hidden">
-            <CopyInviteLinkBtn onClick={() => console.debug("okay")} />
+            <CopyInviteLinkBtn onClick={copyLink} />
           </div>
           <div
             className=" md:flex xs:hidden cursor-pointer "
