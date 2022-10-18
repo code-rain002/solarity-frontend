@@ -30,8 +30,9 @@ export function update_loadingScreen() {
     if (!!loadingScreenEl) loadingScreenEl.style.display = "none";
     if (sceneWrapperEl) sceneWrapperEl.style.opacity = 100;
   }, 60000);
-
+  
   modelsLoaded++;
+  console.log(modelsLoaded, modelsNumber);
   if (loadingBars && loadingStatus) {
     for(var i = 0; i < loadingBars.length; i ++) {
       loadingBars[i].children[1].style.setProperty('--percent', Math.round((modelsLoaded * 100) / modelsNumber));
