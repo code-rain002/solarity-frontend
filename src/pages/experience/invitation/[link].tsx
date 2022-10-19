@@ -110,14 +110,16 @@ const ProfileIndex: FC<InvitationPageProps> = ({ roomInfo, success }) => {
   return (
     <div className='flex md:justify-center lg:justify-center xs:justify-end sm:justify-end'>
       <div className='lg:block md:block sm:hidden xs:hidden'>
-        <img
+        <Image
           src={roomInfo.imageUrl}
+          layout="fill"
         />
       </div>
       <div className='lg:hidden md:hidden sm:block xs:block w-full absolute right-0 top-0'>
-        <img
+        <Image
           src={roomInfo.imageUrl}
           width={1346} height={496}
+          layout="responsive"
         />
       </div>
       <div className='flex h-screen
