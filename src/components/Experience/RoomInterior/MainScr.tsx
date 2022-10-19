@@ -108,7 +108,6 @@ const MainScr = () => {
     //@ts-ignore
     THREE.Cache.enabled = false;
     setMounted(true);
-    alert();
     localStorage.setItem("modelLoaded", "false");
     require("multiuser-aframe");
     const loadInterval = setInterval(() => {

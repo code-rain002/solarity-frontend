@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import Image from 'next/image'
 import { useAppSelector } from "../../../redux/hooks";
-import React, { FC, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getServerSideProps, InvitationPageProps } from "modules/Experience/Invitation";
 import NoInvitationView from "modules/Experience/NoInvitationView";
@@ -15,6 +15,7 @@ import {
   setMsg,
   setRoomIndex
 } from "../../../redux/slices/chatSlice";
+import InvitationDlg from "components/Marketplace/Invitation/InvitationDlg";
 
 const ProfileIndex: FC<InvitationPageProps> = ({ roomInfo, success }) => {
   const dispatch = useDispatch();
@@ -100,7 +101,29 @@ const ProfileIndex: FC<InvitationPageProps> = ({ roomInfo, success }) => {
     router.push("/");
   };
   return (
-    <div>
+    <div className='flex md:justify-center lg:justify-center xs:justify-end sm:justify-end'>
+      <div className='lg:block md:block sm:hidden xs:hidden'>
+        <Image
+          src={roomInfo.imageUrl}
+          layout="fill"
+        />
+      </div>
+      <div className='lg:hidden md:hidden sm:block xs:block w-full absolute right-0 top-0'>
+        <Image
+          src={roomInfo.imageUrl}
+          width={1346} height={496}
+          layout="responsive"
+        />
+      </div>
+      <div className='flex h-screen
+                        lg:w-[736px] md:w-[736px] sm:w-full xs:w-full
+        '>
+        <InvitationDlg
+          invitor={roomInfo ? roomInfo.name : ""}
+          imgUrl={roomInfo.avatars.length != 0 ? roomInfo.avatars[0] : "/images/profile/temp/Avatar_Konstantin1982.webp"}
+        />
+      </div>
+
     </div>
   );
 };

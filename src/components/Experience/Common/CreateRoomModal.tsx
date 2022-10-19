@@ -21,21 +21,19 @@ const CreateRoomModal = () => {
   const [modelIndex, setModelIndex] = useState(0);
   const [step, setStep] = useState(0);
 
-  let j = -1;
-
   const createRoomFunc = () => {
-    if (step == 0) {
+    if (step === 0) {
       setStep(1);
       return;
     }
 
-    if (newRoomTitle == "") {
+    if (newRoomTitle === "") {
       setStep(0);
       alert('The title of room is required.');
       return;
     }
 
-    if (selectedRoom.roomNo == undefined) {
+    if (selectedRoom.roomNo === undefined) {
       setStep(0);
       alert('Select room first.');
       return;
