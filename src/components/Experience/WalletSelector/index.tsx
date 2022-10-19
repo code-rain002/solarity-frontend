@@ -17,7 +17,7 @@ const WALLETS = [
     label: "Solflare",
     id: "solflare",
     type: "solana",
-    image: "/images/wallets/solfare.png",
+    image: "/images/wallets/solflare.png",
     detected: true,
     loading: true,
     installationLink: "https://solflare.com/download",
@@ -98,7 +98,7 @@ const WalletSelector: FC<{
         onClose={onClose}
         as="div"
         style={{ zIndex: "10000000" }}
-        className={`fixed inset-0 overflow-y-auto ${darkBackground ? "bg-black/70" : ""
+        className={`fixed inset-0 overflow-y-auto text-white ${darkBackground ? "bg-black/70" : ""
           }`}
       >
         <div className="walletDialogHolder min-h-screen px-4 text-center">
@@ -155,7 +155,7 @@ const WalletSelector: FC<{
                         }}
                         key={id}
                         className={`${loading ? "btn-disabled" : ""
-                          } mb-3 flex flex cursor-pointer items-center rounded-xl bg-gray-700 p-3 px-5 hover:bg-secondary`}
+                          } mb-3 flex cursor-pointer items-center rounded-xl bg-gray-700 p-3 px-5`}
                       >
                         <div className="flex flex-1 items-center">
                           <span className="pr-2 text-lg capitalize">

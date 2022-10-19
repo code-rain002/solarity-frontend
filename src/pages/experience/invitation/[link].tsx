@@ -34,11 +34,18 @@ const ProfileIndex: FC<InvitationPageProps> = ({ roomInfo, success }) => {
     if (localStorage.getItem("name")) {
       dispatch(setName(localStorage.getItem("name")));
     }
+    initSocket();
+  }, []);
 
+  const initSocket = () => {
     // This part is main for socket.
     if (!(window as any).socket) {
+      setTimeout(() => {
+        initSocket();
+      }, 100);
       return;
     }
+
     if (!(window as any).listen) {
       (window as any).socket.on(ACTIONS.ADD_PEER, (data: any) => {
         dispatch(addPeer(data));
@@ -65,7 +72,7 @@ const ProfileIndex: FC<InvitationPageProps> = ({ roomInfo, success }) => {
     }
 
     (window as any).socket.emit(ACTIONS.ROOM_LIST, {});
-  }, []);
+  }
 
   useEffect(() => {
     if (roomInfo.type) {
@@ -116,7 +123,7 @@ const ProfileIndex: FC<InvitationPageProps> = ({ roomInfo, success }) => {
         />
       </div>
       <div className='flex h-screen
-                        lg:w-[736px] md:w-[736px] sm:w-full xs:w-full
+                        lg:w-[736px] md:w-[736px] sm:w-full xs:w-full pt-[10vh]
         '>
         <InvitationDlg
           invitor={roomInfo ? roomInfo.name : ""}

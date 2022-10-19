@@ -11,7 +11,6 @@ interface CardProps {
     connecting?: boolean;
     onClick?: Function;
     setShow?: Function;
-    joinToggle?: Function;
 }
 
 function Card(props: CardProps) {
@@ -27,10 +26,11 @@ function Card(props: CardProps) {
                 {props.subtitle}
             </div>
             <div className='w-full'>
-                {props.logged ? (
+                {props.logged || props.buttonTitle === "Join as guest" ? (
                     <button
                         className={`${!props.active ? "bg-[#1F1F20] text-[#B3B3B7] hover:shadow-[0_0_20px_-5px_#29b080]" : "bg-primary text-white"} w-full rounded-[15px] py-[12px] text-[16px] font-["outfit"] font-[500]`}
-                        onClick={() => props.joinToggle()}
+                        disabled={props.logged && props.buttonTitle === "Join as guest"}
+                        onClick={() => props.onClick()}
                     >
                         {props.buttonTitle}
                     </button>
