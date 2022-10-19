@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
@@ -54,6 +54,7 @@
     "react-router-dom": "^6.3.0",
     "react-textarea-autosize": "^8.3.4",
     "react-toastify": "^9.0.5",
+    "sharp": "^0.31.1",
     "socket.io-client": "^4.5.1",
     "three": "0.145.0",
     "three-stdlib": "^2.17.3",

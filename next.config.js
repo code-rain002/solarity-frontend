@@ -47,7 +47,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["i.pravatar.cc", "arweave.net", "www.arweave.net", "res.cloudinary.com", "solarity.club", "solarity.mypinata.cloud"],
+    unoptimized: true,
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
