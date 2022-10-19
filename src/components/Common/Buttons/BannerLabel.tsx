@@ -8,7 +8,7 @@ export interface ButtonLabelProps {
 const ButtonLabel = (props: ButtonLabelProps) => {
   return (
     <button className={`font-bold p-[12px] rounded-[22px] text-white h-[52px] sm:h-[60px] text-[18px] sm:text-[20px] text-center tracking-wider hover:bg-focusbackground inline-flex items-center justify-center border-darkprimary border-2 radius-[22px]`}>
-        <Image src={props.icon}></Image>
+      <Image src={props.icon}></Image>
     </button>
   );
 };

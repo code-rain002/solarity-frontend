@@ -33,7 +33,7 @@ const FriendSelectionTab = () => {
 
     return (
         <div className="profile-settings-content tab-rooms-content h-full min-w-[330px] flex flex-col gap-[32px] pt-[2px] pb-[2px] mb-[30px] overflow-y-auto overflow-x-visible items-center">
-            
+
             <SearchFriendBox
                 selectedAvatars={selectedAvatars}
                 setSelectedAvatars={setSelectedAvatars}

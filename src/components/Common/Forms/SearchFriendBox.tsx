@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 import { SearchIcon } from "assets/svgs";
@@ -39,16 +39,16 @@ const SearchFriendBox = (props) => {
         console.log(selectedAvatars)
         let index = selectedAvatars.findIndex((item, index) => item.name === selectedItem.name)
         if (index >= 0) {
-          newArr = selectedAvatars.filter((item, index) => item.name !== selectedItem.name);
+            newArr = selectedAvatars.filter((item, index) => item.name !== selectedItem.name);
         } else {
-          newArr = [...selectedAvatars, selectedItem];
+            newArr = [...selectedAvatars, selectedItem];
         }
         setSelectedAvatars(newArr);
     }
 
     return (
         <div className="flex w-full items-center relative">
-            <input type="search" placeholder="Search Friend" className={`bg-globalBgColor  border-[1.2px] rounded-[15px] focus:border-primary px-[16px] py-[11px] text-[#929298] w-full ${typing ? 'border-primary' : 'border-[#272829]'}`} onChange={(e) => searchFriend(e)}/>
+            <input type="search" placeholder="Search Friend" className={`bg-globalBgColor  border-[1.2px] rounded-[15px] focus:border-primary px-[16px] py-[11px] text-[#929298] w-full ${typing ? 'border-primary' : 'border-[#272829]'}`} onChange={(e) => searchFriend(e)} />
             <div className={`absolute right-[20px] ${typing ? 'hidden' : 'block'}`} >
                 <SearchIcon />
             </div>
@@ -66,7 +66,7 @@ const SearchFriendBox = (props) => {
                                             <div className="text-[18px] text-[#F3F3F3] font-medium ml-[25px]">{item.name}</div>
                                         </div>
                                         {
-                                            selectedAvatars.findIndex((i, j) => i.name === item.name) < 0 ? 
+                                            selectedAvatars.findIndex((i, j) => i.name === item.name) < 0 ?
                                                 <button className="text-[14px] font-medium text-white px-[15px] py-[5px] bg-primary rounded-[12px]" onClick={() => addFriend(item)}>Add</button>
                                                 :
                                                 <button className="text-[14px] font-medium text-primary px-[15px] py-[5px] bg-[#162724] rounded-[12px] border-[1px] border-primary" onClick={() => removeFriend(item)}>Remove</button>

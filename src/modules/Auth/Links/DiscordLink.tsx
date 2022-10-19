@@ -55,7 +55,7 @@ export const DiscordLink = () => {
             code,
             url: appUrl,
           },
-          finalFunction: () => {},
+          finalFunction: () => { },
         })
       );
     }
@@ -73,7 +73,7 @@ export const DiscordLink = () => {
                   link: "discord",
                   code,
                 },
-                finalFunction: () => {},
+                finalFunction: () => { },
               })
             );
           }}

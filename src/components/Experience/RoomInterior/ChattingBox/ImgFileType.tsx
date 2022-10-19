@@ -20,11 +20,10 @@ const ImgFileType = (props: ImgFileTypeType) => {
   };
   return (
     <div
-      className={`flex items-center rounded-[14px] ${
-        props.selectedFile === "__FOR__UPLOADED__FILES__"
-          ? "w-[80px] h-[80px] mt-[5px]"
-          : "w-[60px] h-[60px]"
-      }
+      className={`flex items-center rounded-[14px] ${props.selectedFile === "__FOR__UPLOADED__FILES__"
+        ? "w-[80px] h-[80px] mt-[5px]"
+        : "w-[60px] h-[60px]"
+        }
       cursor-default bg-[#1f1f20] relative`}
       id={props.fileUrl}
     >
@@ -37,9 +36,8 @@ const ImgFileType = (props: ImgFileTypeType) => {
         />
       </div>
       <div
-        className={`${
-          props.selectedFile === "__FOR__UPLOADED__FILES__" ? "hidden" : ""
-        } absolute top-[-3px] right-[-3px] p-[5px] bg-[#2c2c2e] rounded-[20px] overflow-hidden cursor-pointer`}
+        className={`${props.selectedFile === "__FOR__UPLOADED__FILES__" ? "hidden" : ""
+          } absolute top-[-3px] right-[-3px] p-[5px] bg-[#2c2c2e] rounded-[20px] overflow-hidden cursor-pointer`}
         onClick={delSelf}
       >
         <svg

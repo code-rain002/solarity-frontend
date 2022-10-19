@@ -14,11 +14,10 @@ export const BannerImage: FC<BannerImageProps> = ({ isMobile }) => {
   return (
     <>
       <div
-        className={`grid grid-cols-1 relative text-right ${
-          !!isMobile
-            ? "banner-image-container"
-            : "banner-image-container-mobile"
-        }`}
+        className={`grid grid-cols-1 relative text-right ${!!isMobile
+          ? "banner-image-container"
+          : "banner-image-container-mobile"
+          }`}
       >
         <div className="round-glow-1 z-50"></div>
         <div className="round-glow-2 z-50"></div>
@@ -40,7 +39,7 @@ export const BannerImage: FC<BannerImageProps> = ({ isMobile }) => {
             className="custom-animation-bounce banner-image"
             objectFit={"contain"}
             layout="fixed"
-            ></Image>
+          ></Image>
         )}
       </div>
     </>

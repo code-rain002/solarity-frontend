@@ -3,14 +3,14 @@ import { useRouter } from "next/router";
 import Image from "next/image"
 
 type GamePanelProps = {
-    image : string,
-    title : string,
-    likes : number,
-    members : number,
+    image: string,
+    title: string,
+    likes: number,
+    members: number,
     onClick: any
 }
 
-const GamePanel = (props : GamePanelProps) => {
+const GamePanel = (props: GamePanelProps) => {
     const router = useRouter()
 
     return (

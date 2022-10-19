@@ -15,7 +15,7 @@ const LiveEventPanel = (props) => {
                     <span className="font-medium text-[12px] text-white">{data.creator.name}</span>
                 </div>
                 {
-                    data.isPrivate ? 
+                    data.isPrivate ?
                         <div className="absolute top-[10px] left-[10px]">
                             <div className="text-primary border-[1px] border-primary p-[3px] rounded-full bg-focusbackground opacity-[0.7]"><LockIcon /></div>
                         </div>
@@ -29,16 +29,16 @@ const LiveEventPanel = (props) => {
                     <div className="flex flex-row items-center">
                         {
                             data.friends.filter((user, index) => index < 3).map((user, index) => (
-                                <div className={`flex flex-row ${index !== 0 ? 'ml-[-10px]' : '' }`} key={index}><Image src={user.avatar} height={20} width={20} /></div>
+                                <div className={`flex flex-row ${index !== 0 ? 'ml-[-10px]' : ''}`} key={index}><Image src={user.avatar} height={20} width={20} /></div>
                             ))
                         }
                         {
                             data.friends.length - 3 <= 0 ?
-                            null :
-                            <div className="text-white bg-[#1F1F20] h-full px-[7px] z-10 rounded-[5px] flex flex-row justify-center items-center">{ data.friends.length - 3 }+</div>
+                                null :
+                                <div className="text-white bg-[#1F1F20] h-full px-[7px] z-10 rounded-[5px] flex flex-row justify-center items-center">{data.friends.length - 3}+</div>
                         }
                     </div>
-                    <div className="flex flex-row items-center"><TimerIcon />&nbsp;{ moment(Date.parse(data.createdAt)).fromNow(true) }</div>
+                    <div className="flex flex-row items-center"><TimerIcon />&nbsp;{moment(Date.parse(data.createdAt)).fromNow(true)}</div>
                 </div>
             </div>
         </div>

@@ -57,11 +57,10 @@ export const ConnectWallet = () => {
                   {wallets.map((wallet, index) => (
                     <div className="py-3" key={index}>
                       <button
-                        className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 w-[316px] h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between ${
-                          wallet.adapter.connected
-                            ? "outline-1 bg-focusbackground !text-white"
-                            : ""
-                        }`}
+                        className={`font-medium py-[22px] px-[22px] rounded-[14px] text-white/70 w-[316px] h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between ${wallet.adapter.connected
+                          ? "outline-1 bg-focusbackground !text-white"
+                          : ""
+                          }`}
                       >
                         {!wallet.adapter.connected ? (
                           <>

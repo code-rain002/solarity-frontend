@@ -1,13 +1,13 @@
 import Image from "next/image"
 
 type ExploreRoomItemType = {
-    walletIcon : any,
-    collectionName : string,
-    roomName : string,
-    imgUrl : string,
+    walletIcon: any,
+    collectionName: string,
+    roomName: string,
+    imgUrl: string,
 }
 
-const ExploreRoomItem = (props : ExploreRoomItemType) => {
+const ExploreRoomItem = (props: ExploreRoomItemType) => {
     return (
         <div className=" flex flex-col w-[403px] h-[310px] border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
                         relative cursor-pointer hover:border-primary col-span-4">

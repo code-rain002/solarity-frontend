@@ -87,7 +87,7 @@ const UserRoom = (props) => {
               </span> */}
             </div>
             {profile.rooms && (
-              <div className={`top-[18px] right-[18px] ${profile.rooms.findIndex(item => item.roomNo == room.no && item.active) >= 0 ? "absolute" : "hidden" }`}>
+              <div className={`top-[18px] right-[18px] ${profile.rooms.findIndex(item => item.roomNo == room.no && item.active) >= 0 ? "absolute" : "hidden"}`}>
                 <svg
                   width="24"
                   height="24"
@@ -111,8 +111,8 @@ const UserRoom = (props) => {
                   />
                 </svg>
               </div>
-              )}
-            </div>
+            )}
+          </div>
         ))}
       </div>
       <div className="w-full px-5 py-5 lg:px-5 lg:py-5 flex-auto flex items-end">

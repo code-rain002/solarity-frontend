@@ -5,8 +5,28 @@ export type InvitationPageProps = {
   success: Boolean;
 };
 
-export const getServerSideProps = async (context: any) => {
-  const { link } = context.query;
+export async function getStaticPaths() {
+  try {
+    const {
+      data: { roomIds },
+    } = await apiCaller.get(`/users/getRoomIds`);
+    const paths = roomIds.map((roomId: string) => ({
+      params: { link: roomId }
+    }))
+    return {
+      paths: paths,
+      fallback: false, // can also be true or 'blocking'
+    }
+  } catch (err) {
+    return {
+      paths: [],
+      fallback: false, // can also be true or 'blocking'
+    }
+  }
+}
+
+export const getStaticProps = async (context: any) => {
+  const { link } = context.params;
 
   try {
     const {

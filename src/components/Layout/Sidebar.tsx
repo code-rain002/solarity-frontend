@@ -11,9 +11,8 @@ const ToggleShowBtn = (props) => {
   return (
     <div
       className={`cursor-pointer w-[28px] h-[28px] rounded-[5px] border-[#272829] border-[2px] flex items-center justify-center bg-globalBgColor
-                        absolute ${
-                          props.toggle ? "right-[-154px]" : "right-[-14px]"
-                        } top-[36px] z-[999]`}
+                        absolute ${props.toggle ? "right-[-154px]" : "right-[-14px]"
+        } top-[36px] z-[999]`}
       onClick={props.onClick}
     >
       {props.toggle ? <LeftArrow /> : <RightArrow />}
@@ -71,11 +70,10 @@ const Sidebar = (props) => {
             <div
               className={`absolute left-[65px] z-[1000] pt-[8px] pb-[10px] px-[0px]  bg-[#181818] border-[#1d1f1f] rounded-tl-[3px]
                             rounded-r-[12px] rounded-b-[12px] font-500 text-primary text-[14px] w-[0px] shadow-none shadow-transparent
-                            overflow-hidden  truncate opacity-0 ${
-                              props.sidebarToggler
-                                ? ""
-                                : "group-hover:opacity-100 group-hover:w-max group-hover:px-[12px]"
-                            }`}
+                            overflow-hidden  truncate opacity-0 ${props.sidebarToggler
+                  ? ""
+                  : "group-hover:opacity-100 group-hover:w-max group-hover:px-[12px]"
+                }`}
             >
               Browse
             </div>
@@ -94,9 +92,8 @@ const Sidebar = (props) => {
       </div>
 
       <div
-        className={`flex flex-col ${
-          props.sidebarToggler ? "w-[140px]" : "w-[0px]"
-        } h-full items-start`}
+        className={`flex flex-col ${props.sidebarToggler ? "w-[140px]" : "w-[0px]"
+          } h-full items-start`}
       >
         <div className="px-[0px] py-[35.5px] border-b-[1px] border-semiSplitter relative w-full">
           <div

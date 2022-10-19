@@ -56,7 +56,7 @@ export const GithubLink = () => {
             code,
             url: appUrl,
           },
-          finalFunction: () => {},
+          finalFunction: () => { },
         })
       );
     }
@@ -74,7 +74,7 @@ export const GithubLink = () => {
                   link: "github",
                   code,
                 },
-                finalFunction: () => {},
+                finalFunction: () => { },
               })
             );
           }}

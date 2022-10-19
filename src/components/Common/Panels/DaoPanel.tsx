@@ -32,9 +32,8 @@ const DaoPanel = (props: DaoPanelProps) => {
         <span className="text-[14px] text-[#f3f3f3]">{props.title}</span>
       </div>
       <div
-        className={` top-[18px] left-[18px] ${
-          props.selected ? "absolute" : "hidden"
-        } `}
+        className={` top-[18px] left-[18px] ${props.selected ? "absolute" : "hidden"
+          } `}
       >
         <svg
           width="24"

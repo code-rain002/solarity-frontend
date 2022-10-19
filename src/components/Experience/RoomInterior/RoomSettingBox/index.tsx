@@ -26,11 +26,10 @@ const SettingBox = (props: SettingBoxType) => {
                     md:bottom-[32px] md:right-[32px] md:w-[426px] md:top-[108px] md:rounded-[24px]
                     xs:bottom-[78px] xs:right-[0px] xs:w-full xs:top-[0px] xs:rounded-[0px]
                     border-[#1d1f1f] border-[1px] bg-[#131314]
-                        ${
-                          props.leftSideActive === "setting"
-                            ? "flex flex-col"
-                            : "hidden"
-                        } p-[6px] `}
+                        ${props.leftSideActive === "setting"
+          ? "flex flex-col"
+          : "hidden"
+        } p-[6px] `}
     >
       <div className=" flex flex-row items-center justify-between w-full h-[30px] pt-[26px] px-[26px] pb-[32px] ">
         <div className=" title font-['Outfit'] font-[500] text-[24px] text-[#f3f3f3] select-none ">
@@ -63,8 +62,8 @@ const SettingBox = (props: SettingBoxType) => {
           {props.kind === "setting"
             ? "Room title"
             : props.kind === "setting_member"
-            ? "Your name"
-            : ""}
+              ? "Your name"
+              : ""}
         </div>
         <div className="flex w-[100%] justify-center items-center">
           <input

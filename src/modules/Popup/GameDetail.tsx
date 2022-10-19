@@ -40,9 +40,8 @@ const GameDetail = (props) => {
             <div className="border-y-[1px] border-[#1D1F1F] pl-[50px] mt-[25px] sm:mt-0">
               <ul className="flex flex-row text-[14px] py-[17.5px]">
                 <li
-                  className={`${
-                    tabIndex === 0 ? "text-[#29B080]" : "text-[#929298]"
-                  } w-[100px]`}
+                  className={`${tabIndex === 0 ? "text-[#29B080]" : "text-[#929298]"
+                    } w-[100px]`}
                 >
                   <span
                     className="cursor-pointer"
@@ -52,9 +51,8 @@ const GameDetail = (props) => {
                   </span>
                 </li>
                 <li
-                  className={`${
-                    tabIndex === 1 ? "text-[#29B080]" : "text-[#929298]"
-                  } w-[100px]`}
+                  className={`${tabIndex === 1 ? "text-[#29B080]" : "text-[#929298]"
+                    } w-[100px]`}
                 >
                   <span
                     className="cursor-pointer"
@@ -64,9 +62,8 @@ const GameDetail = (props) => {
                   </span>
                 </li>
                 <li
-                  className={`${
-                    tabIndex === 2 ? "text-[#29B080]" : "text-[#929298]"
-                  } w-[100px]`}
+                  className={`${tabIndex === 2 ? "text-[#29B080]" : "text-[#929298]"
+                    } w-[100px]`}
                 >
                   <span
                     className="cursor-pointer"

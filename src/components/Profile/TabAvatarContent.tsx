@@ -3,8 +3,8 @@ import Image from "next/image"
 import { AvatarPanel } from "components/Common/Panels"
 import SettingsFileUpload from "./SettingsFileUpload"
 
-const socialIcons = ["/images/social/twitter.png", "/images/social/discord.png", "/images/social/github.png"].map((i,j) => {
-    return <WalletButton connected={j === 1 ? true : false} caption="Connect" icon={i} onClick={() => alert("connect function")} height={52} styles="pt-[12px] pb-[16px]" iSize={20}/>
+const socialIcons = ["/images/social/twitter.png", "/images/social/discord.png", "/images/social/github.png"].map((i, j) => {
+    return <WalletButton connected={j === 1 ? true : false} caption="Connect" icon={i} onClick={() => alert("connect function")} height={52} styles="pt-[12px] pb-[16px]" iSize={20} />
 })
 
 const TabAvatarContent = () => {
@@ -17,8 +17,8 @@ const TabAvatarContent = () => {
                 <SettingsFileUpload />
             </div>
             <div className="flex gap-[24px] justify-between w-full pb-[60px] overflow-y-auto">
-                <AvatarPanel imageUrl="/images/profile/profile.png" title="what is this" onClick={() => alert("asdf")}  />
-                <AvatarPanel imageUrl="/images/profile/profile.png" title="what is this" onClick={() => alert("asdf")}  />
+                <AvatarPanel imageUrl="/images/profile/profile.png" title="what is this" onClick={() => alert("asdf")} />
+                <AvatarPanel imageUrl="/images/profile/profile.png" title="what is this" onClick={() => alert("asdf")} />
             </div>
         </div>
     )

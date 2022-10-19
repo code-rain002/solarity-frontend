@@ -57,7 +57,7 @@ export const TwitterLink = () => {
             code,
             url: appUrl,
           },
-          finalFunction: () => {},
+          finalFunction: () => { },
         })
       );
     }
@@ -75,7 +75,7 @@ export const TwitterLink = () => {
                   link: "twitter",
                   code,
                 },
-                finalFunction: () => {},
+                finalFunction: () => { },
               })
             );
           }}

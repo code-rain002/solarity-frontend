@@ -52,7 +52,7 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
                     <p className='text-center text-[24px] font-[500] text-white'>Confirmation Purchase</p>
                 </div>
                 <div className='h-[72px] rounded-[15px] bg-[#1D1D1E] flex p-[12px]'>
-                    <Image src={props.imgUrl} width={56} height={48} className='rounded-[10px]'/>
+                    <Image src={props.imgUrl} width={56} height={48} className='rounded-[10px]' />
                     <div className='ml-6'>
                         <div className='text-[#929298] text-[12px] font-[500] font-["outfit"]'>
                             {props.collectionName}

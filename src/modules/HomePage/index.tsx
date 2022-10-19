@@ -21,7 +21,7 @@ export const HomePage = () => {
   }, [wallet]);
 
   useEffect(() => {
-    if (wallet.connected) {      
+    if (wallet.connected) {
       let publicKey = wallet.publicKey.toBase58();
       let type = 'solana';
       let provider = (window as any).phantom.solana

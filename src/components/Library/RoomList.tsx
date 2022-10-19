@@ -28,9 +28,8 @@ const RoomList = (props: RoomListType) => {
         {props.roomName}
       </div> */}
       <div
-        className={` top-[18px] left-[18px] ${
-          selected ? "absolute" : "hidden"
-        } `}
+        className={` top-[18px] left-[18px] ${selected ? "absolute" : "hidden"
+          } `}
       >
         <svg
           width="24"

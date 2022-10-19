@@ -71,7 +71,7 @@ const UserPic = (props) => {
           url: resp.data.url,
           name: resp.data.original_filename
         });
-        setLoadedImages([ ...loadedImages, ...listImages ]);
+        setLoadedImages([...loadedImages, ...listImages]);
       } catch (err) {
         console.log("error : ", err);
       }
@@ -179,7 +179,7 @@ const UserPic = (props) => {
                     tokenId: '',
                     mintAddress: '',
                   })}
-                  // selected={image.url == selectedAvatar}
+                // selected={image.url == selectedAvatar}
                 />
               </div>
             ))}

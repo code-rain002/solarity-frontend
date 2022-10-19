@@ -42,7 +42,7 @@ const GameDetail = (props) => {
 
   return (
     <div className="flex flex-col w-full">
-      {!detailData ? null:
+      {!detailData ? null :
         <>
           <div
             className="my-[10px] text-[#F3F3F3] font-500 md:text-[24px] xs:text-[18px] cursor-pointer flex items-center w-fit"
@@ -63,9 +63,8 @@ const GameDetail = (props) => {
                     {
                       GameDetailMenu.map((menu, index) => (
                         <li
-                          className={`${
-                            tabIndex === index ? "text-[#29B080]" : "text-[#929298]"
-                          } w-[100px]`}
+                          className={`${tabIndex === index ? "text-[#29B080]" : "text-[#929298]"
+                            } w-[100px]`}
                         >
                           <span
                             className="cursor-pointer"
@@ -74,7 +73,7 @@ const GameDetail = (props) => {
                             {menu}
                           </span>
                         </li>
-                      )) 
+                      ))
                     }
                   </ul>
                 </div>
@@ -147,7 +146,7 @@ const GameDetail = (props) => {
                       </div>
                     </div>
                   </>
-                ) : null} 
+                ) : null}
                 {tabIndex === 1 ? (
                   <>
                     <div className="sm:pl-[20px] lg:pl-[50px]">
@@ -185,7 +184,7 @@ const GameDetail = (props) => {
                       </div>
                     </div>
                   </>
-                ) : null} 
+                ) : null}
                 {tabIndex === 2 ? (
                   <div className="pl-[50px]">
                     <div className="text-white font-medium py-[20px]">
