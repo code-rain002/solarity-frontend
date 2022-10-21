@@ -16,6 +16,7 @@ export interface CounterState {
   createModalVisibility: boolean;
   joinModalVisibility: boolean;
   activeRoomTypeIndex: number;
+  mobileBanner: boolean;
 }
 
 const initialState: CounterState = {
@@ -33,6 +34,7 @@ const initialState: CounterState = {
   createModalVisibility: false,
   joinModalVisibility: false,
   activeRoomTypeIndex: 0,
+  mobileBanner: false
 };
 
 export const chatSlice = createSlice({
@@ -49,7 +51,6 @@ export const chatSlice = createSlice({
       localStorage.setItem('name', action.payload.userName);
       localStorage.setItem('modelIndex', action.payload.modelIndex);
       if (!!(window as any).socket) {
-        console.log(action.payload);
         (window as any).socket.emit(ACTIONS.JOIN, { roomId: -1, user: { name: state.userName, title: action.payload.title, type: action.payload.type, roomNo: action.payload.roomNo, roomName: state.roomName, modelIndex: state.modelIndex, imageUrl: action.payload.imageUrl } });
       }
     },
@@ -115,10 +116,13 @@ export const chatSlice = createSlice({
     },
     setNewModelIndex(state, action: PayloadAction<number>) {
       state.newModelIndex = action.payload;
+    },
+    setMobileBanner(state, action: PayloadAction<boolean>) {
+      state.mobileBanner = action.payload;
     }
   },
 });
 
-export const { setCreateModalVisibility, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setMobileBanner, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;

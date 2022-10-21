@@ -18,9 +18,6 @@ const BannerImage = ({ uName }) => {
     const { profileData } = useSelector((state: RootStateOrAny) => ({
         profileData: state.profile.data,
     }));
-    useEffect(() => {
-        console.log(width);
-    }, [])
 
     return (
         <div className="w-full relative">

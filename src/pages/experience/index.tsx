@@ -10,6 +10,8 @@ import { useRouter } from "next/router"
 import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
 import CreateRoomModal from "components/Experience/Common/CreateRoomModal"
 import JoinRoomModal from "components/Experience/Common/JoinRoomModal"
+import MobileExperienceBanner from "components/Experience/LiveRoom/MobileExperienceBanner"
+import { checkBrowser } from "utils"
 
 const ProfileIndex = () => {
     const dispatch = useDispatch();
@@ -19,6 +21,7 @@ const ProfileIndex = () => {
     const [activeRoom, setActiveRoom] = useState("room_1")
     const [roomSettingDlgToggle, setRoomSettingDlgToggle] = useState([false, "join"])
     const [activeRoomId, setActiveRoomId] = useState(0)
+    const [isMobile, setIsMobile] = useState(false);
 
     const { selectedRoom, createModalVisibility, joinModalVisibility } = useSelector((state: RootStateOrAny) => ({
         selectedRoom: state.chat.selectedRoom,
@@ -32,6 +35,7 @@ const ProfileIndex = () => {
             dispatch(setName(localStorage.getItem("name")));
         }
         initSocket();
+        setIsMobile(checkBrowser());
     }, [])
 
     const initSocket = () => {
@@ -85,7 +89,7 @@ const ProfileIndex = () => {
         if (selectedRoom && selectedRoom.roomNo != -1) {
             setRoomSettingDlgToggle([true, "create"]);
         } else {
-            alert('Please select a room to create')
+            alert('Please select a room to create');
         }
     }
 
@@ -100,7 +104,11 @@ const ProfileIndex = () => {
                         </div>
                     </div>
                     <div className=" lg:col-span-5 xl:col-span-7 2xl:col-span-4">
-                        <ExperienceBanner />
+                        {isMobile ? (
+                            <MobileExperienceBanner />
+                        ) : (
+                            <ExperienceBanner />
+                        )}
                     </div>
                 </div>
             }

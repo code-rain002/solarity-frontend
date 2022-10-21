@@ -7,19 +7,26 @@ import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
 import { SolanaIcon } from "components/icons";
 
-import { LiveRoomListData } from "data/Experience";
-
 const LiveRoomList = (props: any) => {
 
   const { rooms } = useSelector((state: RootStateOrAny) => ({
     rooms: state.chat.rooms
   }))
 
-  const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(430);
+  const [liveRoomSectionHeight, setLiveRoomSectionHeight] = useState(352);
   const [maxLiveRoomSectionHeight, setMaxLiveRoomSectionHeight] = useState(
-    LiveRoomListData.length * 88
+    rooms.length * 88
   );
   const [showMobileJoinRoomDlg, setShowMobileJoinRoomDlg] = useState(false);
+
+  useEffect(() => {
+    if (rooms.length < 5) {
+      setLiveRoomSectionHeight(rooms.length * 88);
+    } else if (liveRoomSectionHeight < 352) {
+      setLiveRoomSectionHeight(352);
+    }
+    setMaxLiveRoomSectionHeight(rooms.length * 88)
+  }, [rooms.length])
 
   useEffect(() => {
     const ele = document.getElementById("lrl");
@@ -53,17 +60,11 @@ const LiveRoomList = (props: any) => {
 
       <MoreRoomsButton
         liveRoomSectionHeight={liveRoomSectionHeight}
+        lengthOfRoom={rooms.length}
         setLiveRoomSectionHeight={setLiveRoomSectionHeight}
         maxLiveRoomSectionHeight={maxLiveRoomSectionHeight}
       />
-      <MobileJoinRoomDlg
-        showMobileJoinRoomDlg={showMobileJoinRoomDlg}
-        setShowMobileJoinRoomDlg={setShowMobileJoinRoomDlg}
-        activeRoom={props.activeRoom}
-        setRoomSettingDlgToggle={props.setRoomSettingDlgToggle}
-        activeRoomId={props.activeRoomId}
-        roomSettingDlgToggle={props.roomSettingDlgToggle}
-      />
+
     </div>
   );
 };

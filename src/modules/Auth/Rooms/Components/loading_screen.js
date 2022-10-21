@@ -68,7 +68,6 @@ export function update_loading_screen(setLoaded) {
     models_loaded = 0;
     models = [];
     models_number = undefined;
-    console.log(setLoaded);
     if(!!setLoaded) {
       setLoaded(true);
     }

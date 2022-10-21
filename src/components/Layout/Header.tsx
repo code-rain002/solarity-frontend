@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import HeaderMenuItem from '../Common/Layout/HeaderMenuItem'
 import { HeaderMenuTitles } from 'data/HeaderMenu'
@@ -39,7 +39,7 @@ const Header = (props: HeaderProps) => {
             x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
             y: innerHeight * (100 - 85) / 100 / 2
         };
-        
+
         setStatus(defaultStatus);
     }, []);
 
@@ -60,7 +60,7 @@ const Header = (props: HeaderProps) => {
 
     const [active, setActive] = useState(currentPath)
 
-    const item_arr = HeaderMenuTitles.map(function (i){
+    const item_arr = HeaderMenuTitles.map(function (i) {
         return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={i === "Popup" ? () => openPopup(i) : () => setActive(i.toLowerCase())} setToggle={setGameLibraryToggle} />
     })
 
@@ -79,7 +79,7 @@ const Header = (props: HeaderProps) => {
             x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
             y: innerHeight * (100 - 85) / 100 / 2
         };
-        
+
         setGameLibraryToggle(false);
         setIsIframe(false);
         setStatus(defaultStatus)
@@ -90,6 +90,7 @@ const Header = (props: HeaderProps) => {
             <div className="sm:flex xs:hidden
                             custom-2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col
                             justify-between
+                            border-b-[1px] border-semiSplitter
                             custom-2xl:h-[92px] xl:h-[92px] lg:h-[184px] md:h-[220px] sm:h-[220px] xs:h-[220px]
                             w-full">
                 <div className="flex flex-row h-full
@@ -111,75 +112,75 @@ const Header = (props: HeaderProps) => {
             </div>
             {
                 gameLibraryToggle ?
-                <>
-                    <div className='fixed left-0 top-0 right-0 bottom-0 bg-[rgba(12,12,14,0.7)] flex items-center justify-center z-[1001]'>
-                        <Rnd
-                            className='transition-none'
-                            size={{ width: status.width,  height: status.height }}
-                            position={{ x: status.x, y: status.y }}
-                            onDragStop={(e, d) => { setStatus({ ...status, x: d.x, y: d.y }) }}
-                            onResizeStop={(e, direction, ref, delta, position) => {
-                                setStatus({
-                                width: Number(ref.style.width),
-                                height: Number(ref.style.height),
-                                ...position,
-                                });
-                            }}
-                            lockAspectRatio={16/9}
-                            minHeight={'281'}
-                            maxHeight={'90vh'}
-                            minWidth={'500'}
-                            maxWidth={'90vw'}
-                            dragHandleClassName={`${isIframe ? '' : 'handleDraggling'}`}
-                            enableResizing={enabledResizing}
+                    <>
+                        <div className='fixed left-0 top-0 right-0 bottom-0 bg-[rgba(12,12,14,0.7)] flex items-center justify-center z-[1001]'>
+                            <Rnd
+                                className='transition-none'
+                                size={{ width: status.width, height: status.height }}
+                                position={{ x: status.x, y: status.y }}
+                                onDragStop={(e, d) => { setStatus({ ...status, x: d.x, y: d.y }) }}
+                                onResizeStop={(e, direction, ref, delta, position) => {
+                                    setStatus({
+                                        width: Number(ref.style.width),
+                                        height: Number(ref.style.height),
+                                        ...position,
+                                    });
+                                }}
+                                lockAspectRatio={16 / 9}
+                                minHeight={'281'}
+                                maxHeight={'90vh'}
+                                minWidth={'500'}
+                                maxWidth={'90vw'}
+                                dragHandleClassName={`${isIframe ? '' : 'handleDraggling'}`}
+                                enableResizing={enabledResizing}
                             >
-                            <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
-                                <div className={`${isIframe ? '' : 'handleDraggling'} m-auto right-0 h-[30px] w-[95%] absolute top-0 left-0 z-[10000] rounded-[50px] overflow-hidden cursor-move`}></div>
-                                {
-                                    isIframe ?
-                                        <div className='w-full h-full overflow-hidden rounded-[25px]'>
-                                            <iframe frameborder="0" src={selectedGame.iframe} featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
-                                        </div>
-                                    :
-                                    <LibraryLayout>
-                                        {
-                                            gameLibraryPageFlag === 0 ?
-                                            <Library 
-                                                setPage={setGameLibraryPageFlag} 
-                                                selectGame={setSelectedGame} 
-                                                createEventToggle={createEventToggle}
-                                                setCreateEventToggle={setCreateEventToggle}
-                                                activePath={active}
-                                            />
+                                <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#1d1f1f] rounded-[25px] resize select-none ${isIframe ? '' : 'px-[10px] pb-[10px] pt-[30px]'}`}>
+                                    <div className={`${isIframe ? '' : 'handleDraggling'} m-auto right-0 h-[30px] w-[95%] absolute top-0 left-0 z-[10000] rounded-[50px] overflow-hidden cursor-move`}></div>
+                                    {
+                                        isIframe ?
+                                            <div className='w-full h-full overflow-hidden rounded-[25px]'>
+                                                <iframe frameborder="0" src={selectedGame.iframe} featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
+                                            </div>
                                             :
-                                            <GameDetail 
-                                                setPage={setGameLibraryPageFlag} 
-                                                setIframe={setIsIframe} 
-                                                selectedGame={selectedGame}
-                                                activePath={active}
-                                            />
-                                        }
-                                    </LibraryLayout>
-                                }
-                                <div className="absolute top-[-27px] right-[-20px] cursor-pointer" onClick={onClose}>
-                                    <CloseIcon />
+                                            <LibraryLayout>
+                                                {
+                                                    gameLibraryPageFlag === 0 ?
+                                                        <Library
+                                                            setPage={setGameLibraryPageFlag}
+                                                            selectGame={setSelectedGame}
+                                                            createEventToggle={createEventToggle}
+                                                            setCreateEventToggle={setCreateEventToggle}
+                                                            activePath={active}
+                                                        />
+                                                        :
+                                                        <GameDetail
+                                                            setPage={setGameLibraryPageFlag}
+                                                            setIframe={setIsIframe}
+                                                            selectedGame={selectedGame}
+                                                            activePath={active}
+                                                        />
+                                                }
+                                            </LibraryLayout>
+                                    }
+                                    <div className="absolute top-[-27px] right-[-20px] cursor-pointer" onClick={onClose}>
+                                        <CloseIcon />
+                                    </div>
                                 </div>
-                            </div>
-                        </Rnd>
-                    </div>
-                    {
-                        createEventToggle ? 
-                            <CreateEventModal
-                                createEventToggle={createEventToggle}
-                                setCreateEventToggle={setCreateEventToggle}
-                            />
-                            :
-                            null
-                    }
-                </>
-                : null
+                            </Rnd>
+                        </div>
+                        {
+                            createEventToggle ?
+                                <CreateEventModal
+                                    createEventToggle={createEventToggle}
+                                    setCreateEventToggle={setCreateEventToggle}
+                                />
+                                :
+                                null
+                        }
+                    </>
+                    : null
             }
-            
+
         </>
     )
 }

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { SmallButton } from "components/Common/Buttons";
+import { PrimaryButton, SmallButton } from "components/Common/Buttons";
 import { setCreateModalVisibility } from 'redux/slices/chatSlice';
+import { checkBrowser } from 'utils';
 
 type LiveRoomListTitleType = {
     number: any
@@ -11,19 +12,34 @@ type LiveRoomListTitleType = {
 const LiveRoomListTitle = (props: LiveRoomListTitleType) => {
     const dispatch = useDispatch();
 
+    const [isMobile, setIsMobile] = useState(false);
+
     const createRoomModal = () => {
         dispatch(setCreateModalVisibility(true))
     }
 
+    useEffect(() => {
+        setIsMobile(checkBrowser());
+    }, [])
+
     return (
-        <div className=" font-['Outfit'] font-normal text-[24px] text-[#f3f3f3] flex flex-row justify-between ">
-            <div className="flex">
-                Live rooms
-                <div className="text-[#474749] ml-[15px] ">
-                    {props.number}
+        <div>
+            {isMobile && (
+                <div className='mb-10'>
+                    <PrimaryButton caption="Create a room" onClick={createRoomModal} />
                 </div>
+            )}
+            <div className=" font-['Outfit'] font-normal text-[24px] text-[#f3f3f3] flex flex-row justify-between mb-3 ">
+                <div className="flex">
+                    Live rooms
+                    <div className="text-[#474749] ml-[15px] ">
+                        {props.number}
+                    </div>
+                </div>
+                {!isMobile && (
+                    <SmallButton caption="Create" onClick={createRoomModal} />
+                )}
             </div>
-            <SmallButton caption="Create" onClick={createRoomModal} />
         </div>
     )
 }

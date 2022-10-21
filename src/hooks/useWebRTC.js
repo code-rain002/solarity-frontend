@@ -158,7 +158,6 @@ export const useWebRTC = (roomId, user) => {
     // Handle ice candidate
     useEffect(() => {
         window.socket.on(ACTIONS.ICE_CANDIDATE, ({ peerId, iceCandidate }) => {
-            // console.log('ices', connections.current[peerId]);
             if (iceCandidate) {
                 connections.current[peerId].addIceCandidate(iceCandidate);
             }

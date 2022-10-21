@@ -25,7 +25,6 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
                 {banner}
                 {children}
             </div>
-            
         </div>
     )
 }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import useWindowDimensions from "components/Common/useWindowDimensions";
 import { SolanaIcon } from "components/icons";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { setRoomIndex } from "../../../redux/slices/chatSlice";
+import { setMobileBanner, setRoomIndex } from "../../../redux/slices/chatSlice";
 
 type LiveRoomListItemType = {
   imgUrl: string;
@@ -29,7 +29,7 @@ const LiveRoomListItem = (props: LiveRoomListItemType) => {
 
   const showJoinRoomDlg = (index) => {
     dispatch(setRoomIndex(index))
-    props.setShowMobileJoinRoomDlg(true);
+    dispatch(setMobileBanner(true))
   };
 
   return (

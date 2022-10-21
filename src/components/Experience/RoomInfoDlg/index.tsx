@@ -17,9 +17,6 @@ const RoomInfoDlg = (props: RoomInfoDlgType) => {
   const title = "Teufzer";
   const text =
     "The Gods are the legacy 6666 collection within “The Frecture”. A Brand Born in Blockchain";
-  useEffect(() => {
-    console.log(props.selectedLiveRoom);
-  })
   return (
     <div className="md:absolute xs:relative flex flex-col lg:right-8  md:right-4 xs:right-[0px] lg:bottom-8 xs:bottom-[0px] md:h-[226px] md:w-[394px] xs:h-[227px] xs:w-[311px] xs:bg-globalBgColor rounded-[20px] pt-[28px] px-[32px] pb-[32px] md:mb-[0px] xs:mb-[32px]">
       <RoomInfoDlgTitle title={props.selectedLiveRoom ? props.selectedLiveRoom.roomName : ""} />

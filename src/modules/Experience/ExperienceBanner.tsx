@@ -15,6 +15,7 @@ const ExperienceBanner = () => {
   const [selectedLiveRoom, setSelectedLiveRoom] = useState<any>({});
 
   useEffect(() => {
+    document.getElementsByTagName('html')[0].classList.remove('a-fullscreen');
     if (selectedIndex != -1 && rooms[selectedIndex]) {
       setSelectedLiveRoom(rooms[selectedIndex]);
     }
