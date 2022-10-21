@@ -6,6 +6,7 @@ import LiveRoomListItem from "./LiveRoomListItem";
 import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
 import { SolanaIcon } from "components/icons";
+import { checkBrowser } from "utils";
 
 const LiveRoomList = (props: any) => {
 
@@ -30,7 +31,7 @@ const LiveRoomList = (props: any) => {
 
   useEffect(() => {
     const ele = document.getElementById("lrl");
-    (ele as any).style.height = liveRoomSectionHeight + "px";
+    (ele as any).style.height = (checkBrowser() ? liveRoomSectionHeight : 430) + "px";
   }, [liveRoomSectionHeight]);
   let k = -1;
   return (
