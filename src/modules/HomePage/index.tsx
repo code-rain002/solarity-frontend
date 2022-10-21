@@ -46,7 +46,6 @@ export const HomePage = () => {
     } else if (user.registerStep <= 5) {
       url = '/auth/register';
     } else if (user.registerStep > 5) {
-      // url = '/chang.verse/profile'
       url = '/auth/room'
     }
     await dispatch(
@@ -86,7 +85,6 @@ export const HomePage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 mt-[20px] items-baseline px-[10px] sm:pl-0">
         <div>
           <BannerText />
-          {/* <ConnectWallet /> */}
           <WalletMultiButton />
         </div>
       </div>

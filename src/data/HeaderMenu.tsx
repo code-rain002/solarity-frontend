@@ -3,6 +3,7 @@ export const HeaderMenuTitles = [
     'Marketplace',
     'Community',
     'Experience',
+    'Social',
     'Quests',
     'Library',
     'Popup',
