@@ -16,7 +16,7 @@ type ExperienceType = {
 
 const Experience = (props: ExperienceType) => {
   return (
-    <div className=" flex flex-col my-[39px] ">
+    <div className=" flex flex-col my-[39px] xs:mt-[0]">
       <ExploreSection />
     </div>
   );

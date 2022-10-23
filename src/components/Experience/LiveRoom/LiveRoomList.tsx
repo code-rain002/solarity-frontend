@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import LiveRoomListTitle from "./LiveRoomListTitle";
 import LiveRoomListItem from "./LiveRoomListItem";
@@ -7,9 +7,11 @@ import MobileJoinRoomDlg from "./MobileJoinRoomDlg";
 import MoreRoomsButton from "./MoreRoomsButton";
 import { SolanaIcon } from "components/icons";
 import { checkBrowser } from "utils";
+import { setCreateModalVisibility } from "redux/slices/chatSlice";
+import { PrimaryButton } from "components/Common/Buttons";
 
 const LiveRoomList = (props: any) => {
-
+  const dispatch = useDispatch();
   const { rooms } = useSelector((state: RootStateOrAny) => ({
     rooms: state.chat.rooms
   }))
@@ -18,7 +20,16 @@ const LiveRoomList = (props: any) => {
   const [maxLiveRoomSectionHeight, setMaxLiveRoomSectionHeight] = useState(
     rooms.length * 88
   );
+  const [isMobile, setIsMobile] = useState(false);
   const [showMobileJoinRoomDlg, setShowMobileJoinRoomDlg] = useState(false);
+
+  const createRoomModal = () => {
+    dispatch(setCreateModalVisibility(true))
+  }
+
+  useEffect(() => {
+    setIsMobile(checkBrowser());
+  }, [])
 
   useEffect(() => {
     if (rooms.length < 5) {
@@ -65,6 +76,11 @@ const LiveRoomList = (props: any) => {
         setLiveRoomSectionHeight={setLiveRoomSectionHeight}
         maxLiveRoomSectionHeight={maxLiveRoomSectionHeight}
       />
+      {isMobile && (
+        <div className='mb-10'>
+          <PrimaryButton caption="Create a room" onClick={createRoomModal} />
+        </div>
+      )}
 
     </div>
   );

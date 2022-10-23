@@ -24,11 +24,6 @@ const LiveRoomListTitle = (props: LiveRoomListTitleType) => {
 
     return (
         <div>
-            {isMobile && (
-                <div className='mb-10'>
-                    <PrimaryButton caption="Create a room" onClick={createRoomModal} />
-                </div>
-            )}
             <div className=" font-['Outfit'] font-normal text-[24px] text-[#f3f3f3] flex flex-row justify-between mb-3 ">
                 <div className="flex">
                     Live rooms
