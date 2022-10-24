@@ -4,7 +4,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { CheckIcon } from "components/icons";
 
 const passportSteps = [
-  "General Information",
+  "General",
   "Claim Daos",
   "Profile Picture",
   "Select Badges",

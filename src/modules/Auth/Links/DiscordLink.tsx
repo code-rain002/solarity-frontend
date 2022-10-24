@@ -41,10 +41,16 @@ export const DiscordLink = () => {
     let params = new URLSearchParams(url.search);
     params.delete("state");
     params.delete("code");
+    params.delete("domain");
+    params.delete("title");
     params.set("link", "discord");
+    if (userInfo.domain && userInfo.title) {
+      params.set("domain", userInfo.domain);
+      params.set("title", userInfo.title);
+    }
     let appUrl = url.origin + url.pathname + "?" + params.toString();
     setAppUrl(appUrl);
-  }, []);
+  }, [userInfo.domain, userInfo.title]);
 
   useEffect(() => {
     if (link === "discord") {
