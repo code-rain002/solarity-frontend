@@ -1,6 +1,6 @@
 import BuyRoomPage from "modules/Auth/BuyRoom";
 
-const Room = () => {
+const BuyRoom = () => {
   return (
     <div className="py-2">
       <main className="max-w-[110rem] mx-auto flex-1 px-5 sm:px-11">
@@ -13,4 +13,4 @@ const Room = () => {
   );
 }
 
-export default Room;
+export default BuyRoom;
