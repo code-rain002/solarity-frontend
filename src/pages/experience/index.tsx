@@ -97,7 +97,7 @@ const ProfileIndex = () => {
         <Layout
             sidebarToggler={sidebarToggler}
             banner={
-                <div className="grid md:flex-row-reverse lg:grid-cols-8 xl:grid-cols-9 2xl:grid-cols-5">
+                <div className="grid md:flex-row-reverse lg:grid-cols-8 xl:grid-cols-9 2xl:grid-cols-5 xs:gap-8">
                     <div className="min-w-[265px] col-span-1 lg:col-span-3 xl:col-span-2 2xl:col-span-1">
                         <div className=" flex flex-col h-full ">
                             <LiveRoomList />
