@@ -18,6 +18,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 import SuccessModal from './SuccessModal';
+import { showErrorToast, showSuccessToast } from "utils";
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -159,7 +160,8 @@ export const RegisterPage = () => {
       console.log(uri)
       setMintProcess(4)
 
-      let { nft } = await metaplex.nfts().create({
+      let { nft } = await metaplex.nfts()
+        .create({
           uri: uri,
           name: userInfo.domain,
           symbol: "Passport",
@@ -174,13 +176,15 @@ export const RegisterPage = () => {
         .run();
       console.log(nft);
       setMintProcess(5)
+      showSuccessToast('Successfully mint your passport')
       dispatch(goStep({
         stepNum: 6,
         data: {}
       }))
-    } catch (err) {
+    } catch (error) {
       setMintProcess(0)
-      console.log('err: ', err)
+      console.log(error)
+      showErrorToast('Mint passport failed')
     }
   };
 
@@ -193,42 +197,52 @@ export const RegisterPage = () => {
 
   const uploadModel = async (buffer) => {
     setMintProcess(2)
-    const blob = new Blob([buffer], { type: 'application/octet-stream' })
-    const file = blobToFile(blob, 'Model.glb')
-    const data = new FormData();
-    data.append('file', file);
-    const res = await fetch(`https://api.pinata.cloud/pinning/pinFileToIPFS`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
-      },
-      method: 'POST',
-      body: data,
-    });
+    try {
+      const blob = new Blob([buffer], { type: 'application/octet-stream' })
+      const file = blobToFile(blob, 'Model.glb')
+      const data = new FormData();
+      data.append('file', file);
+      const res = await fetch(`https://api.pinata.cloud/pinning/pinFileToIPFS`, {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+        },
+        method: 'POST',
+        body: data,
+      });
 
-    const json = await res.json();
-    const ipfsUrl = `https://solarity.mypinata.cloud/ipfs/${json.IpfsHash}?filename=Model.glb`;
-    console.log(ipfsUrl)
-    setIpfsUrl(ipfsUrl);
+      const json = await res.json();
+      const ipfsUrl = `https://solarity.mypinata.cloud/ipfs/${json.IpfsHash}?filename=Model.glb`;
+      console.log(ipfsUrl)
+      setIpfsUrl(ipfsUrl);
 
-    mintModel(ipfsUrl)
+      mintModel(ipfsUrl)
+    } catch (error) {
+      console.log(error);
+      showErrorToast('Upload model failed. Please try again')
+    }
   }
 
   const exportModel = (e) => {
     setMintProcess(1)
     console.log(modelRef.current)
-    const options = {
-      binary: true,
+    try {
+      const options = {
+        binary: true,
+      }
+      const exporter = new GLTFExporter();
+      exporter.parse(modelRef.current,
+        (result: ArrayBuffer) => {
+          console.log(result)
+          // saveArrayBuffer(result, 'model.glb')
+          uploadModel(result)
+        },
+        (error) => {
+          console.log(error)
+        }, options);
+    } catch (error) {
+      console.log(error);
+      showErrorToast('Export model failed.')
     }
-    const exporter = new GLTFExporter();
-    exporter.parse(modelRef.current,
-      (result: ArrayBuffer) => {
-        console.log(result)
-        // saveArrayBuffer(result, 'model.glb')
-        uploadModel(result)
-      },
-      (error) => {
-        console.log(error)
-      }, options);
   }
 
   const saveArrayBuffer = (buffer, filename) => {
@@ -266,7 +280,7 @@ export const RegisterPage = () => {
               {step === 2 && <UserDaos />}
               {step === 3 && <UserPic />}
               {step === 4 && <UserBadges />}
-              {step === 5 && <EditStyle onMint={exportModel} />}
+              {step === 5 || step === 6 && <EditStyle onMint={exportModel} />}
             </div>
           </div>
         </div>
