@@ -69,8 +69,8 @@ const EditRoom = (props) => {
         ) : (
           <div className="grid grid-cols-2 xl:grid-cols-3">
             {nfts.map((nft, index) => (
-              <div className="p-2 flex justify-center items-center" key={index}>
-                <div onClick={() => setNFT(nft)} className={`relative h-[150px] w-[150px] rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer max-w-[150px] overflow-hidden`}>
+              <div className="flex justify-center items-center" key={index}>
+                <div onClick={() => setNFT(nft)} className={`relative rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer max-w-[150px] overflow-hidden`}>
                   <img
                     src={nft.image}
                     alt={nft.name}

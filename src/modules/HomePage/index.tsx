@@ -46,7 +46,7 @@ export const HomePage = () => {
     } else if (user.registerStep <= 5) {
       url = '/auth/register';
     } else if (user.registerStep > 5) {
-      url = '/auth/room'
+      url = '/auth/buyroom'
     }
     await dispatch(
       login({

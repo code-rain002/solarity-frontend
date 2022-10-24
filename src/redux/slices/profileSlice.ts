@@ -152,12 +152,12 @@ export const placeBid = createAsyncThunk(
   }) => {
     let returnValue = null;
     try {
-      const { selectedAsset, selectedIndex, signed, connection } = data;
+      const { roomInfo, signed, connection } = data;
 
       const {
         data: { state },
       } = await apiCaller.post("/profile/checkRoom", {
-        roomNo: selectedIndex,
+        roomNo: roomInfo.no,
       });
 
       if (state == true) {
@@ -175,11 +175,11 @@ export const placeBid = createAsyncThunk(
       const {
         data: { profile },
       } = await apiCaller.post("/profile/buyRoom", {
-        title: selectedAsset.title,
-        subTitle: selectedAsset.subTitle,
-        imageUrl: selectedAsset.imageUrl,
-        currentBid: selectedAsset.currentBid,
-        roomNo: selectedIndex,
+        title: roomInfo.roomName,
+        // subTitle: roomInfo.subTitle,
+        imageUrl: roomInfo.imgUrl,
+        currentBid: roomInfo.price,
+        roomNo: roomInfo.no,
       });
       successFunction();
       returnValue = profile;

@@ -12,13 +12,16 @@ import WalletAddress from "./WalletAddress";
 import { selectRoom } from "redux/slices/marketplaceSlice";
 import { EthereumIcon } from "components/icons/EthereumIcon";
 import { goStep } from "redux/slices/profileSlice";
+import { useRouter } from "next/router";
 
 const UserRoom = (props) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { profile, step } = useSelector((state: RootStateOrAny) => ({
     profile: state.profile.data,
     step: state.profile.step,
   }));
+  console.log(profile)
   const [selectedRoom, setSelectedRoom] = useState<any>(demoRooms[0]);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
@@ -35,11 +38,14 @@ const UserRoom = (props) => {
   };
 
   const onContinue = () => {
-    const data = {}
-    const payload = {
-      stepNum: 2,
+    if (profile.rooms.length) {
+      const payload = {
+        stepNum: 2,
+      }
+      dispatch(goStep(payload));
+    } else {
+      router.push({ pathname: `/${profile.username}/profile` })
     }
-    dispatch(goStep(payload));
   }
 
   return (
@@ -121,7 +127,7 @@ const UserRoom = (props) => {
         </div> */}
         <div className="inline-block w-[100%] pl-2">
           <PrimaryButton
-            caption="Continue"
+            caption={`${profile.rooms?.length ? "Continue" : "Skip"}`}
             icon=""
             bordered={false}
             onClick={() => onContinue()}

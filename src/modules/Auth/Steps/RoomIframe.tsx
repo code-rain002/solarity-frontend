@@ -10,7 +10,7 @@ import { LAMPORTS_PER_SOL, PublicKey, Transaction } from "@solana/web3.js";
 import { createTransferInstruction, getOrCreateAssociatedTokenAccount } from "utils/token";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { placeBid } from "redux/slices/authSlice";
+import { placeBid } from "redux/slices/profileSlice";
 import { changeActiveRoom } from "redux/slices/profileSlice";
 
 // const BaseUrl = process.env.NODE_ENV === "development"

@@ -44,7 +44,7 @@ const EditStyle = (props) => {
     const payload = {
       stepNum: 6,
       data,
-      next: router.push({ pathname: '/auth/room' }),
+      next: router.push({ pathname: '/auth/buyroom' }),
     };
     dispatch(goStep(payload));
   };
