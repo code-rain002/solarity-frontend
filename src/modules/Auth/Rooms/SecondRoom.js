@@ -163,7 +163,7 @@ export default function SecondEditRoom({
               </div>
               <div id="loading_label" className={styles.loading_label}>
                   POWERED BY SOLARITY
-                  <img id="loading_logo" className={styles.loading_logo} src="/assets/images/loading_logo.png" />
+                  <img id="loading_logo" className={styles.loading_logo} src="/images/loading_logo.png" />
               </div>
           </div>
           <a-scene 

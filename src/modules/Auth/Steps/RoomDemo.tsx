@@ -18,7 +18,7 @@ const RoomDemo = (props) => {
 
   return (
     <div className="rounded-[20px] border-[1px] border-primary bg-[#1a1a1c] p-3 mt-5 lg:mt-0">
-      <div className="flex h-[450px] w-full rounded-[16px] overflow-hidden">
+      <div className="h-[450px] w-full rounded-[16px] overflow-hidden">
         {activeRoom && activeRoom.roomNo === 0 && (
           <FirstRoom
             chooseFlag={chooseFlag}
