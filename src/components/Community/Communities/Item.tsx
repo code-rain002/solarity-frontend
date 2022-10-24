@@ -33,7 +33,9 @@ function Item(props: ItemProps) {
             <div className='absolute top-14 left-1/2 transform -translate-x-1/2
                         w-1/3 h-1/3
                         '>
-                <Image src={props.avatarUrl} width={100} height={100} layout="responsive" />
+                <div className='rounded-[20px] border-[3px] border-black'>
+                    <Image src={props.avatarUrl} className="rounded-[20px]" width={100} height={100} layout="responsive" />
+                </div>
             </div>
         </div>
     )
