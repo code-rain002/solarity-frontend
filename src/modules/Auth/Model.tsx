@@ -64,7 +64,6 @@ type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export default function Model(props) {
   const { domain, title, profileImage, daos, passportStyle, badges, links, modelRef } = props;
-  const meshRef = useRef()
   const { nodes, materials } = useGLTF('/models/passport/model.glb') as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
 

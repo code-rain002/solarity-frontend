@@ -15,8 +15,7 @@ import {
   PolygonImg,
 } from "components/Common/Images";
 import { DomainInput, SharedInput } from "components/Common/Forms";
-import { DiscordLink, GithubLink } from "../Links";
-import { TwitterLink } from "../Links/TwitterLink";
+import { DiscordLink, GithubLink, TwitterLink } from "../Links";
 import { minifyAddress, showErrorToast } from "utils";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
 
@@ -30,12 +29,12 @@ import WalletAddress from "./WalletAddress";
 
 const UserInfo = (props) => {
   const dispatch = useDispatch();
+  const { query: { domain, title } } = useRouter();
   const router = useRouter();
   const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
   }));
-  const { domain, title } = userInfo;
 
   const [error, setError] = useState(null);
 
@@ -44,14 +43,34 @@ const UserInfo = (props) => {
     //   setError("Please input your domain name.");
     //   return;
     // }
-    if (domain !== null) {
-      let formatted = domain.toLowerCase();
+    if (userInfo.domain !== null) {
+      let formatted = userInfo.domain.toLowerCase();
       formatted = formatted.replace(" ", "");
       formatted = formatted.substr(0, formatted.lastIndexOf("."));
       // console.log(formatted)
       checkDomainAvailability(formatted);
     }
+  }, [userInfo.domain]);
+
+  useEffect(() => {
+    if (domain) {
+      const payload = {
+        value: domain,
+        type: 'domain',
+      };
+      dispatch(changeInfo({ payload: payload }));
+    }
   }, [domain]);
+
+  useEffect(() => {
+    if (title) {
+      const payload = {
+        value: title,
+        type: 'title',
+      };
+      dispatch(changeInfo({ payload: payload }));
+    }
+  }, [title]);
 
   const checkDomainAvailability = (formattedDomain) => {
     apiCaller
@@ -176,7 +195,7 @@ const UserInfo = (props) => {
             icon=""
             bordered={false}
             onClick={() => onContinue()}
-            disabled={error || error !== null || !domain ? true : false}
+            disabled={error || error !== null || !userInfo.domain ? true : false}
             styles="rounded-[15px]"
           />
         </div>

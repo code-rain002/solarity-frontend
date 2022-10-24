@@ -17,7 +17,7 @@ const ModelComponent = lazy(
 )
 
 const NftDemo = (props) => {
-  const { modelRef } = props;
+  const { modelRef } = props;  
   const { userInfo } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
   }));

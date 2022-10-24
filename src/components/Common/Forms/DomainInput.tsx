@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { showErrorToast } from "utils";
+import { useRouter } from "next/router";
 
 const infoFormSchema = yup.object({
   domain: yup.string().required(),
@@ -10,11 +11,12 @@ const infoFormSchema = yup.object({
 });
 
 const DomainInput = (props) => {
-  const { changeValue, initValue, isError, setError } = props
+  const { changeValue, initValue, isError, setError } = props;
+  const { query: { domain } } = useRouter();
 
   const [classFocus, setClassFocus] = useState('text-white/60');
   const [classBorder, setClassBorder] = useState('border-white/10');
-  const [domainValue, setDomainValue] = useState('');
+  const [domainValue, setDomainValue] = useState<any>('');
   const [domainFooter, setDomainFooter] = useState('.verse');
 
   const focusInput = () => {
@@ -42,6 +44,12 @@ const DomainInput = (props) => {
       }
     }
   }, [domainValue, isError])
+
+  useEffect(()  => {
+    if (domain) {
+      setDomainValue(domain);
+    }
+  }, [domain])
 
   return (
     <div className="w-full">
