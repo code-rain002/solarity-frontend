@@ -175,7 +175,7 @@ export default function SecondEditRoom({
             maxCanvasWidth: 1920;
             maxCanvasHeight: 1920;" 
             id="sceneWrapper" 
-            style={{opacity: 0, position: "absolute", top: "0px", zIndex: 0}}
+            // style={{opacity: 0, position: "absolute", top: "0px", zIndex: 0}}
           >
               <a-assets timeout="100000">
                 <a-asset-item id="room2-gltf" src="/models/own_second/SolGod ancient temple.glb"></a-asset-item>
