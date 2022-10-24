@@ -61,13 +61,13 @@ const JoinRoomModal = () => {
     }, 3000);
     if (!!(window as any).socket) {
       if (selectedLiveRoom.roomNo == 0) {
-        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=0&no=0`);
+        router.push(`/experience/room?rid=${selectedLiveRoom.roomId}&roomType=0&no=0`);
       } else if (selectedLiveRoom.type == false && selectedLiveRoom.roomNo == 1) {
-        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=1&no=0`);
+        router.push(`/experience/room?rid=${selectedLiveRoom.roomId}&roomType=1&no=0`);
       } else if (selectedLiveRoom.type == false && selectedLiveRoom.roomNo == 2) {
-        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=2&no=0`);
+        router.push(`/experience/room?rid=${selectedLiveRoom.roomId}&roomType=2&no=0`);
       } else if (selectedLiveRoom.type == true) {
-        router.push(`/experience/Room?rid=${selectedLiveRoom.roomId}&roomType=3&no=${selectedLiveRoom.roomNo + 1}`);
+        router.push(`/experience/room?rid=${selectedLiveRoom.roomId}&roomType=3&no=${selectedLiveRoom.roomNo + 1}`);
       }
     }
   }

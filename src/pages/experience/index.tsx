@@ -69,13 +69,13 @@ const ProfileIndex = () => {
             (window as any).socket.on(ACTIONS.ROOM_READY, (data: any) => {
                 (window as any).socket.emit(ACTIONS.ROOM_LIST, {});
                 if (data.type == false && data.roomNo == 0) {
-                    router.push(`/experience/Room?rid=${data.roomId}&roomType=0&no=0`);
+                    router.push(`/experience/room?rid=${data.roomId}&roomType=0&no=0`);
                 } else if (data.type == false && data.roomNo == 1) {
-                    router.push(`/experience/Room?rid=${data.roomId}&roomType=1&no=0`);
+                    router.push(`/experience/room?rid=${data.roomId}&roomType=1&no=0`);
                 } else if (data.type == false && data.roomNo == 2) {
-                    router.push(`/experience/Room?rid=${data.roomId}&roomType=2&no=0`);
+                    router.push(`/experience/room?rid=${data.roomId}&roomType=2&no=0`);
                 } else if (data.type == true) {
-                    router.push(`/experience/Room?rid=${data.roomId}&roomType=3&no=${data.roomNo + 1}`);
+                    router.push(`/experience/room?rid=${data.roomId}&roomType=3&no=${data.roomNo + 1}`);
                 }
             });
             (window as any).socket.emit(ACTIONS.DUPLICATION_INVITATION, () => {
