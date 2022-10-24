@@ -6,7 +6,7 @@ const TitleItem = (props) => {
       <div>
         {props.title} &nbsp;&nbsp;
         {props.comment && (
-          <div className="text-grey">{props.comment}</div>
+          <span className="text-grey">{props.comment}</span>
         )}
       </div>
       <div>

@@ -12,12 +12,11 @@ import { useRouter } from "next/router";
 import { RootStateOrAny, useSelector } from "react-redux";
 
 type InputType = {
+  isSocial?: boolean;
   focusState: boolean;
   setFocusState: any;
   newMsgDataState: any;
   setNewMsgDataState: any;
-  newMsgSendingState: any;
-  setNewMsgSendingState: any;
 };
 
 const Input = (props: InputType) => {
@@ -176,7 +175,7 @@ const Input = (props: InputType) => {
       className={` flex flex-col rounded-[15px] border-[1.2px] ${props.focusState ? "border-primary" : "border-[#272829]"
         } 
             mx-[26px]
-            absolute bottom-[32px] w-[85%] bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
+            absolute bottom-[32px] ${props.isSocial ? "w-[45%] bg-[#19191a]" : "w-[85%]"} bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
       id="chatting_input_container"
       onDragStart={(e) => e.preventDefault()}
     >
@@ -187,7 +186,7 @@ const Input = (props: InputType) => {
         setNewMsgDataState={props.setNewMsgDataState}
       />
 
-      <div className="flex flex-row  justify-between items-start gap-[12px] bg-globalBgColor px-[16px] py-[18px] rounded-[15px]">
+      <div className="flex flex-row  justify-between items-start gap-[12px] bg-globalBgColor px-[16px] py-[18px] pb-[12px] rounded-[15px]">
         <UploadButton onClick={() => getReadyUpload()} />
         <input
           type="file"
@@ -198,7 +197,7 @@ const Input = (props: InputType) => {
           onChange={(e) => readFiles(e)}
         />
 
-        <div className="flex w-[70%]">
+        <div className={`flex ${props.isSocial ? "w-[85%]" : "w-[70%]"} `}>
           <TextareaAutosize
             minRows={1}
             maxRows={10}
@@ -230,149 +229,3 @@ const Input = (props: InputType) => {
 };
 
 export default Input;
-
-// ========================================================================================
-// import { useEffect, useState } from "react";
-// import EmojiList from "./old/EmojiList";
-
-// import TextareaAutosize from "react-textarea-autosize";
-// import SendButton from "./old/SendButton";
-// import EmojiButton from "./old/EmojiButton";
-// import UploadButton from "./old/UploadButton";
-// import ReplyPart from "./old/ReplyPart";
-
-// type InputType = {
-//   focusState: boolean;
-//   setFocusState: any;
-//   newMsgDataState : any;
-//   setNewMsgDataState : any;
-//   newMsgSendingState : any;
-//   setNewMsgSendingState : any;
-// };
-
-// const Input = (props: InputType) => {
-//   const [showEmoji, setShowEmoji] = useState(false);
-
-//   const [replyMsgHeight, setReplyMsgHeight] = useState(0)
-//   const getReadyEmoji = () => {
-//     setShowEmoji(!showEmoji);
-//     document.getElementById("chatting_input").focus();
-//   };
-
-//   const enterKeyCapture = (e) => {
-//     if ((e.keyCode === 13 && e.shiftKey) || (e.keyCode === 13 && e.ctrlKey)) {
-//       e.preventDefault();
-//       let prevState = e.target.value;
-//       let start = e.target.selectionStart,
-//         end = e.target.selectionEnd;
-//       e.target.value =
-//         prevState.substring(0, start) + "\n" + prevState.substring(end);
-//       document.getElementById("chatting_input_container").style.height =
-//         e.target.scrollHeight + replyMsgHeight + "px";
-//       e.target.style.height = e.target.scrollHeight + "px";
-//     } else if (e.key === "Enter") {
-//       e.preventDefault();
-//       let current_val = e.target.value;
-//       current_val = current_val.replace(/[\r\n]/gm, "");
-//       current_val = current_val.replace(/[\n]/gm, "");
-//       current_val = current_val.replace(/[ ]/gm, "");
-//       current_val = current_val.replace(/[\t]/gm, "");
-//       if (current_val === "") {
-//         return;
-//       }
-//       if (props.newMsgDataState.reply.replying === true){
-//         props.setNewMsgDataState({...props.newMsgDataState, reply : {replying : false, whose: "", his_msg : ""}})
-//       }
-//       props.setNewMsgDataState({...props.newMsgDataState, myMsg : e.target.value});
-//       e.target.value = "";
-//     } else if (e.key == "Tab") {
-//       e.preventDefault();
-//       var start = e.target.selectionStart;
-//       var end = e.target.selectionEnd;
-
-//       // set textarea value to: text before caret + tab + text after caret
-//       e.target.value =
-//         e.target.value.substring(0, start) +
-//         "\t" +
-//         e.target.value.substring(end);
-
-//       // put caret at right position again
-//       e.target.selectionStart = e.target.selectionEnd = start + 1;
-//     }
-
-//     if (e.target.value === ""){
-//       document.getElementById("chatting_input_container").style.height = "56px"
-//     }
-//   };
-
-//   const makeParentHeightGrowAsMe = (arg) => {
-//     document.getElementById("chatting_input_container").style.height =
-//       `${(arg + 28 +replyMsgHeight)}px`;
-//   };
-
-//   const send = () => {
-//     let chatting_input = document.getElementById("chatting_input");
-//     let current_val = chatting_input.value;
-//     current_val = current_val.replace(/[\r\n]/gm, "");
-//     current_val = current_val.replace(/[\n]/gm, "");
-//     current_val = current_val.replace(/[ ]/gm, "");
-//     current_val = current_val.replace(/[\t]/gm, "");
-//     if (current_val === "") {
-//       return;
-//     }
-//     props.setNewMsgDataState({...props.newMsgDataState, myMsg : chatting_input.value});
-//     chatting_input.value = "";
-//   };
-
-//   const getReadyUpload = () => {
-//     let file_dlg = document.getElementById("file_dlg");
-//     file_dlg.dispatchEvent(new MouseEvent("click"));
-//     console.log(file_dlg.value);
-//   };
-
-//   // useEffect(() => {
-//   //   setReplyMsgHeight(document.getElementById("reply_part").clientHeight)
-//   //    document.getElementById("chatting_input_container").style.height =
-//   //    (document.getElementById("chatting_input").clientHeight + 28 + replyMsgHeight) + "px";
-//   // })
-
-//   return (
-//     <div
-//         className={` flex flex-col rounded-[15px] border-[1.2px] ${props.focusState ? "border-primary" : "border-[#272829]"}
-//             mx-[26px]
-//             absolute bottom-[32px] w-[85%] bg-globalBgColor overflow-hidden`}
-//             id="chatting_input_container"
-//             onDragStart={(e) => e.preventDefault()}
-//     >
-//         <ReplyPart newMsgDataState={props.newMsgDataState} setNewMsgDataState={props.setNewMsgDataState} />
-
-//         <div
-//           className="flex flex-row  justify-between items-start gap-[12px] bg-globalBgColor px-[16px] py-[18px] h-[52px]"
-//         >
-//           <UploadButton onClick={() => getReadyUpload()}/>
-//           <input type="file" className="hidden" id="file_dlg" />
-
-//           <div className="flex w-[70%]">
-//             <TextareaAutosize
-//               minRows={1}
-//               maxRows={10}
-//               className="tas bg-[#131314] text-[#f3f3f3] border-transparent resize-none box-border mt-[-5px] h-[26px]
-//                                     w-[100%] overflow-visible font-['Outfit'] font-[400] text-[16px] "
-//               id="chatting_input"
-//               placeholder="Write something"
-//               wrap="hard"
-//               onFocus={props.setFocusState(true)}
-//               onBlur={props.setFocusState(false)}
-//               onKeyDown={(e) => enterKeyCapture(e)}
-//               // onHeightChange={(arg) => makeParentHeightGrowAsMe(arg)}
-//             />
-//           </div>
-
-//           <EmojiButton onClick={() => getReadyEmoji()} showEmoji={showEmoji} />
-//           <SendButton onClick={() => send()} focusState={props.focusState} />
-//         </div>
-//     </div>
-//   );
-// };
-
-// export default Input;

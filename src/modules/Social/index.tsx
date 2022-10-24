@@ -14,10 +14,12 @@ const SocialComp = () => {
       <SearchBox searchString={searchString} setSearchString={setSearchString} styles="my-3 !w-[50%]" />
       <div className="flex gap-[60px]">
         <div className="w-full">
-          <Guilds />
-        </div>
-        <div className="">
-          <ChatPanel />
+          <div className="mb-10">
+            <Guilds />
+          </div>
+          <div className="">
+            <ChatPanel />
+          </div>
         </div>
         <div className="w-[376px] mt-[64px]">
           <WeeklyMovement />

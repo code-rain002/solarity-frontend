@@ -6,13 +6,6 @@ import { setMsg } from "redux/slices/chatSlice";
 import ChattingThread from "./ChattingThread";
 import TypingNotification from "./TypingNotification";
 
-type ChattingThreadBoxType = {
-  newMsgDataState: any;
-  setNewMsgDataState: any;
-  newMsgSendingState: any;
-  setNewMsgSendingState: any;
-};
-
 const appendMyNewChattingThread = (msgs, setMsgs, props) => {
   setMsgs([
     ...msgs,
@@ -21,8 +14,6 @@ const appendMyNewChattingThread = (msgs, setMsgs, props) => {
       uName="You"
       text={props.newMsgDataState.myMsg}
       before="1m"
-      setNewMsgDataState={props.setNewMsgDataState}
-      newMsgDataState={props.newMsgDataState}
       hisMsg={props.newMsgDataState.reply.hisMsg}
       replyToWhom={props.newMsgDataState.reply.replyToWhom}
       fileUrls={props.newMsgDataState.files.fileUrls}
@@ -54,8 +45,6 @@ const initChatbox = (props) => {
         uName={i.uName}
         text={i.text}
         before={i.before}
-        setNewMsgDataState={props.setNewMsgDataState}
-        newMsgDataState={props.newMsgDataState}
         hisMsg={i.hisMsg}
         replyToWhom={i.replyToWhom}
         fileUrls={i.fileUrls}
@@ -67,11 +56,11 @@ const initChatbox = (props) => {
   return tempMsgs;
 };
 
-const ChattingThreadBox = (props: ChattingThreadBoxType) => {
+const ChattingThreadBox = () => {
   const { msgs } = useSelector((state: RootStateOrAny) => state.chat);
   return (
     <div
-      className={`flex custom-2xl:h-[76%] xs:h-[73%] gap-[24px] relative mb-[24px] `}
+      className={`flex h-[700px] gap-[24px] relative mb-[24px] rounded-2xl `}
       id="chatting_thread_box"
     >
       <div
@@ -84,8 +73,6 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
             uName={msg.user}
             text={msg.msg.myMsg}
             before={""}
-            setNewMsgDataState={props.setNewMsgDataState}
-            newMsgDataState={props.newMsgDataState}
             hisMsg={msg.msg.reply.hisMsg}
             replyToWhom={msg.msg.reply.replyToWhom}
             fileUrls={msg.msg.files.fileUrls}
