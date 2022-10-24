@@ -11,8 +11,6 @@ type ChattingThreadType = {
   uName: string;
   before: string;
   text: string;
-  setNewMsgDataState: any;
-  newMsgDataState: any;
   hisMsg: string;
   replyToWhom: string;
   fileUrls: string[];
@@ -173,16 +171,6 @@ const ChattingThread = (props: ChattingThreadType) => {
               } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
             onMouseEnter={() => setReplyHover(true)}
             onMouseLeave={() => setReplyHover(false)}
-            onClick={() =>
-              props.setNewMsgDataState({
-                ...props.newMsgDataState,
-                reply: {
-                  replying: true,
-                  replyToWhom: props.uName,
-                  hisMsg: props.text,
-                },
-              })
-            }
           >
             <svg
               width="24"

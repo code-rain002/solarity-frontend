@@ -29,6 +29,7 @@ module.exports = {
         'secondary': 'var(--secondary-color)',
         'footer': 'var(--footer-color)',
         'content': '#cecece',
+        'darkGreen': "#162724",
         // kisikbo5 wrote this
         'globalBgColor': '#131314',
         'semiSplitter' : '#1d1f1f'
