@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmojiList from "./EmojiList";
 
 import TextareaAutosize from "react-textarea-autosize";
@@ -9,9 +9,11 @@ import ReplyPart from "./ReplyPart";
 import FileListPart from "./FileListPart";
 import TypingNotification from "./TypingNotification";
 import { useRouter } from "next/router";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import ACTIONS from "config/actions";
+import { setNewMsg } from "redux/slices/chatSlice";
 
-type InputType = {
+type MsgInputType = {
   isSocial?: boolean;
   focusState: boolean;
   setFocusState: any;
@@ -19,10 +21,14 @@ type InputType = {
   setNewMsgDataState: any;
 };
 
-const Input = (props: InputType) => {
+const MsgInput = (props: MsgInputType) => {
   const router = useRouter();
-  const { profileData } = useSelector((state: RootStateOrAny) => ({
-    profileData: state.profile.data
+  const dispatch = useDispatch();
+  const { profileData, newMsg, chatType, members } = useSelector((state: RootStateOrAny) => ({
+    profileData: state.profile.data,
+    newMsg: state.chat.newMsg,
+    chatType: state.chat.chatType,
+    members: state.chat.members,
   }))
   const { rid } = router.query;
 
@@ -30,8 +36,8 @@ const Input = (props: InputType) => {
   const [scrollBarDisp, setScrollBarDisp] = useState(false);
 
   // =============================================
-  const [selectedFile, setSelectedFile] = useState([]);
-  const [preview, setPreview] = useState([]);
+  const [selectedFile, setSelectedFile] = useState<any[]>([]);
+  const [preview, setPreview] = useState<string[]>([]);
   // =============================================
 
   const setScrollBarVisibility = (height) => {
@@ -42,12 +48,12 @@ const Input = (props: InputType) => {
 
   const getReadyEmoji = () => {
     setShowEmoji(!showEmoji);
-    document.getElementById("chatting_input").focus();
+    (document as any).getElementById("chatting_input").focus();
   };
 
   const getReadyUpload = () => {
     let file_dlg = document.getElementById("file_dlg");
-    file_dlg.dispatchEvent(new MouseEvent("click"));
+    (file_dlg as any).dispatchEvent(new MouseEvent("click"));
   };
 
   const readFiles = (e) => {
@@ -68,7 +74,7 @@ const Input = (props: InputType) => {
       setPreview([]);
       return;
     }
-    let previewUrlArray = [];
+    let previewUrlArray: string[] = [];
     for (let k of selectedFile) {
       const objectUrl = URL.createObjectURL(k);
       previewUrlArray.push(objectUrl);
@@ -97,24 +103,55 @@ const Input = (props: InputType) => {
         return;
       }
 
-      let fileNameArray = [];
-      for (const file of selectedFile) {
-        fileNameArray.push(file.name);
+      let files = [];
+      for (var i = 0; i < selectedFile.length; i++) {
+        files.push({
+          name: selectedFile[i].name,
+          url: preview[i]
+        });
       }
 
-      sendMsg({
-        ...props.newMsgDataState,
-        files: {
-          fileExists: true,
-          fileUrls: preview,
-          fileNames: fileNameArray,
+      dispatch(setNewMsg({
+        ...newMsg,
+        attachments: {
+          fileExists: files.length != 0,
+          files
         },
-        myMsg: e.target.value,
-        avatarUrl: profileData && profileData.profileImageLink ? profileData.profileImageLink : "",
-      });
+        myMsg: e.target.value
+      }));
 
+      // Send message to server
+      (window as any).socket.emit(ACTIONS.SEND_MSG_EXTENSION, {
+        groupType: chatType,
+        daoId: null,
+        members: members,
+        content: e.target.value,
+        reply: newMsg.reply,
+        attachments: {
+          fileExists: files.length != 0,
+          files
+        },
+        date: Date(),
+        editState: false,
+        deleteState: false
+      })
+
+      // Init new msg content
       setSelectedFile([]);
       e.target.value = "";
+      dispatch(setNewMsg({
+        reply: {
+          replying: false,
+          replyId: "",
+          replyToWhom: "",
+          hisMsg: "",
+        },
+        myMsg: "",
+        attachments: {
+          fileExists: false,
+          files: []
+        },
+      }))
     } else if (e.key == "Tab") {
       e.preventDefault();
       var start = e.target.selectionStart;
@@ -143,22 +180,50 @@ const Input = (props: InputType) => {
     if (current_val === "") {
       return;
     }
-    let fileNameArray = [];
-    for (const file of selectedFile) {
-      fileNameArray.push(file.name);
+    let files = [];
+    for (var i = 0; i < selectedFile.length; i++) {
+      files.push({
+        name: selectedFile[i].name,
+        url: preview[i]
+      });
     }
 
-    sendMsg({
-      ...props.newMsgDataState,
-      files: {
-        fileExists: true,
-        fileUrls: preview,
-        fileNames: fileNameArray,
+    dispatch(setNewMsg({
+      ...newMsg,
+      attachments: {
+        fileExists: files.length != 0,
+        files
       },
       myMsg: chatting_input.value,
-      avatarUrl: profileData && profileData.profileImageLink ? profileData.profileImageLink : "",
-    });
+    }));
+    (window as any).socket.emit(ACTIONS.SEND_MSG_EXTENSION, {
+      groupType: chatType,
+      daoId: null,
+      members: members,
+      content: chatting_input.value,
+      reply: newMsg.reply,
+      attachments: {
+        fileExists: files.length != 0,
+        files
+      },
+      date: Date(),
+      editState: false,
+      deleteState: false
+    })
 
+    dispatch(setNewMsg({
+      reply: {
+        replying: false,
+        replyId: "",
+        replyToWhom: "",
+        hisMsg: "",
+      },
+      myMsg: "",
+      attachments: {
+        fileExists: false,
+        files: []
+      },
+    }))
     setSelectedFile([]);
     chatting_input.value = "";
   };
@@ -215,7 +280,7 @@ const Input = (props: InputType) => {
         </div>
 
         <EmojiButton onClick={() => getReadyEmoji()} showEmoji={showEmoji} />
-        <SendButton onClick={() => send()} focusState={props.focusState} />
+        <SendButton onClick={send} focusState={props.focusState} />
       </div>
       <FileListPart
         newMsgDataState={props.newMsgDataState}
@@ -228,4 +293,4 @@ const Input = (props: InputType) => {
   );
 };
 
-export default Input;
+export default MsgInput;
