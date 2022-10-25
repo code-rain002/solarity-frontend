@@ -24,9 +24,10 @@ export const RegisterPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { metaplex } = useMetaplex();
-  const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo, step, isMobile } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
+    isMobile: state.common.isMobile
   }));
   const modelRef = useRef();
   const [ipfsUrl, setIpfsUrl] = useState<string>();
@@ -266,30 +267,53 @@ export const RegisterPage = () => {
   }
 
   return (
-    <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[35px] sm:mt-[50px] items-center">
-      <div className="w-[90%] md:w-[80%] lg:w-[50%] xl:w-[55%] custom-2xl:w-[55%] m-auto z-10">
-        <div className="relative w-auto mx-auto">
-          <div className="rounded-[30px] min-h-[600px] lg:min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
-            <div className="hidden xl:w-[40%] xl:block h-full">
-              <div className="py-6">
-                <Logo />
+    <div className={`lg:flex lg:flex-row justify-center md:flex-col gap-[25px] ${isMobile ? '' : 'mt-[35px] px-5 sm:px-11'} lg:mt-[50px] items-center`}>
+      {!isMobile ? (
+        <>
+          <div className="w-[90%] md:w-[80%] lg:w-[50%] xl:w-[55%] custom-2xl:w-[55%] m-auto z-10">
+            <div className="relative w-auto mx-auto">
+              <div className="rounded-[30px] min-h-[600px] lg:min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
+                <div className="hidden xl:w-[40%] xl:block h-full">
+                  <div className="py-6">
+                    <Logo />
+                  </div>
+                  <Circle />
+                  <ProgressBar />
+                </div>
+                <div className="w-[100%] xl:w-[60%] flex flex-col relative">
+                  {step === 1 && <UserInfo />}
+                  {step === 2 && <UserDaos />}
+                  {step === 3 && <UserPic />}
+                  {step === 4 && <UserBadges />}
+                  {(step === 5 || step === 6) && <EditStyle onMint={exportModel} />}
+                </div>
               </div>
-              <Circle />
-              <ProgressBar />
-            </div>
-            <div className="w-[100%] xl:w-[60%] flex flex-col relative">
-              {step === 1 && <UserInfo />}
-              {step === 2 && <UserDaos />}
-              {step === 3 && <UserPic />}
-              {step === 4 && <UserBadges />}
-              {(step === 5 || step === 6) && <EditStyle onMint={exportModel} />}
             </div>
           </div>
-        </div>
-      </div>
-      <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
-        <NftDemo modelRef={modelRef} />
-      </div>
+          <div className="w-[100%] md:w-[85%] lg:w-[50%] xl:w-[45%] custom-2xl:w-[45%] lg:block m-auto">
+            <NftDemo modelRef={modelRef} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="w-[100%]">
+            <NftDemo modelRef={modelRef} />
+          </div>
+          <div className="w-[90%] m-auto z-10">
+            <div className="relative w-auto mx-auto">
+              <div className="rounded-[30px] min-h-[calc(100vh-270px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
+                <div className="w-[100%] xl:w-[60%] flex flex-col relative">
+                  {step === 1 && <UserInfo />}
+                  {step === 2 && <UserDaos />}
+                  {step === 3 && <UserPic />}
+                  {step === 4 && <UserBadges />}
+                  {(step === 5 || step === 6) && <EditStyle onMint={exportModel} />}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
       {mintProcess === 5 && <SuccessModal />}
       {mintProcess !== 0 && mintProcess !== 5 && (
         <div className="fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm z-20 flex  justify-center items-center">

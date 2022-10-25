@@ -19,7 +19,7 @@ import {
 } from "../../../redux/slices/commonSlice";
 import { apiCaller } from "utils/fetcher";
 import { changeInfo, goStep } from "redux/slices/authSlice";
-import WalletAddress from "./WalletAddress";
+import { WalletAddress } from "../Components";
 
 const UserDaos = (props) => {
   const dispatch = useDispatch();

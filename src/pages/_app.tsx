@@ -29,7 +29,8 @@ import {
 import store from "../redux/store";
 
 import { checkSession } from "redux/slices/authSlice";
-import { startLoadingApp, stopLoadingApp } from "redux/slices/commonSlice";
+import { setIsMobile, startLoadingApp, stopLoadingApp } from "redux/slices/commonSlice";
+import useWindowDimensions from "utils/layout";
 
 // CSS
 import "styles/globals.css";
@@ -40,6 +41,7 @@ import "font-awesome/css/font-awesome.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import 'styles/wallet.css';
 import AppLoader from "components/Layout/AppLoader";
+import { checkBrowser } from "utils";
 
 const endpoint = "https://ssc-dao.genesysgo.net";
 
@@ -53,6 +55,7 @@ const endpoint = "https://ssc-dao.genesysgo.net";
 function MyApp({ children }) {
   const dispatch = useDispatch();
   const router = useRouter();
+  const dimensions = useWindowDimensions();
 
   const [network, setNetwork] = useState(WalletAdapterNetwork.Mainnet);
 
@@ -98,6 +101,10 @@ function MyApp({ children }) {
   useEffect(() => {
     dispatch(checkSession());
   }, []);
+
+  useEffect(() => {
+    dispatch(setIsMobile(checkBrowser()));
+  }, [dimensions]);
 
   useEffect(() => {
     const currentRoute = router.pathname;

@@ -25,7 +25,7 @@ import {
 import { showErrorToast, showSuccessToast } from "utils";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { apiCaller } from "utils/fetcher";
-import WalletAddress from "./WalletAddress";
+import { WalletAddress } from "../Components";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,

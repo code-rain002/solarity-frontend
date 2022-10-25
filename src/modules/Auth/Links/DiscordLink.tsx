@@ -30,8 +30,9 @@ export const DiscordLink = () => {
     asPath,
   } = router;
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo, isMobile } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
+    isMobile: state.common.isMobile
   }));
 
   const [appUrl, setAppUrl] = useState("");
@@ -71,7 +72,7 @@ export const DiscordLink = () => {
     <>
       {userInfo.links.discord.connected ? (
         <button
-          className={`font-medium p-[16px] sm:p-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%] outline-1 bg-focusbackground !text-white`}
+          className={`font-medium p-[16px] sm:p-[22px] rounded-[14px] text-white/70 text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20]  ${isMobile ? 'justify-center h-[48px]' : 'justify-between h-[56px]'} !w-[100%] outline-1 bg-focusbackground !text-white`}
           onClick={() => {
             dispatch(
               unlinkAccounts({
@@ -84,21 +85,37 @@ export const DiscordLink = () => {
             );
           }}
         >
-          <span className="text-[14px] sm:text-[16px] text-left">{"Disconnect"}</span>
-          <div className="pt-2 text-right">
-            <Image src={DiscordImg} width={28} height={28} />
-          </div>
+          {!isMobile ? (
+            <>
+              <span className="text-[14px] sm:text-[16px] text-left">{"Disconnect"}</span>
+              <div className="text-center pt-2">
+                <Image src={DiscordImg} width={28} height={28} />
+              </div>
+            </>
+          ) : (
+            <div className="text-center pt-2">
+              <Image src={DiscordImg} width={24} height={24} />
+            </div>
+          )}
         </button>
       ) : (
         <a
-          className={`font-medium p-[16px] sm:p-[22px] rounded-[14px] text-white/70 h-[56px] text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between !w-[100%]`}
+          className={`font-medium p-[16px] sm:p-[22px] rounded-[14px] text-white/70 text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] ${isMobile ? 'justify-center h-[48px]' : 'justify-between h-[56px]'} !w-[100%]`}
           href={discordLinkGenerator(appUrl)}
           target="_blank"
         >
-          <span className="text-[14px] sm:text-[16px] text-left">{"Connect"}</span>
-          <div className="pt-2 text-right">
-            <Image src={DiscordImg} width={28} height={28} />
-          </div>
+          {!isMobile ? (
+            <>
+              <span className="text-[14px] sm:text-[16px] text-left">{"Connect"}</span>
+              <div className="text-center pt-2">
+                <Image src={DiscordImg} width={28} height={28} />
+              </div>
+            </>
+          ) : (
+            <div className="text-center pt-2">
+              <Image src={DiscordImg} width={24} height={24} />
+            </div>
+          )}
         </a>
       )}
     </>

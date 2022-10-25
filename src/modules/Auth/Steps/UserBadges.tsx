@@ -19,7 +19,7 @@ import React, { useState, useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
-import WalletAddress from "./WalletAddress";
+import { WalletAddress } from "../Components";
 
 const badges = [
   { icon: '/images/badges/polygon.png', name: 'Polygon', active: false },

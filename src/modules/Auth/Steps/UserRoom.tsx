@@ -8,7 +8,7 @@ import { demoRooms } from "data/Marketplace";
 import Image from "next/image";
 import React, { useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import WalletAddress from "./WalletAddress";
+import { WalletAddress } from "../Components";
 import { selectRoom } from "redux/slices/marketplaceSlice";
 import { EthereumIcon } from "components/icons/EthereumIcon";
 import { goStep } from "redux/slices/profileSlice";
