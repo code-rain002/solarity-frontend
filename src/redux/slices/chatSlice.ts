@@ -17,6 +17,14 @@ export interface CounterState {
   joinModalVisibility: boolean;
   activeRoomTypeIndex: number;
   mobileBanner: boolean;
+  isNewChatModal: boolean;
+  members: any[];
+  chatLogs: any[];
+  friends: any[];
+  chatType: boolean;
+  newMsg: any;
+  typingState: boolean;
+  typingMembers: any;
 }
 
 const initialState: CounterState = {
@@ -34,7 +42,27 @@ const initialState: CounterState = {
   createModalVisibility: false,
   joinModalVisibility: false,
   activeRoomTypeIndex: 0,
-  mobileBanner: false
+  mobileBanner: false,
+  isNewChatModal: false,
+  members: [],
+  chatLogs: [],
+  friends: [],
+  chatType: false,
+  newMsg: {
+    reply: {
+      replying: false,
+      replyId: "",
+      replyToWhom: "",
+      hisMsg: "",
+    },
+    myMsg: "",
+    attachments: {
+      fileExists: false,
+      files: []
+    },
+  },
+  typingState: false,
+  typingMembers: [],
 };
 
 export const chatSlice = createSlice({
@@ -119,10 +147,19 @@ export const chatSlice = createSlice({
     },
     setMobileBanner(state, action: PayloadAction<boolean>) {
       state.mobileBanner = action.payload;
-    }
+    },
+    setIsNewChatModal(state, action: PayloadAction<boolean>) {
+      state.isNewChatModal = action.payload;
+    },
+    setMembers: (state, action) => {
+      state.members = action.payload;
+    },
+    setNewMsg: (state, action) => {
+      state.newMsg = action.payload;
+    },
   },
 });
 
-export const { setCreateModalVisibility, setMobileBanner, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;
