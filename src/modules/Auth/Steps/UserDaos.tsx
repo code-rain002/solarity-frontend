@@ -153,7 +153,7 @@ const UserDaos = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           DAOs you&apos;re already in
         </h3>
         <WalletAddress />
@@ -165,17 +165,16 @@ const UserDaos = (props) => {
             Daos Loading...
           </div>
         ) : daos.length ? (
-          <div className="grid xs:grid-cols-2 sm:grid-cols-2 max-h-[570px] overflow-scroll gap-y-3">
+          <div className="grid xs:grid-cols-2 sm:grid-cols-2 max-h-[405px] overflow-scroll gap-3">
             {daos.map((dao, index) => (
-              <div className="p-2" key={index}>
-                <DaoPanel
-                  imageSrc={dao.profileImage.link}
-                  backSrc={DaoBGImg}
-                  title={dao.name}
-                  selected={selectedDaos.findIndex((item, index) => dao.name === item.name) >= 0 ? true : false}
-                  onClick={() => onSelectDao(dao)}
-                />
-              </div>
+              <DaoPanel
+                imageSrc={dao.profileImage.link}
+                backSrc={DaoBGImg}
+                title={dao.name}
+                key={index}
+                selected={selectedDaos.findIndex((item, index) => dao.name === item.name) >= 0 ? true : false}
+                onClick={() => onSelectDao(dao)}
+              />
             ))}
           </div>
         ) : (

@@ -264,10 +264,10 @@ export const RegisterPage = () => {
   }
 
   return (
-    <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[50px] items-center">
+    <div className="lg:flex lg:flex-row justify-center md:flex-col gap-[25px] mt-[35px] sm:mt-[50px] items-center">
       <div className="w-[90%] md:w-[80%] lg:w-[50%] xl:w-[55%] custom-2xl:w-[55%] m-auto z-10">
         <div className="relative w-auto mx-auto">
-          <div className="rounded-[30px] min-h-[800px] lg:min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
+          <div className="rounded-[30px] min-h-[600px] lg:min-h-[calc(100vh-100px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
             <div className="hidden xl:w-[40%] xl:block h-full">
               <div className="py-6">
                 <Logo />
