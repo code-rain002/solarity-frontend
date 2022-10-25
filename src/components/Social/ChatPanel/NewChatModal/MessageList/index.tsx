@@ -12,7 +12,7 @@ const MessageList = (props) => {
   return (
     <div className="pb-6">
       <TitleItem title="Suggested" comment="" />
-      <div className="grid gap-y-3">
+      <div className="grid gap-y-3 h-[347px] overflow-y-auto">
         {!!suggestedFriends && suggestedFriends.map((friend, index) => (
           <MessageListItem
             title={friend.username}

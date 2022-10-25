@@ -11,8 +11,8 @@ const SocialComp = () => {
   const [searchString, setSearchString] = useState('');
   return (
     <div className="w-full">
-      <SearchBox searchString={searchString} setSearchString={setSearchString} styles="my-3 !w-[50%]" />
-      <div className="flex gap-[60px]">
+      <SearchBox searchString={searchString} setSearchString={setSearchString} styles="my-3 md:!w-[50%] sm:!w-[100%]" />
+      <div className="gap-[60px] lg:flex md:block">
         <div className="w-full">
           <div className="mb-10">
             <Guilds />
@@ -21,10 +21,10 @@ const SocialComp = () => {
             <ChatPanel />
           </div>
         </div>
-        <div className="w-[376px] mt-[64px]">
+        {/* <div className="w-[376px] mt-[64px]">
           <WeeklyMovement />
           <CommonDAOs />
-        </div>
+        </div> */}
       </div>
     </div>
   );

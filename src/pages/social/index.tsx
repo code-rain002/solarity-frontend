@@ -10,9 +10,18 @@ import { eqArraySets } from "utils"
 
 const ProfileIndex = () => {
   const dispatch = useDispatch();
+  const { members, typingMembers } = useSelector((state: RootStateOrAny) => ({
+    members: state.chat.members,
+    typingMembers: state.chat.typingMembers,
+  }));
 
   const [sidebarToggler, setSidebarToggler] = useState(false)
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    (window as any).members = members;
+    (window as any).typingMembers = typingMembers;
+  }, [members, typingMembers])
 
   useEffect(() => {
     if (localStorage.getItem("name")) {
