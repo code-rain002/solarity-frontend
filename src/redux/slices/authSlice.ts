@@ -6,6 +6,7 @@ import { startLoadingApp, stopLoadingApp } from "./commonSlice";
 import socket from "utils/socket-client";
 import { signMessage } from "utils/walletHelpers";
 import { extractError, showErrorToast, showSuccessToast } from "utils";
+import ACTIONS from 'config/actions';
 
 export interface CounterState {
   roomName: string;
@@ -108,6 +109,9 @@ export const checkSession = createAsyncThunk(
       }
       const { data } = await apiCaller.get("/auth/check");
       dispatch(setProfile(data.profile));
+      if (!!data.profile.username) {
+        (window as any).socket.emit(ACTIONS.JOIN_EXTENSION, { name: data.profile.username });
+      }
       response = true;
     } catch { }
     dispatch(stopLoadingApp());

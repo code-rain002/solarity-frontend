@@ -157,9 +157,42 @@ export const chatSlice = createSlice({
     setNewMsg: (state, action) => {
       state.newMsg = action.payload;
     },
+    setUserMsg: (state, action) => {
+      state.chatLogs.push(action.payload);
+    },
+    setFriends: (state, action) => {
+      state.friends = action.payload;
+    },
+    setOnline: (state, action) => {
+      const newUser = action.payload;
+      state.friends.map((friend, index) => {
+        if (friend.name == newUser.name) {
+          state.friends[index]['onlineFlag'] = true;
+          alert('new friend joined!');
+        }
+      })
+    },
+    setTypingState: (state, action) => {
+      if (action.payload.state == "false") {
+        const memberIndex = state.typingMembers.findIndex(s => s == action.payload.name);
+        console.log(memberIndex);
+        if (memberIndex != -1) {
+          state.typingMembers.splice(memberIndex, 1);
+          if (state.typingMembers.length == 0) {
+            state.typingState = false;
+          }
+        }
+      } else {
+        state.typingState = true;
+        const memberIndex = state.typingMembers.findIndex(s => s == action.payload.name);
+        if (memberIndex == -1) {
+          state.typingMembers.push(action.payload.name);
+        }
+      }
+    }
   },
 });
 
-export const { setCreateModalVisibility, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setTypingState, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;

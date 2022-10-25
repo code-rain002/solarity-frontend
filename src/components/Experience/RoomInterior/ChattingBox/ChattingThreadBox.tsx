@@ -57,7 +57,10 @@ const initChatbox = (props) => {
 };
 
 const ChattingThreadBox = () => {
-  const { msgs } = useSelector((state: RootStateOrAny) => state.chat);
+  const { msgs, chatLogs } = useSelector((state: RootStateOrAny) => ({
+    msgs: state.chat.msgs,
+    chatLogs: state.chat.chatLogs,
+  }));
   return (
     <div
       className={`flex h-[700px] gap-[24px] relative mb-[24px] rounded-2xl `}
@@ -67,15 +70,15 @@ const ChattingThreadBox = () => {
         className="flex flex-col px-[26px] w-full h-full overflow-y-scroll overflow-x-visible gap-[2px] relative pb-[30px]"
         id="chatting_thread_box_1"
       >
-        {msgs.map((msg, index) => (
+        {chatLogs.map((chatLog, index) => (
           <ChattingThread
-            imgUrl={msg.avatarUrl}
-            uName={msg.user}
-            text={msg.msg.myMsg}
-            before={""}
-            hisMsg={msg.msg.reply.hisMsg}
-            replyToWhom={msg.msg.reply.replyToWhom}
-            fileUrls={msg.msg.files.fileUrls}
+            imgUrl={!!chatLog.sender.profileImage ? chatLog.sender.profileImage : "/images/experience/psuedo_avatars/avatar.png"}
+            uName={chatLog.sender.name}
+            text={chatLog.content}
+            date={chatLog.date}
+            hisMsg={!!chatLog.reply.hisMsg ? chatLog.reply.hisMsg : ""}
+            replyToWhom={chatLog.reply.replyToWhom}
+            attachments={chatLog.attachments}
             fileNames={["__FOR__INITIAL__DATA__"]}
             key={index}
           />

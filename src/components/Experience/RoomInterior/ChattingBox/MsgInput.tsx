@@ -119,7 +119,6 @@ const MsgInput = (props: MsgInputType) => {
         },
         myMsg: e.target.value
       }));
-
       // Send message to server
       (window as any).socket.emit(ACTIONS.SEND_MSG_EXTENSION, {
         groupType: chatType,
@@ -135,6 +134,20 @@ const MsgInput = (props: MsgInputType) => {
         editState: false,
         deleteState: false
       })
+      console.log({
+        groupType: chatType,
+        daoId: null,
+        members: members,
+        content: e.target.value,
+        reply: newMsg.reply,
+        attachments: {
+          fileExists: files.length != 0,
+          files
+        },
+        date: Date(),
+        editState: false,
+        deleteState: false
+      });
 
       // Init new msg content
       setSelectedFile([]);
