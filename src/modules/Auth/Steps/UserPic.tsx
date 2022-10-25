@@ -164,8 +164,8 @@ const UserPic = (props) => {
           )}
         </Dropzone>
       </div>
-      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[308px] sm:max-h-[500px]">
-        <div className={`grid grid-cols-2 md:grid-cols-3 lg:md:grid-cols-2 xl:grid-cols-3 gap-3 ${loadedImages.length ? 'mb-3' : ''}`}>
+      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[308px] sm:max-h-[476px]">
+        <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3 ${loadedImages.length ? 'mb-3' : ''}`}>
           {loadedImages.map((image, index) => (
             <AvatarPanel
               imageUrl={image.url}
@@ -187,7 +187,7 @@ const UserPic = (props) => {
             Loading NFTs...
           </h3>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:md:grid-cols-2 xl:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 custom-2xl:grid-cols-3 gap-3">
             {nfts.map(({ type, mintAddress, contractAddress, tokenId, name, image, collectionName }, index) => (
               <NftPanel
                 image={image ? image : '/images/nft_placeholder.png'}
