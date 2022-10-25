@@ -37,16 +37,14 @@ export const getNfts = (
       publicAddress: solanaAddress,
       connection,
     });
+    setSolNfts([]);
     const formattedNfts = _nfts
-      .filter(({ data: { symbol } }) => {
-        return symbol !== "Passport"
-      })
+      .filter(({ data: { symbol } }) => symbol !== "Passport")
       .map(({ mint, data: { name, uri } }) => ({
         name,
         uri,
         mintAddress: mint,
         type: "Solana",
-        image: uri,
         collectionName: "Loading...",
       }));
     setSolNfts(formattedNfts);

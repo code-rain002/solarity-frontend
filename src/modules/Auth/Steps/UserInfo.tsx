@@ -125,14 +125,14 @@ const UserInfo = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:px-5 lg:pt-8 lg:pb-0 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           General
         </h3>
         <WalletAddress />
       </div>
       {/*body*/}
       {/* {discordUsername ? discordUsername : 'dasd'} */}
-      <div className="relative px-5 pt-8 lg:px-5 lg:pt-10 flex-auto">
+      <div className="relative px-5 pt-5 lg:px-5 lg:pt-10 flex-auto">
         <div>
           <DomainInput
             changeValue={changeInfoValue}
@@ -162,7 +162,7 @@ const UserInfo = (props) => {
           </div>
         </div>
         <div className="grid grid-cols-1 mt-[20px] lg:mt-[30px]">
-          <div className="">
+          <div className="hidden lg:block">
             <WalletButton
               caption="Connect ETH wallet"
               icon={EthereumImg}

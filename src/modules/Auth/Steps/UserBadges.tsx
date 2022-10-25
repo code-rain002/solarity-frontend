@@ -94,19 +94,19 @@ const UserBadges = (props) => {
   return (
     <>
       <div className="flex items-center justify-between py-5 px-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Choose your badges
         </h3>
         <WalletAddress />
       </div>
-      <div className="h-[600px] overflow-scroll px-5">
+      <div className="h-[436px] sm:h-[600px] overflow-scroll px-5">
         {badges.length && badges.map((badge, index) => {
           const isSelected = selectedBadges.findIndex((item, index) => item.name == badge.name) >= 0;
           return (
             <div className={`inline-block px-4 py-2 rounded-full mr-3 mb-3 cursor-pointer border-[1px] border-primary hover:bg-primary ${isSelected ? 'bg-primary' : 'bg-[#162724]'}`} key={index} onClick={() => onSelectBadge(badge)}>
               <div className="flex flex-row items-center">
                 {isSelected ? <span className="h-[20px] w-[20px] text-white text-medium"><CheckIcon /></span> : <Image src={badge.icon} height={20} width={20} />}
-                <span className="text-white text-[18px] ml-2">{badge.name}</span>
+                <span className="text-white text-[14px] md:text-[18px] ml-2">{badge.name}</span>
               </div>
             </div>
           );

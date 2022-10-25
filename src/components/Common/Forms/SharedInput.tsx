@@ -36,9 +36,9 @@ const DomainInput = (props) => {
 
   return (
     <div className="w-full">
-      <div className={`relative flex items-center rounded-[18px] border-[1.5px] py-2 px-2 ${classBorder}`}>
-        <span className={`absolute bg-[#141416] text-[18px] px-2 tracking-[0.02rem] z-10 ${classFocus}`}>{caption}</span>
-        <input className="appearance-none text-[18px] tracking-[0.02rem] bg-transparent z-50 w-full h-[48px] text-white/60 mr-3 py-1 px-2 leading-tight" onFocus={focusInput} onBlur={unFocusInput} onChange={(e) => { setTitleValue(e.target.value); changeValue(e.target.value, "title") }} value={titleValue} />
+      <div className={`relative flex items-center rounded-[18px] border-[1.5px] p-1 sm:p-2 ${classBorder}`}>
+        <span className={`absolute bg-[#141416] text-[14px] sm:text-[18px] px-2 tracking-[0.02rem] z-10 ${classFocus}`}>{caption}</span>
+        <input className="appearance-none  text-[14px] sm:text-[18px] tracking-[0.02rem] bg-transparent z-50 w-full h-[48px] text-white/60 mr-3 py-1 px-2 leading-tight" onFocus={focusInput} onBlur={unFocusInput} onChange={(e) => { setTitleValue(e.target.value); changeValue(e.target.value, "title") }} value={titleValue} />
       </div>
     </div>
   );

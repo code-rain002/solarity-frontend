@@ -120,110 +120,92 @@ const UserPic = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Choose profile picture
         </h3>
         <WalletAddress />
       </div>
-      <div className="relative p-5 lg:p-5 flex-auto">
-        <div className="mb-5">
-          <Dropzone
-            onDrop={(acceptedFiles) => {
-              onImageLoad(acceptedFiles);
-            }}
-          >
-            {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <label className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
-                  <span className="flex items-center space-x-2 mr-3">
-                    <Image src={GalleryImg} />
-                  </span>
-                  <span className="flex items-center space-x-2">
-                    {files ? (
-                      <span className="font-medium text-[#f3f3f3]">
-                        <label className="text-primary">{files.length}</label>{" "}
-                        file&#40;s&#41; selected
-                        <br></br>
-                        <label className="text-[14px] text-white/30">
-                          Supports&#58; JPEG, JPEG2000, PNG
-                        </label>
-                      </span>
-                    ) : (
-                      <span className="font-medium text-[#f3f3f3]">
-                        Drop image here or&nbsp;
-                        <label className="text-primary">browse</label>
-                        <br></br>
-                        <label className="text-[14px] text-white/30">
-                          Supports&#58; JPEG, JPEG2000, PNG
-                        </label>
-                      </span>
-                    )}
-                  </span>
-                </label>
-              </div>
-            )}
-          </Dropzone>
-        </div>
-        <div className="overflow-scroll max-h-[500px]">
-          <div className="grid grid-cols-2 xl:grid-cols-2">
-            {loadedImages.map((image, index) => (
-              <div className="p-2 flex flex-row justify-center" key={index}>
-                <AvatarPanel
-                  imageUrl={image.url}
-                  title={image.name}
-                  onClick={() => onSelectImage({
-                    link: image.url,
-                    network: '',
-                    contractAddress: '',
-                    tokenId: '',
-                    mintAddress: '',
-                  })}
-                // selected={image.url == selectedAvatar}
-                />
-              </div>
-            ))}
-          </div>
-          {nftLoading ? (
-            <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
-              Loading NFTs...
-            </h3>
-          ) : (
-            <div className="grid grid-cols-2 xl:grid-cols-2">
-              {nfts.map(
-                (
-                  {
-                    type,
-                    mintAddress,
-                    contractAddress,
-                    tokenId,
-                    name,
-                    image,
-                    collectionName,
-                  },
-                  index
-                ) => (
-                  <div className="p-2" key={index}>
-                    <NftPanel
-                      image={image}
-                      name={name}
-                      collectionName={collectionName}
-                      type={type}
-                      key={index}
-                      onClick={() => onSelectImage({
-                        link: image,
-                        network: type,
-                        contractAddress,
-                        tokenId,
-                        mintAddress,
-                      })}
-                    />
-                  </div>
-                )
-              )}
+      <div className="relative p-5 lg:p-5">
+        <Dropzone
+          onDrop={(acceptedFiles) => {
+            onImageLoad(acceptedFiles);
+          }}
+        >
+          {({ getRootProps, getInputProps }) => (
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <label className="flex w-full h-24 px-4 transition bg-transparent border-2 border-white/20 border-dashed rounded-md appearance-none cursor-pointer hover:border-white/30 focus:outline-none">
+                <span className="flex items-center space-x-2 mr-3">
+                  <Image src={GalleryImg} />
+                </span>
+                <span className="flex items-center space-x-2 text-[16px] sm:text-[20px]">
+                  {files ? (
+                    <span className="font-medium text-[#f3f3f3]">
+                      <label className="text-primary">{files.length}</label>{" "}
+                      file&#40;s&#41; selected
+                      <br></br>
+                      <label className="text-[14px] text-white/30 flex">
+                        Supports&#58; JPEG<span className="hidden sm:block">, JPEG2000, PNG</span>
+                      </label>
+                    </span>
+                  ) : (
+                    <span className="font-medium text-[#f3f3f3]">
+                      Drop image here or&nbsp;
+                      <label className="text-primary">browse</label>
+                      <br></br>
+                      <label className="text-[14px] text-white/30 flex">
+                        Supports&#58; JPEG<span className="hidden sm:block">, JPEG2000, PNG</span>
+                      </label>
+                    </span>
+                  )}
+                </span>
+              </label>
             </div>
           )}
+        </Dropzone>
+      </div>
+      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[308px] sm:max-h-[500px]">
+        <div className={`grid grid-cols-2 md:grid-cols-3 lg:md:grid-cols-2 xl:grid-cols-3 gap-3 ${loadedImages.length ? 'mb-3' : ''}`}>
+          {loadedImages.map((image, index) => (
+            <AvatarPanel
+              imageUrl={image.url}
+              title={image.name}
+              key={index}
+              onClick={() => onSelectImage({
+                link: image.url,
+                network: '',
+                contractAddress: '',
+                tokenId: '',
+                mintAddress: '',
+              })}
+            // selected={image.url == selectedAvatar}
+            />
+          ))}
         </div>
+        {nftLoading ? (
+          <h3 className="text-center text-[24px] lg:text-[26px] text-white font-medium tracking-[0.02em]">
+            Loading NFTs...
+          </h3>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:md:grid-cols-2 xl:grid-cols-3 gap-3">
+            {nfts.map(({ type, mintAddress, contractAddress, tokenId, name, image, collectionName }, index) => (
+              <NftPanel
+                image={image ? image : '/images/nft_placeholder.png'}
+                name={name}
+                collectionName={collectionName}
+                type={type}
+                key={index}
+                onClick={() => onSelectImage({
+                  link: image,
+                  network: type,
+                  contractAddress,
+                  tokenId,
+                  mintAddress,
+                })}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <div className="w-full p-5 lg:p-5 flex-auto flex items-end px-5 py-5 lg:px-5 lg:py-5">
         <div className="inline-block w-[20%] pr-2">
@@ -235,7 +217,7 @@ const UserPic = (props) => {
             icon=""
             bordered={false}
             onClick={() => onContinue()}
-            disabled={nftLoading && selectStatus ? true : false}
+            disabled={nftLoading || !selectStatus ? true : false}
             styles="rounded-[15px]"
           />
         </div>
