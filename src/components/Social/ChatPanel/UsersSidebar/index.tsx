@@ -5,8 +5,9 @@ import ItemTemplate from "../ItemTemplate";
 
 const UsersSidebar = (props) => {
   const dispatch = useDispatch();
-  const { profile } = useSelector((state: RootStateOrAny) => ({
+  const { profile, members } = useSelector((state: RootStateOrAny) => ({
     profile: state.profile.data,
+    members: state.chat.members,
   }));
 
   const selectNewChat = (chat) => {
@@ -32,7 +33,7 @@ const UsersSidebar = (props) => {
       <div className="menuContent grid gap-y-2">
         {props.serverChats.map((chat: any, index) => (
           <div className="cursor-pointer" onClick={() => selectNewChat(chat)} key={index}>
-            <ItemTemplate {...chat} />
+            <ItemTemplate {...chat} isActive={members[1] == chat.users[1]._id || members[1] == chat.users[0]._id} />
           </div>
         ))}
       </div>

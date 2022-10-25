@@ -1,9 +1,10 @@
 import React from "react";
+import { RootStateOrAny, useSelector } from "react-redux";
 import PrimaryBorderButton from "../../../Common/Buttons/PrimaryBorderButton";
 import { Play } from "../../../icons"
 const ItemTemplate = (props) => {
   return (
-    <div className={`p-[14px] text-lightGrey bg-lightDark rounded-[15px] border hover:border-[#29B080] ` + (props.isActive ? "border-[#29B080]" : "border-transparent")}>
+    <div className={`p-[14px] text-lightGrey bg-[#19191A] rounded-[15px] border hover:border-[#29B080] ` + (props.isActive ? "border-[#29B080]" : "border-transparent")}>
       <div className="flex">
         <div>
           {props.image}
