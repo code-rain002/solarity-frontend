@@ -9,12 +9,14 @@ import OtherFileType from "./OtherFileType";
 type ChattingThreadType = {
   imgUrl: string;
   uName: string;
-  before: string;
+  before?: string;
   text: string;
   hisMsg: string;
   replyToWhom: string;
-  fileUrls: string[];
+  fileUrls?: string[];
   fileNames: string[];
+  date?: string;
+  attachments?: any;
 };
 
 const ChattingThread = (props: ChattingThreadType) => {
@@ -206,8 +208,8 @@ const ChattingThread = (props: ChattingThreadType) => {
         </div>
 
         <div>
-          {props.fileUrls.length != 0 &&
-            props.fileUrls.map((i) => {
+          {props.attachments.files.length != 0 &&
+            props.attachments.files.map((i) => {
               let currentFileName = "";
               if (props.fileNames.length > 0) {
                 if (props.fileNames[0] === "__FOR__INITIAL__DATA__") {
