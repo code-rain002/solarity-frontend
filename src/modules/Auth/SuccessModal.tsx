@@ -7,10 +7,10 @@ const SuccessModal = (props) => {
 	return (
 		<>
 			<div
-				className="justify-center items-center sm:flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[120] outline-none focus:outline-none"
+				className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[120] outline-none focus:outline-none"
 			>
 				<div
-					className="relative w-auto my-6 mx-auto max-w-[380px]"
+					className="relative w-auto my-12 mx-auto max-w-[380px]"
 					onClick={(e) => {
 						e.stopPropagation();
 					}}
@@ -18,15 +18,15 @@ const SuccessModal = (props) => {
 					{/*content*/}
 					<div className=" rounded-[30px] shadow-lg relative flex flex-col w-full bg-[#141416] outline-none focus:outline-none">
 						{/*header*/}
-						<div className="flex items-start justify-between pt-5 pl-8 pr-6 rounded-t">
-							<h3 className="text-[26px] text-white font-medium tracking-[0.02em]">
+						<div className="flex items-start justify-between pt-5 px-4 sm:px-8 rounded-t">
+							<h3 className="text-[22px] sm:text-[26px] text-white font-medium tracking-[0.02em]">
 								Mint Success
 							</h3>
 						</div>
 						{/*body*/}
-						<div className="relative p-8 flex-auto">
+						<div className="relative p-4 sm:p-8 flex-auto">
 							<div className="py-3">
-								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-[316px] h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`} onClick={() => router.push({ pathname: '/auth/buyroom' })}>
+								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-full h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`} onClick={() => router.push({ pathname: '/auth/buyroom' })}>
 									<span className="">
 										Buy your own room
 									</span>
@@ -36,7 +36,7 @@ const SuccessModal = (props) => {
 								</button>
 							</div>
 							<div className="py-3">
-								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-[316px] h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
+								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-full h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
 									<span className="">
 										Tweet your passport
 									</span>
@@ -46,7 +46,7 @@ const SuccessModal = (props) => {
 								</button>
 							</div>
 							<div className="py-3">
-								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-[316px] h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
+								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-full h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
 									<span className="">
 										Invite your friend
 									</span>
@@ -56,7 +56,7 @@ const SuccessModal = (props) => {
 								</button>
 							</div>
 							<div className="py-3">
-								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-[316px] h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
+								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-full h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
 									<span className="">
 										Skip
 									</span>
