@@ -218,6 +218,7 @@ export const RegisterPage = () => {
       mintModel(ipfsUrl)
     } catch (error) {
       console.log(error);
+      setMintProcess(0)
       showErrorToast('Upload model failed. Please try again')
     }
   }
@@ -241,6 +242,7 @@ export const RegisterPage = () => {
         }, options);
     } catch (error) {
       console.log(error);
+      setMintProcess(0)
       showErrorToast('Export model failed.')
     }
   }

@@ -55,7 +55,7 @@ const EditRoom = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pb-0 lg:pt-8 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Edit with your NFT
         </h3>
         <WalletAddress />
@@ -71,9 +71,12 @@ const EditRoom = (props) => {
             {nfts.map((nft, index) => (
               <div className="flex justify-center items-center" key={index}>
                 <div onClick={() => setNFT(nft)} className={`relative rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer overflow-hidden h-full w-full`}>
-                  <img
-                    src={nft.image}
+                  <Image
+                    src={nft.image ? nft.image : '/images/nft_placeholder.png'}
                     alt={nft.name}
+                    layout="responsive"
+                    width={'100%'}
+                    height={'100%'}
                   />
                 </div>
               </div>

@@ -28,7 +28,7 @@ const DaoPanel = (props: DaoPanelProps) => {
           height={"100%"}
         />
       </div>
-      <div className="relative text-center">
+      <div className="relative text-center mb-2">
         <span className="text-[14px] text-[#f3f3f3]">{props.title}</span>
       </div>
       <div className={`top-[6px] left-[6px] sm:top-[12px] sm:left-[12px] ${props.selected ? "absolute" : "hidden"} `}>

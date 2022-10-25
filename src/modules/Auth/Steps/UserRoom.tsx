@@ -50,13 +50,13 @@ const UserRoom = (props) => {
 
   return (
     <>
-      <div className="flex items-center justify-between py-5 px-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+      <div className="flex items-center justify-between pt-8 px-5 pb-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Buy your own room
         </h3>
         <WalletAddress />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 max-h-[600px] overflow-scroll pl-5 pr-5 mr-3 grid-rows-none">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 max-h-[436px] sm:max-h-[600px] overflow-scroll pl-5 pr-5 mr-3 grid-rows-none">
         {demoRooms.map((room, index) => (
           <div
             className={`flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[5px] relative cursor-pointer hover:border-primary ${selectedRoom == room ? 'border-primary' : ''}`}
