@@ -10,17 +10,17 @@ export interface DaoPanelProps {
 
 const DaoPanel = (props: DaoPanelProps) => {
   return (
-    <div className={`relative w-full h-[180px] rounded-[20px] border-[1.5px] ${props.selected ? 'border-primary' : 'border-white/10'} z-10 bg-transparent max-w-[180px] m-auto hover:border-primary hover:cursor-pointer`} onClick={props.onClick}>
-      <div className="absolute top-0 left-0 w-[100%] rounded-[20px] dao-panel h-[91px] max-w-[180px]">
+    <div className={`relative w-full rounded-[20px] border-[1.5px] ${props.selected ? 'border-primary' : 'border-white/10'} z-10 bg-transparent m-auto hover:border-primary hover:cursor-pointer`} onClick={props.onClick}>
+      <div className="w-[100%] rounded-[20px] dao-panel">
         <Image
           src={props.backSrc}
           alt={props.title}
-          layout="fill"
+          layout="responsive"
           width={"100%"}
-          height={"100%"}
+          height={"40%"}
         />
       </div>
-      <div className="absolute top-[calc(50%-30px)] left-[calc(50%-32px)] m-auto w-[64px] h-[64px] rounded-[12px] overflow-hidden">
+      <div className="m-auto mt-[-24px] sm:mt-[-32px] w-[48px] h-[48px] sm:w-[64px] sm:h-[64px] rounded-[12px] overflow-hidden">
         <Image
           src={props.imageSrc}
           alt={props.title}
@@ -28,13 +28,10 @@ const DaoPanel = (props: DaoPanelProps) => {
           height={"100%"}
         />
       </div>
-      <div className="relative mt-[128px] text-center">
+      <div className="relative text-center">
         <span className="text-[14px] text-[#f3f3f3]">{props.title}</span>
       </div>
-      <div
-        className={` top-[18px] left-[18px] ${props.selected ? "absolute" : "hidden"
-          } `}
-      >
+      <div className={`top-[6px] left-[6px] sm:top-[12px] sm:left-[12px] ${props.selected ? "absolute" : "hidden"} `}>
         <svg
           width="24"
           height="24"

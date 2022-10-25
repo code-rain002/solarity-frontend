@@ -165,7 +165,7 @@ const UserDaos = (props) => {
             Daos Loading...
           </div>
         ) : daos.length ? (
-          <div className="grid xs:grid-cols-2 sm:grid-cols-2 max-h-[405px] overflow-scroll gap-3">
+          <div className="grid xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 max-h-[405px] overflow-scroll gap-3">
             {daos.map((dao, index) => (
               <DaoPanel
                 imageSrc={dao.profileImage.link}
