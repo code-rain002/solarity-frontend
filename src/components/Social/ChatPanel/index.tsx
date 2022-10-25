@@ -10,12 +10,14 @@ import UsersSidebar from "./UsersSidebar";
 import NewChatModal from './NewChatModal';
 import { apiCaller } from "utils/fetcher";
 import { time_ago } from "utils";
+import Image from "next/image";
 
 const ChatPanel = () => {
   const dispatch = useDispatch();
-  const { isNewChatModal, profile } = useSelector((state: RootStateOrAny) => ({
+  const { isNewChatModal, profile, chatLogs } = useSelector((state: RootStateOrAny) => ({
     isNewChatModal: state.chat.isNewChatModal,
-    profile: state.profile.data
+    profile: state.profile.data,
+    chatLogs: state.chat.chatLogs,
   }));
   const [focusState, setFocusState] = useState(false);
   const [toggleDropZone, setToggleDropZone] = useState("none");
@@ -37,6 +39,9 @@ const ChatPanel = () => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
+        if (profile.username == undefined) {
+          return;
+        }
         const { data } = await apiCaller.get("/chats/fetchChats");
         var tmpChats = [];
         for (var i = 0; i < data.chats.length; i++) {
@@ -44,7 +49,9 @@ const ChatPanel = () => {
           tmpChats.push({
             _id: data.chats[i]._id,
             users: data.chats[i].users,
-            image: <img className="rounded-xl" src={person.profileImage ? person.profileImage.link : "/images/experience/psuedo_avatars/avatar.png"} width={52} height={52} />,
+            image: (<div className="h-[52px]">
+              <Image className="rounded-xl" src={person.profileImage ? person.profileImage.link : "/images/experience/psuedo_avatars/avatar.png"} width={52} height={52} />
+            </div>),
             title: person.username,
             detail: data.chats[i].lastMsg.content,
             time: time_ago(data.chats[i].lastMsg.createdAt),
@@ -58,7 +65,7 @@ const ChatPanel = () => {
       }
     }
     fetchChats();
-  }, [])
+  }, [profile, chatLogs])
 
   return (
     <div>

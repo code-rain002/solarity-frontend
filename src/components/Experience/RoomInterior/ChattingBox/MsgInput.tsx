@@ -24,10 +24,12 @@ type MsgInputType = {
 const MsgInput = (props: MsgInputType) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { profileData, newMsg, chatType, members } = useSelector((state: RootStateOrAny) => ({
+  const { profileData, newMsg, chatType, typingState, typingMembers, members } = useSelector((state: RootStateOrAny) => ({
     profileData: state.profile.data,
     newMsg: state.chat.newMsg,
     chatType: state.chat.chatType,
+    typingState: state.chat.typingState,
+    typingMembers: state.chat.typingMembers,
     members: state.chat.members,
   }))
   const { rid } = router.query;
@@ -69,6 +71,11 @@ const MsgInput = (props: MsgInputType) => {
     setSelectedFile(e.target.files);
   };
 
+  // Init
+  useEffect(() => {
+    (window as any).typingCounts = 0;
+  }, []);
+
   useEffect(() => {
     if (!selectedFile) {
       setPreview([]);
@@ -89,6 +96,17 @@ const MsgInput = (props: MsgInputType) => {
   }, [selectedFile]);
 
   const enterKeyCapture = (e) => {
+
+    if ((window as any).typingCounts == 0) {
+      (window as any).socket.emit(ACTIONS.TYPING_STATE, { members, name: profileData.username, state: "true" });
+    }
+    (window as any).typingCounts++;
+    setTimeout(() => {
+      (window as any).typingCounts--;
+      if ((window as any).typingCounts == 0) {
+        (window as any).socket.emit(ACTIONS.TYPING_STATE, { members, name: profileData.username, state: "false" })
+      }
+    }, 1000);
     if (e.key === "Enter") {
       if ((e.keyCode === 13 && e.shiftKey) || (e.keyCode === 13 && e.ctrlKey)) {
         return;
@@ -245,6 +263,11 @@ const MsgInput = (props: MsgInputType) => {
     >
       {/* <div className=" absolute top-[-51px] right-[0px] custom-2xl:h-[30px] xs:h-[50px] w-full bg-gradient-to-t from-[#131314] via-[#131314] to-transparent"></div> */}
       {/* <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} /> */}
+      {
+        typingState && (
+          <TypingNotification who={[typingMembers]} />
+        )
+      }
       <ReplyPart
         newMsgDataState={props.newMsgDataState}
         setNewMsgDataState={props.setNewMsgDataState}

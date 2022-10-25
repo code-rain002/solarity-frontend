@@ -113,7 +113,7 @@ const ChattingThreadBox = () => {
         className="flex flex-col px-[26px] w-full h-full overflow-y-scroll overflow-x-visible gap-[2px] relative pb-[30px]"
         id="chatting_thread_box_1"
       >
-        {chatLogs.map((chatLog, index) => (
+        {(members.length == 0 ? [] : chatLogs).map((chatLog, index) => (
           <ChattingThread
             imgUrl={!!chatLog.sender.profileImage ? chatLog.sender.profileImage : "/images/experience/psuedo_avatars/avatar.png"}
             uName={chatLog.sender.name}

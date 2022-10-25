@@ -19,10 +19,6 @@ const UsersSidebar = (props) => {
     dispatch(setMembers([profile._id].concat(members)));
   }
 
-  useEffect(() => {
-    console.log(props.serverChats);
-  }, [])
-
   return (
     <div>
       <div className="flex gap-4 pb-4">
