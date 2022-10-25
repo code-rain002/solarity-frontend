@@ -73,7 +73,7 @@ const ChatPanel = () => {
       />
       < div className="grid grid-cols-7" >
         <div className="col-span-2">
-          <UsersSidebar />
+          <UsersSidebar serverChats={serverChats} />
         </div>
         <div className="col-span-5 border-[2px] border-[#19191a]">
           <ChattingThreadBox />

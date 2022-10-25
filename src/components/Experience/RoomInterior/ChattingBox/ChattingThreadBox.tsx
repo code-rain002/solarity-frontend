@@ -1,8 +1,9 @@
 import useWindowDimensions from "components/Common/useWindowDimensions";
 import { ChattingBoxData } from "data/Experience";
 import { useEffect, useState } from "react";
-import { RootStateOrAny, useSelector } from "react-redux";
-import { setMsg } from "redux/slices/chatSlice";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setMsg, setUserMsg } from "redux/slices/chatSlice";
+import { apiCaller } from "utils/fetcher";
 import ChattingThread from "./ChattingThread";
 import TypingNotification from "./TypingNotification";
 
@@ -57,13 +58,55 @@ const initChatbox = (props) => {
 };
 
 const ChattingThreadBox = () => {
-  const { msgs, chatLogs } = useSelector((state: RootStateOrAny) => ({
+  const dispatch = useDispatch();
+  const { msgs, chatLogs, members } = useSelector((state: RootStateOrAny) => ({
     msgs: state.chat.msgs,
     chatLogs: state.chat.chatLogs,
+    members: state.chat.members,
   }));
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const { data } = await apiCaller.post("/chats/fetchMessages", { members });
+        for (var i = 0; i < data.chat.msgs.length; i++) {
+          dispatch(setUserMsg({
+            groupType: data.chat.type,
+            daoId: null,
+            members: data.chat.users,
+            sender: {
+              name: data.chat.msgs[i].sender.username,
+              profileImage: data.chat.msgs[i].sender.profileImage ? data.chat.msgs[i].sender.profileImage.link : "/images/experience/psuedo_avatars/avatar.png",
+            },
+            content: data.chat.msgs[i].content,
+            reply: data.chat.msgs[i].reply,
+            attachments: data.chat.msgs[i].attachments,
+            date: data.chat.msgs[i].createdAt,
+            editState: data.chat.msgs[i].editState,
+            deleteState: data.chat.msgs[i].deleteState,
+            msgId: data.chat.msgs[i]._id,
+          }));
+        }
+      } catch (error) {
+        console.error('Something went wrong.')
+      }
+    }
+    fetchMessages();
+  }, [members])
+
+  useEffect(() => {
+    setTimeout(() => {
+      let box = document.getElementById("chatting_thread_box_1");
+      if (box) {
+        let height = box.scrollHeight + 113;
+        box.scroll({ top: height, behavior: "smooth" });
+      }
+    }, 100);
+  }, [chatLogs])
+
   return (
     <div
-      className={`flex h-[700px] gap-[24px] relative mb-[24px] rounded-2xl `}
+      className={`flex h-[700px] gap-[24px] relative mb-[24px] rounded-2xl pb-[80px] `}
       id="chatting_thread_box"
     >
       <div

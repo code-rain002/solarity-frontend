@@ -29,10 +29,6 @@ const ChattingThread = (props: ChattingThreadType) => {
   const [hisMsg, setHisMsg] = useState("");
 
   useEffect(() => {
-    let box = document.getElementById("chatting_thread_box_1");
-    let height = box.scrollHeight + 113;
-    box.scroll({ top: height, behavior: "smooth" });
-
     let tempMsg: string = props.text;
 
     let urlArray: string[] = tempMsg.match(
