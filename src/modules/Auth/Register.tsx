@@ -301,7 +301,7 @@ export const RegisterPage = () => {
           </div>
           <div className="w-[90%] m-auto z-10">
             <div className="relative w-auto mx-auto">
-              <div className="rounded-[30px] min-h-[calc(100vh-270px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
+              <div className="rounded-[30px] min-h-[calc(100vh-270px)] sm:min-h-[calc(100vh-520px)] shadow-lg relative w-full bg-[#141416] outline-none focus:outline-none flex flex-row">
                 <div className="w-[100%] xl:w-[60%] flex flex-col relative">
                   {step === 1 && <UserInfo />}
                   {step === 2 && <UserDaos />}

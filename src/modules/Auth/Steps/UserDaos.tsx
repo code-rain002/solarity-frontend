@@ -19,14 +19,15 @@ import {
 } from "../../../redux/slices/commonSlice";
 import { apiCaller } from "utils/fetcher";
 import { changeInfo, goStep } from "redux/slices/authSlice";
-import { WalletAddress } from "../Components";
+import { StepTitle, WalletAddress } from "../Components";
 
 const UserDaos = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo, loading, isMobile } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
+    isMobile: state.common.isMobile
   }));
 
   const [daos, setDaos] = useState([]);
@@ -153,19 +154,23 @@ const UserDaos = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
-        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
-          DAOs you&apos;re already in
-        </h3>
+      {!isMobile ? (
+          <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
+            DAOs you&apos;re already in
+          </h3>
+        ) : (
+          <StepTitle caption={'DAOs'} />
+        )}
         <WalletAddress />
       </div>
       {/*body*/}
-      <div className="relative p-5 lg:p-5 flex-auto">
+      <div className="relative px-5 sm:pt-5 lg:p-5 flex-auto">
         {loading ? (
           <div className="text-center	text-[24px] lg:text-[24px] text-white font-medium tracking-[0.02em]">
             Daos Loading...
           </div>
         ) : daos.length ? (
-          <div className="grid xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 custom-2xl:grid-cols-3 max-h-[405px] sm:max-h-[476px] overflow-scroll gap-3">
+          <div className="grid xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 custom-2xl:grid-cols-3 max-h-[calc(100vh-392px)] sm:max-h-[476px] overflow-scroll gap-3">
             {daos.map((dao, index) => (
               <DaoPanel
                 imageSrc={dao.profileImage.link}
