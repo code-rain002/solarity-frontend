@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { RootStateOrAny, useSelector } from "react-redux";
+import { formatAMPM } from "utils";
 
 import ImgFileType from "./ImgFileType";
 import OtherFileType from "./OtherFileType";
@@ -163,7 +164,7 @@ const ChattingThread = (props: ChattingThreadType) => {
               {props.replyToWhom}
             </div>
           </div>
-          <div className="pt-[5px]">{ReactHtmlParser(msg)}</div>
+          <div className="pt-[5px]">{ReactHtmlParser(msg)}<span className="text-grey text-[12px] font-['Outfit'] pt-1 pl-2 float-right">{formatAMPM(new Date(props.date))}</span></div>
           <div
             className={`absolute ${showReplyBtn ? "flex" : "hidden"
               } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
