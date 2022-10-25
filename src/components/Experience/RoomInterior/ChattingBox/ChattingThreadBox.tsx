@@ -2,7 +2,7 @@ import useWindowDimensions from "components/Common/useWindowDimensions";
 import { ChattingBoxData } from "data/Experience";
 import { useEffect, useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { setMsg, setUserMsg } from "redux/slices/chatSlice";
+import { clearUserMsg, setMsg, setUserMsg } from "redux/slices/chatSlice";
 import { apiCaller } from "utils/fetcher";
 import ChattingThread from "./ChattingThread";
 import TypingNotification from "./TypingNotification";
@@ -68,6 +68,7 @@ const ChattingThreadBox = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
+        dispatch(clearUserMsg())
         const { data } = await apiCaller.post("/chats/fetchMessages", { members });
         for (var i = 0; i < data.chat.msgs.length; i++) {
           dispatch(setUserMsg({

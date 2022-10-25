@@ -160,6 +160,9 @@ export const chatSlice = createSlice({
     setUserMsg: (state, action) => {
       state.chatLogs.push(action.payload);
     },
+    clearUserMsg: (state, action) => {
+      state.chatLogs = [];
+    },
     setFriends: (state, action) => {
       state.friends = action.payload;
     },
@@ -193,6 +196,6 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { setCreateModalVisibility, setTypingState, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;
