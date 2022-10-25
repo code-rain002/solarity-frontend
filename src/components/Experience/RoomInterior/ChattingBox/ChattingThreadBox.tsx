@@ -68,7 +68,7 @@ const ChattingThreadBox = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        dispatch(clearUserMsg())
+        dispatch(clearUserMsg({}))
         const { data } = await apiCaller.post("/chats/fetchMessages", { members });
         for (var i = 0; i < data.chat.msgs.length; i++) {
           dispatch(setUserMsg({
@@ -107,7 +107,7 @@ const ChattingThreadBox = () => {
 
   return (
     <div
-      className={`flex h-[700px] gap-[24px] relative mb-[24px] rounded-2xl pb-[80px] `}
+      className={`flex xs:h-[500px] sm:h-[700px] gap-[24px] relative mb-[24px] rounded-2xl pb-[80px] `}
       id="chatting_thread_box"
     >
       <div

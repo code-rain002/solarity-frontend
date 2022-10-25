@@ -74,7 +74,7 @@ const NewChatModal = () => {
           ) : (
             <SearchInput value={userSearchInput} setValue={setUserSearchInput} />
           )}
-          <div className="h-[400px]">
+          <div className="h-[400px] overscroll-contain">
             <MessageList
               selectedFriend={selectedFriend}
               setSelectedFriend={setSelectedFriend}

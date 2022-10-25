@@ -256,7 +256,7 @@ const MsgInput = (props: MsgInputType) => {
     <div
       className={` flex flex-col rounded-[15px] border-[1.2px] ${props.focusState ? "border-primary" : "border-[#272829]"
         } mx-[26px]
-            absolute bottom-[32px] ${props.isSocial ? "w-[93%] bg-[#19191a]" : "w-[85%]"} bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
+            absolute bottom-[32px] ${props.isSocial ? "xl:w-[93%] custom-2xl:w-[91%] bg-[#19191a]" : "w-[85%]"} bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
       id="chatting_input_container"
       onDragStart={(e) => e.preventDefault()}
     >

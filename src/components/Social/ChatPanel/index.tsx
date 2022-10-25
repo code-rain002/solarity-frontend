@@ -78,11 +78,11 @@ const ChatPanel = () => {
           </div>
         }
       />
-      < div className="grid gap-4 xs:grid-cols-1 sm:grid-cols-7" >
-        <div className="col-span-2 sm:col-span-3 md:col-span-3 xl:col-span-2">
+      < div className="grid gap-4 xs:grid-cols-1 sm:grid-cols-7 custom-2xl:grid-cols-5" >
+        <div className="col-span-2 sm:col-span-3 md:col-span-3 xl:col-span-2 custom-2xl:col-span-1">
           <UsersSidebar serverChats={serverChats} />
         </div>
-        <div className="col-span-5 sm:col-span-4 md:col-span-4 xl:col-span-5 border-[2px] border-[#19191a] relative">
+        <div className="col-span-5 sm:col-span-4 md:col-span-4 xl:col-span-5 custom-2xl:col-span-4 border-[2px] border-[#19191a] relative">
           <ChattingThreadBox />
           <MsgInput
             isSocial={true}

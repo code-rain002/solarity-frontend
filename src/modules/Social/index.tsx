@@ -21,10 +21,10 @@ const SocialComp = () => {
             <ChatPanel />
           </div>
         </div>
-        <div className="w-[376px] mt-[64px]">
+        {/* <div className="w-[376px] mt-[64px]">
           <WeeklyMovement />
           <CommonDAOs />
-        </div>
+        </div> */}
       </div>
     </div>
   );
