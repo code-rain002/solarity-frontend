@@ -106,7 +106,7 @@ const UserBadges = (props) => {
             <div className={`inline-block px-4 py-2 rounded-full mr-3 mb-3 cursor-pointer border-[1px] border-primary hover:bg-primary ${isSelected ? 'bg-primary' : 'bg-[#162724]'}`} key={index} onClick={() => onSelectBadge(badge)}>
               <div className="flex flex-row items-center">
                 {isSelected ? <span className="h-[20px] w-[20px] text-white text-medium"><CheckIcon /></span> : <Image src={badge.icon} height={20} width={20} />}
-                <span className="text-white text-[18px] ml-2">{badge.name}</span>
+                <span className="text-white text-[14px] md:text-[18px] ml-2">{badge.name}</span>
               </div>
             </div>
           );

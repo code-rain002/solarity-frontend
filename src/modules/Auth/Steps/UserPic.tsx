@@ -217,7 +217,7 @@ const UserPic = (props) => {
             icon=""
             bordered={false}
             onClick={() => onContinue()}
-            disabled={nftLoading && selectStatus ? true : false}
+            disabled={nftLoading || !selectStatus ? true : false}
             styles="rounded-[15px]"
           />
         </div>

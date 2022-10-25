@@ -280,7 +280,7 @@ export const RegisterPage = () => {
               {step === 2 && <UserDaos />}
               {step === 3 && <UserPic />}
               {step === 4 && <UserBadges />}
-              {step === 5 || step === 6 && <EditStyle onMint={exportModel} />}
+              {(step === 5 || step === 6) && <EditStyle onMint={exportModel} />}
             </div>
           </div>
         </div>
