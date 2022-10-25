@@ -94,12 +94,12 @@ const UserBadges = (props) => {
   return (
     <>
       <div className="flex items-center justify-between py-5 px-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Choose your badges
         </h3>
         <WalletAddress />
       </div>
-      <div className="h-[600px] overflow-scroll px-5">
+      <div className="h-[436px] sm:h-[600px] overflow-scroll px-5">
         {badges.length && badges.map((badge, index) => {
           const isSelected = selectedBadges.findIndex((item, index) => item.name == badge.name) >= 0;
           return (

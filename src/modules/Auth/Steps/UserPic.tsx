@@ -120,7 +120,7 @@ const UserPic = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Choose profile picture
         </h3>
         <WalletAddress />
@@ -164,7 +164,7 @@ const UserPic = (props) => {
           )}
         </Dropzone>
       </div>
-      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[500px]">
+      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[308px] sm:max-h-[500px]">
         <div className={`grid grid-cols-2 md:grid-cols-3 lg:md:grid-cols-2 xl:grid-cols-3 gap-3 ${loadedImages.length ? 'mb-3' : ''}`}>
           {loadedImages.map((image, index) => (
             <AvatarPanel

@@ -62,7 +62,7 @@ const EditStyle = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pb-0 lg:pt-8 rounded-t">
-        <h3 className="text-[28px] lg:text-[30px] text-white font-medium tracking-[0.02em]">
+        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
           Edit Style
         </h3>
         <WalletAddress />
