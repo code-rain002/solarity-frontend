@@ -83,7 +83,7 @@ const ChatPanel = () => {
           <UsersSidebar serverChats={serverChats} />
         </div>
         <div className="col-span-5 sm:col-span-4 md:col-span-4 xl:col-span-5 custom-2xl:col-span-4 border-[2px] border-[#19191a] relative">
-          <ChattingThreadBox />
+          <ChattingThreadBox isSocial={true} />
           <MsgInput
             isSocial={true}
             focusState={focusState}

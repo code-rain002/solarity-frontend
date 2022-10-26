@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
@@ -53,6 +53,8 @@ const MainScr = () => {
   const { clients, provideRef, handleMute } = useWebRTC(rid, {
     name: userName ? userName : typeof window !== "undefined" ? localStorage.getItem('userName') : "",
     avatarUrl: profileData ? profileData.profileImageLink : "",
+    roomName: "",
+    modelIndex: modelIndex,
   })
 
   useEffect(() => {

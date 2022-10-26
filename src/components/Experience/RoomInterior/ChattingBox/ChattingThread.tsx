@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setReply } from "redux/slices/chatSlice";
 import { formatAMPM } from "utils";
 
 import ImgFileType from "./ImgFileType";
@@ -13,6 +14,7 @@ type ChattingThreadType = {
   before?: string;
   text: string;
   hisMsg: string;
+  msgId: string;
   replyToWhom: string;
   fileUrls?: string[];
   fileNames: string[];
@@ -24,6 +26,7 @@ const ChattingThread = (props: ChattingThreadType) => {
   const { profileData } = useSelector((state: RootStateOrAny) => ({
     profileData: state.profile.data
   }))
+  const dispatch = useDispatch();
   const [showReplyBtn, setShowReplyBtn] = useState(false);
   const [replyHover, setReplyHover] = useState(false);
   const [msg, setMsg] = useState("");
@@ -122,6 +125,10 @@ const ChattingThread = (props: ChattingThreadType) => {
     setHisMsg(tempHisMsg);
   }, [props.text]);
 
+  const reply = (replyToWhom, hisMsg, replyId) => {
+    dispatch(setReply({ replyToWhom, hisMsg, replyId }));
+  }
+
   let j = 0;
   return (
     <div
@@ -170,6 +177,7 @@ const ChattingThread = (props: ChattingThreadType) => {
               } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
             onMouseEnter={() => setReplyHover(true)}
             onMouseLeave={() => setReplyHover(false)}
+            onClick={() => reply(props.uName, props.text, props.msgId)}
           >
             <svg
               width="24"
@@ -205,7 +213,7 @@ const ChattingThread = (props: ChattingThreadType) => {
         </div>
 
         <div>
-          {props.attachments.files.length != 0 &&
+          {props.attachments.length != 0 && props.attachments.files.length != 0 &&
             props.attachments.files.map((i) => {
               let currentFileName = "";
               if (props.fileNames.length > 0) {

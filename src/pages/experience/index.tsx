@@ -43,7 +43,7 @@ const ProfileIndex = () => {
         if (!(window as any).socket) {
             setTimeout(() => {
                 initSocket();
-            }, 100);
+            }, 5);
             return;
         }
 

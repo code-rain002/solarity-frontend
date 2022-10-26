@@ -18,6 +18,7 @@ const CreateRoomModal = () => {
     profileData: state.profile.data
   }));
 
+  const [createDisable, setCreateDisable] = useState(false);
   const [modelIndex, setModelIndex] = useState(0);
   const [step, setStep] = useState(0);
 
@@ -38,13 +39,14 @@ const CreateRoomModal = () => {
       alert('Select room first.');
       return;
     }
+    setCreateDisable(true);
 
     setTimeout(() => {
       setStep(0);
       dispatch(setCreateModalVisibility(false));
       dispatch(setNewRoomTitle(''));
       dispatch(setSelectedRoom({}));
-    }, 3000);
+    }, 5000);
 
     dispatch(createRoom({
       title: selectedRoom.roomName,
@@ -103,7 +105,7 @@ const CreateRoomModal = () => {
 
         {/* Modal Footer */}
         <div className="self-center justify-self-end w-full z-[1002]">
-          <PrimaryButton caption={`${step === 0 ? 'Next' : 'Create'}`} bordered={false} onClick={createRoomFunc} disabled={false} styles="pt-[12px] pb-[16px] h-fit rounded-[15px]" />
+          <PrimaryButton caption={`${step === 0 ? 'Next' : 'Create'}`} bordered={false} onClick={createRoomFunc} disabled={createDisable} styles="pt-[12px] pb-[16px] h-fit rounded-[15px]" />
         </div>
       </div>
     </div>

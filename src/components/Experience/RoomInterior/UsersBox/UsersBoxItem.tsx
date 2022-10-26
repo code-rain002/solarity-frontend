@@ -2,7 +2,7 @@
 import { VolumeIcon } from "components/icons/VolumeIcon"
 import { VolumeMuteIcon } from "components/icons/VolumeMuteIcon"
 import Image from "next/image"
-import { useState } from "react"
+import React, { useState } from "react"
 
 type UsersBoxItemType = {
     imgUrl: string,

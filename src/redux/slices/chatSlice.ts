@@ -192,10 +192,18 @@ export const chatSlice = createSlice({
           state.typingMembers.push(action.payload.name);
         }
       }
+    },
+    setReply: (state, action) => {
+      state.newMsg.reply = {
+        replying: true,
+        replyToWhom: action.payload.replyToWhom,
+        hisMsg: action.payload.hisMsg,
+        replyId: action.payload.replyId,
+      };
     }
   },
 });
 
-export const { setCreateModalVisibility, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setReply, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;
