@@ -25,7 +25,7 @@ import {
 import { showErrorToast, showSuccessToast } from "utils";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { apiCaller } from "utils/fetcher";
-import { WalletAddress } from "../Components";
+import { StepTitle, WalletAddress } from "../Components";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,
@@ -36,9 +36,10 @@ cloudinary.config({
 const UserPic = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo, loading, isMobile } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
+    isMobile: state.common.isMobile
   }));
   const [nfts, nftLoading, nftError, fetchNFTs] = getNfts(
     userInfo.domain,
@@ -120,12 +121,16 @@ const UserPic = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:p-5 lg:pt-8 lg:pb-0 lg:pr-5 rounded-t">
-        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
-          Choose profile picture
-        </h3>
+        {!isMobile ? (
+          <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
+            Choose Profile Picture
+          </h3>
+        ) : (
+          <StepTitle caption={'Avatar'} />
+        )}
         <WalletAddress />
       </div>
-      <div className="relative p-5 lg:p-5">
+      <div className="relative p-5 pt-0 sm:p-5">
         <Dropzone
           onDrop={(acceptedFiles) => {
             onImageLoad(acceptedFiles);
@@ -164,7 +169,7 @@ const UserPic = (props) => {
           )}
         </Dropzone>
       </div>
-      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[308px] sm:max-h-[476px]">
+      <div className="relative px-5 lg:px-5 flex-auto overflow-scroll max-h-[calc(100vh-509px)] sm:max-h-[476px]">
         <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3 ${loadedImages.length ? 'mb-3' : ''}`}>
           {loadedImages.map((image, index) => (
             <AvatarPanel
