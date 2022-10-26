@@ -1,6 +1,6 @@
 import { DownArrow, UpArrow } from "components/icons";
 import { UsersBoxData } from "data/Experience";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CopyInviteLinkBtn from "./CopyInviteLinkBtn";
 import UsersBoxItem from "./UsersBoxItem";
 
@@ -120,7 +120,7 @@ const UsersBox = (props: UsersBoxType) => {
       <div className="absolute md:bottom-[0px] xs:bottom-[77px] right-[0px] h-[30px] w-full bg-gradient-to-t from-[#131314] to-[rgba(19, 19, 20, 0)] "></div>
 
       <div className="md:hidden xs:absolute bottom-[20px] w-full px-[32px] ml-[-8px]">
-        <CopyInviteLinkBtn onClick={() => console.log("invitation link")} />
+        <CopyInviteLinkBtn onClick={copyLink} />
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const JoinRoomModal = () => {
     setTimeout(() => {
       dispatch(setJoinModalVisibility(false));
       setUName("");
-    }, 3000);
+    }, 5000);
     if (!!(window as any).socket) {
       if (selectedLiveRoom.roomNo == 0) {
         router.push(`/experience/room?rid=${selectedLiveRoom.roomId}&roomType=0&no=0`);

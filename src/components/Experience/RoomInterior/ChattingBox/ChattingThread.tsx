@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactHtmlParser from "react-html-parser";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setReply } from "redux/slices/chatSlice";
 import { formatAMPM } from "utils";
 
 import ImgFileType from "./ImgFileType";
@@ -13,6 +14,7 @@ type ChattingThreadType = {
   before?: string;
   text: string;
   hisMsg: string;
+  msgId: string;
   replyToWhom: string;
   fileUrls?: string[];
   fileNames: string[];
@@ -24,6 +26,7 @@ const ChattingThread = (props: ChattingThreadType) => {
   const { profileData } = useSelector((state: RootStateOrAny) => ({
     profileData: state.profile.data
   }))
+  const dispatch = useDispatch();
   const [showReplyBtn, setShowReplyBtn] = useState(false);
   const [replyHover, setReplyHover] = useState(false);
   const [msg, setMsg] = useState("");
@@ -122,6 +125,10 @@ const ChattingThread = (props: ChattingThreadType) => {
     setHisMsg(tempHisMsg);
   }, [props.text]);
 
+  const reply = (replyToWhom, hisMsg, replyId) => {
+    dispatch(setReply({ replyToWhom, hisMsg, replyId }));
+  }
+
   let j = 0;
   return (
     <div
@@ -154,22 +161,25 @@ const ChattingThread = (props: ChattingThreadType) => {
             } font-[400] text-[16px] text-[#b3b3b7] leading-[150%] relative`}
         >
           <div
-            className={` font-['Outfit'] text-[14px] font-[400] text-[#b3b3b7] italic pb-[10px] border-b-[1px] border-b-[#b3b3b7]
+            className={` ml-1 mt-2 border-l-[2px] border-[#b3b3b7] font-['Outfit'] text-[14px] font-[400] text-[#b3b3b7] italic mb-[8px]
                           ${props.hisMsg === "" ? "hidden" : ""}`}
           >
-            " {ReactHtmlParser(hisMsg)} "
             <div
-              className={` font-['Outfit'] text-[12px] font-[400] text-[#b3b3b7] not-italic`}
+              className={`pl-2 font-['Outfit'] text-[15px] font-[400] text-[#b3b3b7] not-italic`}
             >
               {props.replyToWhom}
             </div>
+            <div className="pl-2 font-['Outfit'] text-[13px] font-[200] not-italic">
+              {ReactHtmlParser(hisMsg)}
+            </div>
           </div>
-          <div className="pt-[5px]">{ReactHtmlParser(msg)}<span className="text-grey text-[12px] font-['Outfit'] pt-1 pl-2 float-right">{formatAMPM(new Date(props.date))}</span></div>
+          <div className="pt-[5px] font-[200] pl-1">{ReactHtmlParser(msg)}<span className="text-grey text-[12px] font-['Outfit'] pt-1 pl-2 float-right">{formatAMPM(new Date(props.date))}</span></div>
           <div
             className={`absolute ${showReplyBtn ? "flex" : "hidden"
               } top-[0px] right-[-26px] cursor-pointer ml-[30px]`}
             onMouseEnter={() => setReplyHover(true)}
             onMouseLeave={() => setReplyHover(false)}
+            onClick={() => reply(props.uName, props.text, props.msgId)}
           >
             <svg
               width="24"
@@ -205,7 +215,7 @@ const ChattingThread = (props: ChattingThreadType) => {
         </div>
 
         <div>
-          {props.attachments.files.length != 0 &&
+          {props.attachments.length != 0 && props.attachments.files.length != 0 &&
             props.attachments.files.map((i) => {
               let currentFileName = "";
               if (props.fileNames.length > 0) {

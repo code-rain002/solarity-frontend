@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { setMembers } from "redux/slices/chatSlice";
+import { setMembers, setSelectedChatUserName } from "redux/slices/chatSlice";
 import ItemTemplate from "../ItemTemplate";
 
 const UsersSidebar = (props) => {
@@ -15,6 +15,7 @@ const UsersSidebar = (props) => {
     for (var i = 0; i < chat.users.length; i++) {
       if (chat.users[i].username != profile.username) {
         members.push(chat.users[i]._id);
+        dispatch(setSelectedChatUserName(chat.users[i].username))
       }
     }
     dispatch(setMembers([profile._id].concat(members)));

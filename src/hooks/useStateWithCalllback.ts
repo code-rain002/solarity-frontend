@@ -9,7 +9,6 @@ export const useStateWithCalllback = (iniitialState) => {
 
   const updateState = useCallback((newState, cb) => {
     cbRef.current = cb;
-
     setState((prev) => {
       return typeof newState === 'function' ? newState(prev) : newState;
     })
@@ -20,7 +19,7 @@ export const useStateWithCalllback = (iniitialState) => {
   useEffect(() => {
     if (cbRef.current) {
       (cbRef as any).current(state);
-      cbRef.current = null;
+      (cbRef as any).current = null;
     }
   }, [state]);
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { DownArrow, UpArrow } from "components/icons";
 import { useState } from "react";
 import ChattingThreadBox from "./ChattingThreadBox";
@@ -66,19 +67,12 @@ const ChattingBox = (props: ChattingBoxType) => {
         </div>
       </div>
 
-      <ChattingThreadBox
-        newMsgDataState={newMsgDataState}
-        setNewMsgDataState={setNewMsgDataState}
-        newMsgSendingState={newMsgSendingState}
-        setNewMsgSendingState={setNewMsgSendingState}
-      />
+      <ChattingThreadBox isSocial={false} />
       <Input
         focusState={focusState}
         setFocusState={setFocusState}
         newMsgDataState={newMsgDataState}
         setNewMsgDataState={setNewMsgDataState}
-        newMsgSendingState={newMsgSendingState}
-        setNewMsgSendingState={setNewMsgSendingState}
       />
 
       <UploadDropZoneImg toggleDropZone={toggleDropZone} />

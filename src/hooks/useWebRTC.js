@@ -102,7 +102,7 @@ export const useWebRTC = (roomId, user) => {
                     iceCandidate: event.candidate
                 });
             }
-            
+            console.log("remoteUser", remoteUser);
             // handle track on  connection
             connections.current[peerId].ontrack = ({ streams: [remoteStream] }) => {
                 addNewClient({ ...remoteUser, muted: true }, () => {

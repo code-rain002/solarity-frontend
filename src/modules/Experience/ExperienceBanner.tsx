@@ -25,7 +25,7 @@ const ExperienceBanner = () => {
     setTimeout(() => {
       if (!!(window as any).socket)
         (window as any).socket.emit(ACTIONS.ROOM_LIST, {});
-    }, 100);
+    }, 10);
   }, []);
 
   return (

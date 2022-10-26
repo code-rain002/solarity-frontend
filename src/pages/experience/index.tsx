@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
 
 import Experience from "modules/Experience"
-import Layout from "components/Layout"
 import ExperienceBanner from "modules/Experience/ExperienceBanner"
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
-import { addMsg, addPeer, removePeer, setMsg, setName, setRooms } from "redux/slices/chatSlice"
-import ACTIONS from "config/actions"
-import { useRouter } from "next/router"
+import Layout from "components/Layout"
 import LiveRoomList from "components/Experience/LiveRoom/LiveRoomList"
 import CreateRoomModal from "components/Experience/Common/CreateRoomModal"
 import JoinRoomModal from "components/Experience/Common/JoinRoomModal"
 import MobileExperienceBanner from "components/Experience/LiveRoom/MobileExperienceBanner"
+import { addMsg, addPeer, removePeer, setMsg, setName, setRooms } from "redux/slices/chatSlice"
+import ACTIONS from "config/actions"
 import { checkBrowser } from "utils"
 
 const ProfileIndex = () => {
@@ -43,7 +43,7 @@ const ProfileIndex = () => {
         if (!(window as any).socket) {
             setTimeout(() => {
                 initSocket();
-            }, 100);
+            }, 5);
             return;
         }
 

@@ -57,7 +57,11 @@ const initChatbox = (props) => {
   return tempMsgs;
 };
 
-const ChattingThreadBox = () => {
+type ChattingThreadBoxType = {
+  isSocial: boolean;
+}
+
+const ChattingThreadBox = (props: ChattingThreadBoxType) => {
   const dispatch = useDispatch();
   const { msgs, chatLogs, members } = useSelector((state: RootStateOrAny) => ({
     msgs: state.chat.msgs,
@@ -114,7 +118,7 @@ const ChattingThreadBox = () => {
         className="flex flex-col px-[26px] w-full h-full overflow-y-scroll overflow-x-visible gap-[2px] relative pb-[30px]"
         id="chatting_thread_box_1"
       >
-        {(members.length == 0 ? [] : chatLogs).map((chatLog, index) => (
+        {props.isSocial && (members.length == 0 ? [] : chatLogs).map((chatLog, index) => (
           <ChattingThread
             imgUrl={!!chatLog.sender.profileImage ? chatLog.sender.profileImage : "/images/experience/psuedo_avatars/avatar.png"}
             uName={chatLog.sender.name}
@@ -123,6 +127,21 @@ const ChattingThreadBox = () => {
             hisMsg={!!chatLog.reply.hisMsg ? chatLog.reply.hisMsg : ""}
             replyToWhom={chatLog.reply.replyToWhom}
             attachments={chatLog.attachments}
+            msgId={chatLog.msgId}
+            fileNames={["__FOR__INITIAL__DATA__"]}
+            key={index}
+          />
+        ))}
+        {!props.isSocial && msgs.map((msg, index) => (
+          <ChattingThread
+            imgUrl={!!msg.avatarUrl ? msg.avatarUrl : "/images/experience/psuedo_avatars/avatar.png"}
+            uName={msg.user}
+            text={msg.msg.myMsg}
+            date={""}
+            hisMsg={!!msg.msg.reply.hisMsg ? msg.msg.reply.hisMsg : ""}
+            replyToWhom={msg.msg.reply.replyToWhom}
+            msgId={msg.msg._id}
+            attachments={[]}
             fileNames={["__FOR__INITIAL__DATA__"]}
             key={index}
           />

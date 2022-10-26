@@ -267,10 +267,7 @@ const MsgInput = (props: MsgInputType) => {
           <TypingNotification who={[typingMembers]} />
         )
       }
-      <ReplyPart
-        newMsgDataState={props.newMsgDataState}
-        setNewMsgDataState={props.setNewMsgDataState}
-      />
+      <ReplyPart />
 
       <div className="flex flex-row  justify-between items-start gap-[12px] bg-globalBgColor px-[16px] py-[18px] pb-[12px] rounded-[15px]">
         <UploadButton onClick={() => getReadyUpload()} />

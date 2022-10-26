@@ -39,7 +39,7 @@ const ProfileIndex = () => {
       return;
     }
 
-    if (!(window as any).listen) {
+    if (!(window as any).socialListen) {
       (window as any).socket.on(ACTIONS.USER_INFO_EXTENSION, (friends) => {
         dispatch(setFriends(friends));
       });
@@ -63,7 +63,7 @@ const ProfileIndex = () => {
           }
         }
       });
-      (window as any).listen = true;
+      (window as any).socialListen = true;
     }
   }
 
