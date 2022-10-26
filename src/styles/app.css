@@ -44,8 +44,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Outfit";
   font-size: 20px;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh; */
+  /* width: 100vw; */
   overflow-x: hidden;
   background-color: #141414;
 }
