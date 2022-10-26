@@ -19,7 +19,7 @@ export const useStateWithCalllback = (iniitialState) => {
   useEffect(() => {
     if (cbRef.current) {
       (cbRef as any).current(state);
-      cbRef.current = null;
+      (cbRef as any).current = null;
     }
   }, [state]);
 

@@ -1,15 +1,17 @@
-type ReplyPartType = {
-  newMsgDataState: any;
-  setNewMsgDataState: any;
-};
+import React from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setNewMsg } from "redux/slices/chatSlice";
 
-const ReplyPart = (props: ReplyPartType) => {
+const ReplyPart = () => {
+  const dispatch = useDispatch();
+  const { newMsg } = useSelector((state: RootStateOrAny) => ({
+    newMsg: state.chat.newMsg,
+  }));
   return (
     <div
       id="reply_part"
-      className={` justify-between items-start gap-[12px] bg-[#2C2C2E] ${
-        props.newMsgDataState.reply.replying ? "flex" : "hidden"
-      } px-[15px] py-[5px] rounded-tl-[13px] rounded-tr-[13px]`}
+      className={` justify-between items-start gap-[12px] bg-[#2C2C2E] ${newMsg.reply.replying ? "flex" : "hidden"
+        } px-[15px] py-[5px] rounded-tl-[13px] rounded-tr-[13px]`}
     >
       <svg
         width="24"
@@ -53,20 +55,20 @@ const ReplyPart = (props: ReplyPartType) => {
       </svg>
       <div className="flex flex-col font-[400] text-[12px] w-[70%]">
         <div className="flex flex-row text-primary">
-          {props.newMsgDataState.reply.replyToWhom}
+          {newMsg.reply.replyToWhom}
         </div>
         <div className="flex flex-row text-[#b3b3b7]">
-          {props.newMsgDataState.reply.hisMsg}
+          {newMsg.reply.hisMsg}
         </div>
       </div>
 
       <div
         className="cursor-pointer"
         onClick={() =>
-          props.setNewMsgDataState({
-            ...props.newMsgDataState,
+          dispatch(setNewMsg({
+            ...newMsg,
             reply: { replying: false, replyToWhom: "", hisMsg: "" },
-          })
+          }))
         }
       >
         <svg

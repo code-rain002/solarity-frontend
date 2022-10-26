@@ -200,7 +200,7 @@ export const chatSlice = createSlice({
         hisMsg: action.payload.hisMsg,
         replyId: action.payload.replyId,
       };
-    }
+    },
   },
 });
 
