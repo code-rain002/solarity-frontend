@@ -19,7 +19,7 @@ import React, { useState, useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
-import WalletAddress from "./WalletAddress";
+import { StepTitle, WalletAddress } from "../Components";
 
 const badges = [
   { icon: '/images/badges/polygon.png', name: 'Polygon', active: false },
@@ -40,9 +40,10 @@ const badges = [
 const UserBadges = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { userInfo, step } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo, step, isMobile } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     step: state.auth.step,
+    isMobile: state.common.isMobile
   }));
 
   const [selectedBadges, setSelectedBadges] = useState([]);
@@ -94,12 +95,16 @@ const UserBadges = (props) => {
   return (
     <>
       <div className="flex items-center justify-between py-5 px-5 lg:p-5 lg:pt-8 lg:pb-5 lg:pr-5 rounded-t">
-        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
-          Choose your badges
-        </h3>
+        {!isMobile ? (
+          <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
+            Choose Your Badges
+          </h3>
+        ) : (
+          <StepTitle caption={'Badges'} />
+        )}
         <WalletAddress />
       </div>
-      <div className="h-[436px] sm:h-[600px] overflow-scroll px-5">
+      <div className="max-h-[calc(100vh-400px)] sm:max-h-[600px] overflow-scroll px-5">
         {badges.length && badges.map((badge, index) => {
           const isSelected = selectedBadges.findIndex((item, index) => item.name == badge.name) >= 0;
           return (

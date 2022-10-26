@@ -16,7 +16,7 @@ import {
 } from "components/Common/Images";
 import { DomainInput, SharedInput } from "components/Common/Forms";
 import { DiscordLink, GithubLink, TwitterLink } from "../Links";
-import { minifyAddress, showErrorToast } from "utils";
+import { checkBrowser, minifyAddress, showErrorToast } from "utils";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
 
 import { useDispatch, RootStateOrAny, useSelector } from "react-redux";
@@ -25,17 +25,17 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
-import WalletAddress from "./WalletAddress";
+import { StepTitle, WalletAddress } from "../Components";
 
 const UserInfo = (props) => {
   const dispatch = useDispatch();
   const { query: { domain, title } } = useRouter();
   const router = useRouter();
-  const { userInfo, loading } = useSelector((state: RootStateOrAny) => ({
+  const { userInfo, loading, isMobile } = useSelector((state: RootStateOrAny) => ({
     userInfo: state.auth.userInfo,
     loading: state.common.appLoading,
+    isMobile: state.common.isMobile
   }));
-
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -125,14 +125,18 @@ const UserInfo = (props) => {
   return (
     <>
       <div className="flex items-center justify-between pt-8 pl-5 pr-5 lg:px-5 lg:pt-8 lg:pb-0 rounded-t">
-        <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
-          General
-        </h3>
+        {!isMobile ? (
+          <h3 className="text-[22px] sm:text-[30px] text-white font-medium tracking-[0.02em]">
+            General
+          </h3>
+        ) : (
+          <StepTitle caption={'General'} />
+        )}
         <WalletAddress />
       </div>
       {/*body*/}
       {/* {discordUsername ? discordUsername : 'dasd'} */}
-      <div className="relative px-5 pt-5 lg:px-5 lg:pt-10 flex-auto">
+      <div className="relative px-5 sm:pt-5 lg:px-5 lg:pt-10 flex-auto">
         <div>
           <DomainInput
             changeValue={changeInfoValue}
@@ -150,7 +154,7 @@ const UserInfo = (props) => {
             caption="Input your bio"
           />
         </div>
-        <div className="grid grid-cols-1 custom-2xl:grid-cols-3 gap-3 my-5">
+        <div className={`grid ${isMobile ? 'grid-cols-3' : 'grid-cols-1'} custom-2xl:grid-cols-3 gap-3 my-5`}>
           <div className="custom-2xl:text-left">
             <TwitterLink />
           </div>

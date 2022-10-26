@@ -9,7 +9,7 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
-import WalletAddress from "./WalletAddress";
+import { WalletAddress } from "../Components";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { getNfts } from "hooks";
