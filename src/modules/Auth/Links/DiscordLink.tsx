@@ -54,7 +54,7 @@ export const DiscordLink = () => {
   }, [userInfo.domain, userInfo.title]);
 
   useEffect(() => {
-    if (link === "discord") {
+    if (link === "discord" && appUrl) {
       dispatch(
         linkAccounts({
           data: {

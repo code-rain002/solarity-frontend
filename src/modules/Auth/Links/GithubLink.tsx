@@ -55,7 +55,7 @@ export const GithubLink = () => {
   }, [userInfo.domain, userInfo.title]);
 
   useEffect(() => {
-    if (link === "github") {
+    if (link === "github" && appUrl) {
       dispatch(
         linkAccounts({
           data: {
