@@ -14,10 +14,11 @@ import Image from "next/image";
 
 const ChatPanel = () => {
   const dispatch = useDispatch();
-  const { isNewChatModal, profile, chatLogs } = useSelector((state: RootStateOrAny) => ({
+  const { isNewChatModal, profile, chatLogs, selectedChatUserName } = useSelector((state: RootStateOrAny) => ({
     isNewChatModal: state.chat.isNewChatModal,
     profile: state.profile.data,
     chatLogs: state.chat.chatLogs,
+    selectedChatUserName: state.chat.selectedChatUserName,
   }));
   const [focusState, setFocusState] = useState(false);
   const [toggleDropZone, setToggleDropZone] = useState("none");
@@ -82,28 +83,33 @@ const ChatPanel = () => {
         <div className="col-span-2 sm:col-span-3 md:col-span-3 xl:col-span-2 custom-2xl:col-span-1">
           <UsersSidebar serverChats={serverChats} />
         </div>
-        <div className="col-span-5 sm:col-span-4 md:col-span-4 xl:col-span-5 custom-2xl:col-span-4 border-[2px] border-[#19191a] relative">
-          <ChattingThreadBox isSocial={true} />
-          <MsgInput
-            isSocial={true}
-            focusState={focusState}
-            setFocusState={setFocusState}
-            newMsgDataState={newMsgDataState}
-            setNewMsgDataState={setNewMsgDataState}
-          />
+        <div className="col-span-5 sm:col-span-4 md:col-span-4 xl:col-span-5 custom-2xl:col-span-4">
+          <div className="px-4 py-1 text-primary border rounded-t-xl border-[#232327] w-fit">
+            {selectedChatUserName}
+          </div>
+          <div className=" border-[2px] border-[#19191a] rounded-xl relative">
+            <ChattingThreadBox isSocial={true} />
+            <MsgInput
+              isSocial={true}
+              focusState={focusState}
+              setFocusState={setFocusState}
+              newMsgDataState={newMsgDataState}
+              setNewMsgDataState={setNewMsgDataState}
+            />
 
-          <UploadDropZoneImg toggleDropZone={toggleDropZone} />
-          {/* Following is a tranparent layer for drag and drop operation - with this flickering issue can be avoid */}
-          <div
-            className={`absolute top-[-3px] bottom-[-3px] left-[-3px] right-[-3px] bg-transparent
-                                  rounded-[24px] ${toggleDropZone === "none"
-                ? "hidden"
-                : "flex flex-col"
-              }`}
-            id="chatting_box"
-            onDragLeave={() => setToggleDropZone("none")}
-            onDrop={() => setToggleDropZone("none")}
-          ></div>
+            <UploadDropZoneImg toggleDropZone={toggleDropZone} />
+            {/* Following is a tranparent layer for drag and drop operation - with this flickering issue can be avoid */}
+            <div
+              className={`absolute top-[-3px] bottom-[-3px] left-[-3px] right-[-3px] bg-transparent
+                                    rounded-[24px] ${toggleDropZone === "none"
+                  ? "hidden"
+                  : "flex flex-col"
+                }`}
+              id="chatting_box"
+              onDragLeave={() => setToggleDropZone("none")}
+              onDrop={() => setToggleDropZone("none")}
+            ></div>
+          </div>
         </div>
       </div >
       {isNewChatModal && (

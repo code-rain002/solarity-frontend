@@ -25,6 +25,7 @@ export interface CounterState {
   newMsg: any;
   typingState: boolean;
   typingMembers: any;
+  selectedChatUserName: string;
 }
 
 const initialState: CounterState = {
@@ -63,6 +64,7 @@ const initialState: CounterState = {
   },
   typingState: false,
   typingMembers: [],
+  selectedChatUserName: "",
 };
 
 export const chatSlice = createSlice({
@@ -201,9 +203,12 @@ export const chatSlice = createSlice({
         replyId: action.payload.replyId,
       };
     },
+    setSelectedChatUserName: (state, action) => {
+      state.selectedChatUserName = action.payload;
+    }
   },
 });
 
-export const { setCreateModalVisibility, setReply, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setSelectedChatUserName, setReply, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;
