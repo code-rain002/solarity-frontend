@@ -84,9 +84,11 @@ const ChatPanel = () => {
           <UsersSidebar serverChats={serverChats} />
         </div>
         <div className="col-span-5 sm:col-span-4 md:col-span-4 xl:col-span-5 custom-2xl:col-span-4">
-          <div className="px-4 py-1 text-primary border rounded-t-xl border-[#232327] w-fit">
-            {selectedChatUserName}
-          </div>
+          {selectedChatUserName != "" && (
+            <div className="px-4 py-1 text-primary border rounded-t-xl border-[#232327] w-fit">
+              {selectedChatUserName}
+            </div>
+          )}
           <div className=" border-[2px] border-[#19191a] rounded-xl relative">
             <ChattingThreadBox isSocial={true} />
             <MsgInput
