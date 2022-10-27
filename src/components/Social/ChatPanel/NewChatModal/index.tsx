@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { setIsNewChatModal, setMembers } from "../../../../redux/slices/chatSlice";
+import { setIsNewChatModal, setMembers, setSelectedChatUserName } from "../../../../redux/slices/chatSlice";
 import { CloseIcon } from "../../../icons";
 import { PrimaryButton } from "../../../Common/Buttons";
 import { SearchInput } from "components/Common/Forms";
@@ -24,6 +24,7 @@ const NewChatModal = () => {
   };
 
   const startChat = () => {
+    dispatch(setSelectedChatUserName(selectedFriend.username))
     dispatch(setIsNewChatModal(false));
     dispatch(setMembers([profileData._id, selectedFriend._id]));
   }

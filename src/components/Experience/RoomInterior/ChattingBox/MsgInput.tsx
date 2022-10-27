@@ -122,12 +122,12 @@ const MsgInput = (props: MsgInputType) => {
       }
 
       let files = [];
-      for (var i = 0; i < selectedFile.length; i++) {
-        files.push({
-          name: selectedFile[i].name,
-          url: preview[i]
-        });
-      }
+      // for (var i = 0; i < selectedFile.length; i++) {
+      //   files.push({
+      //     name: selectedFile[i].name,
+      //     url: preview[i]
+      //   });
+      // }
 
       dispatch(setNewMsg({
         ...newMsg,
@@ -198,12 +198,12 @@ const MsgInput = (props: MsgInputType) => {
       return;
     }
     let files = [];
-    for (var i = 0; i < selectedFile.length; i++) {
-      files.push({
-        name: selectedFile[i].name,
-        url: preview[i]
-      });
-    }
+    // for (var i = 0; i < selectedFile.length; i++) {
+    //   files.push({
+    //     name: selectedFile[i].name,
+    //     url: preview[i]
+    //   });
+    // }
 
     dispatch(setNewMsg({
       ...newMsg,

@@ -89,7 +89,7 @@ const ChatPanel = () => {
               {selectedChatUserName}
             </div>
           )}
-          <div className=" border-[2px] border-[#19191a] rounded-xl relative">
+          <div className=" border-[2px] border-[#19191a] rounded-xl rounded-tl-none relative">
             <ChattingThreadBox isSocial={true} />
             <MsgInput
               isSocial={true}

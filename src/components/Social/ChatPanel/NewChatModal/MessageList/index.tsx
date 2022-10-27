@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PrimaryButton } from "../../../../Common/Buttons";
@@ -17,11 +18,13 @@ const MessageList = (props) => {
           <MessageListItem
             title={friend.username}
             image={
-              <img
-                src={friend.profileImage ? friend.profileImage : "/images/experience/psuedo_avatars/avatar.png"}
-                width={52}
-                height={52}
-              />
+              <div className="h-[52px]">
+                <Image
+                  src={friend.profileImage ? friend.profileImage : "/images/experience/psuedo_avatars/avatar.png"}
+                  width={52}
+                  height={52}
+                />
+              </div>
             }
             status={friend.onlineFlag}
             selected={friend === selectedFriend}
