@@ -1,26 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import MobileUserInfoMenu from "components/Common/Forms/MobileUserInfoMenu"
 import SearchBox from "components/Common/Forms/SearchBox"
 import MobileHeaderMenuItem from "components/Common/Layout/MobileHeaderMenuItem"
 import MobileHeaderWallet from "components/Profile/MobileHeaderWallet"
 import MobileSidebar from "./MobileSidebar"
 import { HeaderMenuTitles } from "data/HeaderMenu"
+import { checkBrowser } from "utils"
 
 type MobileMenuProps = {
-    mobileMenuToggler : boolean,
-    onClick : any,
+    mobileMenuToggler: boolean,
+    onClick: any,
     searchString: string;
     setSearchString: Function;
 }
 
-const MobileMenu = (props : MobileMenuProps) => {
+const MobileMenu = (props: MobileMenuProps) => {
 
-    const [active, setActive] = useState('Explore')
+    const [active, setActive] = useState('Explore');
 
-    const item_arr = HeaderMenuTitles.map(function (i){
+    const item_arr = HeaderMenuTitles.map(function (i) {
         return <MobileHeaderMenuItem key={i} title={i} active={active === i} onClick={() => setActive(i)} />
     })
-    
+
     return (
         <div className={`absolute transition ease-in-out sm:hidden xs:flex-col w-full h-[0px]
                         bg-globalBgColor z-[1000] pt-[80px] text-white

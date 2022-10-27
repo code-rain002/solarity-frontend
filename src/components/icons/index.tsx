@@ -18,3 +18,8 @@ export { ModalClose } from "./ModalClose"
 export { Play } from "./Play"
 export { RoundPlus } from "./RoundPlus"
 export { Tick } from "./Tick"
+export { Home } from "./Home";
+export { Users } from "./Users";
+export { Inbox } from "./Inbox";
+export { WinBar } from "./WinBar";
+export { User } from "./User";
