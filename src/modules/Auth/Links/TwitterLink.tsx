@@ -56,7 +56,7 @@ export const TwitterLink = () => {
   }, []);
 
   useEffect(() => {
-    if (link === "twitter") {
+    if (link === "twitter" && appUrl) {
       dispatch(
         linkAccounts({
           data: {

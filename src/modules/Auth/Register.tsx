@@ -39,7 +39,6 @@ export const RegisterPage = () => {
       .then((response) => {
         if (response.data.user) {
           const user = response.data.user;
-          // console.log(user)
           let tempUserInfo = userInfo;
           switch (user.registerStep) {
             case 6:

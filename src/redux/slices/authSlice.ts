@@ -24,7 +24,7 @@ const initialState = {
     links: {
       discord: { username: null, connected: false, accessToken: null, refreshToken: null },
       twitter: { username: null, connected: false, id: null, accessToken: null, refreshToken: null },
-      github: { username: null, verified: false, accessToken: null, refreshToken: null },
+      github: { username: null, connected: false, accessToken: null },
     },
     daos: [],
     profileImage: {},
