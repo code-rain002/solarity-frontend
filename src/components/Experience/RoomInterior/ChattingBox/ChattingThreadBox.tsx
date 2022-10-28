@@ -107,11 +107,11 @@ const ChattingThreadBox = (props: ChattingThreadBoxType) => {
         box.scroll({ top: height, behavior: "smooth" });
       }
     }, 100);
-  }, [chatLogs])
+  }, [chatLogs, msgs])
 
   return (
     <div
-      className={`flex xs:h-[500px] sm:h-[700px] gap-[24px] relative mb-[24px] rounded-2xl pb-[80px] `}
+      className={`flex xs:h-[500px] sm:h-[700px] gap-[24px] relative mb-[24px] rounded-2xl pb-[100px] `}
       id="chatting_thread_box"
     >
       <div

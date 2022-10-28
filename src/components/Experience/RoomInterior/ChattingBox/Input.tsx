@@ -98,9 +98,9 @@ const Input = (props: InputType) => {
       }
 
       let fileNameArray = [];
-      for (const file of selectedFile) {
-        fileNameArray.push(file.name);
-      }
+      // for (const file of selectedFile) {
+      //   fileNameArray.push(file.name);
+      // }
 
       sendMsg({
         ...props.newMsgDataState,
@@ -144,9 +144,9 @@ const Input = (props: InputType) => {
       return;
     }
     let fileNameArray = [];
-    for (const file of selectedFile) {
-      fileNameArray.push(file.name);
-    }
+    // for (const file of selectedFile) {
+    //   fileNameArray.push(file.name);
+    // }
 
     sendMsg({
       ...props.newMsgDataState,
