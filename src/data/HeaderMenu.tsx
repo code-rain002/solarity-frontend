@@ -15,21 +15,26 @@ export const MENU_ITEMS = [
     {
         name: 'home',
         content: <Home />,
+        path: ''
     },
     {
         name: 'users',
         content: <Users />,
+        path: 'experience'
     },
     {
         name: 'inbox',
         content: <Inbox />,
+        'path': "social"
     },
     {
         name: 'winbar',
         content: <WinBar />,
+        path: 'marketplace'
     },
     {
         name: 'user',
         content: <User />,
+        path: ''
     }
 ];

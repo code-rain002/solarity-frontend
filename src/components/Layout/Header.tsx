@@ -139,7 +139,7 @@ const Header = (props: HeaderProps) => {
                                     {
                                         isIframe ?
                                             <div className='w-full h-full overflow-hidden rounded-[25px]'>
-                                                <iframe frameborder="0" src={selectedGame.iframe} featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
+                                                <iframe frameBorder="0" src={selectedGame.iframe} featurepolicy="{&quot;vr&quot;: [&quot;*&quot;]}" allow="camera;microphone;vr;" allowfullscreen="true" scrolling="no" width="100%" height="100%"></iframe>
                                             </div>
                                             :
                                             <LibraryLayout>
