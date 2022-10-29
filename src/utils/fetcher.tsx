@@ -23,11 +23,6 @@ const urlBase =
     ? process.env.NEXT_PUBLIC_LOCAL_BACKEND_URL
     : process.env.NEXT_PUBLIC_BACKEND_URL;
 
-// const urlBase =
-//   process.env.NODE_ENV === "development"
-//     ? "http://localhost:3004"
-//     : "https://solarity-server.herokuapp.com";
-
 export const apiCaller = axios.create({
   baseURL: `${urlBase}/api`,
   headers: {
