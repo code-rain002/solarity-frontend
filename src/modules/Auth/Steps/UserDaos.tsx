@@ -93,8 +93,8 @@ const UserDaos = (props) => {
   useEffect(() => {
     const config = {
       headers: {
-        'APIKeyID': 'vBFC3ZV711GPCPB',
-        'APISecretKey': 'nDsvLgzfy5Fci0j'
+        'APIKeyID': process.env.NEXT_PUBLIC_BLOCKCHAIN_API_KEY,
+        'APISecretKey': process.env.NEXT_PUBLIC_BLOCKCHAIN_API_SECRET
       }
     }
     setDaoLoading(true);

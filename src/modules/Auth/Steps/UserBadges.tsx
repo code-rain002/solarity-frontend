@@ -20,19 +20,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
 import { StepTitle, WalletAddress } from "../Components";
-
-const badges = [
-  { icon: '/images/badges/Airdrop lover.png', name: 'Airdrop Lover', active: false },
-  { icon: '/images/badges/alpha hunter.png', name: 'Alpha Hunter', active: false },
-  { icon: '/images/badges/Artist.png', name: 'Artist', active: false },
-  { icon: '/images/badges/bitcoin maxi.png', name: 'Bitcoin Maxi', active: false },
-  { icon: '/images/badges/DAO enjoyoor.png', name: 'DAO Enjoyoor', active: false },
-  { icon: '/images/badges/Dev.png', name: 'Dev', active: false },
-  { icon: '/images/badges/Diamond hands.png', name: 'Diamond Hands', active: false },
-  { icon: '/images/badges/Gamer.png', name: 'Gamer', active: false },
-  { icon: '/images/badges/NFT bro.png', name: 'NDR Bro', active: false },
-  { icon: '/images/badges/UX designer.png', name: 'UX Designer', active: false },
-]
+import { badges } from 'data/Register';
 
 const UserBadges = (props) => {
   const dispatch = useDispatch();
