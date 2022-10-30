@@ -165,7 +165,7 @@ export default function Model(props) {
         tempMeshes = tempMeshes.slice(0, index+1);
         setDaoTextMeshes(tempMeshes);
       });
-      const daoImageMaterial = renderImageMaterial(dao.profileImage.link);
+      const daoImageMaterial = renderImageMaterial(dao.image);
       let tempMaterials = daoImageMaterials;
       tempMaterials[index] = daoImageMaterial;
       tempMaterials = tempMaterials.slice(0, index+1);
