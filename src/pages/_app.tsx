@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
