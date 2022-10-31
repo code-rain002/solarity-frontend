@@ -174,7 +174,7 @@ export function startHub() {
   if (!!sceneEl) {
     //get and start tweets
     apiCaller
-      .get("/test/tweets/SolanaMoneyBoys")
+      .get("/test/tweets/Solarity_VR")
       .then((data) => {
         twitterArray = data.data.data;
         //build twitter only after get success
@@ -195,14 +195,18 @@ export function startHub() {
     apiCaller
       .get("/daos/solana_money_boys")
       .then((data) => {
-        nft = data.data.dao;
+        nft = {
+          floorPrice: "2.5",
+          image: "/images/experience/hub/solarity_logo.png",
+        };
+        // nft = data.data.dao;
         //build nft only after get success
         buildNft();
       })
       .catch((err) => {
         nft = {
           floorPrice: "no data",
-          image: "/images/experience/hub/nft_placeholder.jpeg",
+          image: "/images/experience/hub/solarity_logo.png",
         };
       });
 
