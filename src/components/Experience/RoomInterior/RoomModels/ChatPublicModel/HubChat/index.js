@@ -177,9 +177,9 @@ const HubChat = ({ modelURL, name }) => {
 
       {/* average screen left  */}
       <a-plane class="clickable" id="nft" width="3" height="3.5" rotation="0 0 0" material="shader: flat;"
-        position="1.3 2.4 -7.4" color="#CC22FF">
+        position="1.3 2.4 -7.4" color="#298e7a">
         {/* title  */}
-        <a-text align="center" rotation="0 0 0" width="2.9" value="FLOOR PRICE" position="0 -1.35 0.01"
+        <a-text align="center" rotation="0 0 0" width="2.9" value="SOL PRICE" position="0 -1.35 0.01"
           x-offset="0.05" wrap-count="40" color="#FFFFFF"></a-text>
       </a-plane>
 
@@ -188,7 +188,7 @@ const HubChat = ({ modelURL, name }) => {
         position="4.7 2.4 -7.4" color="#EECCFF">
         {/* title  */}
         <a-text align="center" rotation="0 0 0" width="2.9" value="LATEST TWEETS" position="0 1.6 0.01"
-          x-offset="0.05" wrap-count="30" color="#CC22FF"></a-text>
+          x-offset="0.05" wrap-count="30" color="#298e7a"></a-text>
         {/* arrows  */}
         <a-plane text="value: up; wrap-count: 6; align: center" width=".15" height=".15" id="scrollTwitterUp"
           class="clickable nocollision" material="shader: flat;" color="#44AABB"
@@ -239,82 +239,14 @@ const HubChat = ({ modelURL, name }) => {
         <a-box color="black" width="0.1" position="0.7 0 0" height="1.9" depth="0.1"></a-box>
         <a-box color="black" width="0.1" position="-0.7 0 0" height="1.9" depth="0.1"></a-box>
       </a-image>
-      {/*
-                        <a-plane class="clickable nocollision" simple-link="href: https://www.google.com" scale="1.5 2 1"
-                          position="14.2 1.1 -2.5" rotation="0 -90 0"
-                          material="background-color: #EE88FF; shader: portal; pano: assets/images/japan.png"></a-plane>*/}
 
       {/* models  */}
       <a-gltf-model model-info class="model" src="#structure" position="0 0 0" scale="1 1 1"> </a-gltf-model>
 
-      <a-entity id="tableandchair" position="9 0 4.8">
-        <a-gltf-model model-info class="model" src="#table1" position="0 0 0" scale="1 1 1"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position="1 0 .96" scale="1 1 1"
-          rotation="0 -135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 -1"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 -1" scale="1 1 1"
-          rotation="0 45 0;"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: -1 1.6 0"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 1" scale="1 1 1"
-          rotation="0 135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 1 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position=".96 0 -1" scale="1 1 1"
-          rotation="0 -45 0"></a-gltf-model>
-      </a-entity>
-
-      <a-entity id="tableandchair" position="9 0 -4.8">
-        <a-gltf-model model-info class="model" src="#table1" position="0 0 0" scale="1 1 1"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position="1 0 .96" scale="1 1 1"
-          rotation="0 -135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 -1"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 -1" scale="1 1 1"
-          rotation="0 45 0;"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: -1 1.6 0"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 1" scale="1 1 1"
-          rotation="0 135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 1 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position=".96 0 -1" scale="1 1 1"
-          rotation="0 -45 0"></a-gltf-model>
-      </a-entity>
-
-      <a-entity id="tableandchair" position="-3 0 -4.8">
-        <a-gltf-model model-info class="model" src="#table1" position="0 0 0" scale="1 1 1"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position="1 0 .96" scale="1 1 1"
-          rotation="0 -135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 -1"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 -1" scale="1 1 1"
-          rotation="0 45 0;"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: -1 1.6 0"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 1" scale="1 1 1"
-          rotation="0 135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 1 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position=".96 0 -1" scale="1 1 1"
-          rotation="0 -45 0"></a-gltf-model>
-      </a-entity>
-
-      <a-entity id="tableandchair" position="-3 0 4.8">
-        <a-gltf-model model-info class="model" src="#table1" position="0 0 0" scale="1 1 1"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position="1 0 .96" scale="1 1 1"
-          rotation="0 -135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 0 1.6 -1"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 -1" scale="1 1 1"
-          rotation="0 45 0;"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: -1 1.6 0"
-          model-info class="model clickable nocollision" src="#chair1" position="-.96 0 1" scale="1 1 1"
-          rotation="0 135 0"></a-gltf-model>
-        <a-gltf-model seat="duration: 1; camera: #rig; standUpPosition: 1 1.6 1"
-          model-info class="model clickable nocollision" src="#chair1" position=".96 0 -1" scale="1 1 1"
-          rotation="0 -45 0"></a-gltf-model>
-      </a-entity>
-
       {/* globe  */}
       <a-gltf-model id="globe" model-info class="model" src="#holo"
         material="roughness: 70; metalness: 0; shader: standard"
-        animation__spin="property: rotation; dur: 12000; loop: true; to: 0 360 0;" position="3 1.5 0">
+        animation__spin="property: rotation; dur: 12000; loop: true; to: 0 360 0;" scale="2 2 2" position="-10.4 3.65 0">
       </a-gltf-model>
 
       {/* nav-mesh: protecting us from running thru walls */}
@@ -327,7 +259,6 @@ const HubChat = ({ modelURL, name }) => {
       easing: linear;
       loop:true" src="#sky-img"></a-sky>
 
-      {/* <a-entity position="0 0 0" sound="src: #rap; autoplay: true; loop: true; positional: false"></a-entity> */}
     </a-scene>
   );
 }
