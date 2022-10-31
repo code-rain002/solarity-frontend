@@ -99,6 +99,7 @@ const UserInfo = (props) => {
   };
 
   const onContinue = () => {
+    alert('hi')
     const data = {
       username: userInfo.domain,
       bio: userInfo.title

@@ -78,12 +78,23 @@ export default function Model(props) {
   const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
   const [defaultBadgeImageMaterial, setDefaultBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
   const [badgeImageMaterials, setBadgeImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
+  const [backLogoMaterial, setBackLogoMaterial] = useState<THREE.MeshStandardMaterial>();
+  const [backTextMesh, setBackTextMesh] = useState<any>();
 
   useEffect(() => {
     const QRMaterial = renderImageMaterial("/models/passport/textures/qr.jpg");
     setQRMaterial(QRMaterial);
     const badgeImageMaterial = new THREE.MeshStandardMaterial({ transparent: true });
     setDefaultBadgeImageMaterial(badgeImageMaterial);
+    const backLogoMaterial = renderImageMaterial("/logos/logo-green.png");
+    setBackLogoMaterial(backLogoMaterial);
+    renderTextMesh("S O L A R I T Y", (geometry, material, size) => {
+      setBackTextMesh({
+        geometry,
+        material,
+        size
+      })
+    })
   }, [])
 
   useEffect(() => {
@@ -222,9 +233,14 @@ export default function Model(props) {
       <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={passportStyle.background} />
       <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={passportStyle.line} />
       <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
+      {/* Backside Logo Image */}
+      {<mesh geometry={nodes.nft.geometry} material={backLogoMaterial} position={[3.43, -0.12, -0.05]} rotation={[0, 0, Math.PI]} scale={[0.85, 0.85, -0.1]} />}
+
+      {/* Backside Text */}
+      {backTextMesh && (<mesh geometry={backTextMesh.geometry} material={backTextMesh.material} position={[1.13, -0.12, -0.05]} rotation={[0, Math.PI, 0]} scale={0.5} material-color={passportStyle.text} />)}
 
       {/* profile avatar image */}
-      {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMaterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
+      {/* {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMaterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)} */}
 
       {/* logo image */}
       <mesh geometry={nodes.Plane001.geometry} material={materials.green} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={passportStyle.logo} />
