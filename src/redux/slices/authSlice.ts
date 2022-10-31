@@ -199,6 +199,7 @@ export const goStep = createAsyncThunk(
       stepNum,
       data,
     });
+    alert(stepNum)
     if (next) next();
     return stepNum;
   }
