@@ -174,7 +174,7 @@ export function startHub() {
   if (!!sceneEl) {
     //get and start tweets
     apiCaller
-      .get("/test/tweets/Solarity_VR")
+      .get("/test/tweets/Solarity_XR")
       .then((data) => {
         twitterArray = data.data.data;
         //build twitter only after get success
