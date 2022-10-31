@@ -39,6 +39,7 @@ import "styles/custom.css";
 import "animate.css/animate.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'styles/wallet.css';
 import AppLoader from "components/Layout/AppLoader";
 import { checkBrowser } from "utils";

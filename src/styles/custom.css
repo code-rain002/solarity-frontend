@@ -245,3 +245,13 @@ sup {
 .react-colorful__pointer {
     transition: none;
 }
+
+/* Customized style for carousel indicators */
+.carousel-slider .control-dots .dot {
+    width: 20px !important;
+    border-radius: 20% !important;
+}
+
+.carousel-slider .control-dots .dot.selected {
+    width: 50px !important;
+}
