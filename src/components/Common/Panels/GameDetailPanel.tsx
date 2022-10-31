@@ -4,7 +4,7 @@ import { Button } from "../Buttons"
 
 const GameDetailPanel = (props) => {
     const { data, onPlay } = props
-
+console.log(onPlay)
     return (
         <div className="flex flex-col relative overflow-hidden
                         w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]">
@@ -21,10 +21,17 @@ const GameDetailPanel = (props) => {
                     <div className="flex flex-row items-center"><UsersLargeIcon />&nbsp;{data.members}</div>
                 </div>
                 <div className="mt-[20px]">
-                    <button className={`solarity-button font-medium py-[10px] rounded-[12px] mb-[15px] text-white w-[100%] text-[21px] sm:text-[18px] text-center tracking-wider  inline-flex items-center justify-center bg-primary hover:bg-lightprimary`} onClick={onPlay}>
-                        <PlayIcon />
-                        <span className="ml-[20px]">Play</span>
-                    </button>
+                    {onPlay ? (
+                        <button className={`solarity-button font-medium py-[10px] rounded-[12px] mb-[15px] text-white w-[100%] text-[21px] sm:text-[18px] text-center tracking-wider  inline-flex items-center justify-center bg-primary hover:bg-lightprimary`} onClick={onPlay}>
+                            <PlayIcon />
+                            <span className="ml-[20px]">Play</span>
+                        </button>
+                    ) : (
+                        <a className={`solarity-button font-medium py-[10px] rounded-[12px] mb-[15px] text-white w-[100%] text-[21px] sm:text-[18px] text-center tracking-wider  inline-flex items-center justify-center bg-primary hover:bg-lightprimary`} href={data.iframe} target="_blank">
+                            <PlayIcon />
+                            <span className="ml-[20px]">Play</span>
+                        </a>
+                    )}
                 </div>
             </div>
         </div>

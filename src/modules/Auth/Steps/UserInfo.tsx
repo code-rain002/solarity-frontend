@@ -112,7 +112,7 @@ const UserInfo = (props) => {
 
   const onUndo = () => {
     const payload = {
-      stepNum: 0,
+      stepNum: 1,
       data: {
         username: null,
         bio: null

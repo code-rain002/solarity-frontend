@@ -55,7 +55,7 @@ const GameDetail = (props) => {
           <div className={`relative mt-[15px]`}>
             <div className="flex flex-col sm:flex-row">
               <div className="w-full mx-auto xs:w-[75%] xl:w-[25%] lg:w-[30%] md:w-[35%] sm:w-[45%]">
-                <GameDetailPanel data={detailData} onPlay={() => setIframe(true)} />
+                <GameDetailPanel data={detailData} onPlay={activePath === "popup" ? () => setIframe(true) : null} />
               </div>
               <div className="w-full xl:w-[75%] lg:w-[70%] md:w-[65%] sm:w-[55%]">
                 <div className="border-y-[1px] border-[#1D1F1F] pl-[50px] mt-[25px] sm:mt-0">

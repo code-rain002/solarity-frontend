@@ -165,7 +165,7 @@ export default function Model(props) {
         tempMeshes = tempMeshes.slice(0, index+1);
         setDaoTextMeshes(tempMeshes);
       });
-      const daoImageMaterial = renderImageMaterial(dao.profileImage.link);
+      const daoImageMaterial = renderImageMaterial(dao.image);
       let tempMaterials = daoImageMaterials;
       tempMaterials[index] = daoImageMaterial;
       tempMaterials = tempMaterials.slice(0, index+1);
@@ -190,6 +190,7 @@ export default function Model(props) {
     loader.encoding = THREE.sRGBEncoding;
     const material = new THREE.MeshStandardMaterial({ transparent: true });
     material.map = loader;
+    material.side = 2;
     return material;
   }
 
@@ -243,7 +244,7 @@ export default function Model(props) {
 
       {/* badge images */}
       {badgeImageMaterials.length && badgeImageMaterials.map((material, index) => (
-        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.12]} rotation={[-Math.PI / 2, 0, Math.PI]} scale={0.16} key={index} />
+        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.22]} rotation={[-Math.PI / 2, 0, 0]} scale={0.16} key={index} />
       ))}
       {/* {
         [0...(5-badges.length)].map((item, index) => (

@@ -20,22 +20,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
 import { StepTitle, WalletAddress } from "../Components";
-
-const badges = [
-  { icon: '/images/badges/polygon.png', name: 'Polygon', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Animals', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Comedy', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Travel', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Food', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Sports', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Beauty & Style', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Art', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Gaming', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Dance', active: false },
-  { icon: '/images/badges/polygon.png', name: 'DIY', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Programming', active: false },
-  { icon: '/images/badges/polygon.png', name: 'Consultant', active: false },
-]
+import { badges } from 'data/Register';
 
 const UserBadges = (props) => {
   const dispatch = useDispatch();
@@ -108,9 +93,9 @@ const UserBadges = (props) => {
         {badges.length && badges.map((badge, index) => {
           const isSelected = selectedBadges.findIndex((item, index) => item.name == badge.name) >= 0;
           return (
-            <div className={`inline-block px-4 py-2 rounded-full mr-3 mb-3 cursor-pointer border-[1px] border-primary hover:bg-primary ${isSelected ? 'bg-primary' : 'bg-[#162724]'}`} key={index} onClick={() => onSelectBadge(badge)}>
+            <div className={`inline-block px-4 py-1 rounded-full mr-3 mb-3 cursor-pointer border-[1px] border-primary hover:bg-primary ${isSelected ? 'bg-primary' : 'bg-[#162724]'}`} key={index} onClick={() => onSelectBadge(badge)}>
               <div className="flex flex-row items-center">
-                {isSelected ? <span className="h-[20px] w-[20px] text-white text-medium"><CheckIcon /></span> : <Image src={badge.icon} height={20} width={20} />}
+                {isSelected ? <span className="h-[24px] w-[24px] text-white text-medium"><CheckIcon /></span> : <Image src={badge.icon} height={24} width={24} />}
                 <span className="text-white text-[14px] md:text-[18px] ml-2">{badge.name}</span>
               </div>
             </div>

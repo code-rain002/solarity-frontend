@@ -103,7 +103,7 @@ export const GithubLink = () => {
         <a
           className={`font-medium p-[16px] sm:p-[22px] rounded-[14px] text-white/70 text-[18px] sm:text-[22px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] ${isMobile ? 'justify-center h-[48px]' : 'justify-between h-[56px]'} !w-[100%]`}
           href={githubLinkGenerator(appUrl)}
-          target="_blank"
+          // target="_blank"
         >
           {!isMobile ? (
             <>
