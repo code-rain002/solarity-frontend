@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from 'react-responsive-carousel';
-import { INTRO_SLIDERS } from 'data/intro';
+import { INTRO_SLIDERS } from 'data/Intro';
 import Slider from 'components/Intro/Slider';
 
 const IntroPage = () => {

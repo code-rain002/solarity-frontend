@@ -80,6 +80,7 @@ export default function Model(props) {
   const [badgeImageMaterials, setBadgeImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
   const [backLogoMaterial, setBackLogoMaterial] = useState<THREE.MeshStandardMaterial>();
   const [backTextMesh, setBackTextMesh] = useState<any>();
+  const [backPlaneMesh, setBackPlaneMesh] = useState<any>();
 
   useEffect(() => {
     const QRMaterial = renderImageMaterial("/models/passport/textures/qr.jpg");
@@ -88,13 +89,17 @@ export default function Model(props) {
     setDefaultBadgeImageMaterial(badgeImageMaterial);
     const backLogoMaterial = renderImageMaterial("/logos/logo-green.png");
     setBackLogoMaterial(backLogoMaterial);
+    const geometry = new THREE.PlaneGeometry(5, 5);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
+    const planeMesh = new THREE.Mesh(geometry, material);
+    setBackPlaneMesh(planeMesh);
     renderTextMesh("S O L A R I T Y", (geometry, material, size) => {
       setBackTextMesh({
         geometry,
         material,
         size
       })
-    })
+    });
   }, [])
 
   useEffect(() => {
@@ -173,13 +178,13 @@ export default function Model(props) {
       renderTextMesh(dao.name, (geometry, material) => {
         let tempMeshes = daoTextMeshes;
         tempMeshes[index] = { geometry: geometry, material: material };
-        tempMeshes = tempMeshes.slice(0, index+1);
+        tempMeshes = tempMeshes.slice(0, index + 1);
         setDaoTextMeshes(tempMeshes);
       });
       const daoImageMaterial = renderImageMaterial(dao.image);
       let tempMaterials = daoImageMaterials;
       tempMaterials[index] = daoImageMaterial;
-      tempMaterials = tempMaterials.slice(0, index+1);
+      tempMaterials = tempMaterials.slice(0, index + 1);
       setDaoImageMaterials(tempMaterials);
     });
   }, [daos]);
@@ -197,7 +202,7 @@ export default function Model(props) {
   }, [badges]);
 
   const renderImageMaterial = (url) => {
-    var loader =  new THREE.TextureLoader().load(url);
+    var loader = new THREE.TextureLoader().load(url);
     loader.encoding = THREE.sRGBEncoding;
     const material = new THREE.MeshStandardMaterial({ transparent: true });
     material.map = loader;
@@ -233,14 +238,18 @@ export default function Model(props) {
       <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={passportStyle.background} />
       <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={passportStyle.line} />
       <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
+
+      {/* Backside Plane */}
+      {backPlaneMesh && (<mesh geometry={backPlaneMesh.geometry} material={backPlaneMesh.material} position={[3.43, -0.12, -0.05]} rotation={[0, 0, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
+
       {/* Backside Logo Image */}
-      {<mesh geometry={nodes.nft.geometry} material={backLogoMaterial} position={[3.43, -0.12, -0.05]} rotation={[0, 0, Math.PI]} scale={[0.85, 0.85, -0.1]} />}
+      {/* {<mesh geometry={nodes.nft.geometry} material={backLogoMaterial} position={[3.43, -0.12, -0.05]} rotation={[0, 0, Math.PI]} scale={[0.85, 0.85, -0.1]} />} */}
 
       {/* Backside Text */}
       {backTextMesh && (<mesh geometry={backTextMesh.geometry} material={backTextMesh.material} position={[1.13, -0.12, -0.05]} rotation={[0, Math.PI, 0]} scale={0.5} material-color={passportStyle.text} />)}
 
       {/* profile avatar image */}
-      {/* {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMaterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)} */}
+      {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMaterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
 
       {/* logo image */}
       <mesh geometry={nodes.Plane001.geometry} material={materials.green} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={passportStyle.logo} />
@@ -249,18 +258,18 @@ export default function Model(props) {
       <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
 
       {/* domain text  default: -2.5 */}
-      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-0.85-((domainTextMesh.size.x/7)), -0.1, 0.07]} rotation={[0, 0, 0]} scale={0.3} material-color={passportStyle.text} />)}
+      {domainTextMesh && (<mesh geometry={domainTextMesh.geometry} material={domainTextMesh.material} position={[-0.85 - ((domainTextMesh.size.x / 7)), -0.1, 0.07]} rotation={[0, 0, 0]} scale={0.3} material-color={passportStyle.text} />)}
 
       {/* title texts */}
       {titleTextMeshes.map((mesh, index) => (
-        <mesh geometry={mesh.geometry} material={mesh.material} position={[-2.15, -1.45-(0.2*index), 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} key={index} />
+        <mesh geometry={mesh.geometry} material={mesh.material} position={[-2.15, -1.45 - (0.2 * index), 0.12]} rotation={[0, 0, 0]} scale={0.2} material-color={passportStyle.text} key={index} />
       ))}
       {/* <mesh geometry={nodes.Text003.geometry} material={nodes.Text003.material} position={[-2.16, -1.65, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} />
       <mesh geometry={nodes.Text010.geometry} material={nodes.Text010.material} position={[-2.16, -1.85, 0.12]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} /> */}
 
       {/* badge images */}
       {badgeImageMaterials.length && badgeImageMaterials.map((material, index) => (
-        <mesh geometry={nodes[`badge00${index+1}`].geometry} material={material} position={[-2.076+(0.6*index), -2.55, 0.22]} rotation={[-Math.PI / 2, 0, 0]} scale={0.16} key={index} />
+        <mesh geometry={nodes[`badge00${index + 1}`].geometry} material={material} position={[-2.076 + (0.6 * index), -2.55, 0.22]} rotation={[-Math.PI / 2, 0, 0]} scale={0.16} key={index} />
       ))}
       {/* {
         [0...(5-badges.length)].map((item, index) => (
@@ -285,12 +294,12 @@ export default function Model(props) {
 
       {/* daos images */}
       {daos.length && daoImageMaterials.length ? daoImageMaterials.map((material, index) => (
-        <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.62, -1.33-(0.42*index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
+        <mesh geometry={nodes.group_A.geometry} material={material} position={[-4.62, -1.33 - (0.42 * index), 0.12]} rotation={[Math.PI / 2, Math.PI, 0]} scale={[0.16, 0.09, 0.16]} key={index} />
       )) : null}
 
       {/* daos texts */}
       {daos.length && daoTextMeshes.length ? daoTextMeshes.map((mesh, index) => (
-        <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.38, -1.4-(0.42*index), 0.12]} rotation={[0, 0, 0]} scale={0.15} key={index} material-color={passportStyle.text} />
+        <mesh geometry={mesh.geometry} material={mesh.material} position={[-4.38, -1.4 - (0.42 * index), 0.12]} rotation={[0, 0, 0]} scale={0.15} key={index} material-color={passportStyle.text} />
       )) : null}
     </group>
   )
