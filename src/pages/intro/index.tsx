@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 const IntroPage = () => {
   return (
-    <Carousel showThumbs={false} showStatus={false}>
+    <Carousel showThumbs={false} showStatus={false} showArrows={false}>
       <div className="h-[100vh]">
         <img src="images/intro/slides/rooms.png" />
         <div className="p-12">
