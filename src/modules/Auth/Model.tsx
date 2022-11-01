@@ -9,53 +9,55 @@ import { FontLoader, GLTF, GLTFExporter, TextGeometry } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Plane014: THREE.Mesh
-    Plane014_1: THREE.Mesh
-    Plane014_2: THREE.Mesh
+    Plane: THREE.Mesh
+    Plane_1: THREE.Mesh
+    Plane_2: THREE.Mesh
+    Plane_3: THREE.Mesh
+    Plane_4: THREE.Mesh
     badge001: THREE.Mesh
     badge002: THREE.Mesh
     badge003: THREE.Mesh
     badge004: THREE.Mesh
     badge005: THREE.Mesh
+    discord_logo: THREE.Mesh
+    github_log: THREE.Mesh
+    group_A: THREE.Mesh
+    group_B: THREE.Mesh
+    group_C: THREE.Mesh
+    logo: THREE.Mesh
     nft: THREE.Mesh
-    Plane001: THREE.Mesh
     QR: THREE.Mesh
     Text: THREE.Mesh
     Text001: THREE.Mesh
     Text002: THREE.Mesh
+    Text003: THREE.Mesh
     Text004: THREE.Mesh
     Text005: THREE.Mesh
     Text007: THREE.Mesh
     Text008: THREE.Mesh
     Text009: THREE.Mesh
-    Twitter_Logo: THREE.Mesh
-    group_A: THREE.Mesh
-    group_B: THREE.Mesh
-    group_C: THREE.Mesh
-    Text003: THREE.Mesh
     Text010: THREE.Mesh
-    github_log: THREE.Mesh
-    discord_logo: THREE.Mesh
+    Twitter_Logo: THREE.Mesh
   }
   materials: {
     charcoal: THREE.MeshStandardMaterial
-    blue: THREE.MeshStandardMaterial
-    ['emit blue']: THREE.MeshStandardMaterial
+    green: THREE.MeshStandardMaterial
+    ['emit green']: THREE.MeshStandardMaterial
+    Material: THREE.MeshStandardMaterial
+    ['logo green']: THREE.MeshStandardMaterial
     ['badge.001']: THREE.MeshStandardMaterial
     ['badge.002']: THREE.MeshStandardMaterial
     ['badge.003']: THREE.MeshStandardMaterial
     ['badge.004']: THREE.MeshStandardMaterial
     ['badge.005']: THREE.MeshStandardMaterial
-    image: THREE.MeshStandardMaterial
-    logo: THREE.MeshStandardMaterial
-    ['Material.003']: THREE.MeshStandardMaterial
-    green: THREE.MeshStandardMaterial
-    ['Material.001']: THREE.MeshStandardMaterial
+    discord: THREE.MeshStandardMaterial
+    github: THREE.MeshStandardMaterial
     ['group A']: THREE.MeshStandardMaterial
     ['group B']: THREE.MeshStandardMaterial
     ['group C']: THREE.MeshStandardMaterial
-    github: THREE.MeshStandardMaterial
-    discord: THREE.MeshStandardMaterial
+    image: THREE.MeshStandardMaterial
+    ['Material.003']: THREE.MeshStandardMaterial
+    ['Material.001']: THREE.MeshStandardMaterial
   }
 }
 
@@ -78,21 +80,13 @@ export default function Model(props) {
   const [daoImageMaterials, setDaoImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
   const [defaultBadgeImageMaterial, setDefaultBadgeImageMaterial] = useState<THREE.MeshStandardMaterial>();
   const [badgeImageMaterials, setBadgeImageMaterials] = useState<THREE.MeshStandardMaterial[]>([]);
-  const [backLogoMaterial, setBackLogoMaterial] = useState<THREE.MeshStandardMaterial>();
   const [backTextMesh, setBackTextMesh] = useState<any>();
-  const [backPlaneMesh, setBackPlaneMesh] = useState<any>();
 
   useEffect(() => {
     const QRMaterial = renderImageMaterial("/models/passport/textures/qr.jpg");
     setQRMaterial(QRMaterial);
     const badgeImageMaterial = new THREE.MeshStandardMaterial({ transparent: true });
     setDefaultBadgeImageMaterial(badgeImageMaterial);
-    const backLogoMaterial = renderImageMaterial("/logos/logo-green.png");
-    setBackLogoMaterial(backLogoMaterial);
-    const geometry = new THREE.PlaneGeometry(5, 5);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
-    const planeMesh = new THREE.Mesh(geometry, material);
-    setBackPlaneMesh(planeMesh);
     renderTextMesh("S O L A R I T Y", (geometry, material, size) => {
       setBackTextMesh({
         geometry,
@@ -235,24 +229,17 @@ export default function Model(props) {
 
   return (
     <group ref={modelRef} dispose={null}>
-      <mesh geometry={nodes.Plane014.geometry} material={materials.charcoal} material-color={passportStyle.background} />
-      <mesh geometry={nodes.Plane014_1.geometry} material={materials.blue} material-color={passportStyle.line} />
-      <mesh geometry={nodes.Plane014_2.geometry} material={materials['emit blue']} />
-
-      {/* Backside Plane */}
-      {backPlaneMesh && (<mesh geometry={backPlaneMesh.geometry} material={backPlaneMesh.material} position={[3.43, -0.12, -0.05]} rotation={[0, 0, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
-
-      {/* Backside Logo Image */}
-      {/* {<mesh geometry={nodes.nft.geometry} material={backLogoMaterial} position={[3.43, -0.12, -0.05]} rotation={[0, 0, Math.PI]} scale={[0.85, 0.85, -0.1]} />} */}
-
-      {/* Backside Text */}
-      {backTextMesh && (<mesh geometry={backTextMesh.geometry} material={backTextMesh.material} position={[1.13, -0.12, -0.05]} rotation={[0, Math.PI, 0]} scale={0.5} material-color={passportStyle.text} />)}
+      <mesh geometry={nodes.Plane.geometry} material={materials.charcoal} material-color={passportStyle.background} />
+      <mesh geometry={nodes.Plane_1.geometry} material-color={passportStyle.line} />
+      <mesh geometry={nodes.Plane_2.geometry} material={materials['emit green']} />
+      {backTextMesh && (<mesh geometry={nodes.Plane_3.geometry} material={backTextMesh.material} material-color={passportStyle.text} />)}
+      <mesh geometry={nodes.Plane_4.geometry} material={materials['logo green']} />
 
       {/* profile avatar image */}
       {profileImage && (<mesh geometry={nodes.nft.geometry} material={avatarMaterial} position={[3.2, -0.12, 0]} rotation={[0, Math.PI, Math.PI]} scale={[0.85, 0.85, -0.1]} />)}
 
       {/* logo image */}
-      <mesh geometry={nodes.Plane001.geometry} material={materials.green} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={passportStyle.logo} />
+      <mesh geometry={nodes.logo.geometry} material={materials.green} position={[-0.83, 1.77, 0.28]} rotation={[Math.PI / 2, 0, 0]} scale={0.58} material-color={passportStyle.logo} />
 
       {/* QR code image */}
       <mesh geometry={nodes.QR.geometry} material={QRMeterial} position={[-4.65, 0.03, 0.1]} />
