@@ -222,8 +222,5 @@ code {
 }
 
 .title-color {
-  background: linear-gradient(261.58deg, rgba(50, 194, 141, 0.69) 30.63%, rgba(6, 28, 20, 0.22) 148.28%), rgba(243, 243, 243, 0.69);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: rgba(60, 232, 169, 0.69);
 }
