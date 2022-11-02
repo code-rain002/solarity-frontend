@@ -14,15 +14,15 @@ export type SliderType = {
 const Slider = (props: SliderType) => {
   const router = useRouter();
   const gotoPath = () => {
-    router.push(props.path);
+    router.push('/iframe/joinModal/Solarity Hub');
   }
 
   return (
-    <div className="h-[100vh]">
+    <div className="h-[91vh]">
       <img src={props.backgroundImage} className="rounded-b-[40px]" width={664} height={664} alt={props.title} />
-      <div className="px-12 py-20">
+      <div className={`px-12 ${props.button ? "py-20 pt-10" : "py-20"}`}>
         <h2 className="text-[25px] font-[700] title-color pb-8">{props.title}</h2>
-        <p className="center text-[15px] font-[500] title-color pb-12">
+        <p className={`center text-[15px] font-[500] title-color ${props.button ? 'pb-6' : 'pb-12'}`}>
           {props.content}
         </p>
         {props.button && (
