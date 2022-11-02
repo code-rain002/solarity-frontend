@@ -60,12 +60,12 @@ function MyApp({ children }) {
   const wallet = useWallet();
   const { asPath } = router;
   
-  useEffect(() => {
-    if (!wallet.connected && asPath !== "/" ) {
-      alert('Please connect wallet first')
-      router.push({ pathname: '/' })
-    }
-  }, [wallet.connected])
+  // useEffect(() => {
+  //   if (!wallet.connected && asPath !== "/" ) {
+  //     alert('Please connect wallet first')
+  //     router.push({ pathname: '/' })
+  //   }
+  // }, [wallet.connected])
 
   const [network, setNetwork] = useState(WalletAdapterNetwork.Mainnet);
 
