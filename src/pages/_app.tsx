@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { ToastContainer } from "react-toastify";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import { ConnectionProvider, useWallet, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { clusterApiUrl } from "@solana/web3.js";
 import {
@@ -57,6 +57,15 @@ function MyApp({ children }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const dimensions = useWindowDimensions();
+  const wallet = useWallet();
+  const { asPath } = router;
+  
+  // useEffect(() => {
+  //   if (!wallet.connected && asPath !== "/" ) {
+  //     alert('Please connect wallet first')
+  //     router.push({ pathname: '/' })
+  //   }
+  // }, [wallet.connected])
 
   const [network, setNetwork] = useState(WalletAdapterNetwork.Mainnet);
 
