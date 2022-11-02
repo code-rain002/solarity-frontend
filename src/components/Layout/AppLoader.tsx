@@ -13,7 +13,7 @@ const AppLoader = () => {
       <div className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
         <div className="flex flex-col items-center justify-center">
           <div className="h-16 w-16 animate-spin">
-            <Image src="/favicon.png" width={100} height={100} layout='responsive' />
+            <img src="/favicon.png" width={100} height={100} />
           </div>
           <span className="text-gray-300">LOADING</span>
         </div>
