@@ -18,7 +18,7 @@ const Slider = (props: SliderType) => {
   }
 
   return (
-    <div className="h-[91vh]">
+    <div className="h-[99vh]">
       <img src={props.backgroundImage} className="rounded-b-[40px]" width={664} height={664} alt={props.title} />
       <div className={`px-12 ${props.button ? "py-20 pt-10" : "py-20"}`}>
         <h2 className="text-[25px] font-[700] title-color pb-8">{props.title}</h2>
