@@ -117,7 +117,7 @@ const JoinServerRoomModal: FC<any> = ({
       id="room_setting_dlg"
     >
       <div
-        className=" fixed md:w-[22%] xs:w-full h-[84.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px]
+        className=" fixed md:w-[22%] xs:w-full h-[89.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px]
                             flex flex-col pt-[12px] px-[32px] pb-[100px] gap-[24px] overscroll-contain"
       >
         <div className=" flex flex-row justify-between items-center ">
