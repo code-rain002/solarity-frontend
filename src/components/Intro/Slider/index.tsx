@@ -18,10 +18,10 @@ const Slider = (props: SliderType) => {
   }
 
   return (
-    <div className="h-[91vh]">
+    <div className="h-[89vh]">
       <img src={props.backgroundImage} className="rounded-b-[40px]" width={664} height={664} alt={props.title} />
-      <div className={`px-12 ${props.button ? "py-20 pt-10" : "py-16"}`}>
-        <h2 className="text-[25px] font-[700] title-color pb-8">{props.title}</h2>
+      <div className={`px-12 ${props.button ? "py-20 pt-8" : "py-16"}`}>
+        <h2 className="text-[25px] font-[700] title-color pb-6">{props.title}</h2>
         <p className={`center text-[15px] font-[500] title-color ${props.button ? 'pb-6' : 'pb-12'}`}>
           {props.content}
         </p>
