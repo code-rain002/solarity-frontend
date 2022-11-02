@@ -1105,8 +1105,8 @@ export const ExploreRoomData: ExploreRoomDataType[] = [
 
 export const PsuedoAvatarItemData: PsuedoAvatarItemDataType[] = [
   {
-    imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (1).png",
-    title: "Jimma",
+    imgUrl: "/images/experience/psuedo_avatars/explorer.png",
+    title: "explorer",
   },
   // {
   //   imgUrl: "/images/experience/psuedo_avatars/pseudoAvatar (2).png",

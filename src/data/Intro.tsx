@@ -22,7 +22,7 @@ export const INTRO_SLIDERS: SliderType[] = [
   },
   {
     title: 'QUESTS',
-    backgroundImage: 'images/intro/slides/extension.png',
+    backgroundImage: 'images/intro/slides/quests.png',
     content: <div>Launch games from Solarity and earn<br />Double, in game tokens $VERSE and <br />NFT drops readyto be traded.</div>
   },
   {
