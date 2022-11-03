@@ -101,7 +101,6 @@ const UserDaos = (props) => {
     axios.get(`https://api.blockchainapi.com/v1/solana/wallet/mainnet-beta/${userInfo.solanaAddress}/nfts`, config)
       .then(response => {
         const nfts = response.data.nfts_metadata
-        console.log(nfts)
         const formattedNfts = nfts.map(nft => ({
           name: nft.off_chain_data.collection ? nft.off_chain_data.collection.name : '',
           // name: nft.off_chain_data.name,
@@ -121,7 +120,6 @@ const UserDaos = (props) => {
 
   useEffect(() => {
     if (nfts.length) {
-      console.log(nfts);
       const collectionNfts = nfts.filter(nft => nft.name !== "");
       let daos = []
       for (let i = 0; i < collectionNfts.length; i++) {
@@ -129,7 +127,6 @@ const UserDaos = (props) => {
           daos.push(collectionNfts[i]);
         }
       }
-      console.log(daos)
       setDaos(daos);
     }
   }, [nfts])
