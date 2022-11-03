@@ -107,6 +107,7 @@ const UserInfo = (props) => {
       stepNum: 2,
       data,
     }
+    alert('After Click Button')
     dispatch(goStep(payload));
   }
 
