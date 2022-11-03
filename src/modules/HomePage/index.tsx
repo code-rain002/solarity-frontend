@@ -84,9 +84,9 @@ export const HomePage = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 mt-[20px] items-baseline px-[10px] sm:pl-0">
         <div>
-          <a href="https://phantom.app/ul/browse/https%3A%2F%2Fsolarity-new-frontend.vercel.app?ref=https%3A%2F%2Fsolarity-new-frontend.vercel.app" className="text-white">Go to Phantom App</a>
           <BannerText />
           <WalletMultiButton />
+          <a href="https://phantom.app/ul/browse/https%3A%2F%2Fsolarity-new-frontend.vercel.app?ref=https%3A%2F%2Fsolarity-new-frontend.vercel.app" className="text-white">Go to Phantom App</a>
         </div>
       </div>
       <div className="hidden sm:block absolute top-0 right-0 -z-10">
