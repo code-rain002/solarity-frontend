@@ -1,20 +1,5 @@
-import { useEffect, useState } from "react";
 import { checkBrowser } from "utils";
 const HubChat = ({ modelURL, name }) => {
-  const [solPrice, setSolPrice] = useState(0);
-
-  useEffect(() => {
-    async function fetchPrice() {
-      const data = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
-      var data_json = await data.json();
-      if(!!data_json) {
-        setSolPrice(data_json.solana.usd);
-      }
-    }
-
-    fetchPrice()
-  }, [])
-
   return (
     <a-scene
       renderer="antialias: true;
