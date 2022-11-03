@@ -169,7 +169,7 @@ function startGif() {
   }
 }
 
-export function startHub() {
+export async function startHub() {
   let sceneEl = document.querySelector('a-scene');
   if (!!sceneEl) {
     //get and start tweets
@@ -192,23 +192,22 @@ export function startHub() {
       });
 
     //get and start nft
-    apiCaller
-      .get("/daos/solana_money_boys")
-      .then((data) => {
-        nft = {
-          floorPrice: "2.5",
-          image: "/images/experience/hub/solarity_logo.png",
-        };
-        // nft = data.data.dao;
-        //build nft only after get success
-        buildNft();
-      })
-      .catch((err) => {
-        nft = {
-          floorPrice: "no data",
-          image: "/images/experience/hub/solarity_logo.png",
-        };
-      });
+    const data = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
+    var data_json = await data.json();
+    if(!!data_json) {
+      nft = {
+        floorPrice: data_json.solana.usd,
+        image: "/images/experience/hub/solarity_logo.png",
+      };
+    } else {
+      nft = {
+        floorPrice: 'no Data',
+        image: "/images/experience/hub/solarity_logo.png",
+      };
+    }
+    // nft = data.data.dao;
+    //build nft only after get success
+    buildNft();
 
     const gifInterval = setInterval(function () {
       startGif();
