@@ -14,185 +14,108 @@ import { RoomItemProps } from "components/Marketplace/Rooms/Items/Item";
 
 export const communities: ItemProps[] = [
     {
-        avatarUrl: '/images/community/avatars/Picture.png',
-        backUrl: '/images/community/backs/BG.png',
-        communityName: 'Solana Money Boys',
-        memberNumber: 445,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsd jkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (1).png',
-        backUrl: '/images/community/backs/BG (1).png',
-        communityName: 'Solgods',
-        memberNumber: 10000,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfad fjalsdjkfl kjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
         avatarUrl: '/images/community/avatars/Picture (2).png',
         backUrl: '/images/community/backs/BG (2).png',
-        communityName: 'Money Boys',
-        memberNumber: 972,
+        communityName: 'Degods',
+        memberNumber: 4500,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajf adfjalsdjkf lkjadlfk',
+        description: 'DeGods is a digital art collection and global community of creators, developers, entrepreneurs, athletes, artists, experimenters and innovators.',
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
     },
     {
-        avatarUrl: '/images/community/avatars/Picture (3).png',
-        backUrl: '/images/community/backs/BG (3).png',
-        communityName: 'Another community',
-        memberNumber: 15,
+        avatarUrl: '/images/community/avatars/Picture (7).png',
+        backUrl: '/images/community/backs/BG (10).png',
+        communityName: 'Solana Monkey Business',
+        memberNumber: 2800,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkaj fadfjalsdj kflkjadlfk',
+        description: "SMB is a collection of 5000 unique randomly generated SolanaMonkeys stored on the blockchain. With their accessibility-oriented design, the monkey's goal is to invade the Solana blockchain with as many individuals as possible, building a large community around them.",
+        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
+        walletIcon: <SolanaLinkIcon />
+    },
+    {
+        avatarUrl: '/images/community/avatars/Picture (5).png',
+        backUrl: '/images/community/backs/BG (9).png',
+        communityName: 'Degen Ape Academy',
+        memberNumber: 4500,
+        icon: <MemberIcon />,
+        description: "Our mission here at the academy is simple: Take 10,000 of the smoothest brained apes, put them all in one location and let the mayhem ensue. The academy was founded on the principles of friendship making, crayon eating and absolute, unregulated, deplorable, degenerate behaviour.",
+        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
+        walletIcon: <SolanaLinkIcon />
+    },
+    {
+        avatarUrl: '/images/community/avatars/Picture (9).png',
+        backUrl: '/images/community/backs/BG (7).png',
+        communityName: 'The Fracture - SolGods',
+        memberNumber: 3000,
+        icon: <MemberIcon />,
+        description: "Inspired by metaphysical artist Giorgio de Chirico. The Gods are the legacy 6666 collection within 'The Fracture'. A Brand Born in Blockchain.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
     },
     {
         avatarUrl: '/images/community/avatars/Picture (4).png',
         backUrl: '/images/community/backs/BG (4).png',
-        communityName: 'Axie infinity',
-        memberNumber: 255,
+        communityName: 'Famous Fox Federation',
+        memberNumber: 3800,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadf jalsdjkf lkjadlfk',
+        description: "The Famous Fox Federation, an independent organization of the most fabulously famous foxes on the Blockchain.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
-    },
+    }
+]
+
+export const games: ItemProps[] = [
     {
-        avatarUrl: '/images/community/avatars/Picture (5).png',
-        backUrl: '/images/community/backs/BG (5).png',
-        communityName: 'MrBeast Gaming',
-        memberNumber: 378,
+        avatarUrl: '/images/community/avatars/Picture (1).png',
+        backUrl: '/images/community/backs/BG (1).png',
+        communityName: 'Aurory',
+        memberNumber: 3200,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (6).png',
-        backUrl: '/images/community/backs/BG (6).png',
-        communityName: 'MINECRAFT',
-        memberNumber: 10000,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (7).png',
-        backUrl: '/images/community/backs/BG (7).png',
-        communityName: 'Official fortnite',
-        memberNumber: 100055,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
+        description: "Aurory, a PvE/PvP gaming project using NFTs, powered by Solana and Serum.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
     },
     {
         avatarUrl: '/images/community/avatars/Picture (8).png',
-        backUrl: '/images/community/backs/BG (8).png',
-        communityName: 'Lofi girl',
-        memberNumber: 112000,
+        backUrl: '/images/community/backs/BG (6).png',
+        communityName: 'Portals',
+        memberNumber: 5000,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
+        description: "The Metaverse on Solana. Explore downtown, invite friends, chat, build, show off your NFTs — right in the browser.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
     },
     {
-        avatarUrl: '/images/community/avatars/Picture (9).png',
-        backUrl: '/images/community/backs/BG (9).png',
-        communityName: 'Tommyinit',
-        memberNumber: 23000,
+        avatarUrl: '/images/community/avatars/Picture (6).png',
+        backUrl: '/images/community/backs/BG (11).png',
+        communityName: 'Mini Royale',
+        memberNumber: 8000,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
+        description: "War, deception, and destruction ravages the Miniverse. Vikings, channeling the power of Odin, have descended upon the Miniverse to compete in quests, form powerful clans, and seize control. Let the battles begin.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
     },
     {
         avatarUrl: '/images/community/avatars/Picture (10).png',
-        backUrl: '/images/community/backs/BG (10).png',
-        communityName: 'Anime Soul',
-        memberNumber: 234,
+        backUrl: '/images/community/backs/BG (5).png',
+        communityName: 'Panzer Dogs',
+        memberNumber: 5700,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
+        description: "A PVP tank brawler on Solana starting with the release of 5555 unique dog avatars.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
     },
     {
-        avatarUrl: '/images/community/avatars/Picture (11).png',
-        backUrl: '/images/community/backs/BG (11).png',
-        communityName: 'Servidor do Goularte',
-        memberNumber: 10000,
+        avatarUrl: '/images/community/avatars/Picture (3).png',
+        backUrl: '/images/community/backs/BG (3).png',
+        communityName: 'Ev.io',
+        memberNumber: 2400,
         icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
+        description: "Ev.io is a play to earn blockchain FPS - equip a character skin, weapon and sword to start earning e (which converts to SOL) for every kill. Equip all 3 to unlock maximum earning potential. Play at https://ev.io!",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
         walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (12).png',
-        backUrl: '/images/community/backs/BG (12).png',
-        communityName: 'LOUD',
-        memberNumber: 123,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (13).png',
-        backUrl: '/images/community/backs/BG (13).png',
-        communityName: 'Rainbow 6',
-        memberNumber: 4325,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (14).png',
-        backUrl: '/images/community/backs/BG (14).png',
-        communityName: 'Elite customs',
-        memberNumber: 123515,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (15).png',
-        backUrl: '/images/community/backs/BG (15).png',
-        communityName: 'Sky: Children of the light',
-        memberNumber: 45262,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (16).png',
-        backUrl: '/images/community/backs/BG (16).png',
-        communityName: 'Solana Money Boys',
-        memberNumber: 3245,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
-    {
-        avatarUrl: '/images/community/avatars/Picture (17).png',
-        backUrl: '/images/community/backs/BG (17).png',
-        communityName: 'Solana Money Boys',
-        memberNumber: 634,
-        icon: <MemberIcon />,
-        description: 'Solana Money Boys is thrilled to announce its debut PFP (profile picture) collection—The Loaded Lions. The drop is the first native platform-owned jkajfadfjalsdjkflkjadlfk',
-        walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
-        walletIcon: <SolanaLinkIcon />
-    },
+    }
 ]
 
 export const stats: StatsItemProps[] = [
