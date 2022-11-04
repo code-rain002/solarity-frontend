@@ -193,12 +193,16 @@ export const goStep = createAsyncThunk(
     data: object;
     next?: any;
   }) => {
-    const {
-      data: { },
-    } = await apiCaller.post("/auth/setStep", {
-      stepNum,
-      data,
-    });
+    try {
+      const {
+        data: { },
+      } = await apiCaller.post("/auth/setStep", {
+        stepNum,
+        data,
+      });
+    } catch(err) {
+      alert('err: ')
+    }
     if (next) next();
     return stepNum;
   }
