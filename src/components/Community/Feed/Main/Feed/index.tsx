@@ -6,6 +6,7 @@ import Header from './Rooms/Header'
 
 type FeedType = {
   id: any;
+  type: string;
 }
 
 function Feed(props: FeedType) {
@@ -20,7 +21,7 @@ function Feed(props: FeedType) {
             <Rooms visitRoom={() => { }} />
           </div>
           <div className='custom-2xl:w-[385px] xl:w-[385px] lg:w-[385px] md:w-[385px] sm:w-full xs:w-full'>
-            <RightSide id={props.id} />
+            <RightSide id={props.id} type={props.type} />
           </div>
         </div>
       </div>

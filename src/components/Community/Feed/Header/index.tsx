@@ -9,6 +9,7 @@ export interface HeaderProps {
   avatarUrl: string;
   backUrl: string;
   title: string;
+  type: string;
   description: string;
   walletAddress: string;
   icon: any;
@@ -28,7 +29,7 @@ function Header(props: HeaderProps) {
         </div>
         <div className='custom-2xl:block xl:hidden lg:hidden md:hidden sm:hidden xs:hidden'></div>
         <div className='col-span-2'>
-          <Stats id={props.id} />
+          <Stats id={props.id} type={props.type} />
         </div>
       </div>
     </div>

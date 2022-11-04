@@ -10,6 +10,7 @@ export interface ItemProps {
     collectionName?: string;
     memberNumber: number;
     icon: any;
+    type?: string;
     totalSupply?: number;
     description?: string;
     walletAddress?: string;
@@ -23,7 +24,7 @@ function Item(props: ItemProps) {
     const router = useRouter();
 
     const goToFeed = () => {
-        router.push('/community/feed/' + props.id);
+        router.push('/community/feed/' + props.id + '?type=' + props.type);
     }
 
     return (

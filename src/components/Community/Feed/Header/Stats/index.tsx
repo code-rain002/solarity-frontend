@@ -4,10 +4,11 @@ import StatsItem from './StatsItem'
 import { MembersIcon } from "components/Community/Feed/Header/Stats/icons/MembersIcon";
 import { TotalSupplyIcon } from "components/Community/Feed/Header/Stats/icons/TotalSupplyIcon";
 import { FloorPriceIcon } from "components/Community/Feed/Header/Stats/icons/FloorPriceIcon";
-import { communities, stats } from '../../../../../data/Community'
+import { communities, games, stats } from '../../../../../data/Community'
 
 type StatsType = {
   id: any;
+  type: string;
 }
 
 function Stats(props: StatsType) {
@@ -15,7 +16,11 @@ function Stats(props: StatsType) {
   const [floorPrice, setFloorPrice] = useState(0);
 
   useEffect(() => {
-    setCommunity(communities[parseInt(props.id)]);
+    if (props.type == 'community') {
+      setCommunity(communities[parseInt(props.id)]);
+    } else {
+      setCommunity(games[parseInt(props.id)]);
+    }
     async function fetchNFTDetail() {
       const { data } = await axios.get(
         `https://api-mainnet.magiceden.dev/v2/collections/${communities[parseInt(props.id)].collectionName}/stats`

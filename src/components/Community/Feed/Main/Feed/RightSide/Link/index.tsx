@@ -1,12 +1,17 @@
 import React from 'react'
 import Link from 'next/link';
-import { communities } from '../../../../../../../data/Community'
+import { communities, games } from '../../../../../../../data/Community'
 import { ChainIcon } from './Icons/ChainIcon'
 import { DiscordIcon } from './Icons/DiscordIcon'
 import { TwitterIcon } from './Icons/TwitterIcon'
 
-function LinkComp({ id }) {
-  const community = communities[parseInt(id)];
+function LinkComp({ id, type }) {
+  let community: any = {};
+  if (type === 'community') {
+    community = communities[parseInt(id)];
+  } else {
+    community = games[parseInt(id)];
+  }
 
   return (
     <div className='grid grid-cols-7 gap-[16px]'>

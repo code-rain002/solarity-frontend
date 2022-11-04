@@ -4,7 +4,7 @@ import Feed from './Feed'
 import FeedGallery from './Gallery'
 import FeedMarketplace from './Marketplace'
 
-function Main({ id, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
+function Main({ id, type, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
     return (
         <div className='w-full'>
             <div className={`relative w-fit`}>
@@ -29,7 +29,7 @@ function Main({ id, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex
                 </div>
             </div>
             {activeIndex === 0 ?
-                <Feed id={id} />
+                <Feed id={id} type={type} />
                 : activeIndex === 1 ?
                     <FeedGallery visitRoom={visitRoom} />
                     : activeIndex === 2 ?
