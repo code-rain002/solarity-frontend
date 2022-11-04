@@ -7,6 +7,7 @@ export interface ItemProps {
     avatarUrl: string;
     backUrl: string;
     communityName: string;
+    collectionName?: string;
     memberNumber: number;
     icon: any;
     totalSupply?: number;
