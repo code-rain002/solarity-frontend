@@ -1,15 +1,17 @@
 import TabItem from 'components/Common/Forms/TabItem'
-import ProfileCommunitiesContent from 'components/Profile/ProfileCommunitiesContent'
-import ProfileFeedContent from 'components/Profile/ProfileFeedContent'
-import ProfileGalleryContent from 'components/Profile/ProfileGalleryContent'
-import ProfileRoomsContent from 'components/Profile/ProfileRoomsContent'
-import Marketplace from 'modules/Marketplace'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { communities } from '../../../../data/Community'
 import Feed from './Feed'
 import FeedGallery from './Gallery'
 import FeedMarketplace from './Marketplace'
 
-function Main({ visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
+function Main({ id, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
+    const [community, setCommunity] = useState<any>({});
+
+    useEffect(() => {
+        setCommunity(communities[parseInt(id)]);
+    }, [])
+
 
     return (
         <div className='w-full'>
@@ -20,8 +22,8 @@ function Main({ visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) 
                     <TabItem title="Feed" selectedStatus={activeIndex === 0} onClick={() => {
                         setActiveIndex(0)
                         setIsMarketplace(false)
-                    } 
-                    }/>
+                    }
+                    } />
                     <TabItem title="Gallery" selectedStatus={activeIndex === 1} onClick={() => {
                         setActiveIndex(1)
                         setIsMarketplace(false);

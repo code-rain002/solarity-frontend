@@ -7,7 +7,7 @@ import { StatsItemProps } from "components/Community/Feed/Header/Stats/StatsItem
 import { AvatarProps } from "components/Community/Feed/Main/Feed/RightSide/Users/Avatar";
 import { EthereumIcon } from "components/icons/EthereumIcon";
 import { MemberIcon } from "components/icons/MemberIcon";
-import { SolanaLinkIcon } from "components/icons/SoalanLinkIcon";
+import { SolanaLinkIcon } from "components/icons/SolanaLinkIcon";
 import { SolanaIcon } from "components/icons/SolanaIcon";
 import { FilterItemProps } from "components/Marketplace/Filter/FilterItem";
 import { RoomItemProps } from "components/Marketplace/Rooms/Items/Item";
@@ -18,6 +18,7 @@ export const communities: ItemProps[] = [
         backUrl: '/images/community/backs/BG (2).png',
         communityName: 'Degods',
         memberNumber: 4500,
+        totalSupply: 10000,
         icon: <MemberIcon />,
         description: 'DeGods is a digital art collection and global community of creators, developers, entrepreneurs, athletes, artists, experimenters and innovators.',
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -28,6 +29,7 @@ export const communities: ItemProps[] = [
         backUrl: '/images/community/backs/BG (10).png',
         communityName: 'Solana Monkey Business',
         memberNumber: 2800,
+        totalSupply: 5000,
         icon: <MemberIcon />,
         description: "SMB is a collection of 5000 unique randomly generated SolanaMonkeys stored on the blockchain. With their accessibility-oriented design, the monkey's goal is to invade the Solana blockchain with as many individuals as possible, building a large community around them.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -38,6 +40,7 @@ export const communities: ItemProps[] = [
         backUrl: '/images/community/backs/BG (9).png',
         communityName: 'Degen Ape Academy',
         memberNumber: 4500,
+        totalSupply: 10000,
         icon: <MemberIcon />,
         description: "Our mission here at the academy is simple: Take 10,000 of the smoothest brained apes, put them all in one location and let the mayhem ensue. The academy was founded on the principles of friendship making, crayon eating and absolute, unregulated, deplorable, degenerate behaviour.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -48,6 +51,7 @@ export const communities: ItemProps[] = [
         backUrl: '/images/community/backs/BG (7).png',
         communityName: 'The Fracture - SolGods',
         memberNumber: 3000,
+        totalSupply: 6666,
         icon: <MemberIcon />,
         description: "Inspired by metaphysical artist Giorgio de Chirico. The Gods are the legacy 6666 collection within 'The Fracture'. A Brand Born in Blockchain.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -58,6 +62,7 @@ export const communities: ItemProps[] = [
         backUrl: '/images/community/backs/BG (4).png',
         communityName: 'Famous Fox Federation',
         memberNumber: 3800,
+        totalSupply: 7800,
         icon: <MemberIcon />,
         description: "The Famous Fox Federation, an independent organization of the most fabulously famous foxes on the Blockchain.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -71,6 +76,7 @@ export const games: ItemProps[] = [
         backUrl: '/images/community/backs/BG (1).png',
         communityName: 'Aurory',
         memberNumber: 3200,
+        totalSupply: 10000,
         icon: <MemberIcon />,
         description: "Aurory, a PvE/PvP gaming project using NFTs, powered by Solana and Serum.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -81,6 +87,7 @@ export const games: ItemProps[] = [
         backUrl: '/images/community/backs/BG (6).png',
         communityName: 'Portals',
         memberNumber: 5000,
+        totalSupply: 2850,
         icon: <MemberIcon />,
         description: "The Metaverse on Solana. Explore downtown, invite friends, chat, build, show off your NFTs — right in the browser.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -91,6 +98,7 @@ export const games: ItemProps[] = [
         backUrl: '/images/community/backs/BG (11).png',
         communityName: 'Mini Royale',
         memberNumber: 8000,
+        totalSupply: 37000,
         icon: <MemberIcon />,
         description: "War, deception, and destruction ravages the Miniverse. Vikings, channeling the power of Odin, have descended upon the Miniverse to compete in quests, form powerful clans, and seize control. Let the battles begin.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -101,6 +109,7 @@ export const games: ItemProps[] = [
         backUrl: '/images/community/backs/BG (5).png',
         communityName: 'Panzer Dogs',
         memberNumber: 5700,
+        totalSupply: 1234,
         icon: <MemberIcon />,
         description: "A PVP tank brawler on Solana starting with the release of 5555 unique dog avatars.",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -111,6 +120,7 @@ export const games: ItemProps[] = [
         backUrl: '/images/community/backs/BG (3).png',
         communityName: 'Ev.io',
         memberNumber: 2400,
+        totalSupply: 1100,
         icon: <MemberIcon />,
         description: "Ev.io is a play to earn blockchain FPS - equip a character skin, weapon and sword to start earning e (which converts to SOL) for every kill. Equip all 3 to unlock maximum earning potential. Play at https://ev.io!",
         walletAddress: '9jKipb3AbeNNZWtaJ6vgYPPBGZg2mX8Gqp1bU1SjeRDc',
@@ -128,11 +138,6 @@ export const stats: StatsItemProps[] = [
         icon: <TotalSupplyIcon />,
         count: 500,
         name: 'Total supply'
-    },
-    {
-        icon: <ItemsIcon />,
-        count: 10000,
-        name: 'Items'
     },
     {
         icon: <FloorPriceIcon />,

@@ -9,7 +9,7 @@ export interface ItemProps {
     communityName: string;
     memberNumber: number;
     icon: any;
-
+    totalSupply: number;
     description?: string;
     walletAddress?: string;
     walletIcon?: any;
