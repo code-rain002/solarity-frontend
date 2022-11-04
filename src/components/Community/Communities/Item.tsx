@@ -9,12 +9,12 @@ export interface ItemProps {
     communityName: string;
     memberNumber: number;
     icon: any;
-    totalSupply: number;
+    totalSupply?: number;
     description?: string;
     walletAddress?: string;
-    websiteUrl: string;
-    twitterUrl: string;
-    discordUrl: string;
+    websiteUrl?: string;
+    twitterUrl?: string;
+    discordUrl?: string;
     walletIcon?: any;
 }
 

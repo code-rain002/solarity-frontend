@@ -1,6 +1,5 @@
 import { ItemProps } from "components/Community/Communities/Item";
 import { FloorPriceIcon } from "components/Community/Feed/Header/Stats/icons/FloorPriceIcon";
-import { ItemsIcon } from "components/Community/Feed/Header/Stats/icons/ItemsIcon";
 import { MembersIcon } from "components/Community/Feed/Header/Stats/icons/MembersIcon";
 import { TotalSupplyIcon } from "components/Community/Feed/Header/Stats/icons/TotalSupplyIcon";
 import { StatsItemProps } from "components/Community/Feed/Header/Stats/StatsItem";

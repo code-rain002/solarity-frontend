@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import Link from 'next/link';
 import { communities } from '../../../../../../../data/Community'
 import { ChainIcon } from './Icons/ChainIcon'
 import { DiscordIcon } from './Icons/DiscordIcon'
-import { OpenSeaIcon } from './Icons/OpenSeaIcon'
 import { TwitterIcon } from './Icons/TwitterIcon'
 
 function LinkComp({ id }) {
