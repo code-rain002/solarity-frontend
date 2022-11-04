@@ -1,18 +1,10 @@
+import React from 'react'
 import TabItem from 'components/Common/Forms/TabItem'
-import React, { useEffect, useState } from 'react'
-import { communities } from '../../../../data/Community'
 import Feed from './Feed'
 import FeedGallery from './Gallery'
 import FeedMarketplace from './Marketplace'
 
 function Main({ id, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
-    const [community, setCommunity] = useState<any>({});
-
-    useEffect(() => {
-        setCommunity(communities[parseInt(id)]);
-    }, [])
-
-
     return (
         <div className='w-full'>
             <div className={`relative w-fit`}>
@@ -36,7 +28,13 @@ function Main({ id, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex
                     } />
                 </div>
             </div>
-            {activeIndex === 0 ? <Feed /> : activeIndex === 1 ? <FeedGallery visitRoom={visitRoom} /> : activeIndex === 2 ? <FeedMarketplace visitRoom={visitRoom} /> : ""}
+            {activeIndex === 0 ?
+                <Feed id={id} />
+                : activeIndex === 1 ?
+                    <FeedGallery visitRoom={visitRoom} />
+                    : activeIndex === 2 ?
+                        <FeedMarketplace visitRoom={visitRoom} />
+                        : ""}
         </div>
     )
 }

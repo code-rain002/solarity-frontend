@@ -4,7 +4,11 @@ import RightSide from './RightSide'
 import Rooms from './Rooms'
 import Header from './Rooms/Header'
 
-function Feed() {
+type FeedType = {
+  id: any;
+}
+
+function Feed(props: FeedType) {
   return (
     <div>
       <div className='flex flex-col'>
@@ -16,7 +20,7 @@ function Feed() {
             <Rooms visitRoom={() => { }} />
           </div>
           <div className='custom-2xl:w-[385px] xl:w-[385px] lg:w-[385px] md:w-[385px] sm:w-full xs:w-full'>
-            <RightSide />
+            <RightSide id={props.id} />
           </div>
         </div>
       </div>

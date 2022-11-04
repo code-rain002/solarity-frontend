@@ -12,6 +12,9 @@ export interface ItemProps {
     totalSupply: number;
     description?: string;
     walletAddress?: string;
+    websiteUrl: string;
+    twitterUrl: string;
+    discordUrl: string;
     walletIcon?: any;
 }
 

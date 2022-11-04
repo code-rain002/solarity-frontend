@@ -27,6 +27,7 @@ function Feed(props: FeedProps) {
         icon={communities[parseInt(props.id)].walletIcon}
       />
       <Main
+        id={props.id}
         setIsMarketplace={props.setIsMarketplace}
         visitRoom={props.visitRoom}
         activeIndex={props.activeIndex}

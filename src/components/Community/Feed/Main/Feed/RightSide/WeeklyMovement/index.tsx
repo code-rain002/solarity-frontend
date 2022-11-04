@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-function WeeklyMovement() {
+function WeeklyMovement({ id }) {
 
   const canvasRef = useRef(null);
 
@@ -63,7 +63,7 @@ function WeeklyMovement() {
     };
     imageObj8.src = '/images/community/Line 88.png'
 
-    
+
 
     context.beginPath();
     context.moveTo(42, 140);
