@@ -24,8 +24,8 @@ export const HomePage = () => {
     if (wallet.connected) {
       let publicKey = wallet.publicKey.toBase58();
       let type = 'solana';
-      let provider = (window as any).phantom.solana
-      loginUser(publicKey, type, provider);
+      // let provider = (window as any).phantom.solana
+      loginUser(publicKey, type, wallet);
     }
   }, [connected]);
 
