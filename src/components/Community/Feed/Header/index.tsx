@@ -4,10 +4,12 @@ import Preview from './Preview'
 import Stats from './Stats'
 
 export interface HeaderProps {
+  id: any;
   isPreview: boolean;
   avatarUrl: string;
   backUrl: string;
   title: string;
+  type: string;
   description: string;
   walletAddress: string;
   icon: any;
@@ -27,7 +29,7 @@ function Header(props: HeaderProps) {
         </div>
         <div className='custom-2xl:block xl:hidden lg:hidden md:hidden sm:hidden xs:hidden'></div>
         <div className='col-span-2'>
-          <Stats />
+          <Stats id={props.id} type={props.type} />
         </div>
       </div>
     </div>

@@ -7,11 +7,16 @@ export interface ItemProps {
     avatarUrl: string;
     backUrl: string;
     communityName: string;
+    collectionName?: string;
     memberNumber: number;
     icon: any;
-
+    type?: string;
+    totalSupply?: number;
     description?: string;
     walletAddress?: string;
+    websiteUrl?: string;
+    twitterUrl?: string;
+    discordUrl?: string;
     walletIcon?: any;
 }
 
@@ -19,7 +24,7 @@ function Item(props: ItemProps) {
     const router = useRouter();
 
     const goToFeed = () => {
-        router.push('/community/feed/' + props.id);
+        router.push('/community/feed/' + props.id + '?type=' + props.type);
     }
 
     return (

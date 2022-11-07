@@ -2,7 +2,7 @@ import React from 'react'
 import { members } from '../../../../../../../data/Community'
 import Avatar from './Avatar'
 
-function Users() {
+function Users({ id }) {
   return (
     <div className='pt-[24px] pb-[32px] px-[32px] bg-[#19191A] rounded-[20px]'>
       <div className='text-[20px] text-[#F3F3F3] font-[500] font-["outfit"] pb-[24px]'>Members</div>

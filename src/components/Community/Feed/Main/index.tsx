@@ -1,16 +1,10 @@
+import React from 'react'
 import TabItem from 'components/Common/Forms/TabItem'
-import ProfileCommunitiesContent from 'components/Profile/ProfileCommunitiesContent'
-import ProfileFeedContent from 'components/Profile/ProfileFeedContent'
-import ProfileGalleryContent from 'components/Profile/ProfileGalleryContent'
-import ProfileRoomsContent from 'components/Profile/ProfileRoomsContent'
-import Marketplace from 'modules/Marketplace'
-import React, { useState } from 'react'
 import Feed from './Feed'
 import FeedGallery from './Gallery'
 import FeedMarketplace from './Marketplace'
 
-function Main({ visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
-
+function Main({ id, type, visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) {
     return (
         <div className='w-full'>
             <div className={`relative w-fit`}>
@@ -20,8 +14,8 @@ function Main({ visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) 
                     <TabItem title="Feed" selectedStatus={activeIndex === 0} onClick={() => {
                         setActiveIndex(0)
                         setIsMarketplace(false)
-                    } 
-                    }/>
+                    }
+                    } />
                     <TabItem title="Gallery" selectedStatus={activeIndex === 1} onClick={() => {
                         setActiveIndex(1)
                         setIsMarketplace(false);
@@ -34,7 +28,13 @@ function Main({ visitRoom, setIsMarketplace, activeIndex = 0, setActiveIndex }) 
                     } />
                 </div>
             </div>
-            {activeIndex === 0 ? <Feed /> : activeIndex === 1 ? <FeedGallery visitRoom={visitRoom} /> : activeIndex === 2 ? <FeedMarketplace visitRoom={visitRoom} /> : ""}
+            {activeIndex === 0 ?
+                <Feed id={id} type={type} />
+                : activeIndex === 1 ?
+                    <FeedGallery visitRoom={visitRoom} />
+                    : activeIndex === 2 ?
+                        <FeedMarketplace visitRoom={visitRoom} />
+                        : ""}
         </div>
     )
 }

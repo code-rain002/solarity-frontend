@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom'
 function CommunityFeed() {
   const [sidebarToggler, setSidebarToggler] = useState(false)
   const router = useRouter();
-  const { community_id } = router.query;
+  const { community_id, type } = router.query;
 
   const [isMarketplace, setIsMarketplace] = useState(false)
   const [previewImg, setPreviewImg] = useState(rooms[0].imgUrl)
@@ -65,7 +65,7 @@ function CommunityFeed() {
           onClick={() => setSidebarToggler(!sidebarToggler)}
         >
           {community_id && (
-            <Feed activeIndex={activeIndex} setActiveIndex={setActiveIndex} id={community_id} isPreview={!isMarketplace} visitRoom={VisitRoom} setIsMarketplace={setIsMarketplace} />
+            <Feed activeIndex={activeIndex} type={type} setActiveIndex={setActiveIndex} id={community_id} isPreview={!isMarketplace} visitRoom={VisitRoom} setIsMarketplace={setIsMarketplace} />
           )}
           <ConfirmationDlg id={roomId} roomName={previewSubtitle} collectionName={previewTitle} price={previewPrice}
             dlgToggle={confirmationDlgToggle} setDlgToggle={ConfirmationDlgToggle} imgUrl={previewImg} numberOfFrames={52} connectingOtherUsers={true} anotherInfo={"Room Info"} />

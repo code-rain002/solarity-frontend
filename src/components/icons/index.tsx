@@ -23,3 +23,5 @@ export { Users } from "./Users";
 export { Inbox } from "./Inbox";
 export { WinBar } from "./WinBar";
 export { User } from "./User";
+export { MemberIcon } from "./MemberIcon";
+export { SolanaLinkIcon } from "./SolanaLinkIcon";
