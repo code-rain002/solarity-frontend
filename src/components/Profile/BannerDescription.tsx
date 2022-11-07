@@ -12,6 +12,11 @@ import { setValue } from "utils"
 type UName = string
 
 const BannerDescription = ({ user, sidebarToggler }) => {
+  const { logged, profile } = useSelector((state: RootStateOrAny) => ({
+    logged: state.auth.logged,
+    profile: state.profile.data,
+  }));
+
   const [toggleModal, setToggleModal] = useState(false);
   return (
     <div className="w-full flex
@@ -54,7 +59,9 @@ const BannerDescription = ({ user, sidebarToggler }) => {
         </div>
 
       </div>
-      <BannerDescriptionWallet sidebarToggler={sidebarToggler} />
+      {logged && profile._id === user._id && (
+        <BannerDescriptionWallet {...user} sidebarToggler={sidebarToggler} />
+      )}
     </div>
   )
 }

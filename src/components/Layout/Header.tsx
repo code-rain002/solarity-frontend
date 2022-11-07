@@ -11,6 +11,7 @@ import Library from 'modules/Library'
 import GameDetail from 'modules/Library/GameDetail'
 import { Rnd } from 'react-rnd'
 import CreateEventModal from 'components/Library/CreateEventModal'
+import { RootStateOrAny, useSelector } from 'react-redux'
 
 interface HeaderProps {
     searchString?: string;
@@ -18,6 +19,10 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
+    const { logged, profileData } = useSelector((state: RootStateOrAny) => ({
+        logged: state.auth.logged,
+        profileData: state.profile.data,
+    }))
     const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
 
     const [userInfoToggle, setUserInfoToggle] = useState(false)
@@ -105,7 +110,9 @@ const Header = (props: HeaderProps) => {
                     <div className="flex flex-row
                                     md:justify-end sm:justify-end
                                     md:my-[20px] sm:my-[20px]">
-                        <BalanceBox openState={balanceBoxToggle} onEnter={() => setBalanceBoxToggle(true)} onLeave={() => setBalanceBoxToggle(false)} />
+                        {logged && profileData && (
+                            <BalanceBox openState={balanceBoxToggle} onEnter={() => setBalanceBoxToggle(true)} onLeave={() => setBalanceBoxToggle(false)} />
+                        )}
                         <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
                     </div>
                 </div>
