@@ -97,26 +97,28 @@ const UserDaos = (props) => {
         'APISecretKey': process.env.NEXT_PUBLIC_BLOCKCHAIN_API_SECRET
       }
     }
-    setDaoLoading(true);
-    axios.get(`https://api.blockchainapi.com/v1/solana/wallet/mainnet-beta/${userInfo.solanaAddress}/nfts`, config)
-      .then(response => {
-        const nfts = response.data.nfts_metadata
-        const formattedNfts = nfts.map(nft => ({
-          name: nft.off_chain_data.collection ? nft.off_chain_data.collection.name : '',
-          // name: nft.off_chain_data.name,
-          image: nft.off_chain_data.image,
-          description: nft.off_chain_data.description,
-          symbol: nft.off_chain_data.symbol
-        }))
-        console.log(formattedNfts)
-        setNfts(formattedNfts);
-        setDaoLoading(false);
-      })
-      .catch(error => {
-        setDaoLoading(false);
-        console.log(error);
-      });
-  }, []);
+    if (userInfo.solanaAddress) {
+      setDaoLoading(true);
+      axios.get(`https://api.blockchainapi.com/v1/solana/wallet/mainnet-beta/${userInfo.solanaAddress}/nfts`, config)
+        .then(response => {
+          const nfts = response.data.nfts_metadata
+          const formattedNfts = nfts.map(nft => ({
+            name: nft.off_chain_data.collection ? nft.off_chain_data.collection.name : '',
+            // name: nft.off_chain_data.name,
+            image: nft.off_chain_data.image,
+            description: nft.off_chain_data.description,
+            symbol: nft.off_chain_data.symbol
+          }))
+          console.log(formattedNfts)
+          setNfts(formattedNfts);
+          setDaoLoading(false);
+        })
+        .catch(error => {
+          setDaoLoading(false);
+          console.log(error);
+        });
+    }
+  }, [userInfo.solanaAddress]);
 
   useEffect(() => {
     if (nfts.length) {
