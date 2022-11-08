@@ -67,7 +67,7 @@ export const getWalletBalances = ({
               },
             } = await axios.get(
               "https://public-api.birdeye.so/public/price?address=" +
-                tokenAddress
+              tokenAddress
             );
             return {
               balance: parseFloat(Number(balance).toFixed(4)),
@@ -88,18 +88,18 @@ export const getWalletBalances = ({
           showOnZero?: boolean;
         }
       ]
-    >tokenAddresses).map(
-      ({ token, image, tokenAddress, showOnZero }, index) => {
-        return {
-          showOnZero,
-          title: token,
-          symbol: token,
-          image,
-          tokenAddress,
-          ...results[index],
-        };
-      }
-    );
+      >tokenAddresses).map(
+        ({ token, image, tokenAddress, showOnZero }, index) => {
+          return {
+            showOnZero,
+            title: token,
+            symbol: token,
+            image,
+            tokenAddress,
+            ...results[index],
+          };
+        }
+      );
     setTokens(balances);
   };
 
@@ -123,6 +123,7 @@ export const getWalletBalances = ({
       coins.push({
         title: "Solana",
         symbol: "SOL",
+        coinAddress: solanaAddress,
         usdValue,
         balance: parseFloat(balance.toFixed(4)),
         image: solanaIcon.src,
@@ -135,6 +136,7 @@ export const getWalletBalances = ({
       coins.push({
         title: "Ethereum",
         symbol: "ETH",
+        coinAddress: ethereumAddress,
         usdValue: Number((ethereumPrice * balance).toFixed(4)),
         balance: parseFloat(balance.toFixed(4)),
         image: ethereumIcon.src,

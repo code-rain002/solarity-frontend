@@ -1,9 +1,27 @@
 import { LeftArrow, RightArrow, TotalBalanceIcon } from "components/icons"
-import { WalletBalanceData } from "data/WalletBalanceData"
+import { TOEKN_ICONS, WalletBalanceData } from "data/WalletBalanceData"
 import WalletBalanceIcon from "./WalletBalanceIcon"
+import { getWalletBalances } from "hooks";
+import { useEffect, useState } from "react";
 
+const BannerDescriptionWallet = ({ sidebarToggler, solanaAddress, ethereumAddress }) => {
+  const { coins, tokens, loading, error } = getWalletBalances({
+    solanaAddress,
+    ethereumAddress,
+  });
 
-const BannerDescriptionWallet = ({ sidebarToggler }) => {
+  const [totalBalance, setTotalBalance] = useState(0);
+
+  useEffect(() => {
+    var balance = 0;
+    for (var i = 0; i < coins.length; i++) {
+      balance += coins[i].usdValue;
+    }
+    for (var i = 0; i < tokens.length; i++) {
+      balance += tokens[i].usdValue;
+    }
+    setTotalBalance(balance);
+  }, [coins, tokens]);
 
   const rightScroll = () => {
     document.querySelector(".banner-description-wallet").scrollLeft += 80;
@@ -25,11 +43,11 @@ const BannerDescriptionWallet = ({ sidebarToggler }) => {
                           scroll-smooth`}>
 
         <div className="p-4 flex flex-col lg:justify-end lg:justify-items-end
-                            md:justify-center sm:justify-center xs:justify-center"  onClick={() => (alert("coming soon"))}>
+                            md:justify-center sm:justify-center xs:justify-center"  onClick={() => { }}>
           <div className="flex flex-row">
             <div className="text-[#f3f3f3] font-500
                                   custom-2xl:text-[20px] xl:text-[20px] lg:text-[20px] sm:text-[16px] xs:text-[16px]">
-              871.18
+              {totalBalance.toFixed(3)}
             </div>
             <div className="text-[#929298] font-500
                                   custom-2xl:text-[20px] xl:text-[20x] lg:text-[20px] sm:text-[16px] xs:text-[16px] ml-[10px]">
@@ -46,11 +64,26 @@ const BannerDescriptionWallet = ({ sidebarToggler }) => {
             <TotalBalanceIcon />
           </div>
         </div>
-
-        {WalletBalanceData.map((i, index) => {
-          return <WalletBalanceIcon kind={i.kind} key={index} balance={i.balance} badge={i.icon_url} address={i.addr} onClick={() => alert("coming soon")} />
-        })}
-
+        {coins.map((coin, index) => (
+          <WalletBalanceIcon
+            key={index}
+            kind={coin.symbol}
+            balance={coin.balance}
+            badge={TOEKN_ICONS[coin.symbol]}
+            address={coin.coinAddress.slice(0, 4)}
+            onClick={() => { }}
+          />
+        ))}
+        {tokens.map((token, index) => (
+          <WalletBalanceIcon
+            key={index + coins.length}
+            kind={token.symbol}
+            balance={token.balance}
+            badge={TOEKN_ICONS[token.symbol]}
+            address={token.tokenAddress.slice(0, 4)}
+            onClick={() => { }}
+          />
+        ))}
 
       </div>
       <div className="absolute right-[-3px] text-white top-[33px] lg:hidden md:block">

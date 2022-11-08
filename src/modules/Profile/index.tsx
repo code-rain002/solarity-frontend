@@ -9,11 +9,7 @@ import { LeftArrow, RightArrow } from "components/icons"
 import { RootStateOrAny, useSelector } from "react-redux"
 import { setValue } from "utils"
 
-const Profile = ({ sidebarToggler }) => {
-
-  const { profileData } = useSelector((state: RootStateOrAny) => ({
-    profileData: state.profile.data,
-  }));
+const Profile = ({ user, sidebarToggler }) => {
 
   const rightScroll = () => {
     document.querySelector(".profile-tab").scrollLeft += 80;
@@ -27,7 +23,7 @@ const Profile = ({ sidebarToggler }) => {
   return (
     <div className="flex flex-col w-full">
       <div className="my-[5px] text-[#929298] font-400 md:text-[18px] xs:text-[14px]">
-        {setValue(profileData.bio)}
+        {setValue(user.bio)}
       </div>
       <div className={`relative w-fit`}>
         <div className={`profile-tab flex flex-row mt-8 relative sm:px-[0px] xs:px-[20px]
