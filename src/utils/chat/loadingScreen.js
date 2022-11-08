@@ -30,7 +30,7 @@ export function update_loadingScreen() {
     if (!!loadingScreenEl) loadingScreenEl.style.display = "none";
     if (sceneWrapperEl) sceneWrapperEl.style.opacity = 100;
   }, 60000);
-  
+  console.log(modelsNumber, modelsLoaded)
   modelsLoaded++;
   if (loadingBars && loadingStatus) {
     for(var i = 0; i < loadingBars.length; i ++) {

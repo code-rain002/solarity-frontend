@@ -11,7 +11,6 @@ const ProfileIndex: FC<UserPageProps> = ({ user, success }) => {
 
     if (!success) return <NoUserView />;
 
-    console.log(user);
     return (
         <Layout
             sidebarToggler={sidebarToggler}

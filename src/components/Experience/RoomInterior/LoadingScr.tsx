@@ -9,7 +9,7 @@ const LoadingScr = () => {
   return (
     <div
       id="loadingScreen"
-      className={`fixed top-0 left-0 right-0 bottom-0`}
+      className={`fixed top-0 left-0 right-0 bottom-0 z-[100000]`}
     >
       <div className="relative h-full w-full">
         <Image src={`/images/experience/room_images/room_${parseInt(rid ? rid.toString() : "0") + 1}.jpg`} layout="fill" />
