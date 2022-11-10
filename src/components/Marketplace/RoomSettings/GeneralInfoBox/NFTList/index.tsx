@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import NFTItem from './NFTItem'
 import { roomsetting_nfts } from '../../../../../data/Marketplace'
 
-function NFTList() {
+type NFTListType = {
+    nfts: any[];
+}
+
+function NFTList(props: NFTListType) {
 
     const [selectedNFT, setSelectedNFT] = useState(0);
 

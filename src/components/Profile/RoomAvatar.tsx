@@ -14,8 +14,10 @@ const RoomAvatar = (props: RoomAvatarProps) => {
     }))
 
     const gotoRoom = () => {
-        router.push(`/profile/editroom?no=${props.no}`);
-        props.onClose();
+        if (props.no != 2) {
+            router.push(`/profile/editroom?no=${props.no}`);
+            props.onClose();
+        }
     }
 
     return (
