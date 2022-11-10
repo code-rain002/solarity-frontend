@@ -7,14 +7,16 @@ import GeneralInfoBox from "components/Marketplace/RoomSettings/GeneralInfoBox";
 import SuccessfulDlg from "components/Marketplace/RoomSettings/SuccessfulDlg";
 import FirstEditRoom from './FirstEditRoom';
 import SecondEditRoom from './SecondEditRoom';
+import ThirdEditRoom from './ThirdEditRoom';
 import freeObjectFromMemory from "utils/clearObject";
 import { ROOMS_ASSET } from 'data/Room';
 const EditRoom = () => {
   const router = useRouter();
   const { no } = router.query;
-  const { profile, rooms } = useSelector(state => ({
+  const { profile, rooms, visitFlag } = useSelector(state => ({
     profile: state.profile.data,
     rooms: state.profile.data.rooms,
+    visitFlag: state.profile.visitFlag,
   }))
   const [mounted, setMounted] = useState(false);
   const [roomInfo, setRoomInfo] = useState({});
@@ -121,7 +123,11 @@ const EditRoom = () => {
     }
 
     //Link
-    router.push(`/${profile.username}/profile`);
+    if(visitFlag == 0) {
+      router.push(`/${profile.username}/profile`);
+    } else if (visitFlag == 1) {
+      router.push(`/marketplace`);
+    }
   }
 
   return (
@@ -129,21 +135,28 @@ const EditRoom = () => {
       {mounted && (
         <div>
           {no == '0' && (
-            <FirstEditRoom no={no} roomInfo={roomInfo} />
+            <FirstEditRoom no={no} roomInfo={roomInfo} visitFlag={visitFlag} />
           )}
           {no == '1' && (
-            <SecondEditRoom no={no} roomInfo={roomInfo} />
+            <SecondEditRoom no={no} roomInfo={roomInfo} visitFlag={visitFlag} />
+          )}
+          {no == '2' && (
+            <ThirdEditRoom no={no} roomInfo={roomInfo} visitFlag={visitFlag} />
           )}
         </div>
       )}
       <div onClick={gotoProfile}>
         <BackButton />
       </div>
-      <TopRightMenu Complete={setSuccessDlgToggle} isHold={isHold} setIsHold={setIsHold} />
-      {profile.solanaAddress && (
-        <GeneralInfoBox isHold={isHold} roomNo={no} picNo={picNo} imageUrl={imageUrl} setImageUrl={setImageUrl} setDlgToggle={setSuccessDlgToggle} chooseFlag={chooseFlag} setChooseFlag={setChooseFlag} />
+      {visitFlag == 0 && (
+        <div>
+          <TopRightMenu Complete={setSuccessDlgToggle} isHold={isHold} setIsHold={setIsHold} />
+          {profile && profile.solanaAddress && (
+            <GeneralInfoBox isHold={isHold} roomNo={no} picNo={picNo} imageUrl={imageUrl} setImageUrl={setImageUrl} setDlgToggle={setSuccessDlgToggle} chooseFlag={chooseFlag} setChooseFlag={setChooseFlag} />
+          )}
+          <SuccessfulDlg dlgToggle={successDlgToggle} setDlgToggle={setSuccessDlgToggle} />
+        </div>
       )}
-      <SuccessfulDlg dlgToggle={successDlgToggle} setDlgToggle={setSuccessDlgToggle} />
     </div>
   );
 }

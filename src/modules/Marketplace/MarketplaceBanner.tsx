@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import Image from "next/image"
 import CollectionInfoDlg from 'components/Marketplace/CollectionInfoDlg'
 import { ExpandIcon } from 'components/icons/ExpandIcon';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { setVisitFlag } from 'redux/slices/profileSlice';
+import { useRouter } from 'next/router';
 
 
 export type MarketPlaceBannerType = {
@@ -13,12 +15,15 @@ export type MarketPlaceBannerType = {
 }
 
 const MarketplaceBanner = (props: MarketPlaceBannerType) => {
+    const router = useRouter();
+    const dispatch = useDispatch();
     const { selectedRoom } = useSelector((state: RootStateOrAny) => ({
         selectedRoom: state.marketplace.selectedRoom,
     }))
 
     const expandRoom = () => {
-
+        dispatch(setVisitFlag(1));
+        router.push(`/profile/editroom?no=${selectedRoom.roomNo}`);
     }
 
     return (

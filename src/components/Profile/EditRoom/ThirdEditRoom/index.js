@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ROOMS_ASSET } from 'data/Room';
 import { checkBrowser } from 'utils';
 
-const SecondEditRoom = (props) => {
+const ThirdEditRoom = (props) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -22,18 +22,17 @@ const SecondEditRoom = (props) => {
       style={{opacity: 0}}
     >
         <a-assets timeout="100000">
-          <a-asset-item id="room2-gltf" src="/models/own_second/SolGod ancient temple.glb"></a-asset-item>
-          <a-asset-item id="navmesh-gltf" src="/models/own_second/navmesh.gltf"></a-asset-item>
+          <a-asset-item id="room3-gltf" src="/models/own_third/room.glb"></a-asset-item>
+          <a-asset-item id="navmesh-gltf" src="/models/own_third/navmesh.glb"></a-asset-item>
 
           <img id="hub-img" src="/images/experience/hub.png"/>
-          <img id="sky-img" src="/images/experience/sky.jpg"/>
-
+          <img id="sky-img" src="/images/experience/hub/bluesky.jpg"/>
         </a-assets>
 
         {isMobile ? (
           <a-entity 
             id="rig"
-            position="0 1.65 0" 
+            position="0 1.65 20" 
             look-controls="pointerLockEnabled: true; reverseMouseDrag: false"
             movement-controls="speed: 0.2"
             simple-navmesh-constraint="navmesh:#navmesh;fall: 5;height:1.65;" 
@@ -76,7 +75,7 @@ const SecondEditRoom = (props) => {
         ): (
           <a-entity 
             id="rig"
-            position="0 1.65 0" 
+            position="0 1.65 20" 
             look-controls="pointerLockEnabled: true; reverseMouseDrag: false"
             wasd-controls="acceleration: 20;"
             simple-navmesh-constraint="navmesh:#navmesh;fall: 5;height:1.65;" 
@@ -124,11 +123,11 @@ const SecondEditRoom = (props) => {
         {/* ambient light */}
         <a-entity light="type: ambient; intensity: 0.5; color:  #FFFFFF;"></a-entity>
         {/* models */}
-        <a-gltf-model shadow="cast: true; receive: true" model-info class="model" src="#room2-gltf" position="0 0 0" scale="1 1 1"></a-gltf-model>
+        <a-gltf-model shadow="cast: true; receive: true" model-info class="model" src="#room3-gltf" position="0 0 0" scale="1 1 1"></a-gltf-model>
         <a-gltf-model id="navmesh" model-info class="model" src="#navmesh-gltf" visible="false">
         </a-gltf-model>
         {/* frames */}
-        {ROOMS_ASSET[parseInt(props.no)].assets.map((asset, index) => (
+        {/* {ROOMS_ASSET[parseInt(props.no)].assets.map((asset, index) => (
           <a-plane
             key={index}
             class={`frame picno${index + 1} clickable`}
@@ -156,10 +155,10 @@ const SecondEditRoom = (props) => {
                   );
               })}
           </a-plane>
-        ))}
+        ))} */}
         <a-sky src="#sky-img"></a-sky>
     </a-scene>
   );
 }
 
-export default SecondEditRoom;
+export default ThirdEditRoom;

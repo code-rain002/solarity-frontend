@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { useRouter } from "next/router";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { setVisitFlag } from "redux/slices/profileSlice";
 type RoomAvatarProps = {
     imgSrc: string,
     title: string,
@@ -9,12 +10,14 @@ type RoomAvatarProps = {
 }
 const RoomAvatar = (props: RoomAvatarProps) => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const { profile } = useSelector((state: RootStateOrAny) => ({
         profile: state.profile.data,
     }))
 
     const gotoRoom = () => {
         if (props.no != 2) {
+            dispatch(setVisitFlag(0));
             router.push(`/profile/editroom?no=${props.no}`);
             props.onClose();
         }

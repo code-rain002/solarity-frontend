@@ -160,7 +160,7 @@ const FirstEditRoom = (props) => {
             material="shader:standard;"
             color="#111122"
           >
-            { !!props.roomInfo.nftStates &&
+            { props.visitFlag != 1 && !!props.roomInfo.nftStates &&
               props.roomInfo.nftStates.map((nft, index1) => {
                 if (index + 1 == nft.no)
                   return (

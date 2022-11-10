@@ -78,7 +78,7 @@ const ProfileIndex = () => {
                         <>
                             <Marketplace searchString={searchString} setSearchString={setSearchString} />
                             <ConfirmationDlg dlgToggle={confirmationDlgToggle} setDlgToggle={ConfirmationDlgToggle} numberOfFrames={52} connectingOtherUsers={true} anotherInfo={"Room Info"} />
-                            <RoomDlg title={previewTitle} subtitle={previewSubtitle} description={'The user immediately has a preview of the first room in the list.'} price={previewPrice} activeRoom={previewImg} buy={Buy} dlgToggle={previewDlgToggle} setDlgToggle={PreviewDlgToggle} isDlg={true} expandRoom={expandRoom} isExpand={isExpand} />
+                            <RoomDlg activeRoom={previewImg} buy={Buy} dlgToggle={previewDlgToggle} setDlgToggle={PreviewDlgToggle} isDlg={true} isExpand={isExpand} />
                         </>
                     )
                 }
