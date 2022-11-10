@@ -6,6 +6,8 @@ import MobileTopBar from "./MobileTopBar"
 import MobileMenu from "./MobileMenu"
 import MobileNavbar from "./MobileNavbar"
 import { checkBrowser } from 'utils'
+import { useWallet } from '@solana/wallet-adapter-react'
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 
 const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSearchString }: {
     children: any,
@@ -18,7 +20,8 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
 
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
     const [isMobile, setIsMobile] = useState(false);
-
+    const wallet = useWallet();
+console.log(wallet)
     useEffect(() => {
         setIsMobile(checkBrowser())
     }, [])
@@ -36,6 +39,7 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
             {isMobile && (
                 <MobileNavbar />
             )}
+            {/* {!wallet.connected && <div className=''><WalletMultiButton /></div>} */}
         </div>
     )
 }
