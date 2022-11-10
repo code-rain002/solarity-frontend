@@ -38,13 +38,13 @@ const ProfileIndex = () => {
         setPreviewDlgToggle(open)
     }
 
-    const VisitRoom = (roomInfo: RoomItemProps, index: number) => {
+    const VisitRoom = (roomInfo: RoomItemProps) => {
         setPreviewTitle(roomInfo.collectionName)
         setPreviewSubtitle(roomInfo.roomName)
         setPreviewPrice(roomInfo.price)
         setPreviewImg(roomInfo.imgUrl)
         setPreviewDlgToggle(true)
-        setRoomId(index)
+        setRoomId(roomInfo.roomNo)
     }
 
     const expandRoom = (status: boolean) => {
@@ -72,7 +72,7 @@ const ProfileIndex = () => {
                         </>
                     ) : (
                         <>
-                            <Marketplace visitRoom={VisitRoom} searchString={searchString} setSearchString={setSearchString} />
+                            <Marketplace searchString={searchString} setSearchString={setSearchString} />
                             <ConfirmationDlg id={roomId} roomName={previewSubtitle} collectionName={previewTitle} price={previewPrice}
                                 dlgToggle={confirmationDlgToggle} setDlgToggle={ConfirmationDlgToggle} imgUrl={previewImg} numberOfFrames={52} connectingOtherUsers={true} anotherInfo={"Room Info"} />
                             <RoomDlg title={previewTitle} subtitle={previewSubtitle} description={'The user immediately has a preview of the first room in the list.'} price={previewPrice} activeRoom={previewImg} buy={Buy} dlgToggle={previewDlgToggle} setDlgToggle={PreviewDlgToggle} isDlg={true} expandRoom={expandRoom} isExpand={isExpand} />
