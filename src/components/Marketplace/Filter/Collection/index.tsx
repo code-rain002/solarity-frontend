@@ -4,6 +4,7 @@ import FilterItem, { FilterItemProps } from '../FilterItem';
 
 interface CollectionProps {
     collections: FilterItemProps[];
+    activeCollection: string;
     click: any;
 }
 
@@ -28,8 +29,8 @@ function Collection(props: CollectionProps) {
             <div className={`filter flex gap-6 h-30 w-[100%] relative cursor-pointer overflow-y-hidden overflow-x-hidden scroll-smooth md:flex-nowrap xs:flex-wrap`}>
                 {
                     props.collections.map((item, index) => (
-                        <div onClick={() => props.click(index)} key={index}>
-                            <FilterItem key={index} name={item.name} active={item.active} />
+                        <div onClick={() => props.click(item.name)} key={index}>
+                            <FilterItem key={index} name={item.name} active={item.name == props.activeCollection} />
                         </div>
                     ))
                 }

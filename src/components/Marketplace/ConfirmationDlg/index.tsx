@@ -5,7 +5,13 @@ import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { RootStateOrAny, useSelector } from 'react-redux'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { useConnection, useWallet } from '@solana/wallet-adapter-react'
+import { LAMPORTS_PER_SOL, PublicKey, Transaction } from '@solana/web3.js'
+import { createTransferInstruction, getOrCreateAssociatedTokenAccount } from 'utils/token'
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token'
+import { placeBid } from 'redux/slices/profileSlice'
+import { toast } from 'react-toastify'
 
 
 export type ConfirmationDlgType = {
@@ -17,9 +23,13 @@ export type ConfirmationDlgType = {
 }
 
 function ConfirmationDlg(props: ConfirmationDlgType) {
+    const dispatch = useDispatch();
     const { selectedRoom } = useSelector((state: RootStateOrAny) => ({
         selectedRoom: state.marketplace.selectedRoom
     }));
+
+    const { connection } = useConnection();
+    const wallet = useWallet();
 
     const [activeAvatar, setActiveAvatar] = useState(0)
     const [activeAvatarImg, setActiveAvatarImg] = useState(PsuedoAvatarItemData[0].imgUrl)
@@ -35,9 +45,83 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
         }
     }
 
-    const BuyRoom = () => {
+    const BuyRoom = async () => {
         setDisabled(true);
+        const { publicKey, signTransaction } = wallet;
+        console.log();
+        // spl-token payment for buying room.
+        try {
+            if (!process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS || !process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS) {
+                return console.error('website solana wallet address or solarity_token_address is not set in environment.');
+            }
+            const toPublicKey = new PublicKey(process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS)
+            const mint = new PublicKey(process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS)
 
+            const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
+                connection,
+                publicKey,
+                mint,
+                publicKey,
+                signTransaction
+            );
+
+            const toTokenAccount = await getOrCreateAssociatedTokenAccount(
+                connection,
+                publicKey,
+                mint,
+                toPublicKey,
+                signTransaction
+            );
+
+            const transaction1 = new Transaction().add(
+                createTransferInstruction(
+                    fromTokenAccount.address, // source
+                    toTokenAccount.address, // dest
+                    publicKey,
+                    selectedRoom.price * LAMPORTS_PER_SOL,
+                    [],
+                    TOKEN_PROGRAM_ID
+                )
+            )
+            const blockHash = await connection.getRecentBlockhash()
+            transaction1.feePayer = await publicKey
+            transaction1.recentBlockhash = await blockHash.blockhash
+            const signed = await signTransaction(transaction1)
+            console.log({
+                selectedRoom,
+                signed,
+                connection,
+            });
+            dispatch(
+                placeBid({
+                    data: {
+                        selectedRoom,
+                        signed,
+                        connection,
+                    },
+                    successFunction: () => {
+                        toast.success(
+                            "You got a room successfully. You can create a room and also decorate a room with own nfts in the profile",
+                            {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            }
+                        );
+                    },
+                    errorFunction: (err) => {
+                    },
+                    finalFunction: () => {
+                    },
+                })
+            );
+        } catch (error: any) {
+            console.error(error.message);
+        }
     }
 
     return (

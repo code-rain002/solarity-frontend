@@ -108,14 +108,14 @@ export const categoriesData: FilterItemProps[] = [
         active: false
     },
     {
-        name: 'NFT',
+        name: 'NFTs',
         active: false
     },
 ]
 
 export const collectionsData: FilterItemProps[] = [
     {
-        name: 'All Collections',
+        name: 'All collections',
         active: true
     },
     {
@@ -123,55 +123,11 @@ export const collectionsData: FilterItemProps[] = [
         active: false
     },
     {
-        name: 'Monkeys',
+        name: 'Solana Money Boys',
         active: false
     },
     {
-        name: 'Goblintown',
-        active: false
-    },
-    {
-        name: 'Moonbirds Odities',
-        active: false
-    },
-    {
-        name: 'Chimpers',
-        active: false
-    },
-    {
-        name: 'Azuki',
-        active: false
-    },
-    {
-        name: 'Cuiosities',
-        active: false
-    },
-    {
-        name: 'Moonbirds',
-        active: false
-    },
-    {
-        name: 'CloneX',
-        active: false
-    },
-    {
-        name: 'Chimpers',
-        active: false
-    },
-    {
-        name: 'Azuki',
-        active: false
-    },
-    {
-        name: 'Cuiosities',
-        active: false
-    },
-    {
-        name: 'Moonbirds',
-        active: false
-    },
-    {
-        name: 'CloneX',
+        name: 'SolGods',
         active: false
     }
 ]

@@ -6,6 +6,7 @@ import { RoomItemProps } from './Items/Item';
 export interface RoomsType {
   rooms: RoomItemProps[];
   headerTitle: string;
+  activeCollection: string;
   count: number;
 }
 
@@ -15,7 +16,7 @@ function Rooms(props: RoomsType) {
       <div className='mt-[45px] mb-[30px]'>
         <Header count={props.count} title={props.headerTitle} />
       </div>
-      <Items rooms={props.rooms} />
+      <Items rooms={props.rooms} activeCollection={props.activeCollection} />
     </div>
   )
 }

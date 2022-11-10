@@ -15,6 +15,10 @@ export interface FilterItemType {
 export interface MenuProps {
   searchString: string;
   setSearchString: Function;
+  setActiveCollection: Function;
+  activeCollection: string;
+  setActiveCategory: Function;
+  activeCategory: string;
   categories: FilterItemProps[];
   collections: FilterItemProps[];
 }
@@ -22,49 +26,31 @@ export interface MenuProps {
 export default function Filter(props: MenuProps) {
 
   const [filterDlgToggle, setFilterDlgToggle] = useState(false);
-  const [categories, setCategaries] = useState(props.categories);
-  const [collections, setCollections] = useState(props.collections);
-
-  useEffect(() => {
-    console.log(categories)
-  }, [categories])
 
   const setDlgToggle = (status) => {
     setFilterDlgToggle(status)
   }
 
-  const onClickCategory = (index: number) => {
-    let temp = categories;
-    setCategaries(temp.map((t, _) => {
-      if (_ == index) {
-        return { name: t.name, active: true };
-      }
-      return { name: t.name, active: false };
-    }));
+  const onClickCategory = (name: string) => {
+    props.setActiveCategory(name)
   }
 
-  const onClickCollection = (index: number) => {
-    let temp = collections;
-    setCollections(temp.map((t, _) => {
-      if (_ == index) {
-        return { name: t.name, active: true };
-      }
-      return { name: t.name, active: false };
-    }));
+  const onClickCollection = (name: string) => {
+    props.setActiveCollection(name)
   }
 
   return (
     <div>
       <div className='grid-cols-12 lg:grid md:grid sm:hidden xs:hidden'>
         <div className='col-span-3 flex'>
-          <Category click={onClickCategory} catagories={categories} />
+          <Category click={onClickCategory} catagories={props.categories} activeCategory={props.activeCategory} />
           <div className='justify-center items-center flex mx-auto'>
             <Image src={'/images/marketplace/line.png'} height={32} width={1} />
           </div>
         </div>
 
         <div className='col-span-9 relative w-fit`}'>
-          <Collection click={onClickCollection} collections={collections} />
+          <Collection click={onClickCollection} collections={props.collections} activeCollection={props.activeCollection} />
         </div>
       </div>
       <div className='md:hidden lg:hidden sm:hidden xs:flex justify-between'>
