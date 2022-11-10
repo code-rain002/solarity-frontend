@@ -15,6 +15,7 @@ const initialState = {
   nftsLoaded: false,
   activeRoomId: "",
   activeRoomNo: -1,
+  visitFlag: 1,
   step: 1
 };
 
@@ -454,7 +455,7 @@ export const changeActiveRoom = createAsyncThunk(
     try {
       const {
         data: { profile },
-      } = await apiCaller.post("/profile/setActiveRoom", { roomNo: roomNo});
+      } = await apiCaller.post("/profile/setActiveRoom", { roomNo: roomNo });
       returnValue = profile;
       showSuccessToast("This room successfully active");
     } catch (err) {
@@ -496,6 +497,9 @@ export const profileSlice = createSlice({
       state.activeRoomId = action.payload.activeRoomId;
       state.activeRoomNo = action.payload.activeRoomNo;
     },
+    setVisitFlag(state, action: PayloadAction<number>) {
+      state.visitFlag = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(setup.fulfilled, (state, action) => {
@@ -571,6 +575,6 @@ export const profileSlice = createSlice({
   },
 });
 
-export const { setProfile, loadNFTs, setActiveRoomNo } = profileSlice.actions;
+export const { setProfile, loadNFTs, setActiveRoomNo, setVisitFlag } = profileSlice.actions;
 
 export default profileSlice.reducer;

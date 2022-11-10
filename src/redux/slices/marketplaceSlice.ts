@@ -1,16 +1,17 @@
-import { demoRooms } from './../../data/Marketplace';
+import { rooms } from './../../data/Marketplace';
 import { showSuccessToast, showErrorToast, extractError } from './../../utils/index';
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ACTIONS from "config/actions";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
+import { RoomItemProps } from 'components/Marketplace/Rooms/Items/Item';
 
 export interface MarketplaceState {
-  selectedRoom: any;
+  selectedRoom: RoomItemProps;
   selectedNft: any;
 }
 
 const initialState: MarketplaceState = {
-  selectedRoom: demoRooms[0],
+  selectedRoom: rooms[0],
   selectedNft: {}
 };
 
@@ -47,9 +48,9 @@ export const marketplaceSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    setRoom: (state, action: PayloadAction<any>) => {
+    setRoom: (state, action: PayloadAction<RoomItemProps>) => {
       state.selectedRoom = action.payload
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(selectRoom.fulfilled, (state, action) => {

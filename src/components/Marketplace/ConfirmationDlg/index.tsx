@@ -5,24 +5,25 @@ import { LiveRoomListData, PsuedoAvatarItemData } from "data/Experience"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState } from "react"
+import { RootStateOrAny, useSelector } from 'react-redux'
 
 
 export type ConfirmationDlgType = {
-    id: number;
-    imgUrl: string;
-    collectionName: string;
-    roomName: string;
     numberOfFrames: number;
     connectingOtherUsers: boolean;
     anotherInfo: string;
-    price: number;
     dlgToggle: boolean;
     setDlgToggle: any;
 }
 
 function ConfirmationDlg(props: ConfirmationDlgType) {
+    const { selectedRoom } = useSelector((state: RootStateOrAny) => ({
+        selectedRoom: state.marketplace.selectedRoom
+    }));
+
     const [activeAvatar, setActiveAvatar] = useState(0)
     const [activeAvatarImg, setActiveAvatarImg] = useState(PsuedoAvatarItemData[0].imgUrl)
+    const [disabled, setDisabled] = useState(false);
     const router = useRouter()
     const [uName, setUName] = useState("")
 
@@ -34,8 +35,9 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
         }
     }
 
-    const goToRoomSetting = () => {
-        router.push('marketplace/' + props.id)
+    const BuyRoom = () => {
+        setDisabled(true);
+
     }
 
     return (
@@ -52,23 +54,23 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
                     <p className='text-center text-[24px] font-[500] text-white'>Confirmation Purchase</p>
                 </div>
                 <div className='h-[72px] rounded-[15px] bg-[#1D1D1E] flex p-[12px]'>
-                    <Image src={props.imgUrl} width={56} height={48} className='rounded-[10px]' />
+                    <Image src={selectedRoom.imgUrl} width={56} height={48} className='rounded-[10px]' />
                     <div className='ml-6'>
                         <div className='text-[#929298] text-[12px] font-[500] font-["outfit"]'>
-                            {props.collectionName}
+                            {selectedRoom.collectionName}
                         </div>
                         <div className='text-white text-[16px] font-[500] font-["outfit"]'>
-                            {props.roomName.length > 20 ? props.roomName.slice(0, 20) + "..." : props.roomName}
+                            {selectedRoom.roomName.length > 20 ? selectedRoom.roomName.slice(0, 20) + "..." : selectedRoom.roomName}
                         </div>
                     </div>
                 </div>
                 <div className='divide-y divide-[#1D1F1F]'>
                     <div className='flex justify-between text-[14px] py-[16px]'>
                         <div className='text-[#929298]'>
-                            Number of frames
+                            Price of Room (Verse)
                         </div>
                         <div className='text-[#F3F3F3]'>
-                            {props.numberOfFrames}
+                            {selectedRoom.price}
                         </div>
                     </div>
                     <div className='flex justify-between text-[14px] py-[16px]'>
@@ -89,9 +91,7 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
                     </div>
                 </div>
                 <div className="">
-                    <button onClick={goToRoomSetting} className="solarity-button font-medium py-[22px] px-[22px] rounded-[22px] text-white w-[100%] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center bg-primary">
-                        <span>{"Buy for " + props.price + " SOL"}</span>
-                    </button>
+                    <PrimaryButton caption={"Buy Room"} disabled={disabled} onClick={BuyRoom} />
                 </div>
             </div>
         </div>

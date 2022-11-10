@@ -3,7 +3,8 @@ import React from 'react'
 
 
 export interface RoomItemProps {
-  no?: number;
+  roomNo: number;
+  active?: boolean;
   collectionName: string;
   imgUrl: string;
   walletIcon: any;
@@ -15,8 +16,8 @@ export interface RoomItemProps {
 
 function Item(props: RoomItemProps) {
   return (
-    <div className=" flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
-                        relative cursor-pointer hover:border-primary col-span-4">
+    <div className={`flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
+                        relative cursor-pointer hover:border-primary col-span-4 ${props.active ? 'border-primary' : ''}`}>
       <div className=" rounded-[15px] overflow-hidden">
         <Image src={props.imgUrl} layout="responsive" width={387} height={232} alt="room_image" />
       </div>

@@ -59,17 +59,6 @@ body {
     font-feature-settings: 'ss03' on, 'kern' off;
 }
 
-.solarity-button:not(.button-disabled) {
-    /* box-shadow: 0px 0px 0px 7px rgba(41, 176, 128, 0.07); */
-    box-shadow: rgba(41, 176, 128, 0.27) 0px 25px 50px -12px;
-    /* border-radius: 5px; */
-}
-
-.back-button:not(.button-disabled):hover {
-    box-shadow: 0px 0px 0px 6px rgba(230, 230, 230, 0.07);
-    /* border-radius: 5px; */
-}
-
 .round-glow-1 {
     position: absolute;
     width: 30vw;

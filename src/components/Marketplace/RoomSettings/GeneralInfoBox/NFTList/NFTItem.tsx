@@ -5,14 +5,15 @@ export interface RoomSettingNFTItemProps {
     collectionName: string;
     nftName: string;
     imgUrl: string;
+    onClick: Function;
 }
 
 const NFTItem = (props: RoomSettingNFTItemProps) => {
     return (
         <div className=" flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
-                        relative cursor-pointer hover:border-primary">
+                        relative cursor-pointer hover:border-primary" onClick={() => props.onClick()}>
             <div className=" rounded-[15px] overflow-hidden">
-                <Image src={props.imgUrl} layout="responsive" width={153} height={143} alt="room_image" />
+                <img src={props.imgUrl} width={153} height={143} alt="room_image" />
             </div>
             <div className='flex md:flex-row xs:flex-col-reverse justify-between gap-[6px] mt-[20px]'>
                 <div className='font-[500] text-[14px] ml-[12px]'>

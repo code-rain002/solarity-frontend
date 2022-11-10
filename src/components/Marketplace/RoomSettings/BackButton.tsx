@@ -1,18 +1,9 @@
-import { useRouter } from "next/router";
-
 const BackButton = () => {
-  const router = useRouter();
-
-  const returnMarketplace = (e) => {
-    e.preventDefault();
-    router.push("/marketplace");
-  };
   return (
     <div
       className=" absolute w-[52px] h-[52px] rounded-[15px] box-border left-[32px] top-[32px] bg-[#131314]
                         border-[1.2px] border-[#272829] overflow-hidden flex
                         justify-center items-center cursor-pointer"
-      onClick={(e) => returnMarketplace(e)}
     >
       <svg
         width="16"

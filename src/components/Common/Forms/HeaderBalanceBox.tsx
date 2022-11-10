@@ -9,7 +9,6 @@ const BalanceBox = (props) => {
     const { profileData } = useSelector((state: RootStateOrAny) => ({
         profileData: state.profile.data
     }))
-    console.log(profileData.solanaAddress, profileData.ethereumAddress);
 
     const { coins, tokens, loading, error } = getWalletBalances({
         solanaAddress: profileData.solanaAddress,
