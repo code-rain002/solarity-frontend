@@ -111,6 +111,20 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
                     },
                     errorFunction: (err) => {
                         setDisabled(false);
+                        if (!!err) {
+                            toast.error(
+                                err,
+                                {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                }
+                            );
+                        }
                     },
                     finalFunction: () => {
                         setDisabled(false);
