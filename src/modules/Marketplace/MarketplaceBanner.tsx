@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image"
 import CollectionInfoDlg from 'components/Marketplace/CollectionInfoDlg'
 import { ExpandIcon } from 'components/icons/ExpandIcon';
@@ -25,6 +25,10 @@ const MarketplaceBanner = (props: MarketPlaceBannerType) => {
         dispatch(setVisitFlag(1));
         router.push(`/profile/editroom?no=${selectedRoom.roomNo}`);
     }
+
+    useEffect(() => {
+        document.getElementsByTagName('html')[0].classList.remove('a-fullscreen');
+    }, [])
 
     return (
         <div className={`rounded-[25px] md:bg-[#1A1A1C] md:flex xs:flex md:flex-row xs:flex-col justify-between ${props.isDlg ? "" : "xs:hidden"}`}>

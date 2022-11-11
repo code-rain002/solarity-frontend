@@ -158,7 +158,7 @@ export const placeBid = createAsyncThunk(
       const {
         data: { state },
       } = await apiCaller.post("/profile/checkRoom", {
-        roomNo: roomInfo.no,
+        roomNo: roomInfo.roomNo,
       });
 
       if (state == true) {
@@ -180,7 +180,7 @@ export const placeBid = createAsyncThunk(
         // subTitle: roomInfo.subTitle,
         imageUrl: roomInfo.imgUrl,
         currentBid: roomInfo.price,
-        roomNo: roomInfo.no,
+        roomNo: roomInfo.roomNo,
       });
       successFunction();
       returnValue = profile;

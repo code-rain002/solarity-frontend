@@ -48,7 +48,6 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
     const BuyRoom = async () => {
         setDisabled(true);
         const { publicKey, signTransaction } = wallet;
-        console.log();
         // spl-token payment for buying room.
         try {
             if (!process.env.NEXT_PUBLIC_WEBSITE_SOLANA_WALLET_ADDRESS || !process.env.NEXT_PUBLIC_SOLARITY_TOKEN_ADDRESS) {
@@ -87,19 +86,16 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
             transaction1.feePayer = await publicKey
             transaction1.recentBlockhash = await blockHash.blockhash
             const signed = await signTransaction(transaction1)
-            console.log({
-                selectedRoom,
-                signed,
-                connection,
-            });
             dispatch(
                 placeBid({
                     data: {
-                        selectedRoom,
+                        roomInfo: selectedRoom,
                         signed,
                         connection,
                     },
                     successFunction: () => {
+                        setDisabled(false);
+                        props.setDlgToggle(false);
                         toast.success(
                             "You got a room successfully. You can create a room and also decorate a room with own nfts in the profile",
                             {
@@ -114,8 +110,10 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
                         );
                     },
                     errorFunction: (err) => {
+                        setDisabled(false);
                     },
                     finalFunction: () => {
+                        setDisabled(false);
                     },
                 })
             );
