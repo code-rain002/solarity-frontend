@@ -109,7 +109,6 @@ const UserDaos = (props) => {
             description: nft.off_chain_data.description,
             symbol: nft.off_chain_data.symbol
           }))
-          console.log(formattedNfts)
           setNfts(formattedNfts);
           setDaoLoading(false);
         })

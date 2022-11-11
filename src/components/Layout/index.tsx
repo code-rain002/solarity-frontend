@@ -21,7 +21,6 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
     const [isMobile, setIsMobile] = useState(false);
     const wallet = useWallet();
-console.log(wallet)
     useEffect(() => {
         setIsMobile(checkBrowser())
     }, [])

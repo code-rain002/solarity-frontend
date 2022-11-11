@@ -36,7 +36,6 @@ const SearchFriendBox = (props) => {
 
     const onClickAvatar = (selectedItem) => {
         let newArr;
-        console.log(selectedAvatars)
         let index = selectedAvatars.findIndex((item, index) => item.name === selectedItem.name)
         if (index >= 0) {
             newArr = selectedAvatars.filter((item, index) => item.name !== selectedItem.name);

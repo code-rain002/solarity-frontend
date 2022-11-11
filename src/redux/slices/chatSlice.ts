@@ -180,7 +180,6 @@ export const chatSlice = createSlice({
     setTypingState: (state, action) => {
       if (action.payload.state == "false") {
         const memberIndex = state.typingMembers.findIndex(s => s == action.payload.name);
-        console.log(memberIndex);
         if (memberIndex != -1) {
           state.typingMembers.splice(memberIndex, 1);
           if (state.typingMembers.length == 0) {

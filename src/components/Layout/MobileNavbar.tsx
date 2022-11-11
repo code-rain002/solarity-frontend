@@ -14,7 +14,6 @@ const Footer = (props) => {
   useEffect(() => {
     const pathSegments = asPath.split("/");
     setCurrentPath(pathSegments[pathSegments.length - 1]);
-    console.log(profileData);
   }, [asPath])
 
   return (

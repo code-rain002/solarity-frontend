@@ -43,7 +43,7 @@ const Profile = ({ user, sidebarToggler }) => {
           <button onClick={leftScroll} className="bg-gradient-to-r from-[rgba(19,19,20,1)] via-[rgba(19,19,20,0.8)] to-[rgba(19,19,20,0)] pr-[35px] h-[73px]"><LeftArrow /></button>
         </div>
       </div>
-      {tabIndex === 0 ? <ProfileFeedContent sidebarToggler={sidebarToggler} /> : tabIndex === 1 ? <ProfileGalleryContent /> : tabIndex === 2 ? <ProfileRoomsContent /> : tabIndex == 3 ? <ProfileCommunitiesContent /> : ""}
+      {tabIndex === 0 ? <ProfileFeedContent sidebarToggler={sidebarToggler} /> : tabIndex === 1 ? <ProfileGalleryContent user={user} /> : tabIndex === 2 ? <ProfileRoomsContent user={user} /> : tabIndex == 3 ? <ProfileCommunitiesContent /> : ""}
     </div>
   )
 }

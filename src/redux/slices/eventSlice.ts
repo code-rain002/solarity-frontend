@@ -48,7 +48,6 @@ export const goStep = createAsyncThunk(
       stepNum: number
     };
   }) => {
-    console.log("step", payload)
     return payload;
   }
 );

@@ -16,10 +16,9 @@ const GalleryAvatarPanel = (props: GalleryAvatarPanelProps) => {
     return (
         <div onClick={() => props.onClick()} className={`transition duration-500 p-2 flex flex-col relative w-[258px] h-[310px] rounded-[20px] border-[1.5px] border-white/10 hover:border-primary z-10 bg-transparent cursor-pointer ${props.selected ? "border-primary" : ""}`}>
             <div className="rounded-[20px] avatar-panel w-full">
-                <Image
-                    src={props.imageSrc}
+                <img
+                    src={props.imageSrc ? props.imageSrc : ""}
                     alt={props.title}
-                    layout="responsive"
                     width={242}
                     height={232}
                 />
