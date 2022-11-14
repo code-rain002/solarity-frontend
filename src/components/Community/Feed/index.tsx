@@ -28,6 +28,7 @@ function Feed(props: FeedProps) {
         isPreview={props.isPreview}
         type={props.type}
         avatarUrl={community.avatarUrl}
+        websiteUrl={community.websiteUrl}
         backUrl={community.backUrl}
         title={community.communityName}
         description={community.description}

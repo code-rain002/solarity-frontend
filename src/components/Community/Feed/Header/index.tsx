@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import GameModal from '../../GameModal';
 import Description from './Description'
 import Preview from './Preview'
 import Stats from './Stats'
@@ -11,16 +12,25 @@ export interface HeaderProps {
   title: string;
   type: string;
   description: string;
+  websiteUrl: string;
   walletAddress: string;
   icon: any;
 }
 
 function Header(props: HeaderProps) {
+  const [gameModalVisibility, setGameModalVisibility] = useState(false);
+
   return (
     <div className='flex flex-col gap-[56px]'>
-      {props.isPreview && <Preview avatarUrl={props.avatarUrl} backUrl={props.backUrl} title={props.title} description={props.description} />}
+      {props.isPreview && <Preview avatarUrl={props.avatarUrl} setGameModalVisibility={setGameModalVisibility} backUrl={props.backUrl} title={props.title} description={props.description} />}
       {!props.isPreview && <div className='md:hidden lg:hidden sm:block xs:block'>
-        <Preview avatarUrl={props.avatarUrl} backUrl={props.backUrl} title={props.title} description={props.description} />
+        <Preview
+          avatarUrl={props.avatarUrl}
+          backUrl={props.backUrl}
+          title={props.title}
+          description={props.description}
+          setGameModalVisibility={setGameModalVisibility}
+        />
       </div>}
 
       <div className='grid custom-2xl:grid-cols-5 xl:grid-cols-4 xl:gap-12 gap-0 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1'>
@@ -32,6 +42,13 @@ function Header(props: HeaderProps) {
           <Stats id={props.id} type={props.type} />
         </div>
       </div>
+      {gameModalVisibility && (
+        <GameModal
+          closeFunc={() => setGameModalVisibility(false)}
+          title={props.title}
+          websiteUrl={props.websiteUrl}
+        />
+      )}
     </div>
   )
 }

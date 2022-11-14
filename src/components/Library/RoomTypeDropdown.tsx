@@ -1,5 +1,5 @@
 import { DownArrow, UpArrow } from "components/icons"
-import { useState } from "react"
+import React, { useState } from "react"
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux"
 import { setActiveRoomTypeIndex } from "redux/slices/chatSlice"
 

@@ -8,3 +8,4 @@ export { default as CancelButton } from "./CancelButton";
 export { default as DAORoleButton } from "./DAORoleButton";
 export { default as NormalButton } from "./NormalButton"
 export { default as SmallButton } from "./SmallButton"
+export { default as GreenButton } from "./GreenButton"
