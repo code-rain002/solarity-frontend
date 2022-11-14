@@ -3,7 +3,7 @@ import { CloseIcon } from "../../icons";
 
 type GameModalType = {
   closeFunc: Function;
-  title: string;
+  title: string
   websiteUrl: string;
 }
 
