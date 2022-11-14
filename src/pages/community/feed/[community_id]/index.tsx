@@ -60,7 +60,17 @@ function CommunityFeed() {
         !isExpand ? <Layout
           sidebarToggler={sidebarToggler}
           banner={isMarketplace ? <div className='mb-[60px]'>
-            <MarketplaceBanner isDlg={false} title={previewTitle} subtitle={previewSubtitle} description={'The user immediately has a preview of the first room in the list.'} price={previewPrice} activeRoom={previewImg} buy={Buy} expandRoom={expandRoom} isExpand={isExpand} />
+            <MarketplaceBanner
+              isDlg={false}
+              title={previewTitle}
+              subtitle={previewSubtitle}
+              description={'The user immediately has a preview of the first room in the list.'}
+              price={previewPrice}
+              activeRoom={previewImg}
+              buy={Buy}
+              expandRoom={expandRoom}
+              isExpand={isExpand}
+            />
           </div> : <></>}
           onClick={() => setSidebarToggler(!sidebarToggler)}
         >

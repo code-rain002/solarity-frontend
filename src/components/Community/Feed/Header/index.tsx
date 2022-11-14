@@ -18,9 +18,9 @@ export interface HeaderProps {
 function Header(props: HeaderProps) {
   return (
     <div className='flex flex-col gap-[56px]'>
-      {props.isPreview && <Preview avatarUrl={props.avatarUrl} backUrl={props.backUrl} />}
+      {props.isPreview && <Preview avatarUrl={props.avatarUrl} backUrl={props.backUrl} title={props.title} description={props.description} />}
       {!props.isPreview && <div className='md:hidden lg:hidden sm:block xs:block'>
-        <Preview avatarUrl={props.avatarUrl} backUrl={props.backUrl} />
+        <Preview avatarUrl={props.avatarUrl} backUrl={props.backUrl} title={props.title} description={props.description} />
       </div>}
 
       <div className='grid custom-2xl:grid-cols-5 xl:grid-cols-4 xl:gap-12 gap-0 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1'>
