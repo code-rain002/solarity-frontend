@@ -13,11 +13,9 @@ import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { placeBid } from "redux/slices/profileSlice";
 import { changeActiveRoom } from "redux/slices/profileSlice";
 
-// const BaseUrl = process.env.NODE_ENV === "development"
-// 	? process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL + "/"
-// 	: process.env.NEXT_PUBLIC_FRONTEND_URL + "/";
-
-const BaseUrl = "https://solarity-frontend.vercel.app";
+const BaseUrl = process.env.NODE_ENV === "development"
+	? process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL + "/"
+	: process.env.NEXT_PUBLIC_FRONTEND_URL + "/";
 
 const RoomIframe = (props) => {
   const dispatch = useDispatch();
@@ -128,7 +126,7 @@ const RoomIframe = (props) => {
       <div className="rounded-[16px] overflow-hidden">
         {roomInfo && (
           <iframe
-            src={BaseUrl + `/frames/ownroom${roomInfo.no}`}
+            src={BaseUrl + `/profile/editroom?no=${roomInfo.no}`}
             width={"100%"}
             height={340}
           ></iframe>
