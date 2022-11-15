@@ -3,7 +3,7 @@ import React, { FC, useState } from "react"
 import Profile from "modules/Profile"
 import Layout from "components/Layout"
 import ProfileBanner from "modules/Profile/ProfileBanner"
-import { getServerSideProps, UserPageProps } from "modules/User";
+import { getStaticPaths, UserPageProps, getStaticProps } from "modules/User";
 import NoUserView from "modules/User/NoUserView";
 
 const ProfileIndex: FC<UserPageProps> = ({ user, success }) => {
@@ -22,6 +22,6 @@ const ProfileIndex: FC<UserPageProps> = ({ user, success }) => {
     )
 }
 
-export { getServerSideProps };
+export { getStaticProps, getStaticPaths };
 
 export default ProfileIndex
