@@ -1,30 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { CloseIcon } from "../../icons";
 import { Rnd } from 'react-rnd'
+import { useDispatch } from "react-redux";
+import { setGameModalVisibility } from "redux/slices/commonSlice";
 
 type GameModalType = {
-  closeFunc: Function;
   title: string
   websiteUrl: string;
 }
 
 const GameModal = (props: GameModalType) => {
-
+  const dispatch = useDispatch();
   const [status, setStatus] = useState<any>({});
 
   useEffect(() => {
     const innerWidth = (window as any).innerWidth
     const innerHeight = (window as any).innerHeight
-
-    const defaultStatus = {
-      width: innerHeight * 85 / 100 * 16 / 9,
-      height: innerHeight * 85 / 100,
-      x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
-      y: innerHeight * (100 - 85) / 100 / 2
-    };
-
+    var defaultStatus = {};
+    if (localStorage.getItem('modal-position') == "") {
+      defaultStatus = {
+        width: innerHeight * 85 / 100 * 16 / 9,
+        height: innerHeight * 85 / 100,
+        x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
+        y: innerHeight * (100 - 85) / 100 / 2
+      };
+      localStorage.setItem('modal-position', JSON.stringify(defaultStatus));
+    } else {
+      defaultStatus = JSON.parse(localStorage.getItem('modal-position'));
+    }
     setStatus(defaultStatus);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('modal-position', JSON.stringify(status));
+  }, [status])
+
+  const closeFunc = () => {
+    dispatch(setGameModalVisibility(false));
+  }
 
   const enabledResizing = {
     bottom: false,
@@ -47,8 +60,9 @@ const GameModal = (props: GameModalType) => {
       x: (innerWidth - (innerHeight * 85 / 100 * 16 / 9)) / 2,
       y: innerHeight * (100 - 85) / 100 / 2
     };
+    localStorage.setItem('modal-position', JSON.stringify(defaultStatus));
     setStatus(defaultStatus)
-    props.closeFunc();
+    closeFunc();
   };
 
   return (
@@ -76,7 +90,7 @@ const GameModal = (props: GameModalType) => {
         >
           <div className={`modal-content w-[100%] h-[100%] flex flex-col relative bg-globalBgColor border-[1px] border-[#3d3f3f] rounded-[10px] resize select-none ${'px-[10px] pb-[10px] pt-[30px]'}`}>
             <div className={`${'handleDraggling'} m-auto right-0 h-[30px] w-[95%] absolute top-0 left-0 z-[10000] rounded-[50px] overflow-hidden cursor-move`}></div>
-            <div className="absolute top-[-27px] right-[-20px] cursor-pointer text-white z-[10001]" onClick={closeDlg}>
+            <div className="absolute top-[10px] right-[12px] cursor-pointer text-white z-[10001]" onClick={closeDlg}>
               <CloseIcon />
             </div>
             <iframe src={"https://theportal.to/demo"} frameBorder="0" className="w-full h-full"></iframe>

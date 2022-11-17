@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import React from 'react'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux';
+import { setSelectedGame } from 'redux/slices/commonSlice';
 
 export interface ItemProps {
     id?: number;
@@ -22,8 +24,13 @@ export interface ItemProps {
 
 function Item(props: ItemProps) {
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const goToFeed = () => {
+        dispatch(setSelectedGame({
+            title: props.communityName,
+            websiteUrl: props.websiteUrl,
+        }));
         router.push('/community/feed/' + props.id + '?type=' + props.type);
     }
 

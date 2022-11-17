@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { setGameModalVisibility } from 'redux/slices/commonSlice';
 import GameModal from '../../GameModal';
 import Description from './Description'
 import Preview from './Preview'
@@ -18,7 +20,10 @@ export interface HeaderProps {
 }
 
 function Header(props: HeaderProps) {
-  const [gameModalVisibility, setGameModalVisibility] = useState(false);
+  const dispatch = useDispatch();
+  const { gameModalVisibility } = useSelector((state: RootStateOrAny) => ({
+    gameModalVisibility: state.common.gameModalVisibility,
+  }))
   const [gameBannerVisibility, setGameBannerVisibility] = useState(false);
 
   return (
@@ -28,7 +33,6 @@ function Header(props: HeaderProps) {
           avatarUrl={props.avatarUrl}
           gameBannerVisibility={gameBannerVisibility}
           setGameBannerVisibility={setGameBannerVisibility}
-          setGameModalVisibility={setGameModalVisibility}
           backUrl={props.backUrl}
           title={props.title}
           description={props.description}
@@ -41,7 +45,6 @@ function Header(props: HeaderProps) {
           description={props.description}
           gameBannerVisibility={gameBannerVisibility}
           setGameBannerVisibility={setGameBannerVisibility}
-          setGameModalVisibility={setGameModalVisibility}
         />
       </div>}
 
@@ -54,13 +57,6 @@ function Header(props: HeaderProps) {
           <Stats id={props.id} type={props.type} />
         </div>
       </div>
-      {gameModalVisibility && (
-        <GameModal
-          closeFunc={() => setGameModalVisibility(false)}
-          title={props.title}
-          websiteUrl={props.websiteUrl}
-        />
-      )}
     </div>
   )
 }

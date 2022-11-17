@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
 import { ToastContainer } from "react-toastify";
 import { ConnectionProvider, useWallet, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
@@ -43,6 +42,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'styles/wallet.css';
 import AppLoader from "components/Layout/AppLoader";
 import { checkBrowser } from "utils";
+import GameModal from "components/Community/GameModal";
 
 const endpoint = "https://ssc-dao.genesysgo.net";
 
@@ -59,7 +59,7 @@ function MyApp({ children }) {
   const dimensions = useWindowDimensions();
   const wallet = useWallet();
   const { asPath } = router;
-  
+
   // useEffect(() => {
   //   if (!wallet.connected && asPath !== "/" ) {
   //     alert('Please connect wallet first')
@@ -132,6 +132,12 @@ function MyApp({ children }) {
           <WalletModalProvider>
             <MetaplexProvider>
               {children}
+              {store.getState().common.gameModalVisibility && (
+                <GameModal
+                  title={store.getState().common.selectedGame.title}
+                  websiteUrl={store.getState().common.selectedGame.websiteUrl}
+                />
+              )}
             </MetaplexProvider>
           </WalletModalProvider>
         </WalletProvider>
