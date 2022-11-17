@@ -1,4 +1,4 @@
-import { rooms } from './../../data/Marketplace';
+import { rooms, demoRooms } from './../../data/Marketplace';
 import { showSuccessToast, showErrorToast, extractError } from './../../utils/index';
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ACTIONS from "config/actions";
@@ -11,7 +11,7 @@ export interface MarketplaceState {
 }
 
 const initialState: MarketplaceState = {
-  selectedRoom: rooms[0],
+  selectedRoom: demoRooms[0],
   selectedNft: {}
 };
 

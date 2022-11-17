@@ -134,7 +134,7 @@ export const collectionsData: FilterItemProps[] = [
 
 export const rooms: RoomItemProps[] = [
     {
-        roomNo: 0,
+        no: 0,
         price: 1,
         imgUrl: "/images/marketplace/rooms/0.jpg",
         valueIcon: <EthereumIcon />,
@@ -144,7 +144,7 @@ export const rooms: RoomItemProps[] = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
     },
     {
-        roomNo: 1,
+        no: 1,
         price: 0.5,
         imgUrl: "/images/marketplace/rooms/1.png",
         valueIcon: <EthereumIcon />,
@@ -154,7 +154,7 @@ export const rooms: RoomItemProps[] = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,eget quisque pharetra, nisl. Nisl a proin a commodo libero purusduis. Leo, condimentum viverra mattis feugiat egestas est at nec.Praesent vitae fames feugiat diam mauris. Fringilla posuere quamenim id urna. Arcu, ut magna cursus pharetra semper a.",
     },
     {
-        roomNo: 2,
+        no: 2,
         price: 1.5,
         imgUrl: "/images/marketplace/rooms/2.jpg",
         valueIcon: <EthereumIcon />,

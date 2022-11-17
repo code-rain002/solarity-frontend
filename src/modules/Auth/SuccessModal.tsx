@@ -26,16 +26,6 @@ const SuccessModal = (props) => {
 						{/*body*/}
 						<div className="relative p-4 sm:p-8 flex-auto">
 							<div className="py-3">
-								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-full h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`} onClick={() => router.push({ pathname: '/auth/buyroom' })}>
-									<span className="">
-										Buy your own room
-									</span>
-									<div className="text-right flex flex-row items-center gap-3">
-										{/* <Image src={wallet.adapter.icon} width={28} height={28} /> */}
-									</div>
-								</button>
-							</div>
-							<div className="py-3">
 								<button className={`font-light py-[22px] px-[22px] rounded-[14px] text-white w-full h-[56px] text-[16px] sm:text-[20px] text-center tracking-wider border-none outline outline-primary hover:bg-focusbackground hover:outline-1 hover:outline-primary inline-flex items-center bg-[#1d1e20] justify-between`}>
 									<span className="">
 										Tweet your passport
