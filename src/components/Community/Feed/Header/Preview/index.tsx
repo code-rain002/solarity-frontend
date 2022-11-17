@@ -28,8 +28,9 @@ function Preview(props: PreviewProps) {
         </div>
       ) : (
         <div>
-          <div className='lg:h-[450px] md:h-[450px] sm:h-[300px] xs:h-[300px] w-full'>
-            <Image className='rounded-[25px]' width={1708} height={450} layout="responsive" src={props.backUrl} />
+          <div className='lg:h-[450px] md:h-[450px] sm:h-[300px] xs:h-[300px] w-full relative'>
+            <Image className='rounded-[25px]' layout="fill" src={props.backUrl} />
+            <div className='overlay-bg absolute top-0 left-0 right-0 bottom-0'></div>
           </div>
           <div className=' absolute left-10 lg:left-20 hidden md:block bottom-5'>
             <h2 className='text-[32px] font-semibold text-white'>{props.title}</h2>
