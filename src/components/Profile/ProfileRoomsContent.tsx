@@ -1,7 +1,7 @@
 import RoomsAvatarPanel from "components/Common/Panels/RoomsAvatarPanel"
 import { SettingsRoomsTabData } from "data/Profile"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import NoGalleryCollection from "./NoGalleryCollection"
 import RoomAvatar from "./RoomAvatar"
 
@@ -28,7 +28,7 @@ const ProfileRoomsContent = (props) => {
 
     return (
         <div className="flex flex-row gap-[32px] my-[32px]
-                        grid custom-2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-1 justify-items-center
+                        grid custom-2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 justify-items-center
                         sm:justify-around xs:justify-center">
             {ownRooms.length == 0 ? <NoGalleryCollection text="The user has no rooms" /> :
                 (

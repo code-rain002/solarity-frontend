@@ -15,7 +15,7 @@ const initialState = {
   nftsLoaded: false,
   activeRoomId: "",
   activeRoomNo: -1,
-  visitFlag: 1,
+  visitFlag: 0,
   step: 1
 };
 

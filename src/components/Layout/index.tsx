@@ -8,6 +8,9 @@ import MobileNavbar from "./MobileNavbar"
 import { checkBrowser } from 'utils'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import GameModal from 'components/Community/GameModal'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { setGameModalVisibility } from 'redux/slices/commonSlice'
 
 const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSearchString }: {
     children: any,

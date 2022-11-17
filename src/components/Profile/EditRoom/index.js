@@ -10,13 +10,12 @@ import SecondEditRoom from './SecondEditRoom';
 import ThirdEditRoom from './ThirdEditRoom';
 import freeObjectFromMemory from "utils/clearObject";
 import { ROOMS_ASSET } from 'data/Room';
-const EditRoom = () => {
+const EditRoom = (props) => {
   const router = useRouter();
   const { no } = router.query;
-  const { profile, rooms, visitFlag } = useSelector(state => ({
-    profile: state.profile.data,
-    rooms: state.profile.data.rooms,
-    visitFlag: state.profile.visitFlag,
+  const { rooms } = props.user;
+  const { visitFlag } = useSelector(state => ({
+    visitFlag: state.profile.visitFlag
   }))
   const [mounted, setMounted] = useState(false);
   const [roomInfo, setRoomInfo] = useState({});
@@ -124,7 +123,7 @@ const EditRoom = () => {
 
     //Link
     if(visitFlag == 0) {
-      router.push(`/${profile.username}/profile`);
+      router.push(`/${props.user.username}/profile`);
     } else if (visitFlag == 1) {
       router.push(`/marketplace`);
     }
@@ -151,10 +150,10 @@ const EditRoom = () => {
       {visitFlag == 1 && (
         <div>
           <TopRightMenu Complete={setSuccessDlgToggle} isHold={isHold} setIsHold={setIsHold} />
-          {profile && profile.solanaAddress && (
-            <GeneralInfoBox isHold={isHold} roomNo={no} picNo={picNo} imageUrl={imageUrl} setImageUrl={setImageUrl} setDlgToggle={setSuccessDlgToggle} chooseFlag={chooseFlag} setChooseFlag={setChooseFlag} />
+          {props.user && props.user.solanaAddress && (
+            <GeneralInfoBox user={props.user} isHold={isHold} roomNo={no} picNo={picNo} imageUrl={imageUrl} setImageUrl={setImageUrl} setDlgToggle={setSuccessDlgToggle} chooseFlag={chooseFlag} setChooseFlag={setChooseFlag} />
           )}
-          <SuccessfulDlg dlgToggle={successDlgToggle} setDlgToggle={setSuccessDlgToggle} />
+          <SuccessfulDlg username={props.user.username} dlgToggle={successDlgToggle} setDlgToggle={setSuccessDlgToggle} />
         </div>
       )}
     </div>

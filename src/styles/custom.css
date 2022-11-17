@@ -244,3 +244,8 @@ sup {
 .carousel-slider .control-dots .dot.selected {
     width: 50px !important;
 }
+
+.overlay-bg {
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 0.8) 100%);
+    border-radius: 25px;
+}
