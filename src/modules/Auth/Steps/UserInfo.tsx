@@ -25,7 +25,7 @@ import {
   startLoadingApp,
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
-import { StepTitle, WalletAddress } from "../Components";
+import { StepTitle, WalletAddress } from "./Components";
 
 const UserInfo = (props) => {
   const dispatch = useDispatch();

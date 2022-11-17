@@ -19,7 +19,7 @@ import {
 } from "../../../redux/slices/commonSlice";
 import { apiCaller } from "utils/fetcher";
 import { changeInfo, goStep } from "redux/slices/authSlice";
-import { StepTitle, WalletAddress } from "../Components";
+import { StepTitle, WalletAddress } from "./Components";
 import { useMetaplex } from "utils/contexts/useMetaplex";
 import { getNfts } from "hooks";
 import axios from "axios";

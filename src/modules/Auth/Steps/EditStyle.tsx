@@ -12,7 +12,7 @@ import {
   stopLoadingApp,
 } from "../../../redux/slices/commonSlice";
 import { changeInfo, goStep } from "redux/slices/authSlice";
-import { StepTitle, WalletAddress } from "../Components";
+import { StepTitle, WalletAddress } from "./Components";
 
 const EditStyle = (props) => {
   const { onMint } = props;
