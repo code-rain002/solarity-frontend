@@ -148,7 +148,7 @@ const EditRoom = () => {
       <div onClick={gotoProfile}>
         <BackButton />
       </div>
-      {visitFlag == 0 && (
+      {visitFlag == 1 && (
         <div>
           <TopRightMenu Complete={setSuccessDlgToggle} isHold={isHold} setIsHold={setIsHold} />
           {profile && profile.solanaAddress && (
