@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image"
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
@@ -18,7 +19,7 @@ const RoomAvatar = (props: RoomAvatarProps) => {
     const gotoRoom = () => {
         if (props.no != 2) {
             dispatch(setVisitFlag(0));
-            router.push(`/profile/editroom?no=${props.no}`);
+            router.push(`/${profile.username}/roomview?no=${props.no}`);
             props.onClose();
         }
     }

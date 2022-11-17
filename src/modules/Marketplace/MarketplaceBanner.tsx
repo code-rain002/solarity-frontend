@@ -17,13 +17,14 @@ export type MarketPlaceBannerType = {
 const MarketplaceBanner = (props: MarketPlaceBannerType) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { selectedRoom } = useSelector((state: RootStateOrAny) => ({
+    const { selectedRoom, profile } = useSelector((state: RootStateOrAny) => ({
         selectedRoom: state.marketplace.selectedRoom,
+        profile: state.profile.data
     }))
 
     const expandRoom = () => {
         dispatch(setVisitFlag(1));
-        router.push(`/profile/editroom?no=${selectedRoom.roomNo}`);
+        router.push(`/${profile.username}/roomview?no=${selectedRoom.roomNo}`);
     }
 
     useEffect(() => {

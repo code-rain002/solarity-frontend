@@ -10,14 +10,28 @@ import { SuccessIcon } from 'components/icons/SuccessIcon'
 interface SuccessfulDlgProps {
   dlgToggle: boolean;
   setDlgToggle: any;
+  username: string;
 }
 
 function SuccessfulDlg(props: SuccessfulDlgProps) {
-
+  const router = useRouter();
+  const { no } = router.query;
+  const [linkStr, setLinkStr] = useState('Copy link');
   const closeDlg = (e) => {
     if (e.target.id == "successful_dlg") {
       props.setDlgToggle(false)
     }
+  }
+
+  const copyRoomLink = () => {
+    setLinkStr('Copied!');
+    const link = process.env.NODE_ENV === "development" ?
+      process.env.NEXT_PUBLIC_LOCAL_FRONTEND_URL + '/' + props.username + '/roomview?no=' + no :
+      process.env.NEXT_PUBLIC_FRONTEND_URL + '/' + props.username + '/roomview?no=' + no;
+    navigator.clipboard.writeText(link)
+    setTimeout(() => {
+      setLinkStr('Copy link');
+    }, 2000);
   }
 
   return (
@@ -41,8 +55,11 @@ function SuccessfulDlg(props: SuccessfulDlgProps) {
             You can find your room in the list of rooms in your profile
           </div>
           <div className="w-full mt-[40px]">
-            <button className="w-full font-medium py-[16px] rounded-[15px] border-primary border-[1.2px] text-[#29B080] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center">
-              <span>Copy link</span>
+            <button
+              className="w-full font-medium py-[16px] rounded-[15px] border-primary border-[1.2px] text-[#29B080] h-[52px] text-[16px] sm:text-[16px] text-center tracking-wider inline-flex items-center justify-center"
+              onClick={copyRoomLink}
+            >
+              <span>{linkStr}</span>
             </button>
           </div>
           <div className="w-full mt-[24px]">

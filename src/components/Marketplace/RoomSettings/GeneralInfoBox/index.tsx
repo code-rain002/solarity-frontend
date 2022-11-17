@@ -17,12 +17,12 @@ type GeneralInfoBoxType = {
   roomNo: string;
   picNo: string;
   setImageUrl: Function;
+  user: any;
 };
 
 const GeneralInfoBox = (props: GeneralInfoBoxType) => {
   const dispatch = useDispatch();
-  const { rooms, username, solanaAddress } = useSelector((state: RootStateOrAny) => state.profile.data
-  );
+  const { rooms, username, solanaAddress } = props.user;
   const [nfts, nftLoading, nftError] = getNfts(username, solanaAddress);
 
   const [roomName, setRoomName] = useState('');
