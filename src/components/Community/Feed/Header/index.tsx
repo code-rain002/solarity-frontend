@@ -19,16 +19,28 @@ export interface HeaderProps {
 
 function Header(props: HeaderProps) {
   const [gameModalVisibility, setGameModalVisibility] = useState(false);
+  const [gameBannerVisibility, setGameBannerVisibility] = useState(false);
 
   return (
     <div className='flex flex-col gap-[56px]'>
-      {props.isPreview && <Preview avatarUrl={props.avatarUrl} setGameModalVisibility={setGameModalVisibility} backUrl={props.backUrl} title={props.title} description={props.description} />}
+      {props.isPreview &&
+        <Preview
+          avatarUrl={props.avatarUrl}
+          gameBannerVisibility={gameBannerVisibility}
+          setGameBannerVisibility={setGameBannerVisibility}
+          setGameModalVisibility={setGameModalVisibility}
+          backUrl={props.backUrl}
+          title={props.title}
+          description={props.description}
+        />}
       {!props.isPreview && <div className='md:hidden lg:hidden sm:block xs:block'>
         <Preview
           avatarUrl={props.avatarUrl}
           backUrl={props.backUrl}
           title={props.title}
           description={props.description}
+          gameBannerVisibility={gameBannerVisibility}
+          setGameBannerVisibility={setGameBannerVisibility}
           setGameModalVisibility={setGameModalVisibility}
         />
       </div>}
