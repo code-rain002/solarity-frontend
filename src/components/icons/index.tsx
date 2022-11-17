@@ -25,3 +25,4 @@ export { WinBar } from "./WinBar";
 export { User } from "./User";
 export { MemberIcon } from "./MemberIcon";
 export { SolanaLinkIcon } from "./SolanaLinkIcon";
+export { ViewIcon } from "./ViewIcon";
