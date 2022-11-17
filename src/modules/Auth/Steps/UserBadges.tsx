@@ -19,7 +19,7 @@ import React, { useState, useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { changeInfo, goStep } from "redux/slices/authSlice";
 import { minifyAddress } from "utils";
-import { StepTitle, WalletAddress } from "../Components";
+import { StepTitle, WalletAddress } from "./Components";
 import { badges } from 'data/Register';
 
 const UserBadges = (props) => {
