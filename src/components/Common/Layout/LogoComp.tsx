@@ -7,7 +7,7 @@ const LogoComp = () => {
       <div className="w-16 h-16">
         <Image src={'/logos/simple-logo.png'} layout="responsive" width={60} height={60} />
       </div>
-      <h1 className="pl-5 pt-1 text-[30px] text-[#BCBCBC]">SOLARITY</h1>
+      <h1 className="pl-5 pt-1 font-semibold text-[30px] text-[#BCBCBC]">SOLARITY</h1>
     </div>
   );
 }

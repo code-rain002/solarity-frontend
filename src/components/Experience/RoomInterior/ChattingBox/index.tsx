@@ -31,7 +31,7 @@ const ChattingBox = (props: ChattingBoxType) => {
 
   return (
     <div
-      className={` min-w-[20%] absolute md:bottom-[32px] xs:bottom-[78px] md:right-[32px] xs:right-[0px] w-[426px] md:top-[108px] xs:top-[0px] md:w-fit xs:w-full md:rounded-[24px] xs:rounded-[0px] border-[#1d1f1f] border-[1px] bg-[#131314]
+      className={`w-full h-full border-[#1d1f1f] border-[1px] bg-[#131314]
         ${props.leftSideActive === "chatting"
           ? "flex flex-col"
           : "hidden"

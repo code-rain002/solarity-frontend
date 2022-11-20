@@ -11,9 +11,10 @@ import Library from 'modules/Library'
 import GameDetail from 'modules/Library/GameDetail'
 import { Rnd } from 'react-rnd'
 import CreateEventModal from 'components/Library/CreateEventModal'
-import { RootStateOrAny, useSelector } from 'react-redux'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { ToggleChatBtn } from './Sidebar'
 import LogoComp from 'components/Common/Layout/LogoComp';
+import { setChatSidebarVisibility } from 'redux/slices/chatSlice'
 
 interface HeaderProps {
     searchString?: string;
@@ -21,10 +22,12 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
-    const { logged, profileData } = useSelector((state: RootStateOrAny) => ({
+    const { logged, profileData, chatSidebarVisibility } = useSelector((state: RootStateOrAny) => ({
         logged: state.auth.logged,
         profileData: state.profile.data,
+        chatSidebarVisibility: state.chat.chatSidebarVisibility,
     }))
+    const dispatch = useDispatch();
     const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
 
     const [userInfoToggle, setUserInfoToggle] = useState(false)
@@ -93,11 +96,11 @@ const Header = (props: HeaderProps) => {
     }
 
     const toggleChat = () => {
-
+        dispatch(setChatSidebarVisibility(!chatSidebarVisibility));
     }
 
     return (
-        <>
+        <div className='fixed top-0 left-0 right-0 bg-[#141414] z-[100]'>
             <div className="sm:flex xs:hidden
                             custom-2xl:px-[56px] xl:px-[25px] lg:px-[56px] md:px-[25px] sm:px-[20px] xs:px-[24px]
                             custom-2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col
@@ -125,7 +128,7 @@ const Header = (props: HeaderProps) => {
                         )}
                         <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
                         <div className='pl-10 flex items-center'>
-                            <ToggleChatBtn toggle={true} onClick={toggleChat} />
+                            <ToggleChatBtn toggle={!chatSidebarVisibility} onClick={toggleChat} />
                         </div>
                     </div>
                 </div>
@@ -201,7 +204,7 @@ const Header = (props: HeaderProps) => {
                     : null
             }
 
-        </>
+        </div>
     )
 }
 
