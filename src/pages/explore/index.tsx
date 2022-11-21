@@ -6,14 +6,14 @@ import ExploreBanner from "modules/Explore/ExploreBanner"
 
 const ProfileIndex = () => {
     const [sidebarToggler, setSidebarToggler] = useState(false)
-    
+
     return (
-        <Layout 
-            sidebarToggler={sidebarToggler} 
-            banner={<ExploreBanner sidebarToggler={sidebarToggler}/>}
-            onClick={() => setSidebarToggler(!sidebarToggler)} 
+        <Layout
+            sidebarToggler={sidebarToggler}
+            banner={<ExploreBanner sidebarToggler={sidebarToggler} />}
+            onClick={() => setSidebarToggler(!sidebarToggler)}
         >
-            <Explore sidebarToggler={sidebarToggler} />
+            <Explore />
         </Layout>
     )
 }

@@ -36,3 +36,94 @@ export const EXPLORE_BANNER_SLIDES: SliderType[] = [
     path: 'https://ev.io'
   },
 ];
+
+export const GAMES_EXPLORE: any[] = [
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+  {
+    backImage: "/images/explore/tmpGame.png",
+    name: 'Decentraland',
+  },
+];
+
+export const LIVE_ROOMS_EXPLORE: any[] = [
+  {
+    backImage: "/images/explore/tmpLives.png",
+    name: 'Grand Tournaments with 10k...',
+    members: 123,
+    DaoAvatar: '/images/explore/tmpDaoAvatar.png',
+    DaoTitle: '@ThungBirdzDAO',
+    collectionImage: '/images/explore/tmpCollection.png',
+    collectionName: 'Portals'
+  },
+  {
+    backImage: "/images/explore/tmpLives.png",
+    name: 'Grand Tournaments with 10k...',
+    members: 123,
+    DaoAvatar: '/images/explore/tmpDaoAvatar.png',
+    DaoTitle: '@ThungBirdzDAO',
+    collectionImage: '/images/explore/tmpCollection.png',
+    collectionName: 'Portals'
+  },
+  {
+    backImage: "/images/explore/tmpLives.png",
+    name: 'Grand Tournaments with 10k...',
+    members: 123,
+    DaoAvatar: '/images/explore/tmpDaoAvatar.png',
+    DaoTitle: '@ThungBirdzDAO',
+    collectionImage: '/images/explore/tmpCollection.png',
+    collectionName: 'Portals'
+  },
+  {
+    backImage: "/images/explore/tmpLives.png",
+    name: 'Grand Tournaments with 10k...',
+    members: 123,
+    DaoAvatar: '/images/explore/tmpDaoAvatar.png',
+    DaoTitle: '@ThungBirdzDAO',
+    collectionImage: '/images/explore/tmpCollection.png',
+    collectionName: 'Portals'
+  },
+  {
+    backImage: "/images/explore/tmpLives.png",
+    name: 'Grand Tournaments with 10k...',
+    members: 123,
+    DaoAvatar: '/images/explore/tmpDaoAvatar.png',
+    DaoTitle: '@ThungBirdzDAO',
+    collectionImage: '/images/explore/tmpCollection.png',
+    collectionName: 'Portals'
+  },
+  {
+    backImage: "/images/explore/tmpLives.png",
+    name: 'Grand Tournaments with 10k...',
+    members: 123,
+    DaoAvatar: '/images/explore/tmpDaoAvatar.png',
+    DaoTitle: '@ThungBirdzDAO',
+    collectionImage: '/images/explore/tmpCollection.png',
+    collectionName: 'Portals'
+  },];
