@@ -16,8 +16,8 @@ const LiveRoomItem = (props: NFTItemProps) => {
   return (
     <div className=" flex flex-col border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
                         relative cursor-pointer hover:border-primary">
-      <div className=" relative rounded-[15px] overflow-hidden lg:w-[312px] md:w-[312px] sm:w-[143px] xs:w-[143px]">
-        <Image src={props.backImage} layout="responsive" width={252} height={136} alt="room_image" />
+      <div className=" relative rounded-[15px] overflow-hidden lg:w-[312px] md:w-[312px]">
+        <img src={props.backImage} width="100%" height={136} alt="room_image" />
         <div className="absolute flex items-center justify-center bottom-[8px] right-[20px] m-auto w-auto gap-[8px] text-white">
           <Users />
           {props.members}
