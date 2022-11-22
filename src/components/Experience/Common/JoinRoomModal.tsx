@@ -97,8 +97,8 @@ const JoinRoomModal = () => {
       onClick={(e) => closeDlg(e)}
     >
       <div
-        className=" fixed md:w-[22%] xs:w-full h-[87.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px]
-                            flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] overscroll-contain"
+        className=" fixed top-[120px] md:w-[22%] xs:w-full h-[83.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px]
+                            flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] overscroll-contain z-[1002]"
       >
         <div
           className=" absolute md:right-[-18px] md:top-[-18px] xs:right-[49%] xs:top-[-58px] cursor-pointer "
@@ -194,7 +194,7 @@ const JoinRoomModal = () => {
             bordered={false}
             onClick={joinRoomFunc}
             disabled={joinDisable}
-            styles="pt-[12px] pb-[12px] h-fit rounded-[15px]"
+            styles="pt-[12px] h-fit rounded-[15px]"
           />
         </div>
       </div>

@@ -74,7 +74,7 @@ const CreateRoomModal = () => {
       onClick={(e) => closeDlg(e)}
     >
       <div
-        className=" fixed md:w-[40%] xs:w-full h-[87.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px] flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] overscroll-contain"
+        className=" fixed top-[120px] md:w-[40%] xs:w-full h-[83.5%] bg-[#131314] border-[1px] border-[#1d1d1f] rounded-[20px] flex flex-col pt-[28px] px-[32px] pb-[32px] gap-[24px] overscroll-contain"
       >
         {/* Modal Header */}
         <div
