@@ -8,6 +8,8 @@ export type SliderType = {
   title: string;
   backgroundImage: string;
   content: any;
+  index?: number;
+  type: string;
   button?: string;
   path?: string;
 }
@@ -15,7 +17,7 @@ export type SliderType = {
 const BannerSlide = (props: SliderType) => {
   const router = useRouter();
   const gotoPath = () => {
-    router.push(props.path);
+    router.push(`/community/feed/${props.index}?type=${props.type}`);
   }
 
   return (
