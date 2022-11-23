@@ -22,12 +22,13 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
+    const router = useRouter();
+    const dispatch = useDispatch();
     const { logged, profileData, chatSidebarVisibility } = useSelector((state: RootStateOrAny) => ({
         logged: state.auth.logged,
         profileData: state.profile.data,
         chatSidebarVisibility: state.chat.chatSidebarVisibility,
     }))
-    const dispatch = useDispatch();
     const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
 
     const [userInfoToggle, setUserInfoToggle] = useState(false)
@@ -52,6 +53,12 @@ const Header = (props: HeaderProps) => {
 
         setStatus(defaultStatus);
     }, []);
+
+    useEffect(() => {
+        if (profileData.username == undefined) {
+            router.push('/');
+        }
+    }, [profileData])
 
     const enabledResizing = {
         bottom: false,
