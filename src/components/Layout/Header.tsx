@@ -70,8 +70,13 @@ const Header = (props: HeaderProps) => {
 
     const [active, setActive] = useState(currentPath)
 
-    const item_arr = HeaderMenuTitles.map(function (i) {
-        return <HeaderMenuItem key={i} title={i} active={active === i.toLowerCase()} onClick={i === "Popup" ? () => openPopup(i) : () => setActive(i.toLowerCase())} setToggle={setGameLibraryToggle} />
+    const item_arr = HeaderMenuTitles.map(function (menu: any, index) {
+        return <HeaderMenuItem
+            key={index}
+            title={menu.name}
+            link={menu.link}
+            active={active === menu.link}
+        />
     })
 
     const openPopup = (i) => {

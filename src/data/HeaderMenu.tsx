@@ -1,11 +1,26 @@
 import { Home, Inbox, User, Users, WinBar } from "components/icons";
 
 export const HeaderMenuTitles = [
-    'Explore',
-    'Games',
-    'Marketplace',
-    'Communities',
-    'Live now',
+    {
+        name: 'Explore',
+        link: 'explore'
+    },
+    {
+        name: 'Marketplace',
+        link: 'marketplace'
+    },
+    {
+        name: 'Communities',
+        link: 'community'
+    },
+    {
+        name: 'Live now',
+        link: 'experience'
+    },
+    {
+        name: 'Games',
+        link: 'games'
+    }
     // 'Quests',
     // 'Library',
     // 'Popup',
