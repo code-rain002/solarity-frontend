@@ -65,7 +65,7 @@ const Header = (props: HeaderProps) => {
     }, [wallet])
 
     useEffect(() => {
-        if (connected) {
+        if (connected && !logged) {
             let publicKey = wallet.publicKey.toBase58();
             let type = 'solana';
             loginUser(publicKey, type, wallet);
@@ -88,8 +88,6 @@ const Header = (props: HeaderProps) => {
             url = '/auth/register';
         } else if (user.registerStep <= 5) {
             url = '/auth/register';
-        } else if (user.registerStep > 5) {
-            url = `/${user.username}/profile`
         }
         await dispatch(
             login({
