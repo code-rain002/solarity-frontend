@@ -178,7 +178,7 @@ const Header = (props: HeaderProps) => {
                                 <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
                             </div>
                         ) : (
-                            <WalletMultiButton />
+                            <WalletMultiButton style={{ fontSize: "18px", padding: "15px 20px", borderRadius: "10px" }} />
                         )}
                         <div className='pl-10 flex items-center'>
                             <ToggleChatBtn toggle={!chatSidebarVisibility} onClick={toggleChat} />

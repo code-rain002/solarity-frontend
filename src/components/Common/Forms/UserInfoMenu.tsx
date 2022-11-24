@@ -6,6 +6,7 @@ import DummyAvatarSmall from "../Layout/DummyAvatarSmall"
 import { setValue } from "utils"
 import Image from "next/image"
 import { logout } from 'redux/slices/authSlice';
+import { useWallet } from "@solana/wallet-adapter-react"
 
 const MenuItem = ({ children }) => {
   return (
@@ -17,11 +18,13 @@ const MenuItem = ({ children }) => {
 
 const UserInfoMenu = (props) => {
   const dispatch = useDispatch();
+  const { disconnect } = useWallet();
   const { profileData } = useSelector((state: RootStateOrAny) => ({
     profileData: state.profile.data,
   }));
 
-  const logoutFunc = () => {
+  const logoutFunc = async () => {
+    await disconnect();
     dispatch(logout());
   }
 
