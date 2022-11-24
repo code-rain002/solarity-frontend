@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import HeaderMenuItem from '../Common/Layout/HeaderMenuItem'
 import { HeaderMenuTitles } from 'data/HeaderMenu'
@@ -15,6 +15,10 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { ToggleChatBtn } from './Sidebar'
 import LogoComp from 'components/Common/Layout/LogoComp';
 import { setChatSidebarVisibility } from 'redux/slices/chatSlice'
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { useWallet } from '@solana/wallet-adapter-react'
+import { apiCaller } from 'utils/fetcher'
+import { login } from 'redux/slices/authSlice'
 
 interface HeaderProps {
     searchString?: string;
@@ -22,15 +26,31 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
-    const router = useRouter();
+    const wallet = useWallet();
     const dispatch = useDispatch();
+    const router = useRouter();
+    const { asPath } = useRouter();
+    const pathSegments = asPath.split("/");
+    const currentPath = pathSegments[pathSegments.length - 1]
     const { logged, profileData, chatSidebarVisibility } = useSelector((state: RootStateOrAny) => ({
         logged: state.auth.logged,
         profileData: state.profile.data,
         chatSidebarVisibility: state.chat.chatSidebarVisibility,
     }))
-    const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
 
+    const enabledResizing = {
+        bottom: false,
+        bottomLeft: true,
+        bottomRight: true,
+        left: false,
+        right: false,
+        top: false,
+        topLeft: true,
+        topRight: true,
+    }
+
+    const [active, setActive] = useState(currentPath)
+    const [balanceBoxToggle, setBalanceBoxToggle] = useState(false)
     const [userInfoToggle, setUserInfoToggle] = useState(false)
     const [gameLibraryToggle, setGameLibraryToggle] = useState(false);
     const [gameLibraryPageFlag, setGameLibraryPageFlag] = useState(0);
@@ -39,6 +59,47 @@ const Header = (props: HeaderProps) => {
     const [selectedGame, setSelectedGame] = useState(null);
 
     const [status, setStatus] = useState<any>();
+
+    const connected = useMemo(() => {
+        return wallet.connected;
+    }, [wallet])
+
+    useEffect(() => {
+        if (connected) {
+            let publicKey = wallet.publicKey.toBase58();
+            let type = 'solana';
+            loginUser(publicKey, type, wallet);
+        }
+    }, [connected]);
+
+    const loginUser = async (address, type, provider) => {
+        localStorage.setItem('publickey', address);
+        localStorage.setItem('type', type);
+
+        const {
+            data: { exist, user },
+        } = await apiCaller.post("/auth/userExist", {
+            publicKey: address,
+            walletType: type,
+        });
+
+        let url;
+        if (!exist) {
+            url = '/auth/register';
+        } else if (user.registerStep <= 5) {
+            url = '/auth/register';
+        } else if (user.registerStep > 5) {
+            url = `/${user.username}/profile`
+        }
+        await dispatch(
+            login({
+                publicKey: address,
+                walletType: type,
+                provider,
+                next: () => router.push({ pathname: url }),
+            })
+        );
+    };
 
     useEffect(() => {
         const innerWidth = (window as any).innerWidth
@@ -54,28 +115,6 @@ const Header = (props: HeaderProps) => {
         setStatus(defaultStatus);
     }, []);
 
-    useEffect(() => {
-        if (profileData.username == undefined) {
-            router.push('/');
-        }
-    }, [profileData])
-
-    const enabledResizing = {
-        bottom: false,
-        bottomLeft: true,
-        bottomRight: true,
-        left: false,
-        right: false,
-        top: false,
-        topLeft: true,
-        topRight: true,
-    }
-
-    const { asPath } = useRouter()
-    const pathSegments = asPath.split("/")
-    const currentPath = pathSegments[pathSegments.length - 1]
-
-    const [active, setActive] = useState(currentPath)
 
     const item_arr = HeaderMenuTitles.map(function (menu: any, index) {
         return <HeaderMenuItem
@@ -135,10 +174,14 @@ const Header = (props: HeaderProps) => {
                     <div className="flex flex-row
                                     md:justify-end sm:justify-end
                                     md:my-[20px] sm:my-[20px]">
-                        {logged && profileData && (
-                            <BalanceBox openState={balanceBoxToggle} onEnter={() => setBalanceBoxToggle(true)} onLeave={() => setBalanceBoxToggle(false)} />
+                        {logged && profileData ? (
+                            <div className='flex'>
+                                <BalanceBox openState={balanceBoxToggle} onEnter={() => setBalanceBoxToggle(true)} onLeave={() => setBalanceBoxToggle(false)} />
+                                <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
+                            </div>
+                        ) : (
+                            <WalletMultiButton />
                         )}
-                        <UserInfoMenu openState={userInfoToggle} onEnter={() => setUserInfoToggle(true)} onLeave={() => setUserInfoToggle(false)} />
                         <div className='pl-10 flex items-center'>
                             <ToggleChatBtn toggle={!chatSidebarVisibility} onClick={toggleChat} />
                         </div>
