@@ -9,7 +9,7 @@ export default function Items(props: NFTItemsProps) {
   return (
     <div className='relative w-full mt-[22px]'>
       <div className='absolute top-0 left-0 bottom-0 right-0 flex items-center justify-center z-[1000] text-white' style={{ backgroundColor: 'rgba(25, 25, 25, 0.99)' }}>
-        Comming Soon...
+        Coming Soon...
       </div>
       <div className='nft-items flex gap-7 h-30 w-[100%] relative cursor-pointer overflow-y-hidden overflow-x-hidden scroll-smooth flex-nowrap'>
         {
