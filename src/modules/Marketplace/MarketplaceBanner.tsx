@@ -65,10 +65,11 @@ const MarketplaceBanner = (props: MarketPlaceBannerType) => {
                             <div>
                                 <Image src={selectedRoom.imgUrl} layout="fill" />
                                 <div
-                                    className={`absolute md:top-[24px] md:right-[24px] transform md:translate-x-0 md:translate-y-0 xs:top-1/2 xs:right-1/2 xs:translate-x-1/2 xs:-translate-y-1/2 flex cursor-pointer w-[52px] h-[52px] rounded-[15px] border-[#272829] border-[1px] items-center justify-center bg-globalBgColor`}
+                                    className={`absolute text-[#e2e2e2] px-6 md:top-[24px] md:right-[24px] transform md:translate-x-0 md:translate-y-0 xs:top-1/2 xs:right-1/2 xs:translate-x-1/2 xs:-translate-y-1/2 flex cursor-pointer h-[52px] rounded-[15px] border-[#272829] border-[1px] items-center justify-center bg-globalBgColor`}
                                     onClick={expandRoom}
                                 >
-                                    <ExpandIcon />
+                                    <ExpandIcon /> &nbsp;
+                                    Enter
                                 </div>
                             </div>
                         )}
