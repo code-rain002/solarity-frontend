@@ -144,11 +144,11 @@ const EditRoom = (props) => {
           )}
         </div>
       )}
-      <div onClick={gotoProfile}>
-        <BackButton />
-      </div>
       {visitFlag == 1 && (
         <div>
+          <div onClick={gotoProfile}>
+            <BackButton />
+          </div>
           <TopRightMenu Complete={setSuccessDlgToggle} isHold={isHold} setIsHold={setIsHold} />
           {props.user && props.user.solanaAddress && (
             <GeneralInfoBox user={props.user} isHold={isHold} roomNo={no} picNo={picNo} imageUrl={imageUrl} setImageUrl={setImageUrl} setDlgToggle={setSuccessDlgToggle} chooseFlag={chooseFlag} setChooseFlag={setChooseFlag} />

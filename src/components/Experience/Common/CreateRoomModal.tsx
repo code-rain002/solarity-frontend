@@ -34,7 +34,7 @@ const CreateRoomModal = () => {
       return;
     }
 
-    if (selectedRoom.roomNo === undefined) {
+    if (selectedRoom.no === undefined) {
       setStep(0);
       alert('Select room first.');
       return;
@@ -51,7 +51,7 @@ const CreateRoomModal = () => {
     dispatch(createRoom({
       title: selectedRoom.roomName,
       type: selectedRoom.type,
-      roomNo: selectedRoom.roomNo,
+      roomNo: selectedRoom.no,
       roomName: newRoomTitle,
       userName: profileData.username,
       slideUrls: [],

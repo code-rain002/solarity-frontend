@@ -150,13 +150,15 @@ function ConfirmationDlg(props: ConfirmationDlgType) {
                     <p className='text-center text-[24px] font-[500] text-white'>Confirmation Purchase</p>
                 </div>
                 <div className='h-[72px] rounded-[15px] bg-[#1D1D1E] flex p-[12px]'>
-                    <Image src={selectedRoom.imgUrl} width={56} height={48} className='rounded-[10px]' />
+                    {selectedRoom.imgUrl && (
+                        <Image src={selectedRoom.imgUrl} width={56} height={48} className='rounded-[10px]' />
+                    )}
                     <div className='ml-6'>
                         <div className='text-[#929298] text-[12px] font-[500] font-["outfit"]'>
                             {selectedRoom.collectionName}
                         </div>
                         <div className='text-white text-[16px] font-[500] font-["outfit"]'>
-                            {selectedRoom.roomName.length > 20 ? selectedRoom.roomName.slice(0, 20) + "..." : selectedRoom.roomName}
+                            {selectedRoom.roomName && selectedRoom.roomName.length > 20 ? selectedRoom.roomName.slice(0, 20) + "..." : selectedRoom.roomName}
                         </div>
                     </div>
                 </div>

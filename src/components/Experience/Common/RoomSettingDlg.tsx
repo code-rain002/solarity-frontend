@@ -58,7 +58,7 @@ const RoomSettingDlg = (props: RoomSettingDlgType) => {
     dispatch(createRoom({
       title: selectedRoom.roomName,
       type: selectedRoom.type,
-      roomNo: selectedRoom.roomNo,
+      roomNo: selectedRoom.no,
       roomName: uName,
       userName: profileData.username,
       slideUrls: [],

@@ -13,9 +13,6 @@ function Items(props: ItemsProps) {
   const { selectedRoom } = useSelector((state: RootStateOrAny) => ({
     selectedRoom: state.marketplace.selectedRoom
   }))
-  useEffect(() => {
-    console.log(props.rooms, selectedRoom.roomNo)
-  }, []);
 
   const visitRoom = (room: RoomItemProps) => {
     dispatch(setRoom(room));
