@@ -10,6 +10,7 @@ import { apiCaller } from "utils/fetcher";
 import { useDispatch } from "react-redux";
 import { goStep, login } from "redux/slices/authSlice";
 import { useRouter } from "next/router";
+import { startLoadingApp, stopLoadingApp } from "redux/slices/commonSlice";
 
 export const HomePage = () => {
   const wallet = useWallet();
@@ -48,13 +49,18 @@ export const HomePage = () => {
     } else if (user.registerStep > 5) {
       url = `/${user.username}/profile`
     }
+
+    dispatch(startLoadingApp());
+
     await dispatch(
       login({
         publicKey: address,
         walletType: type,
         provider,
-        next: () =>
-          router.push({ pathname: url }),
+        next: () => {
+          dispatch(stopLoadingApp());
+          router.push({ pathname: url })
+        },
       })
     );
   };
@@ -85,8 +91,10 @@ export const HomePage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 mt-[20px] items-baseline px-[10px] sm:pl-0">
         <div>
           <BannerText />
-          <WalletMultiButton />
-          {/* <a href="https://phantom.app/ul/browse/https%3A%2F%2Fsolarity-new-frontend.vercel.app?ref=https%3A%2F%2Fsolarity-new-frontend.vercel.app" className="text-white">Go to Phantom App</a> */}
+          <div className="flex flex-row justify-start items-center gap-6">
+            <WalletMultiButton />
+            <button className="text-white text-[22px]" onClick={() => router.push({ pathname: '/explore' })}>Skip</button>
+          </div>
         </div>
       </div>
       <div className="hidden sm:block absolute top-0 right-0 -z-10">
