@@ -49,6 +49,7 @@ const ExperienceBanner = () => {
           </div>
         </div>
       )}
+
       {!!selectedLiveRoom.title && (
         <RoomInfoDlg
           selectedLiveRoom={selectedLiveRoom}
