@@ -84,7 +84,7 @@ export const login = createAsyncThunk(
       // dispatch(stopLoadingApp());
     } catch (err) {
       console.log(err);
-      // dispatch(stopLoadingApp());
+      dispatch(stopLoadingApp());
     }
     return response;
   }
