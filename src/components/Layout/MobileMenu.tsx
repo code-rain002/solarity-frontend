@@ -18,8 +18,13 @@ const MobileMenu = (props: MobileMenuProps) => {
 
     const [active, setActive] = useState('Explore');
 
-    const item_arr = HeaderMenuTitles.map(function (i) {
-        return <MobileHeaderMenuItem key={i} title={i} active={active === i} onClick={() => setActive(i)} />
+    const item_arr = HeaderMenuTitles.map(function (menu: any, index) {
+        return <MobileHeaderMenuItem
+            key={index}
+            title={menu.name}
+            active={active === menu.link}
+            onClick={() => setActive(menu.link)}
+        />
     })
 
     return (

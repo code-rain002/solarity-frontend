@@ -86,7 +86,7 @@ const ProfileIndex = () => {
     }
 
     const createRoomModal = () => {
-        if (selectedRoom && selectedRoom.roomNo != -1) {
+        if (selectedRoom && selectedRoom.no != -1) {
             setRoomSettingDlgToggle([true, "create"]);
         } else {
             alert('Please select a room to create');

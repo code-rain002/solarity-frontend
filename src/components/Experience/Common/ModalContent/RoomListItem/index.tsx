@@ -18,13 +18,15 @@ const RoomListItem = (props: RoomListItemType) => {
 
   return (
     <div
-      className={`flex flex-col h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary ${selectedRoom && selectedRoom.roomNo == props.roomNo && selectedRoom.type == props.type ? 'border-primary' : ''}`}
-      onClick={() => dispatch(setSelectedRoom({
-        type: props.type,
-        roomNo: props.roomNo,
-        roomName: props.roomName,
-        imageUrl: props.imgUrl,
-      }))}
+      className={`flex flex-col h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px] relative cursor-pointer hover:border-primary ${selectedRoom && selectedRoom.no == props.roomNo && selectedRoom.type == props.type ? 'border-primary' : ''}`}
+      onClick={() => {
+        dispatch(setSelectedRoom({
+          type: props.type,
+          no: props.roomNo,
+          roomName: props.roomName,
+          imageUrl: props.imgUrl,
+        }));
+      }}
     >
       <div className=" rounded-[15px] overflow-hidden">
         <Image
@@ -39,7 +41,7 @@ const RoomListItem = (props: RoomListItemType) => {
         {props.roomName}
       </div>
       <div
-        className={` top-[18px] left-[18px] ${selectedRoom && selectedRoom.roomNo == props.roomNo && selectedRoom.type == props.type ? "absolute" : "hidden"
+        className={` top-[18px] left-[18px] ${selectedRoom && selectedRoom.no == props.roomNo && selectedRoom.type == props.type ? "absolute" : "hidden"
           } `}
       >
         <svg

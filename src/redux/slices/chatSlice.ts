@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ACTIONS from "config/actions";
 
 export interface CounterState {
+  chatSidebarVisibility: boolean;
   roomName: string;
   userName: string;
   modelIndex: Number;
@@ -29,6 +30,7 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
+  chatSidebarVisibility: false,
   roomName: '',
   userName: '',
   modelIndex: 0,
@@ -204,10 +206,13 @@ export const chatSlice = createSlice({
     },
     setSelectedChatUserName: (state, action) => {
       state.selectedChatUserName = action.payload;
+    },
+    setChatSidebarVisibility: (state, action: PayloadAction<boolean>) => {
+      state.chatSidebarVisibility = action.payload
     }
   },
 });
 
-export const { setCreateModalVisibility, setSelectedChatUserName, setReply, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { setCreateModalVisibility, setChatSidebarVisibility, setSelectedChatUserName, setReply, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
 
 export default chatSlice.reducer;

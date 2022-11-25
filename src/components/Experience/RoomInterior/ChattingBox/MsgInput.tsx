@@ -129,6 +129,11 @@ const MsgInput = (props: MsgInputType) => {
       //   });
       // }
 
+      if (members.length != 2) {
+
+        return;
+      }
+
       dispatch(setNewMsg({
         ...newMsg,
         attachments: {

@@ -1,17 +1,15 @@
-import { rooms, demoRooms } from './../../data/Marketplace';
-import { showSuccessToast, showErrorToast, extractError } from './../../utils/index';
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ACTIONS from "config/actions";
 import { apiCaller, getErrorMessage } from "utils/fetcher";
 import { RoomItemProps } from 'components/Marketplace/Rooms/Items/Item';
 
 export interface MarketplaceState {
-  selectedRoom: RoomItemProps;
+  selectedRoom: any;
   selectedNft: any;
 }
 
 const initialState: MarketplaceState = {
-  selectedRoom: demoRooms[0],
+  selectedRoom: {},
   selectedNft: {}
 };
 

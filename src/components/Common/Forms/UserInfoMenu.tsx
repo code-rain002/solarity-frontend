@@ -1,10 +1,12 @@
 import React, { useEffect } from "react"
-import { useSelector, RootStateOrAny } from "react-redux"
+import { useSelector, RootStateOrAny, useDispatch } from "react-redux"
 import Link from "next/link"
 import { UpArrow, DownArrow, SettingsIcon, LogOutIcon } from "components/icons"
 import DummyAvatarSmall from "../Layout/DummyAvatarSmall"
 import { setValue } from "utils"
 import Image from "next/image"
+import { logout } from 'redux/slices/authSlice';
+import { useWallet } from "@solana/wallet-adapter-react"
 
 const MenuItem = ({ children }) => {
   return (
@@ -15,9 +17,16 @@ const MenuItem = ({ children }) => {
 }
 
 const UserInfoMenu = (props) => {
+  const dispatch = useDispatch();
+  const { disconnect } = useWallet();
   const { profileData } = useSelector((state: RootStateOrAny) => ({
     profileData: state.profile.data,
   }));
+
+  const logoutFunc = async () => {
+    await disconnect();
+    dispatch(logout());
+  }
 
   return (
     <div className="select-none flex flex-row items-center border-l-semiSplitter border-l-[1px] h-full ">
@@ -58,10 +67,12 @@ const UserInfoMenu = (props) => {
             Settings
           </MenuItem>
           <MenuItem>
-            <div className="mr-[14px]">
-              <LogOutIcon />
+            <div onClick={logoutFunc} className="flex">
+              <div className="mr-[14px]">
+                <LogOutIcon />
+              </div>
+              Log out
             </div>
-            Log out
           </MenuItem>
         </div>
 

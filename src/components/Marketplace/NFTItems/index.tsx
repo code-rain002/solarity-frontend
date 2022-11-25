@@ -15,7 +15,7 @@ export default function NFTItems() {
 
   return (
     <div className='grid grid-cols-1'>
-      <Header name={'Solana Money Boys'} count={13} onRightArrowClick={RightArrowClick} onLeftArrowClick={LeftArrowClick} />
+      <Header name={'Inventory'} count={13} onRightArrowClick={RightArrowClick} onLeftArrowClick={LeftArrowClick} />
       <div className=' col-span-1'>
         <Items items={nftItems.items} />
       </div>

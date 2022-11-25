@@ -7,6 +7,7 @@ import socket from "utils/socket-client";
 import { signMessage } from "utils/walletHelpers";
 import { extractError, showErrorToast, showSuccessToast } from "utils";
 import ACTIONS from 'config/actions';
+import { Router } from 'next/router';
 
 export interface CounterState {
   roomName: string;
@@ -196,12 +197,12 @@ export const goStep = createAsyncThunk(
   }) => {
     try {
       const {
-        data: {},
+        data: { },
       } = await apiCaller.post("/auth/setStep", {
         stepNum,
         data,
       });
-    } catch(err) {
+    } catch (err) {
       alert('err: ')
     }
     if (next) next();

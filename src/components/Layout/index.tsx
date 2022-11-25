@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import Sidebar from './Sidebar'
+import ChatSidebar from './ChatSidebar'
 import Header from './Header'
 import MobileTopBar from "./MobileTopBar"
 import MobileMenu from "./MobileMenu"
@@ -20,6 +21,9 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
     searchString?: string;
     setSearchString?: Function;
 }) => {
+    const { chatSidebarVisibility } = useSelector((state: RootStateOrAny) => ({
+        chatSidebarVisibility: state.chat.chatSidebarVisibility,
+    }))
 
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
     const [isMobile, setIsMobile] = useState(false);
@@ -32,11 +36,20 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
         <div className="bg-globalBgColor flex sm:flex-row xs:flex-col w-full relative">
             <MobileTopBar mobileMenuToggler={mobileMenuToggler} onClick={() => setMobileMenuToggler(!mobileMenuToggler)} />
             <MobileMenu searchString={searchString} setSearchString={setSearchString} mobileMenuToggler={mobileMenuToggler} onClick={() => setMobileMenuToggler(!mobileMenuToggler)} />
-            <Sidebar onClick={onClick} sidebarToggler={sidebarToggler} />
-            <div className="bg-globalBgColor flex flex-col custom-2xl:px-[56px] xl:px-[25px] lg:px-[56px] md:px-[25px] sm:px-[20px] xs:px-[24px] w-full pb-7">
+            <div className="bg-globalBgColor w-full pb-7">
                 <Header searchString={searchString} setSearchString={setSearchString} />
-                {banner}
-                {children}
+                <div className='flex w-full'>
+                    <Sidebar onClick={onClick} sidebarToggler={sidebarToggler} />
+                    <div className={`fixed left-[100px] top-[112px] bottom-0 overflow-y-auto ${chatSidebarVisibility ? 'right-[400px]' : 'right-0'}`}>
+                        <div className='w-full custom-2xl:px-[32px] xl:px-[25px] lg:px-[32px] md:px-[25px] sm:px-[20px] xs:px-[24px]'>
+                            {banner}
+                            {children}
+                        </div>
+                    </div>
+                    {chatSidebarVisibility && (
+                        <ChatSidebar />
+                    )}
+                </div>
             </div>
             {isMobile && (
                 <MobileNavbar />
