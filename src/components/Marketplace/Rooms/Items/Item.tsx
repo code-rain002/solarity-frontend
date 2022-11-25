@@ -3,7 +3,7 @@ import React from 'react'
 
 
 export interface RoomItemProps {
-  no: number;
+  no?: number;
   active?: boolean;
   collectionName: string;
   imgUrl: string;
