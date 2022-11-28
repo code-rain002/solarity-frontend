@@ -1,12 +1,12 @@
 
 type ExploreRoomTitleType = {
-    number : any
+    number: any
 }
 
-const ExploreRoomTitle = (props : ExploreRoomTitleType) => {
+const ExploreRoomTitle = (props: ExploreRoomTitleType) => {
     return (
         <div className=" font-['Outfit'] font-[500] text-[24px] text-[#f3f3f3] flex flex-row mb-[22px]">
-            Explore
+            Top Rooms
             <div className="text-[#474749] ml-[15px] ">
                 {props.number}
             </div>
