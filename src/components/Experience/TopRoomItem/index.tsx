@@ -28,37 +28,13 @@ const TopRoomItem: FC<TopRoomItemProps> = ({
   }
 
   return (
-    <div
-      className={`flex flex-col w-[100%] h-fit border-[1.2px] border-[#272829] rounded-[20px] p-[8px]
-                        relative cursor-pointer hover:border-primary custom-2xl:col-span-3 xl:col-span-4 lg:col-span-6 xs:col-span-6`}
-      onClick={gotoRoom}
-    >
-      <div className=" rounded-[15px] overflow-hidden">
-        <Image
-          src={imageUrl}
-          layout="responsive"
-          width={387}
-          height={232}
-          alt="room_image"
-        />
-      </div>
-      <div className=" mt-[20px] font-['Outfit'] font-[200] text-[16px] text-[#f3f3f3] ml-[12px]  mb-[12px] truncate">
-        {title}
-      </div>
-
-      <div className="absolute flex items-center justify-center top-[20px] left-[20px] m-auto w-auto gap-[12px]">
-        <span
-          className="md:flex xs:hidden items-center justify-center h-[25px] w-[25px] text-[12px] text-[#f3f3f3] bg-[rgba(12,12,14,0.5)] rounded-[15px]
-                                border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer"
-        >
-          <img src="/images/loading_logo.png" width={25} height={25} alt="wallet icon" />
-        </span>
-        <span
-          className="flex items-center justify-center h-[25px] text-[12px] font-[200] text-[#f3f3f3] px-2 bg-[rgba(12,12,14,0.5)] rounded-[15px]
-                                border-[1.5px] border-[rgba(0,0,0,0)] hover:border-primary cursor-pointer"
-        >
-          <span className="text-primary">Private room</span>
-        </span>
+    <div className="flex flex-col col-span-2 relative overflow-hidden cursor-pointer
+      w-full rounded-[20px] border-[1.2px] border-[#272829] hover:border-primary transition duration-300 bg-[#242424]" onClick={gotoRoom}>
+      <div className="w-full"><Image src={imageUrl} width="100%" height="70%" layout="responsive" alt="room_image" /></div>
+      <div className="py-[8px] px-[20px]">
+        <div className="text-[20px] text-[#F3F3F3] leading-[32px]">{title}</div>
+        <div className="flex items-center justify-between text-[#29B080] text-[14px]">
+        </div>
       </div>
     </div>
   );
