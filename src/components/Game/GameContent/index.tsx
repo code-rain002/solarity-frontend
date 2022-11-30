@@ -43,6 +43,15 @@ const GameContent = () => {
       {activeIndex === 0 && (
         <GameHome />
       )}
+      {activeIndex === 1 && (
+        <div>Quests Part</div>
+      )}
+      {activeIndex === 2 && (
+        <div>Marketplace Part</div>
+      )}
+      {activeIndex === 3 && (
+        <div>Guilds Part</div>
+      )}
     </div>
   );
 }
