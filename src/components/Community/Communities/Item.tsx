@@ -19,6 +19,7 @@ export interface ItemProps {
     websiteUrl?: string;
     twitterUrl?: string;
     discordUrl?: string;
+    iframeUrl?: string;
     walletIcon?: any;
 }
 
