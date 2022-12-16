@@ -104,13 +104,13 @@ export const games: ItemProps[] = [
         twitterUrl: "https://www.twitter.com/webaverse",
         discordUrl: "https://discord.gg/webaverse",
         iframeUrl: "https://app.webaverse.com/",
-        walletIcon: <SolanaLinkIcon />
+        walletIcon: <EthereumIcon />
     },
     {
         avatarUrl: '/images/community/avatars/Picture (8).png',
         backUrl: '/images/community/backs/BG (6).png',
         communityName: 'Portals',
-        collectionName: 'portals',
+        collectionName: 'Solana',
         memberNumber: 5000,
         totalSupply: 2850,
         icon: <MemberIcon />,
@@ -152,7 +152,7 @@ export const games: ItemProps[] = [
         twitterUrl: "https://www.twitter.com/decentraland",
         discordUrl: "https://discord.gg/svZP5W7tmq",
         iframeUrl: "https://play.decentraland.org/",
-        walletIcon: <SolanaLinkIcon />
+        walletIcon: <EthereumIcon />
     },
     {
         avatarUrl: '/images/community/avatars/Picture (10).png',
@@ -168,7 +168,7 @@ export const games: ItemProps[] = [
         twitterUrl: "https://www.twitter.com/Worldwide_WEB3",
         discordUrl: "https://discord.gg/worldwidewebb",
         iframeUrl: "https://alpha.webb.game/",
-        walletIcon: <SolanaLinkIcon />
+        walletIcon: <EthereumIcon />
     }
 ]
 
