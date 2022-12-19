@@ -91,6 +91,7 @@ export const communities: ItemProps[] = [
 
 export const games: ItemProps[] = [
     {
+        itemUrl: '/images/community/posters/Webaverse.png',
         avatarUrl: '/images/community/avatars/Picture (1).png',
         backUrl: '/images/community/backs/BG (1).png',
         communityName: 'Webaverse',
@@ -107,6 +108,7 @@ export const games: ItemProps[] = [
         walletIcon: <EthereumIcon />
     },
     {
+        itemUrl: '/images/community/posters/Portals.png',
         avatarUrl: '/images/community/avatars/Picture (8).png',
         backUrl: '/images/community/backs/BG (6).png',
         communityName: 'Portals',
@@ -123,6 +125,7 @@ export const games: ItemProps[] = [
         walletIcon: <SolanaLinkIcon />
     },
     {
+        itemUrl: '/images/community/posters/evio.png',
         avatarUrl: '/images/community/avatars/Picture (3).png',
         backUrl: '/images/community/backs/BG (3).png',
         communityName: 'ev.io',
@@ -139,6 +142,7 @@ export const games: ItemProps[] = [
         walletIcon: <SolanaLinkIcon />
     },
     {
+        itemUrl: '/images/community/posters/Decentraland.png',
         avatarUrl: '/images/community/avatars/Picture (6).png',
         backUrl: '/images/community/backs/BG (11).png',
         communityName: 'Decentraland',
@@ -155,6 +159,7 @@ export const games: ItemProps[] = [
         walletIcon: <EthereumIcon />
     },
     {
+        itemUrl: '/images/community/posters/webb.png',
         avatarUrl: '/images/community/avatars/Picture (10).png',
         backUrl: '/images/community/backs/BG (5).png',
         communityName: 'WorldWideWeb',

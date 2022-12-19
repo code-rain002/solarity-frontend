@@ -6,6 +6,7 @@ import { setSelectedGame } from 'redux/slices/commonSlice';
 
 export interface ItemProps {
     id?: number;
+    itemUrl: string;
     avatarUrl: string;
     backUrl: string;
     communityName: string;
