@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { GreenButton } from '../../../../Common/Buttons';
 import { CloudIcon } from '../../../../icons/CloudIcon';
 import { ViewIcon } from '../../../../icons';
