@@ -29,6 +29,7 @@ function Feed(props: FeedProps) {
         type={props.type}
         avatarUrl={community.avatarUrl}
         websiteUrl={community.websiteUrl}
+        iframeUrl={community.iframeUrl ? community.iframeUrl: ""}
         backUrl={community.backUrl}
         title={community.communityName}
         description={community.description}

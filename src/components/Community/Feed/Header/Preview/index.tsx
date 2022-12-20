@@ -9,6 +9,7 @@ import { setGameModalVisibility } from 'redux/slices/commonSlice';
 export interface PreviewProps {
   avatarUrl: string;
   backUrl: string;
+  iframeUrl: string;
   title: string;
   description: string;
   gameBannerVisibility: boolean;
@@ -22,7 +23,7 @@ function Preview(props: PreviewProps) {
       {props.gameBannerVisibility ? (
         <div>
           <div className='lg:h-[450px] md:h-[450px] sm:h-[300px] xs:h-[300px] w-full'>
-            <iframe src={"https://theportal.to/demo"} frameBorder="0" className="w-full h-full"></iframe>
+            <iframe src={props.iframeUrl} frameBorder="0" className="w-full h-full"></iframe>
           </div>
           <div className=' absolute right-5 md:right-20 bottom-10'>
             <GreenButton caption='Full Screen' icon={<ViewIcon />} onClick={() => dispatch(setGameModalVisibility(true))} />
