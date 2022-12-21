@@ -6,6 +6,7 @@ import { setSelectedGame } from 'redux/slices/commonSlice';
 
 export interface ItemProps {
     id?: number;
+    itemUrl: string;
     avatarUrl: string;
     backUrl: string;
     communityName: string;
@@ -19,6 +20,7 @@ export interface ItemProps {
     websiteUrl?: string;
     twitterUrl?: string;
     discordUrl?: string;
+    iframeUrl?: string;
     walletIcon?: any;
 }
 

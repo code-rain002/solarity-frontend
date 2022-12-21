@@ -15,6 +15,7 @@ export interface HeaderProps {
   type: string;
   description: string;
   websiteUrl: string;
+  iframeUrl: string;
   walletAddress: string;
   icon: any;
 }
@@ -31,6 +32,7 @@ function Header(props: HeaderProps) {
       {props.isPreview &&
         <Preview
           avatarUrl={props.avatarUrl}
+          iframeUrl={props.iframeUrl}
           gameBannerVisibility={gameBannerVisibility}
           setGameBannerVisibility={setGameBannerVisibility}
           backUrl={props.backUrl}
@@ -40,6 +42,7 @@ function Header(props: HeaderProps) {
       {!props.isPreview && <div className='md:hidden lg:hidden sm:block xs:block'>
         <Preview
           avatarUrl={props.avatarUrl}
+          iframeUrl={props.iframeUrl}
           backUrl={props.backUrl}
           title={props.title}
           description={props.description}
