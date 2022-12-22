@@ -174,7 +174,7 @@ const Input = (props: InputType) => {
     <div
       className={` flex flex-col rounded-[15px] border-[1.2px] ${props.focusState ? "border-primary" : "border-[#272829]"
         } 
-            mx-[26px]
+            mx-[18px]
             absolute bottom-[32px] ${props.isSocial ? "w-[43%] bg-[#19191a]" : "w-[85%]"} bg-globalBgColor shadow-[0_-35px_10px_10px_rgba(19,19,20,1)]`}
       id="chatting_input_container"
       onDragStart={(e) => e.preventDefault()}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ChattingBox from "components/Experience/RoomInterior/ChattingBox";
+import SideChatBox from "./SideChatBox";
 
 const ChatSidebar = () => {
   const [leftSideActive, setLeftSideActive] = useState('chatting');
   return (
-    <div className="fixed top-[92px] right-[70px] bottom-0 w-[320px]">
-      <ChattingBox
+    <div className="fixed top-[92px] right-[70px] bottom-0 w-[360px]">
+      <SideChatBox
         setLeftSideActive={() => { }}
         leftSideActive={'chatting'}
       />

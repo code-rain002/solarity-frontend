@@ -1,9 +1,9 @@
 import React from "react";
 import { DownArrow, UpArrow } from "components/icons";
 import { useState } from "react";
-import ChattingThreadBox from "./ChattingThreadBox";
-import Input from "./Input";
-import UploadDropZoneImg from "./UploadDropZoneImg";
+import ChattingThreadBox from "../../../Experience/RoomInterior/ChattingBox/ChattingThreadBox";
+import Input from "../../../Experience/RoomInterior/ChattingBox/Input";
+import UploadDropZoneImg from "../../../Experience/RoomInterior/ChattingBox/UploadDropZoneImg";
 
 type ChattingBoxType = {
   setLeftSideActive: any;
@@ -31,7 +31,7 @@ const ChattingBox = (props: ChattingBoxType) => {
 
   return (
     <div
-      className={`w-full h-full border-[#1d1f1f] border-[1px] bg-[#141414] md:rounded-[24px] xs:rounded-[0px]
+      className={`w-full h-full border-[#1d1f1f] border-[1px] bg-[#141414]
         ${props.leftSideActive === "chatting"
           ? "flex flex-col"
           : "hidden"
@@ -78,8 +78,8 @@ const ChattingBox = (props: ChattingBoxType) => {
       <UploadDropZoneImg toggleDropZone={toggleDropZone} />
       {/* Following is a tranparent layer for drag and drop operation - with this flickering issue can be avoid */}
       <div
-        className={`absolute top-[-3px] bottom-[-3px] left-[-3                                   px] right-[-3px] bg-transparent
-                            rounded-[24px] ${toggleDropZone === "none"
+        className={`absolute top-[-3px] bottom-[-3px] left-[-3px] right-[-3px] bg-transparent
+            rounded-[24px] ${toggleDropZone === "none"
             ? "hidden"
             : "flex flex-col"
           }`}
