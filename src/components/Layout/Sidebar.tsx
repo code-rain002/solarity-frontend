@@ -35,9 +35,9 @@ export const ToggleChatBtn = (props) => {
 
 const Sidebar = (props) => {
   return (
-    <div className="fixed top-[92px] left-0 bottom-0 overflow-y-auto z-[100]">
-      <div className="sm:flex xs:hidden flex-row border-r-[1px] border-semiSplitter bg-globalBgColor">
-        <div className={`relative flex flex-col w-[100px]  items-center`}>
+    <div className="fixed top-[92px] right-0 bottom-0 overflow-y-auto z-[100]">
+      <div className="sm:flex xs:hidden flex-row border-l-[1px] border-semiSplitter bg-globalBgColor">
+        <div className={`relative flex flex-col w-[70px] items-center`}>
           {/* <div className="px-[25px] py-[21px] border-b-[1px] border-semiSplitter relative">
             <div className="w-[50px] h-[50px] cursor-pointer">
               <Image src="/favicon.png" width={40} height={40}></Image>
@@ -67,7 +67,7 @@ const Sidebar = (props) => {
             })}
           </div>
           <div
-            className={`w-full pt-[18px] pb-[26px] border-b-[1px] border-semiSplitter flex flex-col items-center`}
+            className={`w-full pt-[18px] pb-[26px] border-semiSplitter flex flex-col items-center`}
           >
             <div
               className={`text-[14px] font-[500] text-[#474749] text-center pb-[16px]`}

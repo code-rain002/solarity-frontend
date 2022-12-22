@@ -5,30 +5,20 @@ import {
 } from 'modal/sidebar'
 
 export const Your_Daos: DaosType = {
-    title: 'Your DAOs',
+    title: 'Groups',
     avatars: [
-        { url: "/images/DAO_avatars/your_daos/your_daos(1).png", name: 'Solgods' },
-        { url: "/images/DAO_avatars/your_daos/your_daos(2).png", name: 'Official fortnite' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(1).png", name: 'Axie infinity' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(3).png", name: 'Tommy Init’s' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(4).png", name: 'Servidor De Goularde' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(7).png", name: 'LOUD' },
+        { url: "/images/daos/solgods.jpeg", name: 'Solgods' },
+        { url: "/images/daos/moneyboys.jpeg", name: 'Official fortnite' },
+        { url: "/images/daos/bayc.jpeg", name: 'Axie infinity' },
+        { url: "/images/daos/solgods2.jpg", name: 'Tommy Init’s' },
     ]
 }
 
 export const Top_Daos: DaosType = {
-    title: 'Top DAOs',
+    title: 'DMs',
     avatars: [
-        { url: "/images/DAO_avatars/top_daos/top_daos(1).png", name: 'Axie infinity' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(2).png", name: 'Apex Legends' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(3).png", name: 'Tommy Init’s' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(4).png", name: 'Servidor De Goularde' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(5).png", name: 'Rainbow 6' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(6).png", name: 'Rocket League' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(7).png", name: 'LOUD' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(8).png", name: 'Elite Customes' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(9).png", name: 'SplitGarts' },
-        { url: "/images/DAO_avatars/top_daos/top_daos(10).png", name: 'The End' },
+        { url: "/images/daos/cryptopunk.png", name: 'Axie infinity' },
+        { url: "/images/daos/doodles.png", name: 'Apex Legends' },
     ]
 }
 

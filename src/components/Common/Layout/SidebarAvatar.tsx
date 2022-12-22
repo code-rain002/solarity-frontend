@@ -14,8 +14,8 @@ const ToolTip = ({ children }) => {
 const SidebarAvatar = (props) => {
     return (
         <div className="group relative border-[1px] border-[#272829]  duration-800 
-                        rounded-[20px] w-[48px] h-[48px] mb-[16px] flex items-center justify-center cursor-pointer" onClick={() => (alert("DAO!"))}>
-            <Image src={props.img_url} width={32} height={32} alt={props.img_url} />
+                        rounded-[10px] w-[48px] h-[48px] mb-[16px] flex items-center justify-center cursor-pointer" onClick={() => (alert("DAO!"))}>
+            <Image src={props.img_url} className="rounded-[6px]" width={36} height={36} alt={props.img_url} />
             {props.expanded ? <ToolTip>{props.name}</ToolTip> : ''}
         </div>
     )

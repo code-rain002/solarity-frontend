@@ -5,13 +5,12 @@ import MobileHeaderMenuItem from "components/Common/Layout/MobileHeaderMenuItem"
 import MobileHeaderWallet from "components/Profile/MobileHeaderWallet"
 import MobileSidebar from "./MobileSidebar"
 import { HeaderMenuTitles } from "data/HeaderMenu"
-import { checkBrowser } from "utils"
 
 type MobileMenuProps = {
     mobileMenuToggler: boolean,
     onClick: any,
-    searchString: string;
-    setSearchString: Function;
+    searchString?: string;
+    setSearchString?: Function;
 }
 
 const MobileMenu = (props: MobileMenuProps) => {

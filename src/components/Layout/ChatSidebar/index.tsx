@@ -4,7 +4,7 @@ import ChattingBox from "components/Experience/RoomInterior/ChattingBox";
 const ChatSidebar = () => {
   const [leftSideActive, setLeftSideActive] = useState('chatting');
   return (
-    <div className="fixed top-[92px] right-0 bottom-0 w-[400px]">
+    <div className="fixed top-[92px] right-[70px] bottom-0 w-[320px]">
       <ChattingBox
         setLeftSideActive={() => { }}
         leftSideActive={'chatting'}
