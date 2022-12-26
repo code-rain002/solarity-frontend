@@ -43,7 +43,7 @@ const ChattingBox = (props: ChattingBoxType) => {
     >
       <div className=" flex flex-row items-center justify-between h-[30px] mt-[26px] mx-[26px] mb-[32px] ">
         <div className=" title font-['Outfit'] font-[500] text-[24px] text-[#f3f3f3] select-none ">
-          Chat
+          
         </div>
         <div
           className=" md:flex xs:hidden cursor-pointer "

@@ -27,6 +27,10 @@ export interface CounterState {
   typingState: boolean;
   typingMembers: any;
   selectedChatUserName: string;
+  chatKind: number;
+  selectedChat: string;           // Id of user who are selected for chat.
+  dms: any[];
+  groups: any[];
 }
 
 const initialState: CounterState = {
@@ -67,6 +71,10 @@ const initialState: CounterState = {
   typingState: false,
   typingMembers: [],
   selectedChatUserName: "",
+  chatKind: 0,
+  selectedChat: '',
+  dms: [],
+  groups: [],
 };
 
 export const chatSlice = createSlice({
@@ -209,10 +217,58 @@ export const chatSlice = createSlice({
     },
     setChatSidebarVisibility: (state, action: PayloadAction<boolean>) => {
       state.chatSidebarVisibility = action.payload
+    },
+    setChatKind: (state, action: PayloadAction<number>) => {
+      state.chatKind = action.payload;
+    },
+    setSelectedChat: (state, action: PayloadAction<string>) => {
+      state.selectedChat = action.payload;
+    },
+    addDMs: (state, action: PayloadAction<any>) => {
+      state.dms.push(action.payload);
+    },
+    setDMs: (state, action: PayloadAction<any[]>) => {
+      state.dms = action.payload;
     }
   },
 });
 
-export const { setCreateModalVisibility, setChatSidebarVisibility, setSelectedChatUserName, setReply, setTypingState, clearUserMsg, setUserMsg, setFriends, setOnline, setMembers, setNewMsg, setMobileBanner, setIsNewChatModal, setJoinModalVisibility, createRoom, setName, setSelectedRoom, setNewRoomTitle, setNewModelIndex, setActiveRoomTypeIndex, setSocket, addPeer, addRoom, setRooms, addMsg, removePeer, setMsg, setRoomIndex, setModel, setPeers, setRoom } = chatSlice.actions;
+export const { 
+  setSelectedChat,
+  setChatKind,
+  setCreateModalVisibility, 
+  setChatSidebarVisibility, 
+  setSelectedChatUserName, 
+  setReply, 
+  setTypingState, 
+  clearUserMsg, 
+  setUserMsg, 
+  setFriends, 
+  setOnline, 
+  setMembers, 
+  setNewMsg, 
+  setMobileBanner, 
+  setIsNewChatModal, 
+  setJoinModalVisibility, 
+  createRoom, 
+  setName, 
+  setSelectedRoom, 
+  setNewRoomTitle, 
+  setNewModelIndex, 
+  setActiveRoomTypeIndex, 
+  setSocket, 
+  addPeer, 
+  addRoom, 
+  setRooms, 
+  addMsg, 
+  removePeer, 
+  setMsg, 
+  setRoomIndex, 
+  setModel, 
+  setPeers, 
+  setRoom,
+  addDMs,
+  setDMs,
+} = chatSlice.actions;
 
 export default chatSlice.reducer;

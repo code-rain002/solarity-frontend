@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import Sidebar from './Sidebar'
 import ChatSidebar from './ChatSidebar'
+import InviteFriend from './InviteFriend'
 import Header from './Header'
 import MobileTopBar from "./MobileTopBar"
 import MobileMenu from "./MobileMenu"
@@ -27,6 +28,7 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
 
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
     const [isMobile, setIsMobile] = useState(false);
+    const [isChatPanel, setIsChatPanel] = useState(true);
     const wallet = useWallet();
     useEffect(() => {
         setIsMobile(checkBrowser())
@@ -39,7 +41,7 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
             <div className="bg-globalBgColor w-full pb-7">
                 <Header searchString={searchString} setSearchString={setSearchString} />
                 <div className='flex w-full'>
-                    <div className={`fixed left-[0px] top-[112px] bottom-0 overflow-y-auto ${chatSidebarVisibility ? 'right-[470px]' : 'right-0'}`}>
+                    <div className={`fixed left-[0px] top-[112px] bottom-0 overflow-y-auto ${chatSidebarVisibility ? 'right-[435px]' : 'right-0'}`}>
                         <div className={`w-full custom-2xl:px-[${chatSidebarVisibility ? 30 : 100}px] xl:px-[25px] lg:px-[32px] md:px-[25px] sm:px-[20px] xs:px-[24px]`}>
                             {banner}
                             {children}
@@ -47,8 +49,13 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
                     </div>
                     {chatSidebarVisibility && (
                         <div>
-                            <ChatSidebar />
-                            <Sidebar onClick={onClick} sidebarToggler={sidebarToggler} />
+                            {isChatPanel && (
+                                <ChatSidebar />
+                            )}
+                            {!isChatPanel && (
+                                <InviteFriend setIsChatPanel={setIsChatPanel}/>
+                            )}
+                            <Sidebar onClick={onClick} sidebarToggler={sidebarToggler} setIsChatPanel={setIsChatPanel}/>
                         </div>
                     )}
                 </div>
@@ -56,7 +63,6 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
             {isMobile && (
                 <MobileNavbar />
             )}
-            {/* {!wallet.connected && <div className=''><WalletMultiButton /></div>} */}
         </div>
     )
 }

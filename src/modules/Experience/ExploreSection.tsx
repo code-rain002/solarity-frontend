@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import ExploreRoomItem from "components/Experience/ExploreRoom/ExploreRoomItem";
 import ExploreRoomTitle from "components/Experience/ExploreRoom/ExploreRoomTitle";
 import { SolanaIcon } from "components/icons";
@@ -5,7 +6,6 @@ import TopRoomItem from 'components/Experience/TopRoomItem';
 import Header from "components/Marketplace/NFTItems/Header";
 import LiveRoomItems from "components/Marketplace/NFTItems/LiveRoomItems";
 import { ExploreRoomData } from "data/Experience";
-import { useEffect, useState } from "react";
 import { RootStateOrAny } from "react-redux";
 import { useAppSelector } from "redux/hooks";
 import BaseUrl from "config";

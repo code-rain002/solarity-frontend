@@ -6,6 +6,7 @@ import { Your_Daos, Top_Daos, MagnifyIcon } from "../../data/Sidebar";
 import SideAvatar, { SidebarAvatarName } from "../Common/Layout/SidebarAvatar";
 import { RightArrow } from "components/icons";
 import { LeftArrow } from "components/icons";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 const ToggleShowBtn = (props) => {
   return (
@@ -34,6 +35,11 @@ export const ToggleChatBtn = (props) => {
 };
 
 const Sidebar = (props) => {
+
+  const { dms } = useSelector((state: RootStateOrAny) => ({
+    dms: state.chat.dms,
+  }))
+
   return (
     <div className="fixed top-[92px] right-0 bottom-0 overflow-y-auto z-[100]">
       <div className="sm:flex xs:hidden flex-row border-l-[1px] border-semiSplitter bg-globalBgColor">
@@ -55,7 +61,7 @@ const Sidebar = (props) => {
             >
               {Your_Daos.title}
             </div>
-            {Your_Daos.avatars.map(function (i) {
+            {/* {Your_Daos.avatars.map(function (i) {
               return (
                 <SideAvatar
                   key={i.name}
@@ -64,7 +70,7 @@ const Sidebar = (props) => {
                   expanded={!props.sidebarToggler}
                 />
               );
-            })}
+            })} */}
           </div>
           <div
             className={`w-full pt-[18px] pb-[26px] border-semiSplitter flex flex-col items-center`}
@@ -76,7 +82,8 @@ const Sidebar = (props) => {
             </div>
             <div
               className="relative group border-[1px] border-[#272829] hover:border-[#29B080] hover:shadow-[0_0_5px_4px_rgba(41,176,128,0.1)] duration-300 
-                              rounded-[20px] w-[48px] h-[48px] mb-[16px] flex items-center justify-center cursor-pointer"
+                              rounded-[10px] w-[48px] h-[48px] mb-[16px] flex items-center justify-center cursor-pointer"
+              onClick={() => props.setIsChatPanel(false)}
             >
               {MagnifyIcon}
               <div
@@ -87,16 +94,16 @@ const Sidebar = (props) => {
                     : "group-hover:opacity-100 group-hover:w-max group-hover:px-[12px]"
                   }`}
               >
-                Browse
+                New DM
               </div>
             </div>
-            {Top_Daos.avatars.map(function (i) {
+            {dms.map(function (dm, index) {
               return (
                 <SideAvatar
-                  key={i.name}
-                  img_url={i.url}
-                  name={i.name}
-                  expanded={!props.sidebarToggler}
+                  key={index}
+                  img_url={dm.url}
+                  name={dm.name}
+                  expanded={true}
                 />
               );
             })}

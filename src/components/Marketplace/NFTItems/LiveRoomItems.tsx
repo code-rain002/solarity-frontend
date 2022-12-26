@@ -14,8 +14,8 @@ export default function LiveRoomItems(props) {
       <div className='room-items flex gap-7 h-30 w-[100%] relative cursor-pointer overflow-y-hidden overflow-x-hidden scroll-smooth flex-nowrap'>
         {
           props.items.map((item, index) => (
-            <div onClick={() => selectRoom(index, item)}>
-              <LiveRoomItem {...item} key={index} />
+            <div onClick={() => selectRoom(index, item)} key={index}>
+              <LiveRoomItem {...item} />
             </div>
           ))
         }
