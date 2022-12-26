@@ -1,6 +1,5 @@
 import { PrimaryButton } from "components/Common/Buttons";
 import React from "react";
-import Image from "next/image";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import MessageListItem from './MessageListItem';
 import { addDMs, setChatKind, setMembers, setSelectedChat } from "redux/slices/chatSlice";
@@ -26,8 +25,8 @@ const MessageList = (props) => {
 
 
   return (
-    <div className="px-6 pb-6">
-      <div className="grid gap-y-3">
+    <div className="pb-6">
+      <div className="flex flex-col gap-y-3 h-[50vh] overflow-auto px-6">
         {!!suggestedFriends && suggestedFriends.map((friend, index) => (
           <MessageListItem
             title={friend.username}
