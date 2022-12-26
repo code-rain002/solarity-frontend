@@ -4,6 +4,8 @@ import { useState } from "react";
 import ChattingThreadBox from "../../../Experience/RoomInterior/ChattingBox/ChattingThreadBox";
 import Input from "../../../Experience/RoomInterior/ChattingBox/Input";
 import UploadDropZoneImg from "../../../Experience/RoomInterior/ChattingBox/UploadDropZoneImg";
+import { RootStateOrAny, useSelector } from "react-redux";
+import SidebarInput from "./SidebarInput";
 
 type ChattingBoxType = {
   setLeftSideActive: any;
@@ -11,6 +13,10 @@ type ChattingBoxType = {
 };
 
 const ChattingBox = (props: ChattingBoxType) => {
+  const { selectedChat } = useSelector((state: RootStateOrAny) => ({
+    selectedChat: state.chat.selectedChat,
+  }))
+
   const [focusState, setFocusState] = useState(false);
   const [toggleDropZone, setToggleDropZone] = useState("none");
   const [newMsgSendingState, setNewMsgSendingState] = useState(false);
@@ -41,9 +47,9 @@ const ChattingBox = (props: ChattingBoxType) => {
         setToggleDropZone("flex");
       }}
     >
-      <div className=" flex flex-row items-center justify-between h-[30px] mt-[26px] mx-[26px] mb-[32px] ">
+      <div className=" flex flex-row items-center justify-between h-[30px] mt-[12px] mx-[26px] mb-[32px] ">
         <div className=" title font-['Outfit'] font-[500] text-[24px] text-[#f3f3f3] select-none ">
-          
+          {selectedChat.name}
         </div>
         <div
           className=" md:flex xs:hidden cursor-pointer "
@@ -53,22 +59,12 @@ const ChattingBox = (props: ChattingBoxType) => {
               : ""
           }
         >
-          <UpArrow />
-        </div>
-        <div
-          className=" md:hidden xs:flex cursor-pointer "
-          onClick={() =>
-            props.leftSideActive === "chatting"
-              ? props.setLeftSideActive("")
-              : ""
-          }
-        >
-          <DownArrow />
+          {/* <UpArrow /> */}
         </div>
       </div>
 
       <ChattingThreadBox isSocial={false} />
-      <Input
+      <SidebarInput
         focusState={focusState}
         setFocusState={setFocusState}
         newMsgDataState={newMsgDataState}

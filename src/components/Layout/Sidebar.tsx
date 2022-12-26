@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { LogoSVGImg } from "../Common/Images";
@@ -7,6 +7,8 @@ import SideAvatar, { SidebarAvatarName } from "../Common/Layout/SidebarAvatar";
 import { RightArrow } from "components/icons";
 import { LeftArrow } from "components/icons";
 import { RootStateOrAny, useSelector } from "react-redux";
+import { apiCaller } from "utils/fetcher";
+import { time_ago } from "utils";
 
 const ToggleShowBtn = (props) => {
   return (
@@ -36,9 +38,45 @@ export const ToggleChatBtn = (props) => {
 
 const Sidebar = (props) => {
 
-  const { dms } = useSelector((state: RootStateOrAny) => ({
+  const { profile, dms, selectedChat, chatLogs } = useSelector((state: RootStateOrAny) => ({
+    profile: state.profile.data,
     dms: state.chat.dms,
+    selectedChat: state.chat.selectedChat,
+    chatLogs: state.chat.chatLogs,
   }))
+
+  const [serverChats, setServerChats] = useState([]);
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        if (profile.username == undefined) {
+          return;
+        }
+        const { data } = await apiCaller.get("/chats/fetchChats");
+        var tmpChats = [];
+        for (var i = 0; i < data.chats.length; i++) {
+          const person = data.chats[i].users[0].username == profile.username ? data.chats[i].users[1] : data.chats[i].users[0];
+          tmpChats.push({
+            _id: data.chats[i]._id,
+            users: data.chats[i].users,
+            image: (<div className="h-[52px]">
+              <Image className="rounded-xl" src={person.profileImage ? person.profileImage.link : "/images/experience/psuedo_avatars/avatar.png"} width={52} height={52} />
+            </div>),
+            title: person.username,
+            detail: data.chats[i].lastMsg.content,
+            time: time_ago(data.chats[i].lastMsg.createdAt),
+            gap: 3,
+            badge: data.chats[i].unreadCount
+          });
+        }
+        setServerChats(tmpChats);
+      } catch (error) {
+        console.error('Something went wrong.')
+      }
+    }
+    fetchChats();
+  }, [profile, chatLogs])
 
   return (
     <div className="fixed top-[92px] right-0 bottom-0 overflow-y-auto z-[100]">
@@ -97,13 +135,14 @@ const Sidebar = (props) => {
                 New DM
               </div>
             </div>
-            {dms.map(function (dm, index) {
+            {serverChats.map(function (dm, index) {
               return (
                 <SideAvatar
                   key={index}
                   img_url={dm.url}
                   name={dm.name}
                   expanded={true}
+                  selected={dm.id == selectedChat.id}
                 />
               );
             })}

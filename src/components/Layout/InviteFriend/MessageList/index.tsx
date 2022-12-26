@@ -17,13 +17,16 @@ const MessageList = (props) => {
     props.setIsChatPanel(true);
     dispatch(setMembers([profileData._id, selectedFriend._id]));
     dispatch(setChatKind(CONSTANT.DM_CHAT));
-    dispatch(setSelectedChat(selectedFriend._id))
+    dispatch(setSelectedChat({
+      id: selectedFriend._id,
+      name: selectedFriend.username,
+    }))
     dispatch(addDMs({
-      name: selectedFriend.name,
-      url: selectedFriend.profileImage ? selectedFriend.profileImage : '/images/experience/psuedo_avatars/avatar.png'
+      name: selectedFriend.username,
+      url: selectedFriend.profileImage ? selectedFriend.profileImage : '/images/experience/psuedo_avatars/avatar.png',
+      id: selectedFriend._id
     }))
   }
-
 
   return (
     <div className="px-6 pb-6">

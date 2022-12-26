@@ -25,7 +25,7 @@ const InviteFriend = (props) => {
   }, [userSearchInput]);
 
   return (
-    <div className="fixed top-[92px] right-[70px] bottom-0 w-[360px]">
+    <div className="fixed top-[92px] right-[70px] bottom-0 w-[360px] z-[10]">
       <div className={`w-full h-full border-[#1d1f1f] border-[1px] bg-[#141414]`}>
         <div className="pt-[15px] grid">
           <div className="pl-8">
