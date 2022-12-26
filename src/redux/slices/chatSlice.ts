@@ -28,7 +28,7 @@ export interface CounterState {
   typingMembers: any;
   selectedChatUserName: string;
   chatKind: number;
-  selectedChat: string;           // Id of user who are selected for chat.
+  selectedChat: any;           // Id of user who are selected for chat.
   dms: any[];
   groups: any[];
 }
@@ -72,7 +72,10 @@ const initialState: CounterState = {
   typingMembers: [],
   selectedChatUserName: "",
   chatKind: 0,
-  selectedChat: '',
+  selectedChat: {
+    id: null,
+    name: '',
+  },
   dms: [],
   groups: [],
 };
@@ -221,7 +224,7 @@ export const chatSlice = createSlice({
     setChatKind: (state, action: PayloadAction<number>) => {
       state.chatKind = action.payload;
     },
-    setSelectedChat: (state, action: PayloadAction<string>) => {
+    setSelectedChat: (state, action: PayloadAction<any>) => {
       state.selectedChat = action.payload;
     },
     addDMs: (state, action: PayloadAction<any>) => {

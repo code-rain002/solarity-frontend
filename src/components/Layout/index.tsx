@@ -51,10 +51,10 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
                         <div>
                             {isChatPanel && (
                                 <ChatSidebar />
-                            )}
+                                )}
                             {!isChatPanel && (
                                 <InviteFriend setIsChatPanel={setIsChatPanel}/>
-                            )}
+                                )}
                             <Sidebar onClick={onClick} sidebarToggler={sidebarToggler} setIsChatPanel={setIsChatPanel}/>
                         </div>
                     )}
