@@ -7,12 +7,14 @@ import Header from './Header'
 import MobileTopBar from "./MobileTopBar"
 import MobileMenu from "./MobileMenu"
 import MobileNavbar from "./MobileNavbar"
-import { checkBrowser } from 'utils'
+import { checkBrowser, eqArraySets } from 'utils'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import GameModal from 'components/Community/GameModal'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { setGameModalVisibility } from 'redux/slices/commonSlice'
+import { setFriends, setName, setOnline, setTypingState, setUserMsg } from 'redux/slices/chatSlice'
+import ACTIONS from 'config/actions'
 
 const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSearchString }: {
     children: any,
@@ -22,8 +24,11 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
     searchString?: string;
     setSearchString?: Function;
 }) => {
-    const { chatSidebarVisibility } = useSelector((state: RootStateOrAny) => ({
+    const dispatch = useDispatch();
+    const { chatSidebarVisibility, members, typingMembers } = useSelector((state: RootStateOrAny) => ({
         chatSidebarVisibility: state.chat.chatSidebarVisibility,
+        members: state.chat.members,
+        typingMembers: state.chat.typingMembers,
     }))
 
     const [mobileMenuToggler, setMobileMenuToggler] = useState(false)
@@ -33,6 +38,57 @@ const Layout = ({ children, banner, onClick, sidebarToggler, searchString, setSe
     useEffect(() => {
         setIsMobile(checkBrowser())
     }, [])
+
+
+    useEffect(() => {
+        (window as any).members = members;
+        (window as any).typingMembers = typingMembers;
+    }, [members, typingMembers])
+
+    useEffect(() => {
+        if (localStorage.getItem("name")) {
+        dispatch(setName(localStorage.getItem("name")));
+        }
+        initSocket();
+    }, [])
+
+    const initSocket = () => {
+        // This part is main for socket.
+        if (!(window as any).socket) {
+        setTimeout(() => {
+            initSocket();
+        }, 100);
+        return;
+        }
+
+        if (!(window as any).socialListen) {
+        (window as any).socket.on(ACTIONS.USER_INFO_EXTENSION, (friends) => {
+            dispatch(setFriends(friends));
+        });
+
+        (window as any).socket.on(ACTIONS.ADD_USER_EXTENSION, (data) => {
+            dispatch(setOnline(data));
+        });
+
+        (window as any).socket.on(ACTIONS.TYPING_STATE, (data) => {
+            console.log(data);
+            if (eqArraySets((window as any).members, data.members)) {
+            dispatch(setTypingState({ state: data.state, name: data.name, typingMembers: (window as any).typingMembers }));
+            }
+        });
+
+        (window as any).socket.on(ACTIONS.SEND_MSG_EXTENSION, (msg) => {
+            if (!!msg) {
+            if (msg.groupType == 2) {
+                dispatch(setUserMsg(msg));
+            }
+            if (msg.members[0] != localStorage.getItem('name')) {
+            }
+            }
+        });
+        (window as any).socialListen = true;
+        }
+    }
 
     return (
         <div className="bg-globalBgColor flex sm:flex-row xs:flex-col w-full relative">

@@ -24,11 +24,13 @@ type SidebarInputType = {
 const SidebarInput = (props: SidebarInputType) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { profileData, members, chatKind, newMsg } = useSelector((state: RootStateOrAny) => ({
+  const { profileData, members, chatKind, newMsg, typingState, typingMembers } = useSelector((state: RootStateOrAny) => ({
     profileData: state.profile.data,
     members: state.chat.members,
     chatKind: state.chat.chatKind,
     newMsg: state.chat.newMsg,
+    typingState: state.chat.typingState,
+    typingMembers: state.chat.typingMembers,
   }))
   const { rid } = router.query;
 
@@ -90,7 +92,22 @@ const SidebarInput = (props: SidebarInputType) => {
     };
   }, [selectedFile]);
 
+  // Init
+  useEffect(() => {
+    (window as any).typingCounts = 0;
+  }, []);
+
   const enterKeyCapture = (e) => {
+    if ((window as any).typingCounts == 0) {
+      (window as any).socket.emit(ACTIONS.TYPING_STATE, { members, name: profileData.username, state: "true" });
+    }
+    (window as any).typingCounts++;
+    setTimeout(() => {
+      (window as any).typingCounts--;
+      if ((window as any).typingCounts == 0) {
+        (window as any).socket.emit(ACTIONS.TYPING_STATE, { members, name: profileData.username, state: "false" })
+      }
+    }, 1000);
     if (e.key === "Enter") {
       if ((e.keyCode === 13 && e.shiftKey) || (e.keyCode === 13 && e.ctrlKey)) {
         return;
@@ -222,6 +239,11 @@ const SidebarInput = (props: SidebarInputType) => {
     >
       {/* <div className=" absolute top-[-51px] right-[0px] custom-2xl:h-[30px] xs:h-[50px] w-full bg-gradient-to-t from-[#131314] via-[#131314] to-transparent"></div> */}
       {/* <TypingNotification who={["Eugene", "Alex1440", "Eugene", "Alex1440"]} /> */}
+      {
+        typingState && (
+          <TypingNotification who={[typingMembers]} />
+        )
+      }
       <ReplyPart
         newMsgDataState={props.newMsgDataState}
         setNewMsgDataState={props.setNewMsgDataState}

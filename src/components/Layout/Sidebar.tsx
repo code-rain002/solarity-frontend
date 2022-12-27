@@ -6,9 +6,11 @@ import { Your_Daos, Top_Daos, MagnifyIcon } from "../../data/Sidebar";
 import SideAvatar, { SidebarAvatarName } from "../Common/Layout/SidebarAvatar";
 import { RightArrow } from "components/icons";
 import { LeftArrow } from "components/icons";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { apiCaller } from "utils/fetcher";
 import { time_ago } from "utils";
+import { setChatKind, setMembers, setSelectedChat } from "redux/slices/chatSlice";
+import CONSTANT from "config/constant";
 
 const ToggleShowBtn = (props) => {
   return (
@@ -37,7 +39,7 @@ export const ToggleChatBtn = (props) => {
 };
 
 const Sidebar = (props) => {
-
+  const dispatch = useDispatch();
   const { profile, dms, selectedChat, chatLogs } = useSelector((state: RootStateOrAny) => ({
     profile: state.profile.data,
     dms: state.chat.dms,
@@ -60,10 +62,8 @@ const Sidebar = (props) => {
           tmpChats.push({
             _id: data.chats[i]._id,
             users: data.chats[i].users,
-            image: (<div className="h-[52px]">
-              <Image className="rounded-xl" src={person.profileImage ? person.profileImage.link : "/images/experience/psuedo_avatars/avatar.png"} width={52} height={52} />
-            </div>),
-            title: person.username,
+            url: person.profileImage ? person.profileImage.link : "/images/experience/psuedo_avatars/avatar.png",
+            name: person.username,
             detail: data.chats[i].lastMsg.content,
             time: time_ago(data.chats[i].lastMsg.createdAt),
             gap: 3,
@@ -77,6 +77,23 @@ const Sidebar = (props) => {
     }
     fetchChats();
   }, [profile, chatLogs])
+
+  const setActiveDM = (dm) => {
+    props.setIsChatPanel(true);
+    var otherUserId = '';
+    console.log(profile._id, dm.users);
+    if(dm.users[0].id == profile._id) {
+      otherUserId = dm.users[1].id;
+    } else {
+      otherUserId = dm.users[0].id;
+    }
+    dispatch(setMembers([profile._id, otherUserId]));
+    dispatch(setChatKind(CONSTANT.DM_CHAT));
+    dispatch(setSelectedChat({
+      id: otherUserId,
+      name: dm.name,
+    }))
+  }
 
   return (
     <div className="fixed top-[92px] right-0 bottom-0 overflow-y-auto z-[100]">
@@ -137,18 +154,19 @@ const Sidebar = (props) => {
             </div>
             {serverChats.map(function (dm, index) {
               return (
-                <SideAvatar
-                  key={index}
-                  img_url={dm.url}
-                  name={dm.name}
-                  expanded={true}
-                  selected={dm.id == selectedChat.id}
-                />
+                <div onClick={() => setActiveDM(dm)}>
+                  <SideAvatar
+                    key={index}
+                    img_url={dm.url}
+                    name={dm.name}
+                    expanded={true}
+                    selected={selectedChat.id == dm.users[1].id || selectedChat.id == dm.users[0].id}
+                  />
+                </div>
               );
             })}
           </div>
         </div>
-
         <div
           className={`flex flex-col ${props.sidebarToggler ? "w-[140px]" : "w-[0px]"
             } h-full items-start`}

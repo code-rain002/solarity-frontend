@@ -14,7 +14,7 @@ type ChattingThreadType = {
   before?: string;
   text: string;
   hisMsg: string;
-  msgId: string;
+  msgId?: string;
   replyToWhom: string;
   fileUrls?: string[];
   fileNames: string[];
@@ -137,7 +137,7 @@ const ChattingThread = (props: ChattingThreadType) => {
       onMouseEnter={() => setShowReplyBtn(true)}
       onMouseLeave={() => setShowReplyBtn(false)}
     >
-      <div className={`min-h-[40px] min-w-[40px] rounded-[15px] overflow-hidden relative ${props.uName === profileData.username ? "hidden" : ""} `}>
+      <div className={`min-h-[40px] min-w-[40px] rounded-[10px] overflow-hidden relative ${props.uName === profileData.username ? "hidden" : ""} `}>
         <Image src={props.imgUrl} layout="responsive" width={40} height={40} />
       </div>
       <div className={`flex ${props.uName === profileData.username ? "flex-row-reverse" : "flex-col"} gap-[10px] justify-between items-start md:w-[278px] xs:max-w-[100%]`}>

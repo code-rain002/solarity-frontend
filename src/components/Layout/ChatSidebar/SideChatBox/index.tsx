@@ -6,6 +6,7 @@ import Input from "../../../Experience/RoomInterior/ChattingBox/Input";
 import UploadDropZoneImg from "../../../Experience/RoomInterior/ChattingBox/UploadDropZoneImg";
 import { RootStateOrAny, useSelector } from "react-redux";
 import SidebarInput from "./SidebarInput";
+import SideChattingBox from './SideChattingBox';
 
 type ChattingBoxType = {
   setLeftSideActive: any;
@@ -47,7 +48,7 @@ const ChattingBox = (props: ChattingBoxType) => {
         setToggleDropZone("flex");
       }}
     >
-      <div className=" flex flex-row items-center justify-between h-[30px] mt-[12px] mx-[26px] mb-[32px] ">
+      <div className=" flex flex-row items-center justify-between h-[30px] mt-[12px] mx-[26px] mb-[24px] ">
         <div className=" title font-['Outfit'] font-[500] text-[24px] text-[#f3f3f3] select-none ">
           {selectedChat.name}
         </div>
@@ -63,7 +64,7 @@ const ChattingBox = (props: ChattingBoxType) => {
         </div>
       </div>
 
-      <ChattingThreadBox isSocial={false} />
+      <SideChattingBox isSocial={true} />
       <SidebarInput
         focusState={focusState}
         setFocusState={setFocusState}

@@ -9,63 +9,62 @@ import socket from "utils/socket-client"
 import { eqArraySets } from "utils"
 
 const ProfileIndex = () => {
-  const dispatch = useDispatch();
-  const { members, typingMembers } = useSelector((state: RootStateOrAny) => ({
-    members: state.chat.members,
-    typingMembers: state.chat.typingMembers,
-  }));
+  // const dispatch = useDispatch();
+  // const { members, typingMembers } = useSelector((state: RootStateOrAny) => ({
+  //   members: state.chat.members,
+  //   typingMembers: state.chat.typingMembers,
+  // }));
 
   const [sidebarToggler, setSidebarToggler] = useState(false)
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    (window as any).members = members;
-    (window as any).typingMembers = typingMembers;
-  }, [members, typingMembers])
+  // useEffect(() => {
+  //   (window as any).members = members;
+  //   (window as any).typingMembers = typingMembers;
+  // }, [members, typingMembers])
 
-  useEffect(() => {
-    if (localStorage.getItem("name")) {
-      dispatch(setName(localStorage.getItem("name")));
-    }
-    initSocket();
-  }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem("name")) {
+  //     dispatch(setName(localStorage.getItem("name")));
+  //   }
+  //   initSocket();
+  // }, [])
 
-  const initSocket = () => {
-    // This part is main for socket.
-    if (!(window as any).socket) {
-      setTimeout(() => {
-        initSocket();
-      }, 100);
-      return;
-    }
+  // const initSocket = () => {
+  //   // This part is main for socket.
+  //   if (!(window as any).socket) {
+  //     setTimeout(() => {
+  //       initSocket();
+  //     }, 100);
+  //     return;
+  //   }
 
-    if (!(window as any).socialListen) {
-      (window as any).socket.on(ACTIONS.USER_INFO_EXTENSION, (friends) => {
-        dispatch(setFriends(friends));
-      });
+  //   if (!(window as any).socialListen) {
+  //     (window as any).socket.on(ACTIONS.USER_INFO_EXTENSION, (friends) => {
+  //       dispatch(setFriends(friends));
+  //     });
 
-      (window as any).socket.on(ACTIONS.ADD_USER_EXTENSION, (data) => {
-        dispatch(setOnline(data));
-      });
+  //     (window as any).socket.on(ACTIONS.ADD_USER_EXTENSION, (data) => {
+  //       dispatch(setOnline(data));
+  //     });
 
-      (window as any).socket.on(ACTIONS.TYPING_STATE, (data) => {
-        if (eqArraySets((window as any).members, data.members)) {
-          dispatch(setTypingState({ state: data.state, name: data.name, typingMembers: (window as any).typingMembers }));
-        }
-      });
+  //     (window as any).socket.on(ACTIONS.TYPING_STATE, (data) => {
+  //       if (eqArraySets((window as any).members, data.members)) {
+  //         dispatch(setTypingState({ state: data.state, name: data.name, typingMembers: (window as any).typingMembers }));
+  //       }
+  //     });
 
-      (window as any).socket.on(ACTIONS.SEND_MSG_EXTENSION, (msg) => {
-        if (!!msg) {
-          if (!msg.groupType) {
-            dispatch(setUserMsg(msg));
-          }
-          if (msg.members[0] != localStorage.getItem('name')) {
-          }
-        }
-      });
-      (window as any).socialListen = true;
-    }
-  }
+  //     (window as any).socket.on(ACTIONS.SEND_MSG_EXTENSION, (msg) => {
+  //       if (!!msg) {
+  //         if (!msg.groupType) {
+  //           dispatch(setUserMsg(msg));
+  //         }
+  //         if (msg.members[0] != localStorage.getItem('name')) {
+  //         }
+  //       }
+  //     });
+  //     (window as any).socialListen = true;
+  //   }
+  // }
 
   return (
     <Layout
